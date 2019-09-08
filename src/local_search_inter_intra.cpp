@@ -79,19 +79,19 @@ void LocalSearchInterIntraSolution::Solve(){
         // std::cout << "Out of first" << std::endl;
       }
     }
-    std::cout << "DELTA: " << delta << std::endl;
-    std::cout << "Cost increase:  " << bci << std::endl;
-    std::cout << "Cost reduction: " << bcr << std::endl;
-    std::cout << distanceMatrix[v_temp_2->nodes[best_r]][v_temp->nodes[best_c]]
-              << " + " << distanceMatrix[v_temp->nodes[best_c]][v_temp_2->nodes[best_r + 1]]
-              << " - " << distanceMatrix[v_temp_2->nodes[best_r]][v_temp_2->nodes[best_r + 1]]
-                  << std::endl;
-    std::cout << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c + 1]]
-              << " - " << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c]]
-              << " - " << distanceMatrix[v_temp->nodes[best_c]][v_temp->nodes[best_c + 1]]
-              << std::endl;
-    std::cout << "Cost 1 " << v_temp->cost + v_temp_2->cost << std::endl;
-    std::cout << "Attepting to insert to get order " << v_temp_2->nodes[best_r] << " " << v_temp->nodes[best_c] << " " << v_temp_2->nodes[best_r+1] << std::endl;
+    // std::cout << "DELTA: " << delta << std::endl;
+    // std::cout << "Cost increase:  " << bci << std::endl;
+    // std::cout << "Cost reduction: " << bcr << std::endl;
+    // std::cout << distanceMatrix[v_temp_2->nodes[best_r]][v_temp->nodes[best_c]]
+    //           << " + " << distanceMatrix[v_temp->nodes[best_c]][v_temp_2->nodes[best_r + 1]]
+    //           << " - " << distanceMatrix[v_temp_2->nodes[best_r]][v_temp_2->nodes[best_r + 1]]
+    //               << std::endl;
+    // std::cout << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c + 1]]
+    //           << " - " << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c]]
+    //           << " - " << distanceMatrix[v_temp->nodes[best_c]][v_temp->nodes[best_c + 1]]
+    //           << std::endl;
+    // std::cout << "Cost 1 " << v_temp->cost + v_temp_2->cost << std::endl;
+    // std::cout << "Attepting to insert to get order " << v_temp_2->nodes[best_r] << " " << v_temp->nodes[best_c] << " " << v_temp_2->nodes[best_r+1] << std::endl;
     if(delta==0) break;
     else{
       int val_best_c = *(v_temp->nodes.begin()+best_c);
@@ -103,9 +103,9 @@ void LocalSearchInterIntraSolution::Solve(){
       v_temp->load += nodes[val_best_c].demand;
       v_temp_2->load -= nodes[val_best_c].demand;
     }
-    std::cout << "Cost 2 " << v_temp->cost + v_temp_2->cost << std::endl;
-    v_temp->PrintStatus();
-    v_temp_2->PrintStatus();
+    // std::cout << "Cost 2 " << v_temp->cost + v_temp_2->cost << std::endl;
+    // v_temp->PrintStatus();
+    // v_temp_2->PrintStatus();
   }
 
   std::cout << "---------------------------" << std::endl;
