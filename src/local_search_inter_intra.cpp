@@ -1,6 +1,6 @@
-#include "local_search_intra.hpp"
+#include "local_search_inter_intra.hpp"
 
-void LocalSearchIntraSolution::Solve(){
+void LocalSearchInterIntraSolution::Solve(){
   std::cout << "LocalSearchIntra Solution" << std::endl;
   std::cout << "---------------" << std::endl;
 
@@ -28,7 +28,7 @@ void LocalSearchIntraSolution::Solve(){
   std::cout << "---------------------------" << std::endl;
   for(auto& v:vehicles) v.PrintStatus();
   // for(auto& v:vehicles) v.PrintRoute();
-  int cost = 0;
+  double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   // Local Search
   while(true){
@@ -150,7 +150,7 @@ int main(){
     vehicles[i].nodes.push_back(0);
   }
 
-  LocalSearchIntraSolution g(nodes, vehicles, distanceMatrix);
+  LocalSearchInterIntraSolution g(nodes, vehicles, distanceMatrix);
   g.Solve();
 
   return 0;
