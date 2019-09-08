@@ -50,10 +50,13 @@ int main(){
   std::vector<double> tmp(nodes.size());
   for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
   for(int i=0; i<nodes.size(); ++i){
-    for(int j=0; j < nodes.size(); ++j){
-      distanceMatrix[i][j] = sqrt(pow((nodes[i].x - nodes[j].x),2) + pow((nodes[j].x - nodes[j].y),2));
+    for(int j=i; j < nodes.size(); ++j){
+      distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2)
+                                       + pow((nodes[i].y - nodes[j].y),2)));
+      distanceMatrix[j][i] = distanceMatrix[i][j];
     }
   }
+
 
   std::vector<Vehicle> vehicles;
   int load = 100, capacity = 100;

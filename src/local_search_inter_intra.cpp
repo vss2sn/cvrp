@@ -33,7 +33,7 @@ void LocalSearchInterIntraSolution::Solve(){
   // Local Search
   while(true){
   // For every vehicle
-    double delta = 0.0, cost_reduction, cost_increase;
+    double delta = 0.0, cost_reduction, cost_increase, bcr, bci;
     int cur, prev, next_c, rep, next_r, best_c, best_r;
     Vehicle *v_temp_2, *v_temp;
     for(auto& v:vehicles){
@@ -63,6 +63,8 @@ void LocalSearchInterIntraSolution::Solve(){
                             + distanceMatrix[v.nodes[cur]][v2.nodes[next_r]]
                             - distanceMatrix[v2.nodes[rep]][v2.nodes[next_r]];
               if(cost_increase + cost_reduction < delta && v2.load - nodes[v.nodes[cur]].demand >= 0 ){
+                  bci = cost_increase;
+                  bcr = cost_reduction;
                   delta = cost_increase + cost_reduction;
                   best_c = cur;
                   best_r = rep;
@@ -77,18 +79,33 @@ void LocalSearchInterIntraSolution::Solve(){
         // std::cout << "Out of first" << std::endl;
       }
     }
-    // std::cout << "DELTA: " << delta << std::endl;
+    std::cout << "DELTA: " << delta << std::endl;
+    std::cout << "Cost increase:  " << bci << std::endl;
+    std::cout << "Cost reduction: " << bcr << std::endl;
+    std::cout << distanceMatrix[v_temp_2->nodes[best_r]][v_temp->nodes[best_c]]
+              << " + " << distanceMatrix[v_temp->nodes[best_c]][v_temp_2->nodes[best_r + 1]]
+              << " - " << distanceMatrix[v_temp_2->nodes[best_r]][v_temp_2->nodes[best_r + 1]]
+                  << std::endl;
+    std::cout << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c + 1]]
+              << " - " << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c]]
+              << " - " << distanceMatrix[v_temp->nodes[best_c]][v_temp->nodes[best_c + 1]]
+              << std::endl;
+    std::cout << "Cost 1 " << v_temp->cost + v_temp_2->cost << std::endl;
+    std::cout << "Attepting to insert to get order " << v_temp_2->nodes[best_r] << " " << v_temp->nodes[best_c] << " " << v_temp_2->nodes[best_r+1] << std::endl;
     if(delta==0) break;
     else{
       int val_best_c = *(v_temp->nodes.begin()+best_c);
       v_temp->nodes.erase(v_temp->nodes.begin()+best_c);
       v_temp->CalculateCost(distanceMatrix);
-      if(best_c < best_r) v_temp_2->nodes.insert(v_temp_2->nodes.begin()+best_r, val_best_c);
+      if(v_temp->id == v_temp_2->id && best_c < best_r) v_temp_2->nodes.insert(v_temp_2->nodes.begin()+best_r, val_best_c);
       else v_temp_2->nodes.insert(v_temp_2->nodes.begin()+best_r+1, val_best_c);
       v_temp_2->CalculateCost(distanceMatrix);
       v_temp->load += nodes[val_best_c].demand;
       v_temp_2->load -= nodes[val_best_c].demand;
     }
+    std::cout << "Cost 2 " << v_temp->cost + v_temp_2->cost << std::endl;
+    v_temp->PrintStatus();
+    v_temp_2->PrintStatus();
   }
 
   std::cout << "---------------------------" << std::endl;
@@ -97,10 +114,10 @@ void LocalSearchInterIntraSolution::Solve(){
   for(auto& v:vehicles) v.PrintStatus();
   // for(auto& v:vehicles) v.PrintRoute();
 
-  std::cout << cost << std::endl;
+  std::cout << "Initial (greedy) cost: " << cost << std::endl;
   cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  std::cout << cost << std::endl;
+  std::cout << "Final cost: " << cost << std::endl << std::endl;
 
   for(auto& i:nodes){
     if(!i.is_routed){
@@ -120,8 +137,8 @@ int main(){
   std::mt19937 eng(rd()); // seed the generator
   std::uniform_int_distribution<int> ran(0,range); // define the range
 
-  int noc = 5;
-	int nov = 2;
+  int noc = 100;
+	int nov = 10;
 
   Node depot(0, 0, 0, 0, true);
 
@@ -129,7 +146,7 @@ int main(){
   nodes.push_back(depot);
 
   for(int i = 1; i <=noc; ++i){
-  nodes.emplace_back(ran(eng)-range/2, ran(eng)-range/2, i, ran(eng)/2, false);
+  nodes.emplace_back(ran(eng)-range/2, ran(eng)-range/2, i, ran(eng)/5, false);
     nodes[i].PrintStatus();
   }
 
@@ -137,8 +154,9 @@ int main(){
   std::vector<double> tmp(nodes.size());
   for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
   for(int i=0; i<nodes.size(); ++i){
-    for(int j=0; j < nodes.size(); ++j){
-      distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2) + pow((nodes[j].x - nodes[j].y),2)));
+    for(int j=i; j < nodes.size(); ++j){
+      distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2)
+                                       + pow((nodes[i].y - nodes[j].y),2)));
       distanceMatrix[j][i] = distanceMatrix[i][j];
     }
   }
