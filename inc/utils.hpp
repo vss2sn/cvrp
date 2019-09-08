@@ -4,6 +4,7 @@
 #include <math.h>
 #include <climits>
 #include <unordered_set>
+#include <memory>
 
 class Node{
 public:
