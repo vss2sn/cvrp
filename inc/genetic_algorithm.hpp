@@ -17,15 +17,20 @@ public:
                            int n_chromosomes,
                            int generations)
                            :Solution(nodes, vehicles, distanceMatrix){
-                                n_genes = nodes.size();
+                                this->n_chromosomes = n_chromosomes;
+                                this->generations = generations;
+                                n_genes = nodes.size()-1;
                                 vehicle_capacity = vehicles[0].capacity;
+                                costs = std::vector<double>(n_chromosomes);
                            };
   void GenerateRandomSolutions();
   double CalculateCost(int i);
   void CalculateTotalCost();
   void Solve();
   void AEXCrossover();
-  void TournamentSelection();
+  int TournamentSelection();
   void InsertionBySimilarity();
   void GenerateBestSolution();
-}
+  void Mutate();
+  void DeleteWorstChromosome();
+};
