@@ -50,15 +50,21 @@ void GeneticAlgorithmSolution::Solve(){
   while(generation < generations){
     std::cout << "Generation: " << generation << std::endl;
     AEXCrossover();
-    if(rand()%100==1) Mutate();
-    CalculateTotalCost();
+    if(rand()%100<5) Mutate();
+    // CalculateTotalCost();
     generation++;
-    for(int i=0; i< n_chromosomes;i++){
-      for(auto& j:chromosomes[i]){
-        std::cout << std::setw(3) <<j ;
-      }
-      std::cout << " | " << costs[i] << std::endl;
+    // for(int i=0; i< n_chromosomes;i++){
+    //   for(auto& j:chromosomes[i]){
+    //     std::cout << std::setw(3) <<j ;
+    //   }
+    //   std::cout << " | " << costs[i] << std::endl;
+    // }
+  }
+  for(int i=0; i< n_chromosomes;i++){
+    for(auto& j:chromosomes[i]){
+      std::cout << std::setw(3) <<j ;
     }
+    std::cout << " | " << costs[i] << std::endl;
   }
   GenerateBestSolution();
   for(auto& v:vehicles) v.PrintRoute();
@@ -99,20 +105,41 @@ void GeneticAlgorithmSolution::AEXCrossover(){
   }
   chromosomes.push_back(child);
   costs.emplace_back(CalculateCost(n_chromosomes));
-  DeleteWorstChromosome();
+  // DeleteWorstChromosome();
+  InsertionBySimilarity();
 }
 
 int GeneticAlgorithmSolution::TournamentSelection(){
   int i1 = rand()%chromosomes.size();
   int i2 = rand()%chromosomes.size();
   int i3 = rand()%chromosomes.size();
-  if(costs[i1] >= costs[i2] && costs[i1] >= costs[i3]) return i1;
-  if(costs[i2] >= costs[i1] && costs[i2] >= costs[i3]) return i2;
-  if(costs[i3] >= costs[i1] && costs[i3] >= costs[i2]) return i3;
+  if(costs[i1] <= costs[i2] && costs[i1] <= costs[i3]) return i1;
+  if(costs[i2] <= costs[i1] && costs[i2] <= costs[i3]) return i2;
+  if(costs[i3] <= costs[i1] && costs[i3] <= costs[i2]) return i3;
 }
 
-void GeneticAlgorithmSolution::InsertionBySimilarity(){}
-void GeneticAlgorithmSolution::Mutate(){}
+void GeneticAlgorithmSolution::InsertionBySimilarity(){
+  bool flag = true;
+  for(int i=0;i<n_genes;++i){
+    if(i!=best && abs(costs.back()-costs[i]) < 2*(costs[best]/100.0)){
+      costs.erase(costs.begin()+i);
+      chromosomes.erase(chromosomes.begin()+i);
+      flag = false;
+      break;
+    }
+  }
+  if(flag) DeleteWorstChromosome();
+}
+
+void GeneticAlgorithmSolution::Mutate(){
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+  int r = rand()%n_chromosomes;
+  while(r==best) r = rand()%n_chromosomes;
+  int i1 = rand()%n_genes;
+  int i2 = rand()%n_genes;
+  if(i1>i2) std::swap(i1,i2);
+  std::reverse(chromosomes[r].begin() + i1, chromosomes[r].begin() + i2);
+}
 
 void GeneticAlgorithmSolution::DeleteWorstChromosome(){
   auto it = std::max_element(costs.begin(), costs.end());
@@ -141,6 +168,8 @@ void GeneticAlgorithmSolution::GenerateBestSolution(){
     v.cost += distanceMatrix[v.nodes.back()][0];
     v.nodes.push_back(0);
   }
+  // std::sort(chromosomes[i].begin(), chromosomes[i].end());
+  // for(auto j:chromosomes[i]) std::cout << std::setw(3) << j;
 }
 
 int main(){
@@ -178,7 +207,7 @@ int main(){
     vehicles[i].nodes.push_back(0);
   }
 
-  GeneticAlgorithmSolution g(nodes, vehicles, distanceMatrix, 30, 10000 );
+  GeneticAlgorithmSolution g(nodes, vehicles, distanceMatrix, 50, 100000 );
   g.Solve();
 
   return 0;

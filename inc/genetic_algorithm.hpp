@@ -10,6 +10,7 @@ private:
   int vehicle_capacity;
   int generations;
   std::vector<double> costs;
+  int best;
 public:
   GeneticAlgorithmSolution(std::vector<Node> nodes,
                            std::vector<Vehicle> vehicles,
