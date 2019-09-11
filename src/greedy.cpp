@@ -65,7 +65,12 @@ int main(){
     vehicles[i].nodes.push_back(0);
   }
 
-  GreedySolution g(nodes, vehicles, distanceMatrix);
+  Problem p;
+  distanceMatrix = p.distanceMatrix;
+  vehicles = p.vehicles;
+  nodes = p.nodes;
+
+  GreedySolution g(p.nodes, p.vehicles, p.distanceMatrix);
   g.Solve();
 
   return 0;

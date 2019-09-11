@@ -89,6 +89,8 @@ void GeneticAlgorithmSolution::CalculateTotalCost(){
 void GeneticAlgorithmSolution::Solve(){
   GenerateRandomSolutions();
   CalculateTotalCost();
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+
   int generation = 0;
   while(generation < generations){
     std::cout << "Generation: " << generation << std::endl;
@@ -139,7 +141,6 @@ void GeneticAlgorithmSolution::AEXCrossover(){
   reached.insert(child.back());
   child.push_back((*itp1)[1]);
   reached.insert(child.back());
-
   while(child.size() < n_genes){
     swap(itp1, itp2);
     auto it = find((*itp1).begin(), (*itp1).end(), child.back());
@@ -234,40 +235,41 @@ void GeneticAlgorithmSolution::GenerateBestSolution(){
 
 int main(){
 
-  std::random_device rd; // obtain a random number from hardware
-  std::mt19937 eng(rd()); // seed the generator
-  std::uniform_int_distribution<int> ran(0,100); // define the range
+  // std::random_device rd; // obtain a random number from hardware
+  // std::mt19937 eng(rd()); // seed the generator
+  // std::uniform_int_distribution<int> ran(0,100); // define the range
 
-  int noc = 50;
-	int nov = 10;
+  // int noc = 50;
+	// int nov = 10;
 
-  Node depot(50, 50, 0, 0, true);
+  // Node depot(50, 50, 0, 0, true);
 
-  std::vector<Node> nodes;
-  nodes.push_back(depot);
+  // std::vector<Node> nodes;
+  // nodes.push_back(depot);
+  //
+  // for(int i = 1; i <=noc; ++i) nodes.emplace_back(ran(eng), ran(eng), i, ran(eng)/5, false);
+  //
+  // std::vector<std::vector<double>> distanceMatrix;
+  // std::vector<double> tmp(nodes.size());
+  // for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
+  // for(int i=0; i<nodes.size(); ++i){
+  //   for(int j=i; j < nodes.size(); ++j){
+  //     distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2)
+  //                                      + pow((nodes[i].y - nodes[j].y),2)));
+  //     distanceMatrix[j][i] = distanceMatrix[i][j];
+  //   }
+  // }
 
-  for(int i = 1; i <=noc; ++i) nodes.emplace_back(ran(eng), ran(eng), i, ran(eng)/5, false);
 
-  std::vector<std::vector<double>> distanceMatrix;
-  std::vector<double> tmp(nodes.size());
-  for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
-  for(int i=0; i<nodes.size(); ++i){
-    for(int j=i; j < nodes.size(); ++j){
-      distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2)
-                                       + pow((nodes[i].y - nodes[j].y),2)));
-      distanceMatrix[j][i] = distanceMatrix[i][j];
-    }
-  }
+  // std::vector<Vehicle> vehicles;
+  // int load = 100, capacity = 100;
+  // for(int i=0; i<nov; ++i){
+  //   vehicles.emplace_back(i, load, capacity);
+  //   vehicles[i].nodes.push_back(0);
+  // }
 
-
-  std::vector<Vehicle> vehicles;
-  int load = 100, capacity = 100;
-  for(int i=0; i<nov; ++i){
-    vehicles.emplace_back(i, load, capacity);
-    vehicles[i].nodes.push_back(0);
-  }
-
-  GeneticAlgorithmSolution g(nodes, vehicles, distanceMatrix, 50, 100000 );
+  Problem p;
+  GeneticAlgorithmSolution g(p.nodes, p.vehicles, p.distanceMatrix, 50, 10000 );
   g.Solve();
 
   return 0;

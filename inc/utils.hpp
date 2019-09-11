@@ -59,5 +59,5 @@ public:
   std::vector<std::vector<double>> distanceMatrix;
   Node depot;
 
-  Problem(int noc = 100, int demand_range = 20, int nov = 20, int capacity = 100, int grid_range = 100, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
+  Problem(int noc = 50, int demand_range = 20, int nov = 20, int capacity = 50, int grid_range = 50, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
 };
