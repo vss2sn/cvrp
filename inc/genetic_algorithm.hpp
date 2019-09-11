@@ -24,7 +24,18 @@ public:
                                 vehicle_capacity = vehicles[0].capacity;
                                 costs = std::vector<double>(n_chromosomes);
                            };
+   GeneticAlgorithmSolution(Problem p,
+                            int n_chromosomes,
+                            int generations)
+                            :Solution(p){
+                                 this->n_chromosomes = n_chromosomes;
+                                 this->generations = generations;
+                                 n_genes = nodes.size()-1;
+                                 vehicle_capacity = vehicles[0].capacity;
+                                 costs = std::vector<double>(n_chromosomes);
+                            };
   void GenerateRandomSolutions();
+  void GenerateGreedySolutions();
   std::vector<int> GenerateRandomSolution();
   double CalculateCost(int i);
   void CalculateTotalCost();

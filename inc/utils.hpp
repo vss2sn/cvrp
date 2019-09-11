@@ -1,3 +1,6 @@
+#ifndef UTILS_H
+#define UTILS_H
+
 #include <iostream>
 #include <vector>
 #include <random>
@@ -40,6 +43,16 @@ public:
 
 };
 
+class Problem{
+public:
+  std::vector<Node> nodes;
+  std::vector<Vehicle> vehicles;
+  std::vector<std::vector<double>> distanceMatrix;
+  Node depot;
+
+  Problem(int noc = 25, int demand_range = 20, int nov = 10, int capacity = 50, int grid_range = 50, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
+};
+
 class Solution{
 public:
   std::vector<Node> nodes;
@@ -48,16 +61,8 @@ public:
   Node depot;
 
   Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
+  Solution(Problem p);
   virtual void Solve(){};
   Node find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes);
 };
-
-class Problem{
-public:
-  std::vector<Node> nodes;
-  std::vector<Vehicle> vehicles;
-  std::vector<std::vector<double>> distanceMatrix;
-  Node depot;
-
-  Problem(int noc = 50, int demand_range = 20, int nov = 20, int capacity = 50, int grid_range = 50, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
-};
+#endif

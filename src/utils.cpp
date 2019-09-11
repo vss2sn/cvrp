@@ -47,6 +47,13 @@ Solution::Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::
   depot = nodes[0];
 }
 
+Solution::Solution(Problem p){
+  nodes = p.nodes;
+  vehicles = p.vehicles;
+  distanceMatrix = p.distanceMatrix;
+  depot = nodes[0];
+}
+
 Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes){
     double cost = INT_MAX;
     int id = -1;
@@ -72,7 +79,6 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
   nodes.push_back(depot);
 
   if(distribution != "uniform" && distribution != "cluster") distribution = "uniform";
-  std::cout << "Distribution of centers: " << distribution << std::endl;
   if(distribution == "uniform") for(int i = 1; i <=noc; ++i) nodes.emplace_back(ran(eng), ran(eng), i, ran_d(eng), false);
   else if(distribution == "cluster"){
     int id = 0;
@@ -94,6 +100,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
     }
   }
 
+  // for(auto& n:nodes) n.PrintStatus();
   std::vector<double> tmp(nodes.size());
   for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
   for(int i=0; i<nodes.size(); ++i){

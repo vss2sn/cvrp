@@ -1,8 +1,6 @@
 #include "local_search_inter_intra.hpp"
 
 void LocalSearchInterIntraSolution::Solve(){
-  std::cout << "LocalSearchIntra Solution" << std::endl;
-  std::cout << "---------------" << std::endl;
 
   //Initial greedy search
   //Switch to multiple knapsack problem for initial guess to make sure most if
@@ -23,12 +21,15 @@ void LocalSearchInterIntraSolution::Solve(){
       }
     }
   }
-  std::cout << "---------------------------" << std::endl;
-  std::cout << "Each vehicle's status before local search" << std::endl;
-  std::cout << "---------------------------" << std::endl;
-  for(auto& v:vehicles) v.PrintStatus();
+
+  // std::cout << "---------------------------" << std::endl;
+  // std::cout << "Each vehicle's status before local search" << std::endl;
+  // std::cout << "---------------------------" << std::endl;
+  // for(auto& v:vehicles) v.PrintStatus();
   // for(auto& v:vehicles) v.PrintRoute();
   double cost = 0;
+  for(auto& v:vehicles) cost += v.cost;
+  std::cout << "Costg: " << cost << std::endl;
   for(auto& v:vehicles) cost += v.cost;
   // Local Search
   while(true){
@@ -92,7 +93,7 @@ void LocalSearchInterIntraSolution::Solve(){
     //           << std::endl;
     // std::cout << "Cost 1 " << v_temp->cost + v_temp_2->cost << std::endl;
     // std::cout << "Attepting to insert to get order " << v_temp_2->nodes[best_r] << " " << v_temp->nodes[best_c] << " " << v_temp_2->nodes[best_r+1] << std::endl;
-    if(delta==0) break;
+    if(delta>-0.00001) break;
     else{
       int val_best_c = *(v_temp->nodes.begin()+best_c);
       v_temp->nodes.erase(v_temp->nodes.begin()+best_c);
@@ -108,16 +109,16 @@ void LocalSearchInterIntraSolution::Solve(){
     // v_temp_2->PrintStatus();
   }
 
-  std::cout << "---------------------------" << std::endl;
-  std::cout << "Each vehicle's status/route after local search" << std::endl;
-  std::cout << "---------------------------" << std::endl;
-  for(auto& v:vehicles) v.PrintStatus();
+  // std::cout << "---------------------------" << std::endl;
+  // std::cout << "Each vehicle's status/route after local search" << std::endl;
+  // std::cout << "---------------------------" << std::endl;
+  // for(auto& v:vehicles) v.PrintStatus();
   // for(auto& v:vehicles) v.PrintRoute();
 
-  std::cout << "Initial (greedy) cost: " << cost << std::endl;
+  // std::cout << "Initial (greedy) cost: " << cost << std::endl;
   cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  std::cout << "Final cost: " << cost << std::endl << std::endl;
+  std::cout << "Cost: " << cost << std::endl;
 
   for(auto& i:nodes){
     if(!i.is_routed){
@@ -125,51 +126,15 @@ void LocalSearchInterIntraSolution::Solve(){
       i.PrintStatus();
     }
   }
-  std::cout << "---------------------------" << std::endl;
-  std::cout << "End of LocalSearchIntra solution" << std::endl;
+  // std::cout << "---------------------------" << std::endl;
+  // std::cout << "End of LocalSearchIntra solution" << std::endl;
 }
 
-
-int main(){
-
-  int range = 100;
-  std::random_device rd; // obtain a random number from hardware
-  std::mt19937 eng(rd()); // seed the generator
-  std::uniform_int_distribution<int> ran(0,range); // define the range
-
-  int noc = 100;
-	int nov = 10;
-
-  Node depot(0, 0, 0, 0, true);
-
-  std::vector<Node> nodes;
-  nodes.push_back(depot);
-
-  for(int i = 1; i <=noc; ++i){
-  nodes.emplace_back(ran(eng)-range/2, ran(eng)-range/2, i, ran(eng)/5, false);
-    nodes[i].PrintStatus();
-  }
-
-  std::vector<std::vector<double>> distanceMatrix;
-  std::vector<double> tmp(nodes.size());
-  for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
-  for(int i=0; i<nodes.size(); ++i){
-    for(int j=i; j < nodes.size(); ++j){
-      distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2)
-                                       + pow((nodes[i].y - nodes[j].y),2)));
-      distanceMatrix[j][i] = distanceMatrix[i][j];
-    }
-  }
-
-  std::vector<Vehicle> vehicles;
-  int load = 100, capacity = 100;
-  for(int i=0; i<nov; ++i){
-    vehicles.emplace_back(i, load, capacity);
-    vehicles[i].nodes.push_back(0);
-  }
-
-  LocalSearchInterIntraSolution g(nodes, vehicles, distanceMatrix);
-  g.Solve();
-
-  return 0;
-}
+// int main(){
+//
+//   Problem p;
+//   LocalSearchInterIntraSolution g(p);
+//   g.Solve();
+//
+//   return 0;
+// }
