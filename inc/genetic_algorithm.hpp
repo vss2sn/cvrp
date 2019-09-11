@@ -25,6 +25,7 @@ public:
                                 costs = std::vector<double>(n_chromosomes);
                            };
   void GenerateRandomSolutions();
+  std::vector<int> GenerateRandomSolution();
   double CalculateCost(int i);
   void CalculateTotalCost();
   void Solve();
@@ -34,4 +35,5 @@ public:
   void GenerateBestSolution();
   void Mutate();
   void DeleteWorstChromosome();
+  void RemoveSimilarSolutions();
 };

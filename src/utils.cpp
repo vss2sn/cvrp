@@ -59,3 +59,54 @@ Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distan
     if(id!=-1) return nodes[id];
     else return Node(0,0,-1,0);
 }
+
+Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_range, std::string distribution, int n_clusters, int cluster_range){
+
+  std::random_device rd; // obtain a random number from hardware
+  std::mt19937 eng(rd()); // seed the generator
+  std::uniform_int_distribution<int> ran(-grid_range,grid_range); // define the range
+  std::uniform_int_distribution<int> ran_d(0,demand_range); // define the range
+  std::uniform_int_distribution<int> ran_c(-cluster_range,cluster_range);
+  Node depot(0, 0, 0, 0, true);
+
+  nodes.push_back(depot);
+
+  if(distribution != "uniform" && distribution != "cluster") distribution = "uniform";
+  std::cout << "Distribution of centers: " << distribution << std::endl;
+  if(distribution == "uniform") for(int i = 1; i <=noc; ++i) nodes.emplace_back(ran(eng), ran(eng), i, ran_d(eng), false);
+  else if(distribution == "cluster"){
+    int id = 0;
+    int n_p_c = noc/n_clusters;
+    int remain = noc%n_clusters;
+    for(int i=0;i<n_clusters;i++){
+      int x = ran(eng);
+      int y = ran(eng);
+      for(int j=0;j<n_p_c;j++){
+        nodes.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
+        id++;
+      }
+    }
+    int x = ran(eng);
+    int y = ran(eng);
+    for(int j=0;j<remain;j++){
+      nodes.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
+      id++;
+    }
+  }
+
+  std::vector<double> tmp(nodes.size());
+  for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
+  for(int i=0; i<nodes.size(); ++i){
+    for(int j=i; j < nodes.size(); ++j){
+      distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2)
+                                       + pow((nodes[i].y - nodes[j].y),2)));
+      distanceMatrix[j][i] = distanceMatrix[i][j];
+    }
+  }
+
+  int load = capacity;
+  for(int i=0; i<nov; ++i){
+    vehicles.emplace_back(i, load, capacity);
+    vehicles[i].nodes.push_back(0);
+  }
+}

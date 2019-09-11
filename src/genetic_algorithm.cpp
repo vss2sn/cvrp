@@ -2,6 +2,16 @@
 
 // Still need to account for case if nodes cannot be put into vehilces due to small number of vehicles in initial solution
 
+std::vector<int> GeneticAlgorithmSolution::GenerateRandomSolution(){
+  std::vector<int> temp(n_genes);
+  for(int i=0; i<n_genes; ++i){
+    temp[i] = i+1;
+  }
+  unsigned seed = rand(); //std::chrono::system_clock::now().time_since_epoch().count();
+  std::shuffle(temp.begin(), temp.end(), std::default_random_engine(seed));
+  return temp;
+}
+
 void GeneticAlgorithmSolution::GenerateRandomSolutions(){
   std::vector<int> temp(n_genes);
   for(int i=0; i<n_genes; ++i){
@@ -12,6 +22,39 @@ void GeneticAlgorithmSolution::GenerateRandomSolutions(){
   for(int i=0;i<n_chromosomes; ++i){
     unsigned seed = rand(); //std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(chromosomes[i].begin(), chromosomes[i].end(), std::default_random_engine(seed));
+  }
+}
+
+void GeneticAlgorithmSolution::RemoveSimilarSolutions(){
+  std::set<int> to_delete;
+  for(int i=0;i<n_chromosomes;i++){
+    for(int j=i+1;j<n_chromosomes;j++){
+      if(j==best) continue;
+      int count = 0;
+      for(int k=0;k<n_genes;k++){
+        if(chromosomes[i][k]==chromosomes[j][k]) count++;
+      }
+      if(count > 0.95*n_genes){
+        // std::cout << "These two: " << std::endl;
+        // for(auto& k:chromosomes[i]){
+        //   std::cout << std::setw(3) <<k ;
+        // }
+        // std::cout << " | " << costs[i] << std::endl;
+        to_delete.insert(j);
+        // for(auto& k:chromosomes[j]){
+        //   std::cout << std::setw(3) <<k ;
+        // }
+        // std::cout << " | " << costs[j] << std::endl;
+      }
+    }
+  }
+  for(auto it = to_delete.begin();it!=to_delete.end(); ++it){
+    // std::cout << "DELETED" << std::endl;
+    if(rand()%100 > 75){
+      chromosomes[*it] = GenerateRandomSolution();
+      CalculateCost(*it);
+    }
+
   }
 }
 
@@ -59,6 +102,21 @@ void GeneticAlgorithmSolution::Solve(){
     //   }
     //   std::cout << " | " << costs[i] << std::endl;
     // }
+    if(generation%1000==0){
+      // for(int i=0; i< n_chromosomes;i++){
+      //   for(auto& j:chromosomes[i]){
+      //     std::cout << std::setw(3) <<j ;
+      //   }
+      //   std::cout << " | " << costs[i] << std::endl;
+      // }
+      RemoveSimilarSolutions();
+      // for(int i=0; i< n_chromosomes;i++){
+      //   for(auto& j:chromosomes[i]){
+      //     std::cout << std::setw(3) <<j ;
+      //   }
+      //   std::cout << " | " << costs[i] << std::endl;
+      // }
+    }
   }
   for(int i=0; i< n_chromosomes;i++){
     for(auto& j:chromosomes[i]){
@@ -139,6 +197,7 @@ void GeneticAlgorithmSolution::Mutate(){
   int i2 = rand()%n_genes;
   if(i1>i2) std::swap(i1,i2);
   std::reverse(chromosomes[r].begin() + i1, chromosomes[r].begin() + i2);
+  costs[r] = CalculateCost(r);
 }
 
 void GeneticAlgorithmSolution::DeleteWorstChromosome(){
@@ -150,6 +209,7 @@ void GeneticAlgorithmSolution::DeleteWorstChromosome(){
 
 void GeneticAlgorithmSolution::GenerateBestSolution(){
   auto it = std::min_element(costs.begin(), costs.end());
+  std::cout << "Cost: " << *it << std::endl;
   int i = it - costs.begin();
   for(auto j:chromosomes[i]) std::cout << std::setw(3) << j;
   std::cout << std::endl;

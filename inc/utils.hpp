@@ -4,6 +4,7 @@
 #include <math.h>
 #include <climits>
 #include <unordered_set>
+#include <set>
 #include <memory>
 #include <algorithm>
 #include <iomanip>
@@ -49,4 +50,14 @@ public:
   Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
   virtual void Solve(){};
   Node find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes);
+};
+
+class Problem{
+public:
+  std::vector<Node> nodes;
+  std::vector<Vehicle> vehicles;
+  std::vector<std::vector<double>> distanceMatrix;
+  Node depot;
+
+  Problem(int noc = 100, int demand_range = 20, int nov = 20, int capacity = 100, int grid_range = 100, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
 };
