@@ -1,7 +1,7 @@
 #include "utils.hpp"
 
 // Still need to account for case if nodes cannot be put into vehilces due to small number of vehicles in initial solution
-class GeneticAlgorithmSolution : public Solution{
+class GANaiveSolution : public Solution{
 private:
   std::vector<std::vector<int>> chromosomes;
   std::vector<int> chromosome;
@@ -12,7 +12,7 @@ private:
   std::vector<double> costs;
   int best;
 public:
-  GeneticAlgorithmSolution(std::vector<Node> nodes,
+  GANaiveSolution(std::vector<Node> nodes,
                            std::vector<Vehicle> vehicles,
                            std::vector<std::vector<double>> distanceMatrix,
                            int n_chromosomes,
@@ -24,7 +24,7 @@ public:
                                 vehicle_capacity = vehicles[0].capacity;
                                 costs = std::vector<double>(n_chromosomes);
                            };
-   GeneticAlgorithmSolution(Problem p,
+   GANaiveSolution(Problem p,
                             int n_chromosomes,
                             int generations)
                             :Solution(p){
@@ -36,6 +36,7 @@ public:
                             };
   void GenerateRandomSolutions();
   void GenerateGreedySolutions();
+  void NAEXCrossover();
   std::vector<int> GenerateRandomSolution();
   void RandomSwap();
   double CalculateCost(int i);

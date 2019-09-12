@@ -2,7 +2,7 @@
 
 // Still need to account for case if nodes cannot be put into vehilces due to small number of vehicles in initial solution
 
-std::vector<int> GeneticAlgorithmSolution::GenerateRandomSolution(){
+std::vector<int> GANaiveSolution::GenerateRandomSolution(){
   std::vector<int> temp(n_genes);
   for(int i=0; i<n_genes; ++i){
     temp[i] = i+1;
@@ -12,7 +12,7 @@ std::vector<int> GeneticAlgorithmSolution::GenerateRandomSolution(){
   return temp;
 }
 
-void GeneticAlgorithmSolution::GenerateRandomSolutions(){
+void GANaiveSolution::GenerateRandomSolutions(){
   std::vector<int> temp(n_genes);
   for(int i=0; i<n_genes; ++i){
     temp[i] = i+1;
@@ -25,7 +25,7 @@ void GeneticAlgorithmSolution::GenerateRandomSolutions(){
   }
 }
 
-void GeneticAlgorithmSolution::GenerateGreedySolutions(){
+void GANaiveSolution::GenerateGreedySolutions(){
   std::vector<int> gs;
   auto vehicles2 = vehicles;
   for(auto& v:vehicles2){
@@ -50,9 +50,11 @@ void GeneticAlgorithmSolution::GenerateGreedySolutions(){
   double cost = 0;
   for(auto& v:vehicles2) cost += v.cost;
   std::cout << "Costg: " << cost << std::endl;
-  int i = rand()%n_chromosomes;
-  chromosomes[i] = gs;
-  costs[i] = CalculateCost(i);
+  for(int j=0;j<0.2*n_chromosomes;++j){
+    int i = rand()%n_chromosomes;
+    chromosomes[i] = gs;
+    costs[i] = CalculateCost(i);
+  }
   // std::cout << costs[i] << std::endl;
 
   // for(auto&g:gs) std::cout << g << " " ;
@@ -60,7 +62,7 @@ void GeneticAlgorithmSolution::GenerateGreedySolutions(){
   // std::cout << "OI:!!!!" <<std::endl << CalculateCost(i)<<std::endl;
 }
 
-void GeneticAlgorithmSolution::RemoveSimilarSolutions(){
+void GANaiveSolution::RemoveSimilarSolutions(){
   std::set<int> to_delete;
   for(int i=0;i<n_chromosomes;i++){
     for(int j=i+1;j<n_chromosomes;j++){
@@ -93,7 +95,7 @@ void GeneticAlgorithmSolution::RemoveSimilarSolutions(){
   }
 }
 
-double GeneticAlgorithmSolution::CalculateCost(int i){
+double GANaiveSolution::CalculateCost(int i){
   int j=0;
   double cost = 0;
   while(j<n_genes){
@@ -126,11 +128,11 @@ double GeneticAlgorithmSolution::CalculateCost(int i){
   return cost;
 }
 
-void GeneticAlgorithmSolution::CalculateTotalCost(){
+void GANaiveSolution::CalculateTotalCost(){
   for(int i=0;i<n_chromosomes;i++) costs[i] = CalculateCost(i);
 }
 
-void GeneticAlgorithmSolution::Solve(){
+void GANaiveSolution::Solve(){
   GenerateRandomSolutions();
   GenerateGreedySolutions();
   CalculateTotalCost();
@@ -139,7 +141,7 @@ void GeneticAlgorithmSolution::Solve(){
   int generation = 0;
   while(generation < generations){
     // std::cout << "Generation: " << generation << std::endl;
-    AEXCrossover();
+    NAEXCrossover();
     if(rand()%100<5) Mutate();
     CalculateTotalCost();
     if(rand()%100<5) DeleteBadChromosome();
@@ -180,7 +182,7 @@ void GeneticAlgorithmSolution::Solve(){
   std::cout << "Cost: " << cost << std::endl;
 }
 
-void GeneticAlgorithmSolution::AEXCrossover(){
+void GANaiveSolution::AEXCrossover(){
   int p1 = TournamentSelection();
   int p2 = TournamentSelection();
   std::vector<int> child;
@@ -218,12 +220,67 @@ void GeneticAlgorithmSolution::AEXCrossover(){
   InsertionBySimilarity();
 }
 
-void GeneticAlgorithmSolution::DeleteBadChromosome(){
+void GANaiveSolution::NAEXCrossover(){
+  int p1 = TournamentSelection();
+  int p2 = TournamentSelection();
+  std::vector<int> child;
+  std::unordered_set<int> reached;
+  auto itp1 = &(chromosomes[p1]);
+  auto itp2 = &(chromosomes[p2]);
+  child.push_back((*itp1)[0]);
+  reached.insert(child.back());
+  int n1, n2;
+  while(child.size() < n_genes){
+    auto it_1 = find((*itp1).begin(), (*itp1).end(), child.back());
+    auto it_2 = find((*itp2).begin(), (*itp2).end(), child.back());
+    // if it = itp1.end() there is something wrong as both chromosomes should contain all the nodes
+    if(it_1!= --itp1->end()
+       && reached.find(*(it_1+1)) == reached.end()){
+         n1 = *(it_1+1);
+       }
+    else{
+      while(true){
+        it_1++;
+        if(it_1==itp1->end()) it_1 = itp1->begin();
+        if(reached.find(*it_1)==reached.end()){
+          n1 = *(it_1);
+          break;
+        }
+      }
+    }
+    if(it_2!= --itp2->end()
+       && reached.find(*(it_2+1)) == reached.end()){
+         n2 = *(it_2+1);
+       }
+    else{
+      while(true){
+        it_2++;
+        if(it_2==itp2->end()) it_2 = itp2->begin();
+        if(reached.find(*it_2)==reached.end()){
+          n2 = *(it_2);
+          break;
+        }
+      }
+    }
+    // std::cout << n1 << " " << n2 << std::endl;
+    if(distanceMatrix[child.back()][n1] > distanceMatrix[child.back()][n2]) std::swap(n1,n2);
+    child.push_back(n1);
+    reached.insert(n1);
+  }
+  // std::cout << "Out while" << std::endl;
+  chromosomes.push_back(child);
+  costs.emplace_back(CalculateCost(n_chromosomes));
+  // DeleteWorstChromosome();
+  InsertionBySimilarity();
+  // std::cout << "Out function" << std::endl;
+}
+
+void GANaiveSolution::DeleteBadChromosome(){
   int i = TournamentSelectionBad();
   chromosomes[i] = GenerateRandomSolution();
 }
 
-int GeneticAlgorithmSolution::TournamentSelection(){
+int GANaiveSolution::TournamentSelection(){
   int i1 = rand()%chromosomes.size();
   int i2 = rand()%chromosomes.size();
   int i3 = rand()%chromosomes.size();
@@ -232,7 +289,7 @@ int GeneticAlgorithmSolution::TournamentSelection(){
   if(costs[i3] <= costs[i1] && costs[i3] <= costs[i2]) return i3;
 }
 
-int GeneticAlgorithmSolution::TournamentSelectionBad(){
+int GANaiveSolution::TournamentSelectionBad(){
   int i1 = rand()%chromosomes.size();
   int i2 = rand()%chromosomes.size();
   int i3 = rand()%chromosomes.size();
@@ -241,7 +298,7 @@ int GeneticAlgorithmSolution::TournamentSelectionBad(){
   if(costs[i3] >= costs[i1] && costs[i3] >= costs[i2]) return i3;
 }
 
-void GeneticAlgorithmSolution::InsertionBySimilarity(){
+void GANaiveSolution::InsertionBySimilarity(){
   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
   bool flag = true;
   for(int i=0;i<n_genes;++i){
@@ -255,7 +312,7 @@ void GeneticAlgorithmSolution::InsertionBySimilarity(){
   if(flag) DeleteWorstChromosome();
 }
 
-void GeneticAlgorithmSolution::Mutate(){
+void GANaiveSolution::Mutate(){
   int count =0;
   while(count<5){
     best = std::min_element(costs.begin(), costs.end()) - costs.begin();
@@ -276,7 +333,7 @@ void GeneticAlgorithmSolution::Mutate(){
   }
 }
 
-void GeneticAlgorithmSolution::RandomSwap(){
+void GANaiveSolution::RandomSwap(){
   int count =0;
   while(count<5){
     best = std::min_element(costs.begin(), costs.end()) - costs.begin();
@@ -296,14 +353,14 @@ void GeneticAlgorithmSolution::RandomSwap(){
   }
 }
 
-void GeneticAlgorithmSolution::DeleteWorstChromosome(){
+void GANaiveSolution::DeleteWorstChromosome(){
   auto it = std::max_element(costs.begin(), costs.end());
   int i = it - costs.begin();
   chromosomes.erase(chromosomes.begin() + i);
   costs.erase(it);
 }
 
-void GeneticAlgorithmSolution::GenerateBestSolution(){
+void GANaiveSolution::GenerateBestSolution(){
   auto it = std::min_element(costs.begin(), costs.end());
   // std::cout << "Cost: " << *it << std::endl;
   int i = it - costs.begin();
@@ -331,7 +388,7 @@ void GeneticAlgorithmSolution::GenerateBestSolution(){
 // int main(){
 //
 //   Problem p;
-//   GeneticAlgorithmSolution g(p.nodes, p.vehicles, p.distanceMatrix, 50, 10000);
+//   GANaiveSolution g(p.nodes, p.vehicles, p.distanceMatrix, 50, 10000);
 //   g.Solve();
 //
 //   return 0;
