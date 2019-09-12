@@ -37,11 +37,14 @@ public:
   void GenerateRandomSolutions();
   void GenerateGreedySolutions();
   std::vector<int> GenerateRandomSolution();
+  void RandomSwap();
   double CalculateCost(int i);
   void CalculateTotalCost();
   void Solve();
   void AEXCrossover();
   int TournamentSelection();
+  int TournamentSelectionBad();
+  void DeleteBadChromosome();
   void InsertionBySimilarity();
   void GenerateBestSolution();
   void Mutate();

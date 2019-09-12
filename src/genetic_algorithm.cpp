@@ -140,8 +140,10 @@ void GeneticAlgorithmSolution::Solve(){
   while(generation < generations){
     // std::cout << "Generation: " << generation << std::endl;
     AEXCrossover();
-    //if(rand()%100<5) Mutate();
-    // CalculateTotalCost();
+    if(rand()%100<5) Mutate();
+    CalculateTotalCost();
+    if(rand()%100<5) DeleteBadChromosome();
+    if(rand()%100<5) RandomSwap();
     generation++;
     // for(int i=0; i< n_chromosomes;i++){
     //   for(auto& j:chromosomes[i]){
@@ -149,14 +151,14 @@ void GeneticAlgorithmSolution::Solve(){
     //   }
     //   std::cout << " | " << costs[i] << std::endl;
     // }
-    if(generation%1000==0){
+    if(generation%100==0){
       // for(int i=0; i< n_chromosomes;i++){
       //   for(auto& j:chromosomes[i]){
       //     std::cout << std::setw(3) <<j ;
       //   }
       //   std::cout << " | " << costs[i] << std::endl;
       // }
-      //RemoveSimilarSolutions();
+      RemoveSimilarSolutions();
       // for(int i=0; i< n_chromosomes;i++){
       //   for(auto& j:chromosomes[i]){
       //     std::cout << std::setw(3) <<j ;
@@ -216,6 +218,11 @@ void GeneticAlgorithmSolution::AEXCrossover(){
   InsertionBySimilarity();
 }
 
+void GeneticAlgorithmSolution::DeleteBadChromosome(){
+  int i = TournamentSelectionBad();
+  chromosomes[i] = GenerateRandomSolution();
+}
+
 int GeneticAlgorithmSolution::TournamentSelection(){
   int i1 = rand()%chromosomes.size();
   int i2 = rand()%chromosomes.size();
@@ -223,6 +230,15 @@ int GeneticAlgorithmSolution::TournamentSelection(){
   if(costs[i1] <= costs[i2] && costs[i1] <= costs[i3]) return i1;
   if(costs[i2] <= costs[i1] && costs[i2] <= costs[i3]) return i2;
   if(costs[i3] <= costs[i1] && costs[i3] <= costs[i2]) return i3;
+}
+
+int GeneticAlgorithmSolution::TournamentSelectionBad(){
+  int i1 = rand()%chromosomes.size();
+  int i2 = rand()%chromosomes.size();
+  int i3 = rand()%chromosomes.size();
+  if(costs[i1] >= costs[i2] && costs[i1] >= costs[i3]) return i1;
+  if(costs[i2] >= costs[i1] && costs[i2] >= costs[i3]) return i2;
+  if(costs[i3] >= costs[i1] && costs[i3] >= costs[i2]) return i3;
 }
 
 void GeneticAlgorithmSolution::InsertionBySimilarity(){
@@ -240,14 +256,44 @@ void GeneticAlgorithmSolution::InsertionBySimilarity(){
 }
 
 void GeneticAlgorithmSolution::Mutate(){
-  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-  int r = rand()%n_chromosomes;
-  while(r==best) r = rand()%n_chromosomes;
-  int i1 = rand()%n_genes;
-  int i2 = rand()%n_genes;
-  if(i1>i2) std::swap(i1,i2);
-  std::reverse(chromosomes[r].begin() + i1, chromosomes[r].begin() + i2);
-  costs[r] = CalculateCost(r);
+  int count =0;
+  while(count<5){
+    best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+    int r = rand()%n_chromosomes;
+    while(r==best) r = rand()%n_chromosomes;
+    int i1 = rand()%n_genes;
+    int i2 = rand()%n_genes;
+    if(i1>i2) std::swap(i1,i2);
+    std::reverse(chromosomes[r].begin() + i1, chromosomes[r].begin() + i2);
+    double p = costs[r];
+    costs[r] = CalculateCost(r);
+    if(p<costs[r]){
+      std::reverse(chromosomes[r].begin() + i1, chromosomes[r].begin() + i2);
+      count++;
+      costs[r] = p;
+    }
+    else break;
+  }
+}
+
+void GeneticAlgorithmSolution::RandomSwap(){
+  int count =0;
+  while(count<5){
+    best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+    int r = rand()%n_chromosomes;
+    while(r==best) r = rand()%n_chromosomes;
+    int i1 = rand()%n_genes;
+    int i2 = rand()%n_genes;
+    std::swap(chromosomes[r][i1],chromosomes[r][i2]);
+    double p = costs[r];
+    costs[r] = CalculateCost(r);
+    if(p<costs[r]){
+      std::swap(chromosomes[r][i1],chromosomes[r][i2]);
+      count++;
+      costs[r] = p;
+    }
+    else break;
+  }
 }
 
 void GeneticAlgorithmSolution::DeleteWorstChromosome(){
