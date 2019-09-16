@@ -89,7 +89,7 @@ void GANaiveSolution::RemoveSimilarSolutions(){
     // std::cout << "DELETED" << std::endl;
     if(rand()%100 > 75){
       chromosomes[*it] = GenerateRandomSolution();
-      CalculateCost(*it);
+      costs[*it] = CalculateCost(*it);
     }
 
   }
@@ -141,11 +141,13 @@ void GANaiveSolution::Solve(){
   int generation = 0;
   while(generation < generations){
     // std::cout << "Generation: " << generation << std::endl;
-    NAEXCrossover();
-    if(rand()%100<5) Mutate();
+    best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+    if(rand()%2==0)NAEXCrossover();
+    else if(rand()%2==0)AEXCrossover();
+    if(rand()%100<20) Mutate();
+    else if(rand()%100<20) RandomSwap();
+    else if(rand()%100<20) DeleteBadChromosome();
     CalculateTotalCost();
-    if(rand()%100<5) DeleteBadChromosome();
-    if(rand()%100<5) RandomSwap();
     generation++;
     // for(int i=0; i< n_chromosomes;i++){
     //   for(auto& j:chromosomes[i]){
