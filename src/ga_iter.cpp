@@ -15,7 +15,9 @@ std::vector<int> GAIterSolution::GenerateRandomSolution(){
 std::vector<int> GAIterSolution::GenerateRandomIterSolution(){
   std::vector<int> temp(n_vehicles+1);
   std::unordered_set<int> added;
-  for(int i=0; i<n_vehicles; ++i){
+  temp[0] = 0;
+  added.insert(0);
+  for(int i=0; i<n_vehicles-1; ++i){
     int n = rand()%n_genes;
     if(added.find(n)!=added.end()) n = n_genes;
     temp[i] = n;
@@ -47,8 +49,8 @@ void GAIterSolution::GenerateRandomSolutions(){
     }
     temp_i[n_vehicles] = n_genes;
     std::sort(temp_i.begin(), temp_i.end());
-    for(auto iter:temp_i) std::cout << iter << " ";
-    std::cout << std::endl;
+    // for(auto iter:temp_i) std::cout << iter << " ";
+    // std::cout << std::endl;
     iterators.push_back(temp_i);
   }
   //std::cout << "-------------------------------" << std::endl;
@@ -91,7 +93,7 @@ void GAIterSolution::GenerateGreedySolutions(){
   iterators[0] = iter;
   costs[0] = NewCalculateCost(0);
   // std::cout << "Costg2: " << costs[0] << std::endl;
-
+  std::cout << "Is greedy valid:" << checkValidity(0) << std::endl;
   for(int j=0;j<n_chromosomes;++j){
     // int i = rand()%n_chromosomes;
     chromosomes[j] = gs;
@@ -216,26 +218,44 @@ void GAIterSolution::Solve(){
   GenerateGreedySolutions();
   CalculateTotalCost();
   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-  std::cout << "Best init cost: " << costs[best] << std::endl;
+  // std::cout << "Best init cost: " << costs[best] << std::endl;
   int generation = 0;
   while(generation < generations){
     // std::cout << "Generation: " << generation << std::endl;
     best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     if(rand()%2==0){
+      // std::cout << "-----";
       NAEXCrossover();
+      // for(auto i:chromosomes[n_chromosomes-1]) std::cout << i << " ";
+      // std::cout << std::endl;
+      // for(auto i:iterators[n_chromosomes-1]) std::cout << i << " ";
+      // std::cout << std::endl;
+      // MutateIterLeft(n_chromosomes-1, 1);
+      // for(auto i:chromosomes[n_chromosomes-1]) std::cout << i << " ";
+      // std::cout << std::endl;
+      // for(auto i:iterators[n_chromosomes-1]) std::cout << i << " ";
+      // std::cout << std::endl;
+      // MutateIterRight(n_chromosomes-1, n_vehicles - 1);
+      // for(auto i:chromosomes[n_chromosomes-1]) std::cout << i << " ";
+      // std::cout << std::endl;
+      // for(auto i:iterators[n_chromosomes-1]) std::cout << i << " ";
+      // std::cout << std::endl;
+      // std::cout << "Is naex valid: " << checkValidity(n_chromosomes-1) << std::endl;
+      // std::cout << "-----";
        //std::cout << "---------------------------1------------------------------------" << std::endl;
     }
-    else if(rand()%2==0){
-      AEXCrossover();
-       //std::cout << "---------------------------2------------------------------------" << std::endl;
-
-    }
+    // else if(rand()%2==0){
+    //   AEXCrossover();
+    //   MutateIterLeft(n_chromosomes-1, 1);
+    //   MutateIterLeft(n_chromosomes-1, n_vehicles - 1);
+    //    //std::cout << "---------------------------2------------------------------------" << std::endl;
+    //
+    // }
     if(rand()%100<20){
       Mutate();
        //std::cout << "---------------------------3------------------------------------" << std::endl;
-
     }
-    else if(rand()%100<50){
+    if(rand()%100<30){
       // std::cout << "Mutating left"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
@@ -243,7 +263,7 @@ void GAIterSolution::Solve(){
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
-    else if(rand()%100<50){
+    if(rand()%100<30){
       // std::cout << "Mutating left"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
@@ -251,12 +271,12 @@ void GAIterSolution::Solve(){
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
-    else if(rand()%100<20) {
+    if(rand()%100<20) {
       RandomSwap();
        //std::cout << "---------------------------4------------------------------------" << std::endl;
 
     }
-    else if(rand()%100<20) {
+    if(rand()%100<20) {
       DeleteBadChromosome();
        //std::cout << "---------------------------5------------------------------------" << std::endl;
 
@@ -287,6 +307,14 @@ void GAIterSolution::Solve(){
       //   std::cout << " | " << costs[i] << std::endl;
       // }
     }
+    for(int m=0;m<n_chromosomes;m++){
+      for(auto&i:chromosomes[m]) std::cout << i << " ";
+      std::cout << std::endl;
+      for(auto&i:iterators[m]) std::cout << i << " ";
+      std::cout << std::endl;
+    }
+    std::cout << std::endl;
+
   }
   // for(int i=0; i< n_chromosomes;i++){
   //   for(auto& j:chromosomes[i]){
@@ -298,7 +326,7 @@ void GAIterSolution::Solve(){
   // for(auto& v:vehicles) v.PrintRoute();
   double cost = 0;
   for(auto &v:vehicles) cost +=v.cost;
-  std::cout << "Final cost: " << cost << std::endl;
+  // std::cout << "Final cost: " << cost << std::endl;
 }
 
 void GAIterSolution::AEXCrossover(){
@@ -391,11 +419,54 @@ void GAIterSolution::NAEXCrossover(){
   // std::cout << "Out while" << std::endl;
   chromosomes.push_back(child);
   iterators.emplace_back(GenerateRandomIterSolution());
-  costs.emplace_back(NewCalculateCost(n_chromosomes));
-  // DeleteWorstChromosome();
-  // std::cout << "NAEX"<<std::endl;
-  InsertionBySimilarity();
+  MakeValid(n_chromosomes);
+  // MutateIterLeft(n_chromosomes, 1);
+  // MutateIterRight(n_chromosomes, n_vehicles-1);
+  if(checkValidity(n_chromosomes)){
+    // std::cout << "Valid -------------------------------------------------------" << std::endl;
+    // for(auto& i:iterators[n_chromosomes]) std::cout << i << std::endl;
+    // std::cout << std::endl;
+    costs.emplace_back(NewCalculateCost(n_chromosomes));
+    // std::cout << "Valid -------------------------------------------------------//" << std::endl;
+
+    // DeleteWorstChromosome();
+    // std::cout << "AEX"<<std::endl;
+    InsertionBySimilarity();
+  }
+  else{
+    // std::cout << "not Valid " << std::endl;
+    iterators.erase(iterators.begin()+n_chromosomes);
+    chromosomes.erase(chromosomes.begin()+n_chromosomes);
+
+  }
+
+  // chromosomes.push_back(child);
+  // iterators.emplace_back(iterators[p1]);
+  // costs.emplace_back(NewCalculateCost(n_chromosomes));
+  // InsertionBySimilarity();
+  //
+  // chromosomes.push_back(child);
+  // iterators.emplace_back(iterators[p2]);
+  // costs.emplace_back(NewCalculateCost(n_chromosomes));
+  // InsertionBySimilarity();
   // std::cout << "Out function" << std::endl;
+}
+
+void GAIterSolution::MakeValid(int i){
+  // std::cout << "In mv" << std::endl;
+  for(int j=0;j<n_vehicles-1;j++){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j];
+    while(iter < iterators[i][j+1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      ++iter;
+    }
+    if(load<0){
+      iterators[i][j+1]--;
+      j--;
+    };
+  }
+  // std::cout << "out mv" << std::endl;
 }
 
 void GAIterSolution::DeleteBadChromosome(){
@@ -473,7 +544,17 @@ bool GAIterSolution::MutateIterLeft(int i_chromosome, int j){
   // std::cout << "n_genes: " << n_genes << std::endl;
   if(iterators[i_chromosome][j-1]!=iterators[i_chromosome][j]){//check if sequential
     iterators[i_chromosome][j]--;
+
     int load = vehicle_capacity;
+    // for(int i=iterators[i_chromosome][j-1]; i<iterators[i_chromosome][j]; i++){ // should this be fro j instead of j-1?
+    //     load -= nodes[chromosomes[i_chromosome][i]].demand;
+    // }
+    // if(load<0 && !MutateIterLeft(i_chromosome, j)){
+    //   iterators[i_chromosome][j]++;
+    //   return false;
+    // }
+    //
+    // load = vehicle_capacity;
     for(int i=iterators[i_chromosome][j]; i<iterators[i_chromosome][j+1]; i++){ // should this be fro j instead of j-1?
         load -= nodes[chromosomes[i_chromosome][i]].demand;
     }
@@ -508,6 +589,16 @@ bool GAIterSolution::MutateIterRight(int i_chromosome, int j){
   if(iterators[i_chromosome][j+1]!=iterators[i_chromosome][j]){//check if sequential
     iterators[i_chromosome][j]++;
     int load = vehicle_capacity;
+
+    // for(int i=iterators[i_chromosome][j]; i<iterators[i_chromosome][j++]; i++){ // should this be fro j instead of j-1?
+    //     load -= nodes[chromosomes[i_chromosome][i]].demand;
+    // }
+    // if(load<0 && !MutateIterRight(i_chromosome, j)){
+    //   iterators[i_chromosome][j]--;
+    //   return false;
+    // }
+    //
+    // load = vehicle_capacity;
     for(int i=iterators[i_chromosome][j-1]; i<iterators[i_chromosome][j]; i++){
         load -= nodes[chromosomes[i_chromosome][i]].demand;
     }
@@ -529,6 +620,18 @@ bool GAIterSolution::MutateIterRight(int i_chromosome, int j){
   }
 }
 
+bool GAIterSolution::checkValidity(int i){
+  for(int j=0;j<n_vehicles;j++){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j];
+    while(iter < iterators[i][j+1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      ++iter;
+    }
+    if(load<0) return false;
+  }
+  return true;
+}
 
 void GAIterSolution::RandomSwap(){
   int count =0;
@@ -564,6 +667,8 @@ void GAIterSolution::DeleteWorstChromosome(){
 void GAIterSolution::GenerateBestSolution(){
   auto it = std::min_element(costs.begin(), costs.end());
   std::cout << "Cost: " << *it << std::endl;
+  int i = it-costs.begin();
+  std::cout << "Valid" << checkValidity(i) << std::endl;
   // int i = it - costs.begin();
   // std::cout << "Calculaed cost: " << NewCalculateCost(i) << std::endl;
   // for(auto j:chromosomes[i]) std::cout << std::setw(3) << j;
@@ -588,31 +693,32 @@ void GAIterSolution::GenerateBestSolution(){
 
 
   // std::cout << "i: " << i << " " << iterators.size() << std::endl;
-  // auto v = vehicles.begin();
-  // for(int k=0;k<iterators[0].size()-1;k++, v++){
-  //   v->cost = 0;
-  //   if(iterators[i][k]==n_genes) break;
-  //   int j=iterators[i][k];
-  //   if(j<iterators[i][k+1]){
-  //     v->cost+=distanceMatrix[0][chromosomes[i][j]];
-  //     v->nodes.push_back(chromosomes[i][j]);
-  //     v->load -= nodes[chromosomes[i][j]].demand;
-  //   }
-  //   while(j+1<iterators[i][k+1]){
-  //     // std::cout << "j: " << j << " " << iterators[i][k+1] << std::endl;
-  //     v->cost+=distanceMatrix[chromosomes[i][j]][chromosomes[i][j+1]];
-  //     v->nodes.push_back(chromosomes[i][j+1]);
-  //     v->load -= nodes[chromosomes[i][j+1]].demand;
-  //     // std::cout << "Calculated cost " << std::endl;
-  //     j++;
-  //   }
-  //   v->cost += distanceMatrix[v->nodes.back()][0];
-  //   v->nodes.push_back(0);
-  // }
-  // while(v!=vehicles.end()){
-  //   v->cost = 0;
-  //   ++v;
-  // }
+  auto v = vehicles.begin();
+  for(int k=0;k<iterators[0].size()-1;k++, v++){
+    v->cost = 0;
+    if(iterators[i][k]==n_genes) break;
+    int j=iterators[i][k];
+    if(j<iterators[i][k+1]){
+      v->cost+=distanceMatrix[0][chromosomes[i][j]];
+      v->nodes.push_back(chromosomes[i][j]);
+      v->load -= nodes[chromosomes[i][j]].demand;
+    }
+    while(j+1<iterators[i][k+1]){
+      // std::cout << "j: " << j << " " << iterators[i][k+1] << std::endl;
+      v->cost+=distanceMatrix[chromosomes[i][j]][chromosomes[i][j+1]];
+      v->nodes.push_back(chromosomes[i][j+1]);
+      v->load -= nodes[chromosomes[i][j+1]].demand;
+      // std::cout << "Calculated cost " << std::endl;
+      j++;
+    }
+    v->cost += distanceMatrix[v->nodes.back()][0];
+    v->nodes.push_back(0);
+  }
+  while(v!=vehicles.end()){
+    v->cost = 0;
+    ++v;
+  }
+  for(auto& v2:vehicles) v2.PrintRoute();
 }
 
 // int main(){

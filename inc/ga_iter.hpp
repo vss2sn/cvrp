@@ -59,4 +59,6 @@ public:
   double NewCalculateCost(int i);
   bool MutateIterLeft(int i_chromosome, int j);
   bool MutateIterRight(int i_chromosome, int j);
+  bool checkValidity(int i);
+  void MakeValid(int i);
 };
