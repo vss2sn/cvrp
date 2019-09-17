@@ -93,7 +93,7 @@ void GAIterSolution::GenerateGreedySolutions(){
   iterators[0] = iter;
   costs[0] = NewCalculateCost(0);
   // std::cout << "Costg2: " << costs[0] << std::endl;
-  std::cout << "Is greedy valid:" << checkValidity(0) << std::endl;
+  // std::cout << "Is greedy valid:" << checkValidity(0) << std::endl;
   for(int j=0;j<n_chromosomes;++j){
     // int i = rand()%n_chromosomes;
     chromosomes[j] = gs;
@@ -259,15 +259,15 @@ void GAIterSolution::Solve(){
       // std::cout << "Mutating left"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
-      // MutateIterLeft(n, rand()%n_vehicles);
+      MutateIterLeft(n, rand()%n_vehicles);
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
     if(rand()%100<30){
-      // std::cout << "Mutating left"<< std::endl;
+      // std::cout << "Mutating right"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
-      //MutateIterRight(n, rand()%n_vehicles);
+      MutateIterRight(n, rand()%n_vehicles);
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
@@ -434,7 +434,9 @@ void GAIterSolution::NAEXCrossover(){
     InsertionBySimilarity();
   }
   else{
-    // std::cout << "not Valid " << std::endl;
+    std::cout << "not Valid " << std::endl;
+    for(auto& i:iterators[n_chromosomes]) std::cout << i << " ";
+    std::cout << std::endl;
     iterators.erase(iterators.begin()+n_chromosomes);
     chromosomes.erase(chromosomes.begin()+n_chromosomes);
 
@@ -454,17 +456,58 @@ void GAIterSolution::NAEXCrossover(){
 
 void GAIterSolution::MakeValid(int i){
   // std::cout << "In mv" << std::endl;
-  for(int j=0;j<n_vehicles-1;j++){
-    int load = vehicle_capacity;
-    int iter = iterators[i][j];
-    while(iter < iterators[i][j+1]){
-      load-=nodes[chromosomes[i][iter]].demand;
-      ++iter;
+  if(rand()%2==0){
+    for(int j=0;j<n_vehicles-1;j++){
+      int load = vehicle_capacity;
+      int iter = iterators[i][j];
+      while(iter < iterators[i][j+1]){
+        load-=nodes[chromosomes[i][iter]].demand;
+        ++iter;
+      }
+      if(load<0){
+        iterators[i][j+1]--;
+        j--;
+      };
     }
-    if(load<0){
-      iterators[i][j+1]--;
-      j--;
-    };
+
+    for(int j=n_vehicles;j>1;j--){
+      int load = vehicle_capacity;
+      int iter = iterators[i][j]-1;
+      while(iter >= iterators[i][j-1]){
+        load-=nodes[chromosomes[i][iter]].demand;
+        --iter;
+      }
+      if(load<0){
+        iterators[i][j-1]++;
+        j++;
+      }
+    }
+  }
+  else{
+    for(int j=n_vehicles;j>1;j--){
+      int load = vehicle_capacity;
+      int iter = iterators[i][j]-1;
+      while(iter >= iterators[i][j-1]){
+        load-=nodes[chromosomes[i][iter]].demand;
+        --iter;
+      }
+      if(load<0){
+        iterators[i][j-1]++;
+        j++;
+      }
+    }
+    for(int j=0;j<n_vehicles-1;j++){
+      int load = vehicle_capacity;
+      int iter = iterators[i][j];
+      while(iter < iterators[i][j+1]){
+        load-=nodes[chromosomes[i][iter]].demand;
+        ++iter;
+      }
+      if(load<0){
+        iterators[i][j+1]--;
+        j--;
+      };
+    }
   }
   // std::cout << "out mv" << std::endl;
 }
@@ -532,7 +575,41 @@ void GAIterSolution::Mutate(){
   }
 }
 
-bool GAIterSolution::MutateIterLeft(int i_chromosome, int j){
+bool GAIterSolution::MutateIterLeft(int i_chromosome, int j_in){
+  if(j_in==n_vehicles || j_in==0) return false;
+
+  int i = i_chromosome;
+  auto temp = iterators[i][j_in];
+
+  if(iterators[i][j_in] > iterators[i][j_in-1])iterators[i][j_in]--;
+  for(int j=j_in;j<n_vehicles-1;j++){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j];
+    while(iter < iterators[i][j+1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      ++iter;
+    }
+    if(load<0){
+      iterators[i][j+1]--;
+      j--;
+    }
+  }
+
+  for(int j=n_vehicles;j>1;j--){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j]-1;
+    while(iter >= iterators[i][j-1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      --iter;
+    }
+    if(load<0){
+      iterators[i][j-1]++;
+      j++;
+    }
+  }
+  // if(iterators[i][j_in]!=temp) std::cout << "Mutated Iter Left Valid: " << checkValidity(i) << std::endl;
+  // Still some cases being missed
+  return true;
   // std::cout << iterators.size() << std::endl;
   // std::cout << iterators[0].size() << std::endl;
   // std::cout << "Moving " << j << "th point in iterator whose value is: " << std::endl;
@@ -540,43 +617,80 @@ bool GAIterSolution::MutateIterLeft(int i_chromosome, int j){
   // std::cout << "Original Iter: ";
   // for(auto&i:iterators[i_chromosome]) std::cout << i << " ";
   // std::cout << std::endl;
-  if(j==n_vehicles || j==0) return false;
-  // std::cout << "n_genes: " << n_genes << std::endl;
-  if(iterators[i_chromosome][j-1]!=iterators[i_chromosome][j]){//check if sequential
-    iterators[i_chromosome][j]--;
-
-    int load = vehicle_capacity;
-    // for(int i=iterators[i_chromosome][j-1]; i<iterators[i_chromosome][j]; i++){ // should this be fro j instead of j-1?
-    //     load -= nodes[chromosomes[i_chromosome][i]].demand;
-    // }
-    // if(load<0 && !MutateIterLeft(i_chromosome, j)){
-    //   iterators[i_chromosome][j]++;
-    //   return false;
-    // }
-    //
-    // load = vehicle_capacity;
-    for(int i=iterators[i_chromosome][j]; i<iterators[i_chromosome][j+1]; i++){ // should this be fro j instead of j-1?
-        load -= nodes[chromosomes[i_chromosome][i]].demand;
-    }
-    if(load>=0){
-      // std::cout << "New Iter     : ";
-      // for(auto&i:iterators[i_chromosome]) std::cout << i << " ";
-      // std::cout << std::endl;
-      return true;
-    }
-    else{
-      // std::cout << "Recursing" << std::endl;
-      if(!MutateIterLeft(i_chromosome, j+1)){
-        // std::cout << "Unchanged" << std::endl;
-        iterators[i_chromosome][j]++;
-        return false;
-      }
-      else return true;
-    }
-  }
+  // if(j==n_vehicles || j==0) return false;
+  // // std::cout << "n_genes: " << n_genes << std::endl;
+  // if(iterators[i_chromosome][j-1]!=iterators[i_chromosome][j]){//check if sequential
+  //   iterators[i_chromosome][j]--;
+  //
+  //   int load = vehicle_capacity;
+  //   // for(int i=iterators[i_chromosome][j-1]; i<iterators[i_chromosome][j]; i++){ // should this be fro j instead of j-1?
+  //   //     load -= nodes[chromosomes[i_chromosome][i]].demand;
+  //   // }
+  //   // if(load<0 && !MutateIterLeft(i_chromosome, j)){
+  //   //   iterators[i_chromosome][j]++;
+  //   //   return false;
+  //   // }
+  //   //
+  //   // load = vehicle_capacity;
+  //   for(int i=iterators[i_chromosome][j]; i<iterators[i_chromosome][j+1]; i++){ // should this be fro j instead of j-1?
+  //       load -= nodes[chromosomes[i_chromosome][i]].demand;
+  //   }
+  //   if(load>=0){
+  //     // std::cout << "New Iter     : ";
+  //     // for(auto&i:iterators[i_chromosome]) std::cout << i << " ";
+  //     // std::cout << std::endl;
+  //     return true;
+  //   }
+  //   else{
+  //     // std::cout << "Recursing" << std::endl;
+  //     if(!MutateIterLeft(i_chromosome, j+1)){
+  //       // std::cout << "Unchanged" << std::endl;
+  //       iterators[i_chromosome][j]++;
+  //       return false;
+  //     }
+  //     else return true;
+  //   }
+  // }
 }
 
-bool GAIterSolution::MutateIterRight(int i_chromosome, int j){
+bool GAIterSolution::MutateIterRight(int i_chromosome, int j_in){
+  if(j_in==n_vehicles || j_in==0) return false;
+
+  int i = i_chromosome;
+  auto temp = iterators[i][j_in];
+
+  if(iterators[i][j_in] < iterators[i][j_in-1])iterators[i][j_in]++;
+
+  for(int j=j_in;j>1;j--){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j]-1;
+    while(iter >= iterators[i][j-1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      --iter;
+    }
+    if(load<0){
+      iterators[i][j-1]++;
+      j++;
+    }
+  }
+
+  for(int j=0;j<n_vehicles-1;j++){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j];
+    while(iter < iterators[i][j+1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      ++iter;
+    }
+    if(load<0){
+      iterators[i][j+1]--;
+      j--;
+    }
+  }
+
+
+  // if(iterators[i][j_in]!=temp) std::cout << "Mutated Iter Right Valid: " << checkValidity(i) << std::endl;
+  // Still some cases being missed
+  return true;
   // std::cout << iterators.size() << std::endl;
   // std::cout << iterators[0].size() << std::endl;
   // std::cout << "Moving " << j << "th point in iterator whose value is: " << std::endl;
@@ -584,40 +698,40 @@ bool GAIterSolution::MutateIterRight(int i_chromosome, int j){
   // std::cout << "Original Iter: ";
   // for(auto&i:iterators[i_chromosome]) std::cout << i << " ";
   // std::cout << std::endl;
-  if(j==n_vehicles || j==0) return false;
-  // std::cout << "n_genes: " << n_genes << std::endl;
-  if(iterators[i_chromosome][j+1]!=iterators[i_chromosome][j]){//check if sequential
-    iterators[i_chromosome][j]++;
-    int load = vehicle_capacity;
-
-    // for(int i=iterators[i_chromosome][j]; i<iterators[i_chromosome][j++]; i++){ // should this be fro j instead of j-1?
-    //     load -= nodes[chromosomes[i_chromosome][i]].demand;
-    // }
-    // if(load<0 && !MutateIterRight(i_chromosome, j)){
-    //   iterators[i_chromosome][j]--;
-    //   return false;
-    // }
-    //
-    // load = vehicle_capacity;
-    for(int i=iterators[i_chromosome][j-1]; i<iterators[i_chromosome][j]; i++){
-        load -= nodes[chromosomes[i_chromosome][i]].demand;
-    }
-    if(load>=0){
-      // std::cout << "New Iter     : ";
-      // for(auto&i:iterators[i_chromosome]) std::cout << i << " ";
-      // std::cout << std::endl;
-      return true;
-    }
-    else{
-      // std::cout << "Recursing" << std::endl;
-      if(!MutateIterRight(i_chromosome, j-1)){
-        // std::cout << "Unchanged" << std::endl;
-        iterators[i_chromosome][j]--;
-        return false;
-      }
-      else return true;
-    }
-  }
+  // if(j==n_vehicles || j==0) return false;
+  // // std::cout << "n_genes: " << n_genes << std::endl;
+  // if(iterators[i_chromosome][j+1]!=iterators[i_chromosome][j]){//check if sequential
+  //   iterators[i_chromosome][j]++;
+  //   int load = vehicle_capacity;
+  //
+  //   // for(int i=iterators[i_chromosome][j]; i<iterators[i_chromosome][j++]; i++){ // should this be fro j instead of j-1?
+  //   //     load -= nodes[chromosomes[i_chromosome][i]].demand;
+  //   // }
+  //   // if(load<0 && !MutateIterRight(i_chromosome, j)){
+  //   //   iterators[i_chromosome][j]--;
+  //   //   return false;
+  //   // }
+  //   //
+  //   // load = vehicle_capacity;
+  //   for(int i=iterators[i_chromosome][j-1]; i<iterators[i_chromosome][j]; i++){
+  //       load -= nodes[chromosomes[i_chromosome][i]].demand;
+  //   }
+  //   if(load>=0){
+  //     // std::cout << "New Iter     : ";
+  //     // for(auto&i:iterators[i_chromosome]) std::cout << i << " ";
+  //     // std::cout << std::endl;
+  //     return true;
+  //   }
+  //   else{
+  //     // std::cout << "Recursing" << std::endl;
+  //     if(!MutateIterRight(i_chromosome, j-1)){
+  //       // std::cout << "Unchanged" << std::endl;
+  //       iterators[i_chromosome][j]--;
+  //       return false;
+  //     }
+  //     else return true;
+  //   }
+  // }
 }
 
 bool GAIterSolution::checkValidity(int i){

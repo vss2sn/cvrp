@@ -57,8 +57,8 @@ public:
   void RemoveSimilarSolutions();
   std::vector<int> GenerateRandomIterSolution();
   double NewCalculateCost(int i);
-  bool MutateIterLeft(int i_chromosome, int j);
-  bool MutateIterRight(int i_chromosome, int j);
+  bool MutateIterLeft(int i_chromosome, int j_in);
+  bool MutateIterRight(int i_chromosome, int j_in);
   bool checkValidity(int i);
   void MakeValid(int i);
 };
