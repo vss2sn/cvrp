@@ -61,4 +61,6 @@ public:
   bool MutateIterRight(int i_chromosome, int j_in);
   bool checkValidity(int i);
   void MakeValid(int i);
+  void RandomSwapAlele();
+  void AddBest();
 };

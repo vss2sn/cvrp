@@ -1,7 +1,9 @@
 #include "ga_iter.hpp"
 
 // Still need to account for case if nodes cannot be put into vehilces due to small number of vehicles in initial solution
-
+// add multiple instances of best soln to allow for muttaion of that as well
+// add in function to mutate single alele ie 2 dropoff points onn the same route.
+// add in function to pick from one route and add to others and move all relevant iterators right
 std::vector<int> GAIterSolution::GenerateRandomSolution(){
   std::vector<int> temp(n_genes);
   for(int i=0; i<n_genes; ++i){
@@ -94,7 +96,7 @@ void GAIterSolution::GenerateGreedySolutions(){
   costs[0] = NewCalculateCost(0);
   // std::cout << "Costg2: " << costs[0] << std::endl;
   // std::cout << "Is greedy valid:" << checkValidity(0) << std::endl;
-  for(int j=0;j<n_chromosomes;++j){
+  for(int j=0;j<0.2*n_chromosomes;++j){
     // int i = rand()%n_chromosomes;
     chromosomes[j] = gs;
     iterators[j] = iter;
@@ -133,9 +135,10 @@ void GAIterSolution::RemoveSimilarSolutions(){
   }
   for(auto it = to_delete.begin();it!=to_delete.end(); ++it){
     // std::cout << "DELETED" << std::endl;
-    if(rand()%100 > 75){
+    if(rand()%100 > 15){
       chromosomes[*it] = GenerateRandomSolution();
       iterators[*it] = GenerateRandomIterSolution();
+      MakeValid(*it);
       costs[*it] = NewCalculateCost(*it);
     }
 
@@ -215,6 +218,7 @@ void GAIterSolution::CalculateTotalCost(){
 
 void GAIterSolution::Solve(){
   GenerateRandomSolutions();
+  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
   GenerateGreedySolutions();
   CalculateTotalCost();
   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
@@ -244,38 +248,57 @@ void GAIterSolution::Solve(){
       // std::cout << "-----";
        //std::cout << "---------------------------1------------------------------------" << std::endl;
     }
-    // else if(rand()%2==0){
-    //   AEXCrossover();
-    //   MutateIterLeft(n_chromosomes-1, 1);
-    //   MutateIterLeft(n_chromosomes-1, n_vehicles - 1);
-    //    //std::cout << "---------------------------2------------------------------------" << std::endl;
-    //
-    // }
+    else if(rand()%2==0){
+      AEXCrossover();
+      // MutateIterLeft(n_chromosomes-1, 1);
+      // MutateIterLeft(n_chromosomes-1, n_vehicles - 1);
+       //std::cout << "---------------------------2------------------------------------" << std::endl;
+
+    }
     // if(rand()%100<20){
     //   Mutate();
     //    //std::cout << "---------------------------3------------------------------------" << std::endl;
     // }
     if(rand()%100<30){
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+
       // std::cout << "Mutating left"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
       MutateIterLeft(n, rand()%n_vehicles);
+      costs[n] = NewCalculateCost(n);
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
-    if(rand()%100<30){
+    else if(rand()%100<30){
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+
       // std::cout << "Mutating right"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
       MutateIterRight(n, rand()%n_vehicles);
+      costs[n] = NewCalculateCost(n);
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
-    // if(rand()%100<20) {
-    //   RandomSwap();
-    //    //std::cout << "---------------------------4------------------------------------" << std::endl;
-    //
-    // }
+    if(rand()%100<20) {
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+      RandomSwap();
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+
+    }
+    if(rand()%100<20) {
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+      RandomSwapAlele();
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+
+    }
+    if(rand()%100<5) {
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+      AddBest();
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+
+    }
     // if(rand()%100<20) {
     //   DeleteBadChromosome();
     //    //std::cout << "---------------------------5------------------------------------" << std::endl;
@@ -310,8 +333,8 @@ void GAIterSolution::Solve(){
     // for(int m=0;m<n_chromosomes;m++){
     //   for(auto&i:chromosomes[m]) std::cout << i << " ";
     //   std::cout << std::endl;
-    //   for(auto&i:iterators[m]) std::cout << i << " ";
-    //   std::cout << std::endl;
+    //   // for(auto&i:iterators[m]) std::cout << i << " ";
+    //   // std::cout << std::endl;
     // }
     // std::cout << std::endl;
 
@@ -362,11 +385,29 @@ void GAIterSolution::AEXCrossover(){
     }
   }
   chromosomes.push_back(child);
-  iterators.push_back(GenerateRandomIterSolution());
-  costs.emplace_back(NewCalculateCost(n_chromosomes));
-  // DeleteWorstChromosome();
-  // std::cout << "AEX"<<std::endl;
-  InsertionBySimilarity();
+  iterators.emplace_back(GenerateRandomIterSolution());
+  MakeValid(n_chromosomes);
+  // MutateIterLeft(n_chromosomes, 1);
+  // MutateIterRight(n_chromosomes, n_vehicles-1);
+  if(checkValidity(n_chromosomes)){
+    // std::cout << "Valid -------------------------------------------------------" << std::endl;
+    // for(auto& i:iterators[n_chromosomes]) std::cout << i << std::endl;
+    // std::cout << std::endl;
+    costs.emplace_back(NewCalculateCost(n_chromosomes));
+    // std::cout << "Valid -------------------------------------------------------//" << std::endl;
+
+    // DeleteWorstChromosome();
+    // std::cout << "AEX"<<std::endl;
+    InsertionBySimilarity();
+  }
+  else{
+    std::cout << "not Valid " << std::endl;
+    for(auto& i:iterators[n_chromosomes]) std::cout << i << " ";
+    std::cout << std::endl;
+    iterators.erase(iterators.begin()+n_chromosomes);
+    chromosomes.erase(chromosomes.begin()+n_chromosomes);
+
+  }
 }
 
 void GAIterSolution::NAEXCrossover(){
@@ -456,7 +497,7 @@ void GAIterSolution::NAEXCrossover(){
 
 void GAIterSolution::MakeValid(int i){
   // std::cout << "In mv" << std::endl;
-  if(rand()%2==0){
+  // if(rand()%2==0){
     for(int j=0;j<n_vehicles-1;j++){
       int load = vehicle_capacity;
       int iter = iterators[i][j];
@@ -482,33 +523,33 @@ void GAIterSolution::MakeValid(int i){
         j++;
       }
     }
-  }
-  else{
-    for(int j=n_vehicles;j>1;j--){
-      int load = vehicle_capacity;
-      int iter = iterators[i][j]-1;
-      while(iter >= iterators[i][j-1]){
-        load-=nodes[chromosomes[i][iter]].demand;
-        --iter;
-      }
-      if(load<0){
-        iterators[i][j-1]++;
-        j++;
-      }
-    }
-    for(int j=0;j<n_vehicles-1;j++){
-      int load = vehicle_capacity;
-      int iter = iterators[i][j];
-      while(iter < iterators[i][j+1]){
-        load-=nodes[chromosomes[i][iter]].demand;
-        ++iter;
-      }
-      if(load<0){
-        iterators[i][j+1]--;
-        j--;
-      };
-    }
-  }
+  // }
+  // else{
+  //   for(int j=n_vehicles;j>1;j--){
+  //     int load = vehicle_capacity;
+  //     int iter = iterators[i][j]-1;
+  //     while(iter >= iterators[i][j-1]){
+  //       load-=nodes[chromosomes[i][iter]].demand;
+  //       --iter;
+  //     }
+  //     if(load<0){
+  //       iterators[i][j-1]++;
+  //       j++;
+  //     }
+  //   }
+  //   for(int j=0;j<n_vehicles-1;j++){
+  //     int load = vehicle_capacity;
+  //     int iter = iterators[i][j];
+  //     while(iter < iterators[i][j+1]){
+  //       load-=nodes[chromosomes[i][iter]].demand;
+  //       ++iter;
+  //     }
+  //     if(load<0){
+  //       iterators[i][j+1]--;
+  //       j--;
+  //     };
+  //   }
+  // }
   // std::cout << "out mv" << std::endl;
 }
 
@@ -766,7 +807,44 @@ void GAIterSolution::RandomSwap(){
       count++;
       costs[r] = p;
     }
-    else break;
+    else{
+      if(!checkValidity(r)) MakeValid(r);
+      break;
+    }
+  }
+}
+
+void GAIterSolution::AddBest(){
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+  int worst = std::min_element(costs.begin(), costs.end()) - costs.begin();
+  chromosomes[worst] = chromosomes[best];
+  costs[worst] = costs[best];
+  iterators[worst] = iterators[best];
+}
+
+void GAIterSolution::RandomSwapAlele(){
+  int count =0;
+  while(count<5){
+    //  std::cout << "OI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1" << std::endl;
+     //std::cout << "---------------------------9------------------------------------" << std::endl;
+
+    best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+    int r = rand()%n_chromosomes;
+    while(r==best) r = rand()%n_chromosomes;
+    int i1 = rand()%n_genes;
+    int i2 = rand()%n_genes;
+    std::reverse(chromosomes[r].begin() + i1,chromosomes[r].begin() + i2);
+    double p = costs[r];
+    costs[r] = NewCalculateCost(r);
+    if(p<costs[r]){
+      std::reverse(chromosomes[r].begin() + i1,chromosomes[r].begin() + i2);
+      count++;
+      costs[r] = p;
+    }
+    else{
+      if(!checkValidity(r)) MakeValid(r);
+      break;
+    }
   }
 }
 
