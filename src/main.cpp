@@ -16,9 +16,9 @@ int main(){
   LocalSearchInterIntraSolution vrp_lsii(p);
   vrp_lsii.Solve();
 
-  GANaiveSolution vrp_genetic(p, 30, 10000);
+  GANaiveSolution vrp_genetic(p, 30, 100);
   vrp_genetic.Solve();
 
-  GAIterSolution vrp_genetic_iter(p, 500, 10000);
+  GAIterSolution vrp_genetic_iter(p, 100, 50000);
   vrp_genetic_iter.Solve();
 }

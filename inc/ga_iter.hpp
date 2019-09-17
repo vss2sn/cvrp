@@ -63,4 +63,6 @@ public:
   void MakeValid(int i);
   void RandomSwapAlele();
   void AddBest();
+  void MutateWhithinAlele();
+  void SwapWhithinAlele();
 };

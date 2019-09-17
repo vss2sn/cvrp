@@ -50,7 +50,7 @@ public:
   std::vector<std::vector<double>> distanceMatrix;
   Node depot;
 
-  Problem(int noc = 50, int demand_range = 40, int nov = 25, int capacity = 80, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
+  Problem(int noc = 250, int demand_range = 40, int nov = 40, int capacity = 400, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
 };
 
 class Solution{
