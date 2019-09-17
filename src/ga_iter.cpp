@@ -251,15 +251,15 @@ void GAIterSolution::Solve(){
     //    //std::cout << "---------------------------2------------------------------------" << std::endl;
     //
     // }
-    if(rand()%100<20){
-      Mutate();
-       //std::cout << "---------------------------3------------------------------------" << std::endl;
-    }
+    // if(rand()%100<20){
+    //   Mutate();
+    //    //std::cout << "---------------------------3------------------------------------" << std::endl;
+    // }
     if(rand()%100<30){
       // std::cout << "Mutating left"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
-      MutateIterLeft(n, rand()%n_vehicles);
+      // MutateIterLeft(n, rand()%n_vehicles);
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
@@ -267,20 +267,20 @@ void GAIterSolution::Solve(){
       // std::cout << "Mutating left"<< std::endl;
       int n = rand()%n_chromosomes;
       while(n==best) n = rand()%n_chromosomes;
-      MutateIterRight(n, rand()%n_vehicles);
+      //MutateIterRight(n, rand()%n_vehicles);
        //std::cout << "---------------------------3.1------------------------------------" << std::endl;
 
     }
-    if(rand()%100<20) {
-      RandomSwap();
-       //std::cout << "---------------------------4------------------------------------" << std::endl;
-
-    }
-    if(rand()%100<20) {
-      DeleteBadChromosome();
-       //std::cout << "---------------------------5------------------------------------" << std::endl;
-
-    }
+    // if(rand()%100<20) {
+    //   RandomSwap();
+    //    //std::cout << "---------------------------4------------------------------------" << std::endl;
+    //
+    // }
+    // if(rand()%100<20) {
+    //   DeleteBadChromosome();
+    //    //std::cout << "---------------------------5------------------------------------" << std::endl;
+    //
+    // }
     CalculateTotalCost();
      //std::cout << "---------------------------10------------------------------------" << std::endl;
 
@@ -307,13 +307,13 @@ void GAIterSolution::Solve(){
       //   std::cout << " | " << costs[i] << std::endl;
       // }
     }
-    for(int m=0;m<n_chromosomes;m++){
-      for(auto&i:chromosomes[m]) std::cout << i << " ";
-      std::cout << std::endl;
-      for(auto&i:iterators[m]) std::cout << i << " ";
-      std::cout << std::endl;
-    }
-    std::cout << std::endl;
+    // for(int m=0;m<n_chromosomes;m++){
+    //   for(auto&i:chromosomes[m]) std::cout << i << " ";
+    //   std::cout << std::endl;
+    //   for(auto&i:iterators[m]) std::cout << i << " ";
+    //   std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
 
   }
   // for(int i=0; i< n_chromosomes;i++){
