@@ -313,7 +313,7 @@ void GAIterSolution::Solve(){
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       // if(best<best1) std::cout << "RandomSwapAlele made a diff" << std::endl;
     }
-    if(rand()%100<30) {
+    if(rand()%100<75) {
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       auto best1 = best;
 
@@ -767,30 +767,57 @@ void GAIterSolution::DeleteWorstChromosome(){
 }
 
 void GAIterSolution::InsertIterDist(){
+  // std::cout << "1"<<std::endl;
   int n = rand()%n_chromosomes;
   auto temp = iterators[n];
-  int j = n_genes;
+  int j = n_vehicles;
   while(iterators[n][j]==n_genes) j--;
-  if(j==n_genes) return;
+  if(j==n_vehicles-1) return;
+  j++;
+  //that found the ierator to insert
+  // std::cout << "2"<<std::endl;
+  // for(auto& m:iterators[n]) std::cout << m <<" ";
+  // std::cout << std::endl;
   double cost = 0;
   int iter_begin;
-  int range;
-  int c = 0;
-  cost += distanceMatrix[0][iterators[n][j]];
-  for(int k=iterators[n][j];k<iterators[n][j+1]-1;k++){
-    cost += distanceMatrix[chromosomes[n][k]][chromosomes[n][k+1]];
+  int range = 0;
+  for(int i=0;i<n_vehicles;i++){
+    int c = 0;
+    c += distanceMatrix[0][iterators[n][i]];
+    for(int k=iterators[n][i];k<iterators[n][i+1]-1;k++){
+      c += distanceMatrix[chromosomes[n][k]][chromosomes[n][k+1]];
+    }
+    // std::cout << "3"<<std::endl;
+    // std::cout << "--- : iterators[n][i] " << iterators[n][i]<<std::endl;
+    // for(auto& m:iterators[n]) std::cout << m <<" ";
+    // std::cout << std::endl;
+    // std::cout << "--- : iterators[n][i+1] " << iterators[n][i+1] << std::endl;
+    if(iterators[n][i+1]-iterators[n][i]<2) continue;
+    c += distanceMatrix[iterators[n][i+1]-1][0];
+    if(c>cost){
+      cost = c;
+      iter_begin = i;
+      range = iterators[n][i+1]-iterators[n][i];
+    }
   }
-  cost += distanceMatrix[iterators[n][j+1]-1][0];
-  if(c>cost){
-    cost = c;
-    iter_begin = j;
-    range = iterators[n][j+1]-iterators[n][j];
-  }
-  if(cost = 0) return;
-  int val = iterators[n][j]+rand()%(range-1)+1;
+  int i = iter_begin;
+  // std::cout << "4"<<std::endl;
+  if(cost = 0 || range<2) return;
+  // std::cout << "iterators[n][i]"<<iterators[n][i]<<std::endl;
+
+  int val = iterators[n][i]+rand()%(range-1)+1;
+  // std::cout << "Val: " << val <<std::endl;
+  // std::cout << "-----------------"<<std::endl;
+  // for(auto& m:iterators[n]) std::cout << m <<" ";
+  // std::cout << std::endl;
   iterators[n].erase(iterators[n].begin()+j);
-  iterators[n].insert(iterators[n].begin()+j+1, val);
+  iterators[n].insert(iterators[n].begin()+i+1, val);
+  // for(auto& m:iterators[n]) std::cout << m <<" ";
+  // std::cout << std::endl;
+
   MakeValid(n); // dont  htink this is req
+  // std::cout << "5"<<std::endl;
+
   int c2 = NewCalculateCost(n);
   if(costs[n]<c2) iterators[n] = temp;
   else costs[n] = c2;
