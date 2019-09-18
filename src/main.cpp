@@ -19,6 +19,6 @@ int main(){
   GANaiveSolution vrp_genetic(p, 30, 100);
   vrp_genetic.Solve();
 
-  GAIterSolution vrp_genetic_iter(p, 100, 50000);
+  GAIterSolution vrp_genetic_iter(p, 10, 1000);
   vrp_genetic_iter.Solve();
 }
