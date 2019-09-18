@@ -197,7 +197,7 @@ void GAIterSolution::Solve(){
       MutateIterLeft(n, rand()%n_vehicles);
       double c = NewCalculateCost(n);
       if(c<costs[n]) costs[n]=c;
-      else iterators[n]=temp;
+      else iterators[n]=temp_i;
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
     else if(rand()%100<50){
