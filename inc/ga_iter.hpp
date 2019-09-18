@@ -65,4 +65,5 @@ public:
   void AddBest();
   void MutateWhithinAlele();
   void SwapWhithinAlele();
+  void InsertIterDist();
 };
