@@ -23,7 +23,7 @@ void LocalSearchIntraSolution::Solve(){
   }
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  std::cout << "Costg: " << cost << std::endl;
+  // std::cout << "Costg: " << cost << std::endl;
   // std::cout << "---------------------------" << std::endl;
   // std::cout << "Each vehicle's status before local search" << std::endl;
   // std::cout << "---------------------------" << std::endl;
@@ -85,12 +85,3 @@ void LocalSearchIntraSolution::Solve(){
   // std::cout << "---------------------------" << std::endl;
 
 }
-
-// int main(){
-//
-//   Problem p;
-//   LocalSearchIntraSolution g(p);
-//   g.Solve();
-//
-//   return 0;
-// }

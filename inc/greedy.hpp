@@ -1,3 +1,6 @@
+#ifndef GREEDY_HPP
+#define GREEDY_HPP
+
 #include "utils.hpp"
 
 class GreedySolution:public Solution{
@@ -8,3 +11,4 @@ public:
       :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
   void Solve();
 };
+#endif

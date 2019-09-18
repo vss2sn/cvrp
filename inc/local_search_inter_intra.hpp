@@ -1,6 +1,10 @@
+#ifndef LSII_HPP
+#define LSII_HPP
+
 #include "utils.hpp"
 
 class LocalSearchInterIntraSolution : public Solution{
+  int capacity;
 public:
   LocalSearchInterIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
   :Solution(nodes, vehicles, distanceMatrix){} ;
@@ -8,3 +12,5 @@ public:
     :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
   void Solve();
 };
+
+#endif LSII_HPP

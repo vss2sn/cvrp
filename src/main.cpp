@@ -1,11 +1,7 @@
-#include "genetic_algorithm.hpp"
-#include "ga_iter.hpp"
-#include "greedy.hpp"
-#include "local_search_intra.hpp"
-#include "local_search_inter_intra.hpp"
+#include "main.hpp"
 
 int main(){
-  Problem p;
+  Problem p(1000,4,25,125,1000);
 
   GreedySolution vrp_greedy(p);
   vrp_greedy.Solve();
@@ -16,9 +12,15 @@ int main(){
   LocalSearchInterIntraSolution vrp_lsii(p);
   vrp_lsii.Solve();
 
-  GANaiveSolution vrp_genetic(p, 30, 100);
-  vrp_genetic.Solve();
+  TabuSearchSolution vrp_ts(p);
+  vrp_ts.Solve();
 
-  GAIterSolution vrp_genetic_iter(p, 100, 100000);
-  vrp_genetic_iter.Solve();
+  // GASolution vrp_ga(p, 100, 5000);
+  // vrp_ga.Solve();
+
+  // LSSwapSolution vrp_lsss(p);
+  // vrp_lsss.Solve();
+  //
+  // TSSolution vrp_ts(p);
+  // vrp_ts.Solve();
 }

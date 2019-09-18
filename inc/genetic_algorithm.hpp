@@ -1,18 +1,23 @@
+#ifndef GA_HPP
+#define GA_HPP
+
 #include "utils.hpp"
 
 // Still need to account for case if nodes cannot be put into vehilces due to small number of vehicles in initial solution
-class GANaiveSolution : public Solution{
+class GASolution : public Solution{
 private:
   std::vector<std::vector<int>> chromosomes;
+  std::vector<std::vector<int>> iterators;
   std::vector<int> chromosome;
   int n_chromosomes;
   int n_genes;
+  int n_vehicles;
   int vehicle_capacity;
   int generations;
   std::vector<double> costs;
   int best;
 public:
-  GANaiveSolution(std::vector<Node> nodes,
+  GASolution(std::vector<Node> nodes,
                            std::vector<Vehicle> vehicles,
                            std::vector<std::vector<double>> distanceMatrix,
                            int n_chromosomes,
@@ -23,8 +28,9 @@ public:
                                 n_genes = nodes.size()-1;
                                 vehicle_capacity = vehicles[0].capacity;
                                 costs = std::vector<double>(n_chromosomes);
+                                n_vehicles = vehicles.size();
                            };
-   GANaiveSolution(Problem p,
+   GASolution(Problem p,
                             int n_chromosomes,
                             int generations)
                             :Solution(p){
@@ -33,6 +39,7 @@ public:
                                  n_genes = nodes.size()-1;
                                  vehicle_capacity = vehicles[0].capacity;
                                  costs = std::vector<double>(n_chromosomes);
+                                 n_vehicles = vehicles.size();
                             };
   void GenerateRandomSolutions();
   void GenerateGreedySolutions();
@@ -42,7 +49,7 @@ public:
   double CalculateCost(int i);
   void CalculateTotalCost();
   void Solve();
-  void AEXCrossover();
+  void AEXCrossover(); //TODO: Decide whther to use and if so, debug
   int TournamentSelection();
   int TournamentSelectionBad();
   void DeleteBadChromosome();
@@ -51,4 +58,16 @@ public:
   void Mutate();
   void DeleteWorstChromosome();
   void RemoveSimilarSolutions();
+  std::vector<int> GenerateRandomIterSolution();
+  bool MutateIterLeft(int i_chromosome, int j_in);
+  bool MutateIterRight(int i_chromosome, int j_in);
+  bool checkValidity(int i);
+  void MakeValid(int i);
+  void RandomSwapAlele();
+  void AddBest();
+  void MutateWhithinAlele();
+  void SwapWhithinAlele();
+  void InsertIterDist();
 };
+
+#endif
