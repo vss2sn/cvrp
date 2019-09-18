@@ -49,7 +49,7 @@ void GANaiveSolution::GenerateGreedySolutions(){
   }
   double cost = 0;
   for(auto& v:vehicles2) cost += v.cost;
-  std::cout << "Costg: " << cost << std::endl;
+  // std::cout << "Costg: " << cost << std::endl;
   for(int j=0;j<0.2*n_chromosomes;++j){
     int i = rand()%n_chromosomes;
     chromosomes[i] = gs;

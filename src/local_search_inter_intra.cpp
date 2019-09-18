@@ -29,7 +29,7 @@ void LocalSearchInterIntraSolution::Solve(){
   // for(auto& v:vehicles) v.PrintRoute();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  std::cout << "Costg: " << cost << std::endl;
+  // std::cout << "Costg: " << cost << std::endl;
   for(auto& v:vehicles) cost += v.cost;
   // Local Search
   while(true){
@@ -119,7 +119,7 @@ void LocalSearchInterIntraSolution::Solve(){
   cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   std::cout << "Cost: " << cost << std::endl;
-  for(auto& v:vehicles) v.PrintRoute();
+  // for(auto& v:vehicles) v.PrintRoute();
 
   for(auto& i:nodes){
     if(!i.is_routed){

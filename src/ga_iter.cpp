@@ -77,7 +77,7 @@ void GAIterSolution::GenerateGreedySolutions(){
   }
   double cost = 0;
   for(auto& v:vehicles2) cost += v.cost;
-  std::cout << "Costg: " << cost << std::endl;
+  // std::cout << "Costg: " << cost << std::endl;
   chromosomes[0] = gs;
   iterators[0] = iter;
   costs[0] = NewCalculateCost(0);
@@ -124,14 +124,19 @@ void GAIterSolution::GenerateGreedySolutions(){
 void GAIterSolution::RemoveSimilarSolutions(){
   std::set<int> to_delete;
   for(int i=0;i<n_chromosomes;i++){
-    for(int j=i+1;j<n_chromosomes;j++){
+    for(int j=0;j<n_chromosomes;j++){
+      if(j==i) continue;
       if(j==best) continue;
       int count = 0;
       for(int k=0;k<n_genes;k++){
         if(chromosomes[i][k]==chromosomes[j][k]) count++;
       }
-      if(count > 0.95*n_genes){
-        to_delete.insert(j);
+      if(count > 0.95*n_genes &&
+        ((costs[i]>0.95*costs[j] && costs[i]<1.05*costs[j]) ||
+         (costs[j]>0.95*costs[i] && costs[j]<1.05*costs[i]))
+      ){
+        if(costs[i]>costs[j])to_delete.insert(i);
+        else to_delete.insert(j);
       }
     }
   }
@@ -230,15 +235,24 @@ void GAIterSolution::Solve(){
       RandomSwapAlele();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
+    // for(int i=0;i<n_chromosomes;i++){
+    //     if(!checkValidity(i))std::cout << "Invlaid 4" << std::endl;
+    // }
     if(rand()%100<75) {
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       InsertIterDist();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
-    // if(rand()%100<5) {
-    //   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-    //   AddBest();
-    //   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+    // for(int i=0;i<n_chromosomes;i++){
+    //     if(!checkValidity(i))std::cout << "Invlaid 5" << std::endl;
+    // }
+    if(rand()%100<5) {
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+      AddBest();
+      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+    }
+    // for(int i=0;i<n_chromosomes;i++){
+    //     if(!checkValidity(i))std::cout << "Invlaid 6" << std::endl;
     // }
     // if(rand()%100<20) {
     //   DeleteBadChromosome();
@@ -246,9 +260,15 @@ void GAIterSolution::Solve(){
     CalculateTotalCost();
     generation++;
     if(generation%100==0){
-      // RemoveSimilarSolutions();
+      RemoveSimilarSolutions();
     }
-
+    // for(int i=0;i<n_chromosomes;i++){
+    //     if(!checkValidity(i))std::cout << "Invlaid 6" << std::endl;
+    // }
+    // for(int m=0;m<n_chromosomes;m++){
+    //   for(auto s:chromosomes[m]) std::cout << s << std::setw(4);
+    //   std::cout << "|" << std::setw(4) <<costs[m] << std::endl;
+    // }
   }
   GenerateBestSolution();
 }
@@ -597,6 +617,7 @@ void GAIterSolution::RandomSwap(){
     int i2 = rand()%n_genes;
     std::swap(chromosomes[r][i1],chromosomes[r][i2]);
     auto temp_it = iterators[r];
+    MakeValid(r);
     double p = costs[r];
     costs[r] = NewCalculateCost(r);
     if(p<costs[r]){
@@ -605,7 +626,7 @@ void GAIterSolution::RandomSwap(){
       count++;
       costs[r] = p;
     }
-    else if( checkValidity(r)) break;
+    else if(checkValidity(r)) break;
   }
 }
 
@@ -680,6 +701,7 @@ void GAIterSolution::InsertIterDist(){
   iterators[n].erase(iterators[n].begin()+j);
   iterators[n].insert(iterators[n].begin()+i+1, val);
   MakeValid(n); // dont  htink this is req
+  if(!checkValidity(n)) std::cout << "Invalid from insertiterdist"<<std::endl;
   int c2 = NewCalculateCost(n);
   if(costs[n]<c2) iterators[n] = temp;
   else costs[n] = c2;
@@ -689,10 +711,10 @@ void GAIterSolution::GenerateBestSolution(){
   auto it = std::min_element(costs.begin(), costs.end());
   std::cout << "Cost: " << *it << std::endl;
   int i = it-costs.begin();
-  for(auto& m:chromosomes[i])std::cout << m << " ";
-  std::cout << std::endl;
-  for(auto& m:iterators[i])std::cout << m << " ";
-  std::cout << std::endl;
+  // for(auto& m:chromosomes[i])std::cout << m << " ";
+  // std::cout << std::endl;
+  // for(auto& m:iterators[i])std::cout << m << " ";
+  // std::cout << std::endl;
 
   std::cout << "Valid" << checkValidity(i) << std::endl;
   auto v = vehicles.begin();
@@ -718,7 +740,7 @@ void GAIterSolution::GenerateBestSolution(){
     v->cost = 0;
     ++v;
   }
-  for(auto& v2:vehicles) v2.PrintRoute();
+  // for(auto& v2:vehicles) v2.PrintRoute();
 }
 
 // int main(){

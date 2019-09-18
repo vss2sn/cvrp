@@ -20,7 +20,7 @@ void GreedySolution::Solve(){
     }
     // v.PrintStatus();
 
-    v.PrintRoute();
+    // v.PrintRoute();
   }
   double cost = 0;
   for(auto &v:vehicles) cost +=v.cost;
