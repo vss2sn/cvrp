@@ -35,12 +35,3 @@ void GreedySolution::Solve(){
   // std::cout << "---------------------------" << std::endl;
   // std::cout << "End of greedy solution" << std::endl;
 }
-
-// int main(){
-//
-//   Problem p;
-//   GreedySolution g(p);
-//   g.Solve();
-//
-//   return 0;
-// }

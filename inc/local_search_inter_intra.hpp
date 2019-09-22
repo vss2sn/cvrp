@@ -1,3 +1,6 @@
+#ifndef LSII_HPP
+#define LSII_HPP
+
 #include "utils.hpp"
 
 class LocalSearchInterIntraSolution : public Solution{
@@ -8,3 +11,5 @@ public:
     :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
   void Solve();
 };
+
+#endif LSII_HPP

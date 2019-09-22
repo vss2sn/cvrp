@@ -130,12 +130,3 @@ void LocalSearchInterIntraSolution::Solve(){
   // std::cout << "---------------------------" << std::endl;
   // std::cout << "End of LocalSearchIntra solution" << std::endl;
 }
-
-// int main(){
-//
-//   Problem p;
-//   LocalSearchInterIntraSolution g(p);
-//   g.Solve();
-//
-//   return 0;
-// }

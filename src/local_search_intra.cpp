@@ -85,12 +85,3 @@ void LocalSearchIntraSolution::Solve(){
   // std::cout << "---------------------------" << std::endl;
 
 }
-
-// int main(){
-//
-//   Problem p;
-//   LocalSearchIntraSolution g(p);
-//   g.Solve();
-//
-//   return 0;
-// }

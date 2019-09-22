@@ -1,5 +1,5 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef UTILS_HPP
+#define UTILS_HPP
 
 #include <iostream>
 #include <vector>
@@ -50,7 +50,7 @@ public:
   std::vector<std::vector<double>> distanceMatrix;
   Node depot;
 
-  Problem(int noc = 100, int demand_range = 40, int nov = 25, int capacity = 160, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
+  Problem(int noc = 1000, int demand_range = 40, int nov = 50, int capacity = 800, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
 };
 
 class Solution{

@@ -1,3 +1,5 @@
+#ifndef LSI_HPP
+#define LSI_HPP
 
 #include "utils.hpp"
 
@@ -9,3 +11,5 @@ public:
     :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
   void Solve();
 };
+
+#endif
