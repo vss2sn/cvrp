@@ -81,7 +81,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
   if(distribution != "uniform" && distribution != "cluster") distribution = "uniform";
   if(distribution == "uniform") for(int i = 1; i <=noc; ++i) nodes.emplace_back(ran(eng), ran(eng), i, ran_d(eng), false);
   else if(distribution == "cluster"){
-    int id = 0;
+    int id = 1;
     int n_p_c = noc/n_clusters;
     int remain = noc%n_clusters;
     for(int i=0;i<n_clusters;i++){
@@ -89,6 +89,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
       int y = ran(eng);
       for(int j=0;j<n_p_c;j++){
         nodes.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
+        // nodes.back().PrintStatus();
         id++;
       }
     }

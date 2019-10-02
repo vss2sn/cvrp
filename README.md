@@ -13,3 +13,4 @@ TODOS:
 3. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
 4. Refactor
 5. Code documentation
+6. start local search intra inter with a uniform spread of nodes rather than the greedy solution to allow for more placement of nodes

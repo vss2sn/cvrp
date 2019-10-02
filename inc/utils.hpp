@@ -11,6 +11,8 @@
 #include <memory>
 #include <algorithm>
 #include <iomanip>
+#include <map>
+#include<queue>
 
 class Node{
 public:
@@ -65,4 +67,12 @@ public:
   virtual void Solve(){};
   Node find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes);
 };
+
+struct tabu{
+ int x;
+ int pos_x;
+ int y;
+ int pos_y;
+};
+
 #endif
