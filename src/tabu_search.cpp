@@ -1,4 +1,4 @@
-#include "ts.hpp"
+#include "tabu_search.hpp"
 
 void TabuSearchSolution::Solve(){
 
@@ -23,11 +23,11 @@ void TabuSearchSolution::Solve(){
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   // std::cout << "Costg: " << cost << std::endl;
-  int max_it = 10000, c_it = 0;
+  int max_it = 2500, c_it = 0;
   auto best_vehicles = vehicles;
   double best_cost = cost;
   double new_cost = cost;
-bool flag = false, flag2 = true;
+  bool flag = false, flag2 = true;
   while(c_it<max_it){
     ++c_it;
     double delta = INT_MAX, cost_reduction, cost_increase, bcr, bci;

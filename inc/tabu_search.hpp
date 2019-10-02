@@ -1,5 +1,5 @@
-#ifndef TS2_HPP
-#define TS2_HPP
+#ifndef TS_HPP
+#define TS_HPP
 
 #include "utils.hpp"
 
@@ -26,4 +26,4 @@ public:
   void Solve();
 };
 
-#endif TS2_HPP
+#endif TS_HPP

@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 int main(){
-  Problem p(1000,4,25,125,1000);
+  Problem p(100,4,25,16,10, "cluster");
 
   GreedySolution vrp_greedy(p);
   vrp_greedy.Solve();
@@ -17,10 +17,4 @@ int main(){
 
   // GASolution vrp_ga(p, 100, 5000);
   // vrp_ga.Solve();
-
-  // LSSwapSolution vrp_lsss(p);
-  // vrp_lsss.Solve();
-  //
-  // TSSolution vrp_ts(p);
-  // vrp_ts.Solve();
 }
