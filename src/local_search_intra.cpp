@@ -1,9 +1,6 @@
 #include "local_search_intra.hpp"
 
 void LocalSearchIntraSolution::Solve(){
-
-
-  //Initial greedy search
   for(auto& v:vehicles){
     while(true){
       Node closest_node = find_closest(v, distanceMatrix, nodes);
@@ -23,15 +20,7 @@ void LocalSearchIntraSolution::Solve(){
   }
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  // std::cout << "Costg: " << cost << std::endl;
-  // std::cout << "---------------------------" << std::endl;
-  // std::cout << "Each vehicle's status before local search" << std::endl;
-  // std::cout << "---------------------------" << std::endl;
-  // for(auto& v:vehicles) v.PrintStatus();
-  // Local Search
-  // For every vehicle
   for(auto& v:vehicles){
-    //loop continuously until no change detected
     while(true){
       double delta = 0.0, cost_reduction, cost_increase;
       int cur, prev, next_c, rep, next_r, best_c, best_r;
@@ -66,22 +55,13 @@ void LocalSearchIntraSolution::Solve(){
       }
     }
   }
-  // std::cout << "---------------------------" << std::endl;
-  // std::cout << "Each vehicle's status/route after local search" << std::endl;
-  // std::cout << "---------------------------" << std::endl;
-  // for(auto& v:vehicles) v.PrintStatus();
-  // for(auto& v:vehicles) v.PrintRoute();
-
   cost = 0;
   for(auto &v:vehicles) cost +=v.cost;
   std::cout << "Cost: " << cost << std::endl;
-
   for(auto& i:nodes){
     if(!i.is_routed){
       std::cout << "Unreached node: " << std::endl;
       i.PrintStatus();
     }
   }
-  // std::cout << "---------------------------" << std::endl;
-
 }

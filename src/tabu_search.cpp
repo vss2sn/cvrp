@@ -22,7 +22,6 @@ void TabuSearchSolution::Solve(){
 
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  // std::cout << "Costg: " << cost << std::endl;
   int max_it = 2500, c_it = 0;
   auto best_vehicles = vehicles;
   double best_cost = cost;
@@ -50,8 +49,6 @@ void TabuSearchSolution::Solve(){
           to_check[3][0] = v.nodes[cur+1];
           to_check[3][1] = v.nodes[cur];
 
-          //std::cout << to_check.size() << " " << to_check[0].size()<< std::endl;
-          // for(auto&f:to_check) std::cout << f[0] << " " << f[1] << std::endl;
           if(tabu_list_set.find(to_check[0])!=tabu_list_set.end()) continue;
           else if(tabu_list_set.find(to_check[1])!=tabu_list_set.end()) continue;
           else if(tabu_list_set.find(to_check[2])!=tabu_list_set.end()) continue;
@@ -77,10 +74,8 @@ void TabuSearchSolution::Solve(){
                             + distanceMatrix[v.nodes[cur]][v2.nodes[next_r]]
                             - distanceMatrix[v2.nodes[rep]][v2.nodes[next_r]];
               if(cost_increase + cost_reduction < delta && (v2.load - nodes[v.nodes[cur]].demand >= 0
-              || v.id == v2.id) //&&
-              //(tabu_list_set.find(to_check)==tabu_list_set.end() || new_cost + cost_increase + cost_reduction < best_cost)
+              || v.id == v2.id)
               ){
-                // if(new_cost + cost_increase + cost_reduction < best_cost) std::cout << "Aspiration" << std::endl;
                   bci = cost_increase;
                   bcr = cost_reduction;
                   delta = cost_increase + cost_reduction;
@@ -89,44 +84,22 @@ void TabuSearchSolution::Solve(){
                   v_temp_2 = &v2;
                   v_temp = &v;
               }
-              // if(tabu_list_set.find(to_check)!=tabu_list_set.end()){
-              //   std::cout << "Tabu found already" << std::endl;
-              //   std::cout << "Min cost: " << best_cost << std::endl;
-              // }
             }
           }
         }
       }
     }
-    // std::cout << "Cost increase:  " << bci << std::endl;
-    // std::cout << "Cost reduction: " << bcr << std::endl;
-    // std::cout << distanceMatrix[v_temp_2->nodes[best_r]][v_temp->nodes[best_c]]
-    //           << " + " << distanceMatrix[v_temp->nodes[best_c]][v_temp_2->nodes[best_r + 1]]
-    //           << " - " << distanceMatrix[v_temp_2->nodes[best_r]][v_temp_2->nodes[best_r + 1]]
-    //               << std::endl;
-    // std::cout << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c + 1]]
-    //           << " - " << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c]]
-    //           << " - " << distanceMatrix[v_temp->nodes[best_c]][v_temp->nodes[best_c + 1]]
-    //           << std::endl;
-    // std::cout << "Cost 1 " << v_temp->cost + v_temp_2->cost << std::endl;
-    // std::cout << "Attepting to insert to get order " << v_temp_2->nodes[best_r] << " " << v_temp->nodes[best_c] << " " << v_temp_2->nodes[best_r+1] << std::endl;
     if(delta>-0.00001) flag = true;
     if(flag && flag2){
-      // std::cout << "Reached lsii soln" << std::endl;
       flag2  = false;
     }
-    // else{
-    if(best_c == -1) break;//continue;
+    if(best_c == -1) break;
       int val_best_c = *(v_temp->nodes.begin()+best_c);
-      // std::cout << val_best_c << std::endl;
-      // std::cout << c_it<< ": "<<delta << std::endl;
-
       v_temp->nodes.erase(v_temp->nodes.begin()+best_c);
       v_temp->CalculateCost(distanceMatrix);
       if(v_temp->id == v_temp_2->id && best_c < best_r){
         v_temp_2->nodes.insert(v_temp_2->nodes.begin()+best_r, val_best_c);
         if(!flag2){
-          // std::cout << "Added to tabu" << std::endl;
           tabu_list_set.insert({v_temp->nodes[best_c-1], val_best_c});//val_best_c});
           tabu_list_queue.push({v_temp->nodes[best_c-1], val_best_c});//val_best_c});
           tabu_list_set.insert({v_temp_2->nodes[best_r-1], val_best_c});//val_best_c});
@@ -140,13 +113,10 @@ void TabuSearchSolution::Solve(){
       else{
         v_temp_2->nodes.insert(v_temp_2->nodes.begin()+best_r+1, val_best_c);
         if(!flag2){
-          // std::cout << "Added to tabu" << std::endl;
           tabu_list_set.insert({v_temp->nodes[best_c-1], val_best_c});//val_best_c});
           tabu_list_queue.push({v_temp->nodes[best_c-1], val_best_c});//val_best_c});
           tabu_list_set.insert({v_temp_2->nodes[best_r], val_best_c});//val_best_c});
           tabu_list_queue.push({v_temp_2->nodes[best_r], val_best_c});//val_best_c});
-          // std::cout << v_temp->nodes[best_c-1] << " " <<val_best_c << std::endl;
-          // std::cout << v_temp_2->nodes[best_r-2] << " " <<val_best_c << " " << std::endl;
         }
       }
       v_temp_2->CalculateCost(distanceMatrix);
@@ -156,48 +126,26 @@ void TabuSearchSolution::Solve(){
       new_cost = 0;
       for(auto& v:vehicles) new_cost+=v.cost;
       if(new_cost< best_cost){
-        // std::cout << "Update" << std::endl;
         best_vehicles = vehicles;
         best_cost = new_cost;
       }
-      // else if(new_cost == best_cost) std::cout << "Reached best cost again"<< std::endl;
       if(tabu_list_set.size()>50){
-
-        // for(int i=0;i<25;i++){
-          auto front = tabu_list_queue.front();
-          tabu_list_set.erase(front);
-          tabu_list_queue.pop();
-        // }
-
+        auto front = tabu_list_queue.front();
+        tabu_list_set.erase(front);
+        tabu_list_queue.pop();
         front = tabu_list_queue.front();
         tabu_list_set.erase(front);
         tabu_list_queue.pop();
       }
-    // }
-    // std::cout << "Cost 2 " << v_temp->cost + v_temp_2->cost << std::endl;
-    // v_temp->PrintStatus();
-    // v_temp_2->PrintStatus();
   }
   vehicles = best_vehicles;
-
-  // std::cout << "---------------------------" << std::endl;
-  // std::cout << "Each vehicle's status/route after local search" << std::endl;
-  // std::cout << "---------------------------" << std::endl;
-  // for(auto& v:vehicles) v.PrintStatus();
-  // for(auto& v:vehicles) v.PrintRoute();
-
-  // std::cout << "Initial (greedy) cost: " << cost << std::endl;
   cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   std::cout << "Cost: " << cost << std::endl;
-  // for(auto& v:vehicles) v.PrintRoute();
-
   for(auto& i:nodes){
     if(!i.is_routed){
       std::cout << "Unreached node: " << std::endl;
       i.PrintStatus();
     }
   }
-  // std::cout << "---------------------------" << std::endl;
-  // std::cout << "End of LocalSearchIntra solution" << std::endl;
 }

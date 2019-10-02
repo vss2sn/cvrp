@@ -1,15 +1,21 @@
-Solutions to CVRP (Capacited Vehicle Routing Problem) using various methods
+# Capacited Vehicle Routing Problem #
 
+### This repository contains implementations of algorithms to solve the CVRP (Capacited Vehicle Routing Problem) using various methods in C++. ###
+
+### Algorithms: ###
 1. Greedy Solution
-2. Local Search (Within vehicle)
+2. Local Search (Within each vehicle chosen by initial greedy solution only)
 3. Local Search (Within all vehicles chosen by initial greedy solution)
 4. Tabu Search (Within all vehicles chosen by initial greedy solution)
 5. Genetic Algorithm (Includes manipulation of iterators chat point to positions in the gene where the next vehicle is to begin)
 
-This repository is currently in its initial stage where most of the algorithms have been coded in without optimsations. Its basic purpose is to give an example as to how each of the optimization methods listed above might be applied to the CVRP.
+### Notes: ###
+1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
 
-TODOS:
-1. Simulated Annealing
+### TODOs: ###
+1. Next algorithm: Simulated Annealing
 2. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
 3. Refactor
 4. Code documentation
+5. Add aspiration criteria to tabu search
+6. Consider adding max distance

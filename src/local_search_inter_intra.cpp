@@ -22,7 +22,6 @@ void LocalSearchInterIntraSolution::Solve(){
 
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  // std::cout << "Costg: " << cost << std::endl;
   while(true){
     double delta = 0.0, cost_reduction, cost_increase, bcr, bci;
     int cur, prev, next_c, rep, next_r, best_c, best_r;
@@ -56,22 +55,9 @@ void LocalSearchInterIntraSolution::Solve(){
         }
       }
     }
-    // std::cout << "Cost increase:  " << bci << std::endl;
-    // std::cout << "Cost reduction: " << bcr << std::endl;
-    // std::cout << distanceMatrix[v_temp_2->nodes[best_r]][v_temp->nodes[best_c]]
-    //           << " + " << distanceMatrix[v_temp->nodes[best_c]][v_temp_2->nodes[best_r + 1]]
-    //           << " - " << distanceMatrix[v_temp_2->nodes[best_r]][v_temp_2->nodes[best_r + 1]]
-    //               << std::endl;
-    // std::cout << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c + 1]]
-    //           << " - " << distanceMatrix[v_temp->nodes[best_c-1]][v_temp->nodes[best_c]]
-    //           << " - " << distanceMatrix[v_temp->nodes[best_c]][v_temp->nodes[best_c + 1]]
-    //           << std::endl;
-    // std::cout << "Cost 1 " << v_temp->cost + v_temp_2->cost << std::endl;
-    // std::cout << "Attepting to insert to get order " << v_temp_2->nodes[best_r] << " " << v_temp->nodes[best_c] << " " << v_temp_2->nodes[best_r+1] << std::endl;
     if(delta>-0.00001) break;
     else{
       int val_best_c = *(v_temp->nodes.begin()+best_c);
-      // std::cout << val_best_c << std::endl;
       v_temp->nodes.erase(v_temp->nodes.begin()+best_c);
       v_temp->CalculateCost(distanceMatrix);
       if(v_temp->id == v_temp_2->id && best_c < best_r) v_temp_2->nodes.insert(v_temp_2->nodes.begin()+best_r, val_best_c);
@@ -80,29 +66,14 @@ void LocalSearchInterIntraSolution::Solve(){
       v_temp->load += nodes[val_best_c].demand;
       v_temp_2->load -= nodes[val_best_c].demand;
     }
-    // std::cout << "Cost 2 " << v_temp->cost + v_temp_2->cost << std::endl;
-    // v_temp->PrintStatus();
-    // v_temp_2->PrintStatus();
   }
-
-  // std::cout << "---------------------------" << std::endl;
-  // std::cout << "Each vehicle's status/route after local search" << std::endl;
-  // std::cout << "---------------------------" << std::endl;
-  // for(auto& v:vehicles) v.PrintStatus();
-  // for(auto& v:vehicles) v.PrintRoute();
-
-  // std::cout << "Initial (greedy) cost: " << cost << std::endl;
   cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   std::cout << "Cost: " << cost << std::endl;
-  // for(auto& v:vehicles) v.PrintRoute();
-
   for(auto& i:nodes){
     if(!i.is_routed){
       std::cout << "Unreached node: " << std::endl;
       i.PrintStatus();
     }
   }
-  // std::cout << "---------------------------" << std::endl;
-  // std::cout << "End of LocalSearchIntra solution" << std::endl;
 }

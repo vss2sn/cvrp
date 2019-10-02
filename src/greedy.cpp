@@ -1,8 +1,6 @@
 #include "greedy.hpp"
 #include <unistd.h>
 void GreedySolution::Solve(){
-  std::cout << "Greedy Solution" << std::endl;
-  std::cout << "---------------" << std::endl;
   for(auto& v:vehicles){
     while(true){
       Node closest_node = find_closest(v, distanceMatrix, nodes);
@@ -21,7 +19,6 @@ void GreedySolution::Solve(){
       }
     }
     // v.PrintStatus();
-
     // v.PrintRoute();
   }
   double cost = 0;

@@ -13,6 +13,8 @@ void Route::PrintStatus(){
   std::cout << "Route Status" << std::endl;
   std::cout << "Cost    : " << cost << std::endl;
   std::cout << "Path    : ";
+  // the nodes.size()-1 limit is only added to ensure that there isnt a --->
+  // after the last node, which is always the depot, ie node 0.
   for(int i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
   std::cout << "0";
   std::cout << std::endl << std::endl;
@@ -20,6 +22,8 @@ void Route::PrintStatus(){
 
 void Route::PrintRoute(){
   std::cout << "Path    : ";
+  // the nodes.size()-1 limit is only added to ensure that there isnt a --->
+  // after the last node, which is always the depot, ie node 0.
   for(int i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
   std::cout << "0";
   std::cout << std::endl << std::endl;
@@ -37,6 +41,8 @@ void Vehicle::PrintStatus(){
   std::cout << "Load    : " << load << std::endl;
   std::cout << "Capacity: " << capacity << std::endl;
   std::cout << "Path    : "   ;
+  // the nodes.size()-1 limit is only added to ensure that there isnt a --->
+  // after the last node, which is always the depot, ie node 0.
   for(int i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
   std::cout << "0";
   std::cout << std::endl << std::endl;
