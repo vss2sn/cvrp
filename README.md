@@ -21,8 +21,7 @@
 1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
 
 ### TODOs: ###
-1. Next algorithm: Simulated Annealing
-2. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
-3. Refactor
-4. Code documentation
-5. Consider adding max distance
+1. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
+2. Refactor
+3. Code documentation
+4. Consider adding max distance

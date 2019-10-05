@@ -1,7 +1,12 @@
 #include "simulated_annealing.hpp"
 
 inline bool SimulatedAnnealingSolution::AllowMove(double delta){//Vehicle *v1, Vehicle *v2, int cur, int rep){
-  if(delta < -0.001) return true;
+  if(delta < -0.0000000001) return true;
+  else if(((double)rand()/RAND_MAX)*2 < exp(-delta/temp)){
+    // std::cout << exp((-delta)/temp) << std::endl;
+    // usleep(10000);
+    return true;
+  }
   else return false;
 }
 

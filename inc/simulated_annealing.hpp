@@ -5,7 +5,7 @@
 
 class SimulatedAnnealingSolution : public Solution{
   double temp = 0, cooling_rate = 0.999, best_cost, current_cost;
-  int max_temp = 100, n_reheates = 5;
+  int max_temp = 1000, n_reheates = 10;
 public:
   SimulatedAnnealingSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
   :Solution(nodes, vehicles, distanceMatrix){} ;
