@@ -9,6 +9,14 @@
 4. Tabu Search (Within all vehicles chosen by initial greedy solution)
 5. Genetic Algorithm (Includes manipulation of iterators chat point to positions in the gene where the next vehicle is to begin)
 
+#### To build and run: ####
+     git clone https://github.com/vss2sn/cvrp.git  
+     cd path_planning  
+     mkdir build  
+     cd build  
+     cmake .. && make -j4  
+     ./main  
+
 ### Notes: ###
 1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
 
