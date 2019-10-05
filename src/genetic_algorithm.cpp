@@ -238,6 +238,7 @@ void GASolution::Solve(){
     generation++;
     if(generation%100==0){
       RemoveSimilarSolutions();
+    }
   }
   GenerateBestSolution();
 }
