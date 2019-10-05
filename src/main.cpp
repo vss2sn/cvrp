@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 int main(){
-  Problem p(100,4,16,25,100, "cluster");
+  Problem p(10,4,4,10,100, "cluster");
 
   std::cout << "Greedy: " << std::endl;
   GreedySolution vrp_greedy(p);

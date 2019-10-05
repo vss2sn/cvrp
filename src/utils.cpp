@@ -96,14 +96,18 @@ Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distan
 
 bool Solution::CheckSolutionValid(){
   double cost = 0;
+  std::vector<bool> check_nodes(nodes.size(), false);
+  check_nodes[0]=true;
   for(auto&v:vehicles){
     int load = capacity;
     for(auto&n:v.nodes){
       load-=nodes[n].demand;
+      check_nodes[n] = true;
     }
     if(load<0) return false;
-    // v.CalculateCost();
-    // cost +=v.cost;
+  }
+  for(auto b:check_nodes){
+    if(!b) return false;
   }
   return true;
 }

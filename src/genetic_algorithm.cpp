@@ -15,11 +15,10 @@ std::vector<int> GASolution::GenerateRandomIterSolution(){
   std::unordered_set<int> added;
   temp[0] = 0;
   added.insert(0);
-  for(int i=0; i<n_vehicles; ++i){
-    int n = rand()%(n_genes-1)+1;
+  for(int i=1; i<n_vehicles; ++i){
+    int n = rand()%n_genes;
     if(added.find(n)!=added.end()) n = n_genes;
     temp[i] = n;
-    added.insert(n);
   }
   temp[n_vehicles] = n_genes;
   std::sort(temp.begin(), temp.end());
@@ -305,6 +304,8 @@ void GASolution::HGreXCrossover(){
   }
 }
 
+
+//Works if and only if a solution is possible. No check on validity after function executes
 void GASolution::MakeValid(int i){
   for(int j=0;j<n_vehicles-1;j++){
     int load = vehicle_capacity;
