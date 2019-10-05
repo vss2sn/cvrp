@@ -1,5 +1,4 @@
 #include "greedy.hpp"
-#include <unistd.h>
 void GreedySolution::Solve(){
   for(auto& v:vehicles){
     while(true){

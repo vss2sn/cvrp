@@ -3,5 +3,6 @@
 #include "local_search_intra.hpp"
 #include "local_search_inter_intra.hpp"
 #include "tabu_search.hpp"
+#include "simulated_annealing.hpp"
 
 int main();
