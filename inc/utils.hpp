@@ -80,8 +80,4 @@ struct tabu{
  int pos_y;
 };
 
-struct VectorHash {
-    size_t operator()(const std::vector<int>& v) const;
-};
-
 #endif

@@ -23,10 +23,10 @@ int main(){
   vrp_ts.Solve();
   std::cout << std::endl;
 
-  std::cout << "Genetic Algorithm: " << std::endl;
-  GASolution vrp_ga(p, 100, 50000);
-  vrp_ga.Solve();
-  std::cout << std::endl;
+  // std::cout << "Genetic Algorithm: " << std::endl;
+  // GASolution vrp_ga(p, 100, 50000);
+  // vrp_ga.Solve();
+  // std::cout << std::endl;
 
   std::cout << "Simulated Annealing: " << std::endl;
   SimulatedAnnealingSolution vrp_sa(p);
