@@ -1,25 +1,10 @@
 #include "local_search_intra.hpp"
 
 void LocalSearchIntraSolution::Solve(){
-  for(auto& v:vehicles){
-    while(true){
-      Node closest_node = find_closest(v, distanceMatrix, nodes);
-      if(closest_node.id!=-1 && v.load - closest_node.demand >=0){
-        v.load -= closest_node.demand;
-        v.cost += distanceMatrix[v.nodes.back()][closest_node.id];
-        v.nodes.push_back(closest_node.id);
-        nodes[closest_node.id].is_routed = true;
-      }
-      else{
-        v.cost += distanceMatrix[v.nodes.back()][depot.id];
-        v.nodes.push_back(depot.id);
-        break;
-      }
-    }
-
-  }
+  CreateInitialSolution();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
+  std::cout << cost << std::endl;
   for(auto& v:vehicles){
     while(true){
       double delta = 0.0, cost_reduction, cost_increase;

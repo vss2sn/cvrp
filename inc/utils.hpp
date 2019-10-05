@@ -51,6 +51,7 @@ public:
   std::vector<Vehicle> vehicles;
   std::vector<std::vector<double>> distanceMatrix;
   Node depot;
+  int capacity;
 
   Problem(int noc = 1000, int demand_range = 40, int nov = 50, int capacity = 800, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
 };
@@ -64,6 +65,7 @@ public:
 
   Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
   Solution(Problem p);
+  void CreateInitialSolution();
   virtual void Solve(){};
   Node find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes);
 };

@@ -60,6 +60,25 @@ Solution::Solution(Problem p){
   depot = nodes[0];
 }
 
+void Solution::CreateInitialSolution(){
+  for(auto& v:vehicles){
+    while(true){
+      Node closest_node = find_closest(v, distanceMatrix, nodes);
+      if(closest_node.id!=-1 && v.load - closest_node.demand >=0){//}.2*capacity){
+        v.load -= closest_node.demand;
+        v.cost += distanceMatrix[v.nodes.back()][closest_node.id];
+        v.nodes.push_back(closest_node.id);
+        nodes[closest_node.id].is_routed = true;
+      }
+      else{
+        v.cost += distanceMatrix[v.nodes.back()][depot.id];
+        v.nodes.push_back(depot.id);
+        break;
+      }
+    }
+  }
+}
+
 Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes){
     double cost = INT_MAX;
     int id = -1;
@@ -81,6 +100,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
   std::uniform_int_distribution<int> ran_d(0,demand_range); // define the range
   std::uniform_int_distribution<int> ran_c(-cluster_range,cluster_range);
   Node depot(0, 0, 0, 0, true);
+  this->capacity = capacity;
 
   nodes.push_back(depot);
 
