@@ -2,9 +2,7 @@
 
 inline bool SimulatedAnnealingSolution::AllowMove(double delta){//Vehicle *v1, Vehicle *v2, int cur, int rep){
   if(delta < -0.0000000001) return true;
-  else if(((double)rand()/RAND_MAX)*2 < exp(-delta/temp)){
-    // std::cout << exp((-delta)/temp) << std::endl;
-    // usleep(10000);
+  else if(((double)rand()/RAND_MAX) < exp(-delta/temp)){
     return true;
   }
   else return false;
@@ -19,7 +17,7 @@ void SimulatedAnnealingSolution::Solve(){
   // std::cout << CheckSolutionValid() << std::endl;
   best_cost = cost;
   current_cost = cost;
-  int stag_limit = 10000,stag;
+  int stag_limit = 500000,stag;
   int n_vehicles = vehicles.size();
   for(int r=0;r<n_reheates;r++){
     // std::cout << "Reheat number: " << r << std::endl;
@@ -30,6 +28,7 @@ void SimulatedAnnealingSolution::Solve(){
     double cost_increase, cost_reduction, delta;
     // usleep(5000000);
     while(--stag>=0){
+      temp*=cooling_rate;
       v1 = &vehicles[rand()%n_vehicles];
       v2 = &vehicles[rand()%n_vehicles];
       // std::cout << v1->nodes.size() << " " <<v2->nodes.size() << std::endl;
@@ -50,22 +49,10 @@ void SimulatedAnnealingSolution::Solve(){
       if((v2->load - nodes[v1->nodes[cur]].demand>=0 || v1->id==v2->id) && AllowMove(delta)){
         v1->load+=nodes[v1->nodes[cur]].demand;
         v2->load-=nodes[v1->nodes[cur]].demand;
-        // std::cout << std::endl;
-        // v1->PrintRoute();
-        // std::cout << "v1->cost: "<<v1->cost << std::endl;
-        // std::cout << v1->nodes[cur] << std::endl;
-        // std::cout << "reduction "<<cost_reduction << std::endl;
         v1->cost += cost_reduction;
-        // std::cout << "v1->cost: "<<v1->cost << std::endl;
         v2->cost += cost_increase;
-        // std::cout << "v2->cost: "<<v2->cost << std::endl;
-
         int val = v1->nodes[cur];
-        // std::cout << val << std::endl;
-        // std::cout << v1->nodes.size() << std::endl;
         v1->nodes.erase(v1->nodes.begin()+cur);
-        // std::cout << v1->nodes.size() << std::endl;
-
         if(v1->id==v2->id && cur < rep){
           v2->nodes.insert(v2->nodes.begin()+rep, val);
         }
@@ -73,14 +60,11 @@ void SimulatedAnnealingSolution::Solve(){
           v2->nodes.insert(v2->nodes.begin()+rep+1, val);
         }
         current_cost += delta;
-        // v1->PrintRoute();
-        // usleep(1000000);
-
       }
       if(current_cost < best_cost){
-        // std::cout << "Best solution iproved" << std::endl;
-        best_vehicles[v1->id] = *v1;
-        best_vehicles[v2->id] = *v2;
+        // best_vehicles[v1->id] = *v1;
+        // best_vehicles[v2->id] = *v2;
+        best_vehicles= vehicles;
         best_cost = current_cost;
       }
     }

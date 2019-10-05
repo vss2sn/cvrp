@@ -22,7 +22,7 @@ void TabuSearchSolution::Solve(){
   CreateInitialSolution();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  int max_it = 2500, c_it = 0;
+  int max_it = 5000, c_it = 0;
   auto best_vehicles = vehicles;
   double best_cost = cost;
   double new_cost = cost;
@@ -129,7 +129,7 @@ void TabuSearchSolution::Solve(){
         best_vehicles = vehicles;
         best_cost = new_cost;
       }
-      if(tabu_list_set.size()>50){
+      if(tabu_list_set.size()>10){
         auto front = tabu_list_queue.front();
         tabu_list_set.erase(front);
         tabu_list_queue.pop();

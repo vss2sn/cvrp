@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 int main(){
-  Problem p(10,4,4,10,10, "cluster");
+  Problem p(100,4,16,25,100, "cluster");
 
   std::cout << "Greedy: " << std::endl;
   GreedySolution vrp_greedy(p);
@@ -23,10 +23,10 @@ int main(){
   vrp_ts.Solve();
   std::cout << std::endl;
 
-  // std::cout << "Genetic Algorithm: " << std::endl;
-  // GASolution vrp_ga(p, 100, 50000);
-  // vrp_ga.Solve();
-  // std::cout << std::endl;
+  std::cout << "Genetic Algorithm: " << std::endl;
+  GASolution vrp_ga(p, 25, 50000);
+  vrp_ga.Solve();
+  std::cout << std::endl;
 
   std::cout << "Simulated Annealing: " << std::endl;
   SimulatedAnnealingSolution vrp_sa(p);
