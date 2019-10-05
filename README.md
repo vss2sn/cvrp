@@ -1,6 +1,6 @@
-# Capacited Vehicle Routing Problem #
+# Capacitated Vehicle Routing Problem #
 
-### This repository contains implementations of algorithms to solve the CVRP (Capacited Vehicle Routing Problem) using various methods in C++. ###
+### This repository contains implementations of algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) using various methods in C++. ###
 
 ### Algorithms: ###
 1. Greedy Solution
