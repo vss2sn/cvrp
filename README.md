@@ -11,7 +11,7 @@
 
 #### To build and run: ####
      git clone https://github.com/vss2sn/cvrp.git  
-     cd path_planning  
+     cd cvrp
      mkdir build  
      cd build  
      cmake .. && make -j
