@@ -21,6 +21,7 @@
 ### Notes: ###
 1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
 2. The metaheuristic parameters need to be set based on the problem size and structure.
+
 ### TODOs: ###
 1. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
 2. Refactor
@@ -29,3 +30,4 @@
 5. Add references (**Priority**)
 6. Set up tests
 7. Code coverage integration
+8. Run all the algorithms on different threads to speed up comparison.
