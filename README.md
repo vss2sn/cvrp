@@ -14,8 +14,8 @@
      cd path_planning  
      mkdir build  
      cd build  
-     cmake .. && make -j4  
-     ./main  
+     cmake .. && make -j
+     ./cvrp  
 
 ### Notes: ###
 1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
@@ -25,5 +25,4 @@
 2. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
 3. Refactor
 4. Code documentation
-5. Add aspiration criteria to tabu search
-6. Consider adding max distance
+5. Consider adding max distance
