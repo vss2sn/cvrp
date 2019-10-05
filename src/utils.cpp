@@ -51,6 +51,7 @@ void Vehicle::PrintStatus(){
 Solution::Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
   :nodes(nodes), vehicles(vehicles), distanceMatrix(distanceMatrix){
   depot = nodes[0];
+  capacity = vehicles[0].load;
 }
 
 Solution::Solution(Problem p){
@@ -58,6 +59,7 @@ Solution::Solution(Problem p){
   vehicles = p.vehicles;
   distanceMatrix = p.distanceMatrix;
   depot = nodes[0];
+  capacity = p.capacity;
 }
 
 void Solution::CreateInitialSolution(){
@@ -90,6 +92,20 @@ Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distan
     }
     if(id!=-1) return nodes[id];
     else return Node(0,0,-1,0);
+}
+
+bool Solution::CheckSolutionValid(){
+  double cost = 0;
+  for(auto&v:vehicles){
+    int load = capacity;
+    for(auto&n:v.nodes){
+      load-=nodes[n].demand;
+    }
+    if(load<0) return false;
+    // v.CalculateCost();
+    // cost +=v.cost;
+  }
+  return true;
 }
 
 Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_range, std::string distribution, int n_clusters, int cluster_range){
@@ -143,4 +159,13 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
     vehicles.emplace_back(i, load, capacity);
     vehicles[i].nodes.push_back(0);
   }
+}
+
+size_t VectorHash::operator()(const std::vector<int>& v) const {
+  std::hash<int> hasher;
+  size_t seed = 0;
+  for (int i : v) {
+      seed ^= hasher(i) + 0x9e3779b9 + (seed<<6) + (seed>>2);
+  }
+  return seed;
 }

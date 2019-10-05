@@ -43,7 +43,7 @@ public:
                             };
   void GenerateRandomSolutions();
   void GenerateGreedySolutions();
-  void NAEXCrossover();
+  void HGreXCrossover();
   std::vector<int> GenerateRandomSolution();
   void RandomSwap();
   double CalculateCost(int i);

@@ -4,7 +4,6 @@ void LocalSearchIntraSolution::Solve(){
   CreateInitialSolution();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
-  std::cout << cost << std::endl;
   for(auto& v:vehicles){
     while(true){
       double delta = 0.0, cost_reduction, cost_increase;
@@ -49,4 +48,5 @@ void LocalSearchIntraSolution::Solve(){
       i.PrintStatus();
     }
   }
+  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
 }

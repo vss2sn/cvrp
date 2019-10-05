@@ -62,10 +62,12 @@ public:
   std::vector<Vehicle> vehicles;
   std::vector<std::vector<double>> distanceMatrix;
   Node depot;
+  int capacity;
 
   Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
   Solution(Problem p);
   void CreateInitialSolution();
+  bool CheckSolutionValid();
   virtual void Solve(){};
   Node find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes);
 };
@@ -75,6 +77,10 @@ struct tabu{
  int pos_x;
  int y;
  int pos_y;
+};
+
+struct VectorHash {
+    size_t operator()(const std::vector<int>& v) const;
 };
 
 #endif

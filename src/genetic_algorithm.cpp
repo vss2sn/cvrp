@@ -186,17 +186,10 @@ void GASolution::Solve(){
   while(generation < generations){
     best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     if(rand()%2==0){
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-      NAEXCrossover();
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-    }
-    else if(rand()%2==0){
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-      // AEXCrossover();
+      HGreXCrossover();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
     if(rand()%2==0){
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       int n = rand()%n_chromosomes;
       auto temp_i = iterators[n];
       MutateIterLeft(n, rand()%n_vehicles);
@@ -206,7 +199,6 @@ void GASolution::Solve(){
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
     else{
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       int n = rand()%n_chromosomes;
       auto temp_i = iterators[n];
       MutateIterRight(n, rand()%n_vehicles);
@@ -216,43 +208,28 @@ void GASolution::Solve(){
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
     if(rand()%100<50){
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       Mutate();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
     if(rand()%100<50) {
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       RandomSwap();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
     if(rand()%100<50) {
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       MutateWhithinAlele();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
     if(rand()%100<50) {
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       RandomSwapAlele();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
-    // for(int i=0;i<n_chromosomes;i++){
-    //     if(!checkValidity(i))std::cout << "Invlaid 4" << std::endl;
-    // }
     if(rand()%100<70) {
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
       InsertIterDist();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
-    // for(int i=0;i<n_chromosomes;i++){
-    //     if(!checkValidity(i))std::cout << "Invlaid 5" << std::endl;
-    // }
     // if(rand()%100<5) {
-    //   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     //   AddBest();
     //   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-    // }
-    // for(int i=0;i<n_chromosomes;i++){
-    //     if(!checkValidity(i))std::cout << "Invlaid 6" << std::endl;
     // }
     // if(rand()%100<20) {
     //   DeleteBadChromosome();
@@ -261,64 +238,11 @@ void GASolution::Solve(){
     generation++;
     if(generation%100==0){
       RemoveSimilarSolutions();
-    }
-    // for(int i=0;i<n_chromosomes;i++){
-    //     if(!checkValidity(i))std::cout << "Invlaid 6" << std::endl;
-    // }
-    // for(int m=0;m<n_chromosomes;m++){
-    //   for(auto s:chromosomes[m]) std::cout << s << std::setw(4);
-    //   std::cout << "|" << std::setw(4) <<costs[m] << std::endl;
-    // }
   }
   GenerateBestSolution();
 }
 
-void GASolution::AEXCrossover(){
-  int p1 = TournamentSelection();
-  int p2 = TournamentSelection();
-  std::vector<int> child;
-  std::unordered_set<int> reached;
-  auto itp1 = &(chromosomes[p1]);
-  auto itp2 = &(chromosomes[p2]);
-  child.push_back((*itp1)[0]);
-  reached.insert(child.back());
-  child.push_back((*itp1)[1]);
-  reached.insert(child.back());
-  while(child.size() < n_genes){
-    swap(itp1, itp2);
-    auto it = find((*itp1).begin(), (*itp1).end(), child.back());
-    // if it = itp1.end() there is something wrong as both chromosomes should contain all the nodes
-    if(it!= --itp1->end()
-       && reached.find(*(it+1)) == reached.end()){
-         reached.insert(*(it+1));
-         child.push_back(*(it+1));
-       }
-    else{
-      while(true){
-        it++;
-        if(it==itp1->end()) it = itp1->begin();
-        if(reached.find(*it)==reached.end()){
-          child.push_back(*it);
-          reached.insert(*it);
-          break;
-        }
-      }
-    }
-  }
-  chromosomes.push_back(child);
-  iterators.emplace_back(GenerateRandomIterSolution());
-  MakeValid(n_chromosomes);
-  if(checkValidity(n_chromosomes)){
-    costs.emplace_back(CalculateCost(n_chromosomes));
-    InsertionBySimilarity();
-  }
-  else{
-    iterators.erase(iterators.begin()+n_chromosomes);
-    chromosomes.erase(chromosomes.begin()+n_chromosomes);
-  }
-}
-
-void GASolution::NAEXCrossover(){
+void GASolution::HGreXCrossover(){
   int p1 = TournamentSelection();
   int p2 = TournamentSelection();
   std::vector<int> child;
@@ -381,31 +305,31 @@ void GASolution::NAEXCrossover(){
 }
 
 void GASolution::MakeValid(int i){
-    for(int j=0;j<n_vehicles-1;j++){
-      int load = vehicle_capacity;
-      int iter = iterators[i][j];
-      while(iter < iterators[i][j+1]){
-        load-=nodes[chromosomes[i][iter]].demand;
-        ++iter;
-      }
-      if(load<0){
-        iterators[i][j+1]--;
-        j--;
-      };
+  for(int j=0;j<n_vehicles-1;j++){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j];
+    while(iter < iterators[i][j+1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      ++iter;
     }
+    if(load<0){
+      iterators[i][j+1]--;
+      j--;
+    };
+  }
 
-    for(int j=n_vehicles;j>1;j--){
-      int load = vehicle_capacity;
-      int iter = iterators[i][j]-1;
-      while(iter >= iterators[i][j-1]){
-        load-=nodes[chromosomes[i][iter]].demand;
-        --iter;
-      }
-      if(load<0){
-        iterators[i][j-1]++;
-        j++;
-      }
+  for(int j=n_vehicles;j>1;j--){
+    int load = vehicle_capacity;
+    int iter = iterators[i][j]-1;
+    while(iter >= iterators[i][j-1]){
+      load-=nodes[chromosomes[i][iter]].demand;
+      --iter;
     }
+    if(load<0){
+      iterators[i][j-1]++;
+      j++;
+    }
+  }
 }
 
 void GASolution::DeleteBadChromosome(){
@@ -741,4 +665,5 @@ void GASolution::GenerateBestSolution(){
     ++v;
   }
   // for(auto& v2:vehicles) v2.PrintRoute();
+  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
 }

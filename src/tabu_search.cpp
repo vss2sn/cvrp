@@ -1,5 +1,23 @@
 #include "tabu_search.hpp"
 
+inline void TabuSearchSolution::CreateFirstArcSetToCheck(Vehicle& v, const int& cur){
+  to_check[0][0] = v.nodes[cur-1];
+  to_check[0][1] = v.nodes[cur];
+  to_check[1][0] = v.nodes[cur];
+  to_check[1][1] = v.nodes[cur-1];
+  to_check[2][0] = v.nodes[cur];
+  to_check[2][1] = v.nodes[cur+1];
+  to_check[3][0] = v.nodes[cur+1];
+  to_check[3][1] = v.nodes[cur];
+  to_check[4][1] = v.nodes[cur];
+  to_check[5][0] = v.nodes[cur];
+}
+
+inline void TabuSearchSolution::CreateSecondArcSetToCheck(Vehicle& v2, const int& rep){
+  to_check[4][0] = v2.nodes[rep];
+  to_check[5][1] = v2.nodes[rep+1];
+}
+
 inline bool TabuSearchSolution::CheckTabu(int const begin, int const end){
   for(int i=begin;i<=end;i++){
     if(tabu_list_set.find(to_check[i])!=tabu_list_set_end) return true;
@@ -23,16 +41,7 @@ void TabuSearchSolution::Solve(){
     for(auto& v:vehicles){
       for(auto& v2:vehicles){
         for(cur=1;cur<v.nodes.size()-1;cur++){
-          to_check[0][0] = v.nodes[cur-1];
-          to_check[0][1] = v.nodes[cur];
-          to_check[1][0] = v.nodes[cur];
-          to_check[1][1] = v.nodes[cur-1];
-          to_check[2][0] = v.nodes[cur];
-          to_check[2][1] = v.nodes[cur+1];
-          to_check[3][0] = v.nodes[cur+1];
-          to_check[3][1] = v.nodes[cur];
-          to_check[4][1] = v.nodes[cur];
-          to_check[5][0] = v.nodes[cur];
+          CreateFirstArcSetToCheck(v, cur);
           outer_tabu = CheckTabu(0,3);
 
           prev = cur-1;
@@ -42,8 +51,7 @@ void TabuSearchSolution::Solve(){
                          - distanceMatrix[v.nodes[cur]][v.nodes[next_c]];
 
           for(rep=0;rep<v2.nodes.size()-1;rep++){
-            to_check[4][0] = v2.nodes[rep];
-            to_check[5][1] = v2.nodes[rep+1];
+            CreateSecondArcSetToCheck(v2, rep);
             inner_tabu = CheckTabu(4,5);
 
             if(v2.nodes[rep]!=v.nodes[cur] && (v.id!=v2.id || v2.nodes[rep]!=v.nodes[cur-1])){
@@ -51,18 +59,18 @@ void TabuSearchSolution::Solve(){
               cost_increase = distanceMatrix[v2.nodes[rep]][v.nodes[cur]]
                             + distanceMatrix[v.nodes[cur]][v2.nodes[next_r]]
                             - distanceMatrix[v2.nodes[rep]][v2.nodes[next_r]];
-              if(v2.load - nodes[v.nodes[cur]].demand >= 0 || v.id == v2.id){
-                if((!outer_tabu && !inner_tabu && cost_increase + cost_reduction < delta) ||
-                    new_cost + cost_increase + cost_reduction < best_cost){
-                    bci = cost_increase;
-                    bcr = cost_reduction;
-                    delta = cost_increase + cost_reduction;
-                    best_c = cur;
-                    best_r = rep;
-                    v_temp_2 = &v2;
-                    v_temp = &v;
-                }
+              if((v2.load - nodes[v.nodes[cur]].demand >= 0 || v.id == v2.id)
+                 && ((!outer_tabu && !inner_tabu && cost_increase + cost_reduction < delta)
+                      || (new_cost + cost_increase + cost_reduction < best_cost))) {
+                  bci = cost_increase;
+                  bcr = cost_reduction;
+                  delta = cost_increase + cost_reduction;
+                  best_c = cur;
+                  best_r = rep;
+                  v_temp_2 = &v2;
+                  v_temp = &v;
               }
+
             }
           }
         }
@@ -113,4 +121,5 @@ void TabuSearchSolution::Solve(){
       i.PrintStatus();
     }
   }
+  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
 }

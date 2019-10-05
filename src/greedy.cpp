@@ -33,4 +33,5 @@ void GreedySolution::Solve(){
   }
   // std::cout << "---------------------------" << std::endl;
   // std::cout << "End of greedy solution" << std::endl;
+  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
 }

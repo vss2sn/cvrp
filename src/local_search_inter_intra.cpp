@@ -58,4 +58,5 @@ void LocalSearchInterIntraSolution::Solve(){
       i.PrintStatus();
     }
   }
+  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
 }
