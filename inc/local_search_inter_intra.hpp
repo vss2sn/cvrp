@@ -1,3 +1,9 @@
+/**
+* @file local_search_inter_intra.hpp
+* @author vss2sn
+* @brief Contains the LocalSearchInterIntraSolution class (Local search extends to all vehicles)
+*/
+
 #ifndef LSII_HPP
 #define LSII_HPP
 

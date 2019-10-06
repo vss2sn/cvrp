@@ -1,3 +1,9 @@
+/**
+* @file genetic_algorithm.hpp
+* @author vss2sn
+* @brief Contiains the GASolution (Genetic Algorithm Solution) class
+*/
+
 #ifndef GA_HPP
 #define GA_HPP
 
@@ -12,7 +18,6 @@ private:
   int n_chromosomes;
   int n_genes;
   int n_vehicles;
-  int vehicle_capacity;
   int generations;
   std::vector<double> costs;
   int best;
@@ -26,7 +31,6 @@ public:
                                 this->n_chromosomes = n_chromosomes;
                                 this->generations = generations;
                                 n_genes = nodes.size()-1;
-                                vehicle_capacity = vehicles[0].capacity;
                                 costs = std::vector<double>(n_chromosomes);
                                 n_vehicles = vehicles.size();
                            };
@@ -37,37 +41,42 @@ public:
                                  this->n_chromosomes = n_chromosomes;
                                  this->generations = generations;
                                  n_genes = nodes.size()-1;
-                                 vehicle_capacity = vehicles[0].capacity;
                                  costs = std::vector<double>(n_chromosomes);
                                  n_vehicles = vehicles.size();
                             };
   void GenerateRandomSolutions();
   void GenerateGreedySolutions();
-  void HGreXCrossover();
   std::vector<int> GenerateRandomSolution();
+  std::vector<int> GenerateRandomIterSolution();
+
+  void HGreXCrossover();
   void RandomSwap();
-  double CalculateCost(int i);
-  void CalculateTotalCost();
-  void Solve();
-  void AEXCrossover(); //TODO: Decide whther to use and if so, debug
-  int TournamentSelection();
-  int TournamentSelectionBad();
-  void DeleteBadChromosome();
-  void InsertionBySimilarity();
-  void GenerateBestSolution();
   void Mutate();
   void DeleteWorstChromosome();
   void RemoveSimilarSolutions();
-  std::vector<int> GenerateRandomIterSolution();
-  bool MutateIterLeft(int i_chromosome, int j_in);
-  bool MutateIterRight(int i_chromosome, int j_in);
-  bool checkValidity(int i);
-  void MakeValid(int i);
   void RandomSwapAlele();
   void AddBest();
   void MutateWhithinAlele();
   void SwapWhithinAlele();
   void InsertIterDist();
+  bool MutateIterLeft(int i_chromosome, int j_in);
+  bool MutateIterRight(int i_chromosome, int j_in);
+
+  double CalculateCost(int i);
+  void CalculateTotalCost();
+
+  void Solve();
+
+  int TournamentSelection();
+  int TournamentSelectionBad();
+
+  void DeleteBadChromosome();
+  void InsertionBySimilarity();
+  void GenerateBestSolution();
+
+  bool checkValidity(int i);
+  void MakeValid(int i);
+
 };
 
 #endif

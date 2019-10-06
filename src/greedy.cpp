@@ -1,4 +1,11 @@
+/**
+* @file greedy.cpp
+* @author vss2sn
+* @brief Contains the GreedySolution class
+*/
+
 #include "greedy.hpp"
+
 void GreedySolution::Solve(){
   for(auto& v:vehicles){
     while(true){

@@ -1,3 +1,9 @@
+/**
+* @file greedy.hpp
+* @author vss2sn
+* @brief Contains the GreedySolution class
+*/
+
 #ifndef GREEDY_HPP
 #define GREEDY_HPP
 

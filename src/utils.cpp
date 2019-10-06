@@ -1,3 +1,9 @@
+/**
+* @file utils.cpp
+* @author vss2sn
+* @brief Contains the structs, classes and functions used for the set up of the problem aand solution as well as some functions that aid in debugging.
+*/
+
 #include "utils.hpp"
 
 void Node::PrintStatus(){

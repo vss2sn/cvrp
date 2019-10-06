@@ -1,3 +1,9 @@
+/**
+* @file simulated_annealing.cpp
+* @author vss2sn
+* @brief Contains the SimulatedAnnealingSolution class
+*/
+
 #include "simulated_annealing.hpp"
 
 inline bool SimulatedAnnealingSolution::AllowMove(double delta){//Vehicle *v1, Vehicle *v2, int cur, int rep){

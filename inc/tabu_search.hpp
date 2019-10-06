@@ -1,3 +1,9 @@
+/**
+* @file tabu_search.hpp
+* @author vss2sn
+* @brief Contains the TabuSearchSolution class
+*/
+
 #ifndef TS_HPP
 #define TS_HPP
 
@@ -16,6 +22,7 @@ struct VectorHash {
 
 class TabuSearchSolution : public Solution{
   int capacity;
+  std::vector<std::vector<int>> to_check; // invert order of v1, v2 and cur, rep+1
   std::unordered_set<std::vector<int>, VectorHash> tabu_list_set;
   std::queue<std::vector<int>> tabu_list_queue;
 public:
@@ -23,6 +30,7 @@ public:
   :Solution(nodes, vehicles, distanceMatrix){} ;
   TabuSearchSolution(Problem p)
     :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+  inline bool IsTabu(int begin, int end);
   void Solve();
 };
 
