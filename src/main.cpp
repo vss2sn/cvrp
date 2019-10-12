@@ -7,17 +7,17 @@
 #include "main.hpp"
 
 int main(){
-  Problem p(1000,16,500,80,100, "cluster");
+  Problem p(1000,4,80,50,1000, "uniform");
 
-  std::cout << "Greedy: " << std::endl;
-  GreedySolution vrp_greedy(p);
-  vrp_greedy.Solve();
-  std::cout << std::endl;
+  // std::cout << "Greedy: " << std::endl;
+  // GreedySolution vrp_greedy(p);
+  // vrp_greedy.Solve();
+  // std::cout << std::endl;
 
-  std::cout << "Local Search (Within each vehicle separately): " << std::endl;
-  LocalSearchIntraSolution vrp_lsi(p);
-  vrp_lsi.Solve();
-  std::cout << std::endl;
+  // std::cout << "Local Search (Within each vehicle separately): " << std::endl;
+  // LocalSearchIntraSolution vrp_lsi(p);
+  // vrp_lsi.Solve();
+  // std::cout << std::endl;
 
   std::cout << "Local Search (Within all vehicles): " << std::endl;
   LocalSearchInterIntraSolution vrp_lsii(p);
