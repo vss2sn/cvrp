@@ -1,3 +1,9 @@
+/**
+* @file simulated_annealing.hpp
+* @author vss2sn
+* @brief Contains the SimulatedAnnealingSolution class
+*/
+
 #ifndef SA_HPP
 #define SA_HPP
 

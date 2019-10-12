@@ -1,3 +1,9 @@
+/**
+* @file local_search_inter_intra.cpp
+* @author vss2sn
+* @brief Contains the LocalSearchInterIntraSolution class (Local search extends to all vehicles)
+*/
+
 #include "local_search_inter_intra.hpp"
 
 void LocalSearchInterIntraSolution::Solve(){

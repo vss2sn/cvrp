@@ -1,3 +1,9 @@
+/**
+* @file genetic_algorithm.cpp
+* @author vss2sn
+* @brief Contiains the GASolution (Genetic Algorithm Solution) class 
+*/
+
 #include "genetic_algorithm.hpp"
 
 std::vector<int> GASolution::GenerateRandomSolution(){
@@ -308,7 +314,7 @@ void GASolution::HGreXCrossover(){
 //Works if and only if a solution is possible. No check on validity after function executes
 void GASolution::MakeValid(int i){
   for(int j=0;j<n_vehicles-1;j++){
-    int load = vehicle_capacity;
+    int load = capacity;
     int iter = iterators[i][j];
     while(iter < iterators[i][j+1]){
       load-=nodes[chromosomes[i][iter]].demand;
@@ -321,7 +327,7 @@ void GASolution::MakeValid(int i){
   }
 
   for(int j=n_vehicles;j>1;j--){
-    int load = vehicle_capacity;
+    int load = capacity;
     int iter = iterators[i][j]-1;
     while(iter >= iterators[i][j-1]){
       load-=nodes[chromosomes[i][iter]].demand;
@@ -457,7 +463,7 @@ bool GASolution::MutateIterLeft(int i_chromosome, int j_in){
 
   if(iterators[i][j_in] > iterators[i][j_in-1])iterators[i][j_in]--;
   for(int j=j_in;j<n_vehicles-1;j++){
-    int load = vehicle_capacity;
+    int load = capacity;
     int iter = iterators[i][j];
     while(iter < iterators[i][j+1]){
       load-=nodes[chromosomes[i][iter]].demand;
@@ -470,7 +476,7 @@ bool GASolution::MutateIterLeft(int i_chromosome, int j_in){
   }
 
   for(int j=n_vehicles;j>1;j--){
-    int load = vehicle_capacity;
+    int load = capacity;
     int iter = iterators[i][j]-1;
     while(iter >= iterators[i][j-1]){
       load-=nodes[chromosomes[i][iter]].demand;
@@ -493,7 +499,7 @@ bool GASolution::MutateIterRight(int i_chromosome, int j_in){
   if(iterators[i][j_in] < iterators[i][j_in-1])iterators[i][j_in]++;
 
   for(int j=j_in;j>1;j--){
-    int load = vehicle_capacity;
+    int load = capacity;
     int iter = iterators[i][j]-1;
     while(iter >= iterators[i][j-1]){
       load-=nodes[chromosomes[i][iter]].demand;
@@ -506,7 +512,7 @@ bool GASolution::MutateIterRight(int i_chromosome, int j_in){
   }
 
   for(int j=0;j<n_vehicles-1;j++){
-    int load = vehicle_capacity;
+    int load = capacity;
     int iter = iterators[i][j];
     while(iter < iterators[i][j+1]){
       load-=nodes[chromosomes[i][iter]].demand;
@@ -522,7 +528,7 @@ bool GASolution::MutateIterRight(int i_chromosome, int j_in){
 
 bool GASolution::checkValidity(int i){
   for(int j=0;j<n_vehicles;j++){
-    int load = vehicle_capacity;
+    int load = capacity;
     int iter = iterators[i][j];
     while(iter < iterators[i][j+1]){
       load-=nodes[chromosomes[i][iter]].demand;

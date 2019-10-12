@@ -1,3 +1,9 @@
+/**
+* @file main.hpp
+* @author vss2sn
+* @brief Just includes header files.
+*/
+
 #include "genetic_algorithm.hpp"
 #include "greedy.hpp"
 #include "local_search_intra.hpp"
