@@ -1,7 +1,7 @@
 /**
 * @file genetic_algorithm.cpp
 * @author vss2sn
-* @brief Contiains the GASolution (Genetic Algorithm Solution) class 
+* @brief Contiains the GASolution (Genetic Algorithm Solution) class
 */
 
 #include "genetic_algorithm.hpp"
@@ -82,7 +82,10 @@ void GASolution::GenerateGreedySolutions(){
   }
   double cost = 0;
   for(auto& v:vehicles2) cost += v.cost;
-  // std::cout << "Costg: " << cost << std::endl;
+  if(gs.size() != n_genes){
+    std::cout << "Initial solution does not contain all the nodes. Exiting" << std::endl;
+    exit(0);
+  }
   chromosomes[0] = gs;
   iterators[0] = iter;
   costs[0] = CalculateCost(0);
@@ -119,6 +122,10 @@ void GASolution::GenerateGreedySolutions(){
       }
     }
     chromosomes[j] = gs;
+    if(gs.size() != n_genes){
+      std::cout << "Initial solutions do not contain all the nodes. Exiting" << std::endl;
+      exit(0);
+    }
     iterators[j] = iter;
     MakeValid(j);
     if(!checkValidity(j)) std::cout << "Oi"<<std::endl;

@@ -10,26 +10,36 @@ void LocalSearchInterIntraSolution::Solve(){
   CreateInitialSolution();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
+  double delta = 0.0, cost_reduction, cost_increase, bcr, bci;
+  int cur, prev, next_c, rep, next_r, best_c, best_r;
+  int  v_cur, v_prev, v_next_c, v_rep, v_next_r;
+  Vehicle *v_temp_2, *v_temp;
   while(true){
-    double delta = 0.0, cost_reduction, cost_increase, bcr, bci;
-    int cur, prev, next_c, rep, next_r, best_c, best_r;
-    Vehicle *v_temp_2, *v_temp;
+    delta = INT_MAX;
     for(auto& v:vehicles){
       for(auto& v2:vehicles){
         for(cur=1;cur<v.nodes.size()-1;cur++){
           prev = cur-1;
           next_c = cur+1;
-          cost_reduction = distanceMatrix[v.nodes[prev]][v.nodes[next_c]]
-                         - distanceMatrix[v.nodes[prev]][v.nodes[cur]]
-                         - distanceMatrix[v.nodes[cur]][v.nodes[next_c]];
+
+          v_cur = v.nodes[cur];
+          v_prev = v.nodes[cur-1];
+          v_next_c = v.nodes[cur+1];
+
+          cost_reduction = distanceMatrix[v_prev][v_next_c]
+                         - distanceMatrix[v_prev][v_cur]
+                         - distanceMatrix[v_cur][v_next_c];
           for(rep=0;rep<v2.nodes.size()-1;rep++){
-            if(v2.nodes[rep]!=v.nodes[cur] && (v.id!=v2.id || v2.nodes[rep]!=v.nodes[cur-1])){
+            v_rep = v2.nodes[rep];
+            v_next_r = v2.nodes[rep+1];
+            if(v_rep!=v_cur && (v.id!=v2.id || v_rep!=v_prev)){
               next_r = rep + 1;
-              cost_increase = distanceMatrix[v2.nodes[rep]][v.nodes[cur]]
-                            + distanceMatrix[v.nodes[cur]][v2.nodes[next_r]]
-                            - distanceMatrix[v2.nodes[rep]][v2.nodes[next_r]];
-              if(cost_increase + cost_reduction < delta && (v2.load - nodes[v.nodes[cur]].demand >= 0
-              || v.id == v2.id)){
+              cost_increase = distanceMatrix[v_rep][v_cur]
+                            + distanceMatrix[v_cur][v_next_r]
+                            - distanceMatrix[v_rep][v_next_r];
+              if(cost_increase + cost_reduction < delta &&
+                (v2.load - nodes[v_cur].demand >= 0 || v.id == v2.id)
+              ){
                   bci = cost_increase;
                   bcr = cost_reduction;
                   delta = cost_increase + cost_reduction;

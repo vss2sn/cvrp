@@ -20,6 +20,8 @@
 #include <map>
 #include <queue>
 #include <unistd.h>
+#include <cstdio>
+#include <ctime>
 
 class Node{
 public:
