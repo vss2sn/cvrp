@@ -5,10 +5,10 @@
 <a name="algorithms"></a>
 #### Algorithms: ####
 1. Greedy Solution
-2. Local Search (Within each vehicle chosen by initial greedy solution only)
-3. Local Search (Within all vehicles chosen by initial greedy solution)
-4. Tabu Search (Within all vehicles chosen by initial greedy solution)
-5. Genetic Algorithm (Includes manipulation of iterators that point to positions in the gene from where the next vehicle is to begin)
+2. Local Search (Run on each vehicle separately; search restricted to the selected vehicle's initial route)
+3. Local Search
+4. Tabu Search
+5. Genetic Algorithm
 6. Simulated Annealing
 
 <a name="instructions"></a>
@@ -17,7 +17,7 @@
      cd cvrp
      mkdir build  
      cd build  
-     cmake .. && make -j
+     cmake .. && make -j4
      ./cvrp  
 
 <a name="toc"></a>
@@ -32,6 +32,9 @@
 #### Notes: ####
 1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
 2. The metaheuristic parameters need to be set based on the problem size and structure.
+3. The genetic algorithm is implemented using a vector who's elements point to positions in another vector containing the all nodes in the order in which they will be visited. The first vector mentioned here shows how the second vector is split into the routes of the various vehicles.
+4. If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the HGreXCrossover() function. This can happen if using the GenerateGreedySolutions() function. Check set up to exit should this be the case.
+5. While the MakeValid() function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.
 
 <a name="todos"></a>
 #### TODOs: ####

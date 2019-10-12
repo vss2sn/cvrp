@@ -21,7 +21,9 @@ struct VectorHash {
 };
 
 class TabuSearchSolution : public Solution{
-  int capacity;
+  int capacity, n_tabu;
+  double best_cost, new_cost;
+
   std::vector<std::vector<int>> to_check; // invert order of v1, v2 and cur, rep+1
   std::unordered_set<std::vector<int>, VectorHash> tabu_list_set;
   std::queue<std::vector<int>> tabu_list_queue;
@@ -30,8 +32,10 @@ public:
   :Solution(nodes, vehicles, distanceMatrix){} ;
   TabuSearchSolution(Problem p)
     :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
-  inline bool IsTabu(int begin, int end);
+  inline bool IsTabu(const int& begin, const int& end);
+  inline bool Aspiration(double& cost_increase, double& cost_reduction);
   void Solve();
+
 };
 
 #endif TS_HPP
