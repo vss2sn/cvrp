@@ -1,0 +1,31 @@
+.. _exhale_class_classSolution:
+
+Class Solution
+==============
+
+- Defined in :ref:`file_inc_utils.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Types
+*************
+
+- ``public GASolution`` (:ref:`exhale_class_classGASolution`)
+- ``public GreedySolution`` (:ref:`exhale_class_classGreedySolution`)
+- ``public LocalSearchInterIntraSolution`` (:ref:`exhale_class_classLocalSearchInterIntraSolution`)
+- ``public LocalSearchIntraSolution`` (:ref:`exhale_class_classLocalSearchIntraSolution`)
+- ``public SimulatedAnnealingSolution`` (:ref:`exhale_class_classSimulatedAnnealingSolution`)
+- ``public TabuSearchSolution`` (:ref:`exhale_class_classTabuSearchSolution`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Solution
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

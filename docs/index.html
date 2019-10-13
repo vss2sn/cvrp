@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Capacitated Vehicle Routing Problem &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Library API" href="api/library_root.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Capacitated Vehicle Routing Problem
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/structVectorHash.html">Struct VectorHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classGASolution.html">Class GASolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classGreedySolution.html">Class GreedySolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classNode.html">Class Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classProblem.html">Class Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classRoute.html">Class Route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classSimulatedAnnealingSolution.html">Class SimulatedAnnealingSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classSolution.html">Class Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classTabuSearchSolution.html">Class TabuSearchSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classVehicle.html">Class Vehicle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/dir_inc.html">Directory inc</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_greedy.hpp.html">File greedy.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_main.hpp.html">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_README.md.html">File README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_tabu_search.hpp.html">File tabu_search.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_utils.hpp.html">File utils.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Capacitated Vehicle Routing Problem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Capacitated Vehicle Routing Problem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="capacitated-vehicle-routing-problem">
+<h1>Capacitated Vehicle Routing Problem<a class="headerlink" href="#capacitated-vehicle-routing-problem" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="this-repository-contains-implementations-of-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-using-various-methods-in-c">
+<h2>This repository contains implementations of algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) using various methods in C++.<a class="headerlink" href="#this-repository-contains-implementations-of-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-using-various-methods-in-c" title="Permalink to this headline">¶</a></h2>
+<a class="reference external image-reference" href="https://travis-ci.com/vss2sn/cvrp"><img alt="Build Status" src="https://travis-ci.com/vss2sn/cvrp.svg?branch=master" /></a>
+<p><span class="raw-html-m2r"><a name="algorithms"></a></span></p>
+<div class="section" id="algorithms">
+<h3>Algorithms:<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Greedy Solution</li>
+<li>Local Search (Run on each vehicle separately; search restricted to the selected vehicle’s initial route)</li>
+<li>Local Search</li>
+<li>Tabu Search</li>
+<li>Genetic Algorithm</li>
+<li>Simulated Annealing</li>
+</ol>
+<p><span class="raw-html-m2r"><a name="instructions"></a></span></p>
+</div>
+<div class="section" id="to-build-and-run">
+<h3>To build and run:<a class="headerlink" href="#to-build-and-run" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">vss2sn</span><span class="o">/</span><span class="n">cvrp</span><span class="p">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">cvrp</span>
+<span class="n">mkdir</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">build</span>
+<span class="n">cmake</span> <span class="p">..</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">-</span><span class="n">j4</span>
+<span class="p">.</span><span class="o">/</span><span class="n">cvrp</span>
+</pre></div>
+</div>
+<p><span class="raw-html-m2r"><a name="toc"></a></span></p>
+</div>
+<div class="section" id="table-of-contents">
+<h3>Table of contents:<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="#algorithms">Algorithms</a></li>
+<li><a class="reference external" href="#instructions">Instructions</a></li>
+<li><a class="reference external" href="#toc">Table of contents</a></li>
+<li><a class="reference external" href="#notes">Notes</a></li>
+<li><a class="reference external" href="#todos">TODOs</a></li>
+</ul>
+<p><span class="raw-html-m2r"><a name="notes"></a></span></p>
+</div>
+<div class="section" id="id3">
+<h3>Notes:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.</li>
+<li>The metaheuristic parameters need to be set based on the problem size and structure.</li>
+<li>The genetic algorithm is implemented using a vector who’s elements point to positions in another vector containing the all nodes in the order in which they will be visited. The first vector mentioned here shows how the second vector is split into the routes of the various vehicles.</li>
+<li>If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the HGreXCrossover() function. This can happen if using the GenerateGreedySolutions() function. Check set up to exit should this be the case.</li>
+<li>While the MakeValid() function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.</li>
+</ol>
+<p><span class="raw-html-m2r"><a name="todos"></a></span></p>
+</div>
+<div class="section" id="id4">
+<h3>TODOs:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution</li>
+<li>Refactor</li>
+<li>Code documentation (<strong>Priority</strong>)</li>
+<li>Consider adding max distance</li>
+<li>Add references (<strong>Priority</strong>)</li>
+<li>Set up tests</li>
+<li>Code coverage integration</li>
+<li>Run all the algorithms on different threads to speed up comparison</li>
+</ol>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#full-api">Full API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/library_root.html" class="btn btn-neutral float-right" title="Library API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, vss2sn
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

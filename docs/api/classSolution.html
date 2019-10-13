@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class Solution &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class TabuSearchSolution" href="classTabuSearchSolution.html" />
+    <link rel="prev" title="Class SimulatedAnnealingSolution" href="classSimulatedAnnealingSolution.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Capacitated Vehicle Routing Problem
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structVectorHash.html">Struct VectorHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGASolution.html">Class GASolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNode.html">Class Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classProblem.html">Class Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRoute.html">Class Route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSimulatedAnnealingSolution.html">Class SimulatedAnnealingSolution</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTabuSearchSolution.html">Class TabuSearchSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classVehicle.html">Class Vehicle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_inc.html">Directory inc</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_greedy.hpp.html">File greedy.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_main.hpp.html">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_README.md.html">File README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_tabu_search.hpp.html">File tabu_search.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_utils.hpp.html">File utils.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capacitated Vehicle Routing Problem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class Solution</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/classSolution.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-solution">
+<span id="exhale-class-classsolution"></span><h1>Class Solution<a class="headerlink" href="#class-solution" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Defined in <a class="reference internal" href="file_inc_utils.hpp.html#file-inc-utils-hpp"><span class="std std-ref">File utils.hpp</span></a></li>
+</ul>
+<div class="section" id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="derived-types">
+<h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">GASolution</span></code> (<a class="reference internal" href="classGASolution.html#exhale-class-classgasolution"><span class="std std-ref">Class GASolution</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">GreedySolution</span></code> (<a class="reference internal" href="classGreedySolution.html#exhale-class-classgreedysolution"><span class="std std-ref">Class GreedySolution</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">LocalSearchInterIntraSolution</span></code> (<a class="reference internal" href="classLocalSearchInterIntraSolution.html#exhale-class-classlocalsearchinterintrasolution"><span class="std std-ref">Class LocalSearchInterIntraSolution</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">LocalSearchIntraSolution</span></code> (<a class="reference internal" href="classLocalSearchIntraSolution.html#exhale-class-classlocalsearchintrasolution"><span class="std std-ref">Class LocalSearchIntraSolution</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">SimulatedAnnealingSolution</span></code> (<a class="reference internal" href="classSimulatedAnnealingSolution.html#exhale-class-classsimulatedannealingsolution"><span class="std std-ref">Class SimulatedAnnealingSolution</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">TabuSearchSolution</span></code> (<a class="reference internal" href="classTabuSearchSolution.html#exhale-class-classtabusearchsolution"><span class="std std-ref">Class TabuSearchSolution</span></a>)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv38Solution">
+<span id="_CPPv28Solution"></span><span id="Solution"></span><span class="target" id="classSolution"></span><em class="property">class </em><code class="descname">Solution</code><a class="headerlink" href="#_CPPv38Solution" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by <a class="reference internal" href="classGASolution.html#classGASolution"><span class="std std-ref">GASolution</span></a>, <a class="reference internal" href="classGreedySolution.html#classGreedySolution"><span class="std std-ref">GreedySolution</span></a>, <a class="reference internal" href="classLocalSearchInterIntraSolution.html#classLocalSearchInterIntraSolution"><span class="std std-ref">LocalSearchInterIntraSolution</span></a>, <a class="reference internal" href="classLocalSearchIntraSolution.html#classLocalSearchIntraSolution"><span class="std std-ref">LocalSearchIntraSolution</span></a>, <a class="reference internal" href="classSimulatedAnnealingSolution.html#classSimulatedAnnealingSolution"><span class="std std-ref">SimulatedAnnealingSolution</span></a>, <a class="reference internal" href="classTabuSearchSolution.html#classTabuSearchSolution"><span class="std std-ref">TabuSearchSolution</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv3N8Solution8SolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">
+<span id="_CPPv2N8Solution8SolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE"></span><span id="Solution::Solution__std::vector:Node:.std::vector:Vehicle:.std::vector:std::vector:double::"></span><span class="target" id="classSolution_1a4f60594c0c1e5ed137b916bcfca4cea6"></span><code class="descname">Solution</code><span class="sig-paren">(</span>std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; <em>nodes</em>, std::vector&lt;<a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a>&gt; <em>vehicles</em>, std::vector&lt;std::vector&lt;double&gt;&gt; <em>distanceMatrix</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution8SolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><p>Constructor for solution class </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>no return type</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">std::vector&lt;Node&gt;</span></code>: nodes Vector of all nodes </li>
+<li><code class="docutils literal notranslate"><span class="pre">std::vector&lt;Vehicle&gt;</span></code>: vehicles Vector of vehicles </li>
+<li><code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::vector&lt;double&gt;&gt;</span></code>: distanceMatrix Matrix containing distance between each pair of nodes </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N8Solution8SolutionE7Problem">
+<span id="_CPPv2N8Solution8SolutionE7Problem"></span><span id="Solution::Solution__Problem"></span><span class="target" id="classSolution_1a8a0e9d5f8c413810023482b937ea28f5"></span><code class="descname">Solution</code><span class="sig-paren">(</span><a class="reference internal" href="classProblem.html#_CPPv37Problem" title="Problem">Problem</a> <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution8SolutionE7Problem" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><p>Constructor for solution class </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>no return type</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: Instance of problem class defining the problem parameters </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N8Solution21CreateInitialSolutionEv">
+<span id="_CPPv2N8Solution21CreateInitialSolutionEv"></span><span id="Solution::CreateInitialSolution"></span><span class="target" id="classSolution_1a91746265864c3d914099a2a8cc3ec9c3"></span>void <code class="descname">CreateInitialSolution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution21CreateInitialSolutionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Creates initial solution. </p>
+<p><p>Creates initial solution, currently set to greedy. </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>void</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N8Solution18CheckSolutionValidEv">
+<span id="_CPPv2N8Solution18CheckSolutionValidEv"></span><span id="Solution::CheckSolutionValid"></span><span class="target" id="classSolution_1ab94147df0def13021aa3cd53f3d029d1"></span>bool <code class="descname">CheckSolutionValid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution18CheckSolutionValidEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check whether the solution is valid. </p>
+<p><p>Check whether the solution is valid by checking whether all the nodes are reached and whether the total edmand of all the nodes on any of the routes exceed the capacity of the respective vehicles </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>bool True is solution is valid</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N8Solution5SolveEv">
+<span id="_CPPv2N8Solution5SolveEv"></span><span id="Solution::Solve"></span><span class="target" id="classSolution_1aa804f15cd1e537e4b67154af6fa56989"></span><em class="property">virtual</em> void <code class="descname">Solve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution5SolveEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Virtual function overloaded by solution classes to solve the given problem. </p>
+<p><p>Virtual function overloaded by solution classes to solve the given problem. </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>void</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N8Solution12find_closestER7VehicleRNSt6vectorINSt6vectorIdEEEERNSt6vectorI4NodeEE">
+<span id="_CPPv2N8Solution12find_closestER7VehicleRNSt6vectorINSt6vectorIdEEEERNSt6vectorI4NodeEE"></span><span id="Solution::find_closest__VehicleR.std::vector:std::vector:double::R.std::vector:Node:R"></span><span class="target" id="classSolution_1adfb7e5fda3dafe74f894f49ba54d899e"></span><a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a> <code class="descname">find_closest</code><span class="sig-paren">(</span><a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a> &amp;<em>v</em>, std::vector&lt;std::vector&lt;double&gt;&gt; &amp;<em>distanceMatrix</em>, std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; &amp;<em>nodes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution12find_closestER7VehicleRNSt6vectorINSt6vectorIdEEEERNSt6vectorI4NodeEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>find closest node </p>
+<p><p>Finds the node nearest to the last node in the route of the vehicle under constideration that has not been routed already </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd><a class="reference internal" href="classNode.html#classNode"><span class="std std-ref">Node</span></a> nearest node</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">Vehicle&amp;</span></code>: v vehicle under consideration </li>
+<li><code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::vector&lt;double&gt;&gt;&amp;</span></code>: distanceMatrix Matrix containing distance between each pair of nodes </li>
+<li><code class="docutils literal notranslate"><span class="pre">std::vector&lt;Node&gt;&amp;</span></code>: nodes </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv3N8Solution5nodesE">
+<span id="_CPPv2N8Solution5nodesE"></span><span id="Solution::nodes__std::vector:Node:"></span><span class="target" id="classSolution_1a45a9504a7023ba922ca0aedcb5ca2138"></span>std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; <code class="descname">nodes</code><a class="headerlink" href="#_CPPv3N8Solution5nodesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N8Solution8vehiclesE">
+<span id="_CPPv2N8Solution8vehiclesE"></span><span id="Solution::vehicles__std::vector:Vehicle:"></span><span class="target" id="classSolution_1a7370e737ed131e89a22118717b864255"></span>std::vector&lt;<a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a>&gt; <code class="descname">vehicles</code><a class="headerlink" href="#_CPPv3N8Solution8vehiclesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N8Solution14distanceMatrixE">
+<span id="_CPPv2N8Solution14distanceMatrixE"></span><span id="Solution::distanceMatrix__std::vector:std::vector:double::"></span><span class="target" id="classSolution_1a89ef4a50f393f9ee5b1ecce3cb1af94f"></span>std::vector&lt;std::vector&lt;double&gt;&gt; <code class="descname">distanceMatrix</code><a class="headerlink" href="#_CPPv3N8Solution14distanceMatrixE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N8Solution5depotE">
+<span id="_CPPv2N8Solution5depotE"></span><span id="Solution::depot__Node"></span><span class="target" id="classSolution_1a16e65d7cd286a4339291409a4658e274"></span><a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a> <code class="descname">depot</code><a class="headerlink" href="#_CPPv3N8Solution5depotE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N8Solution8capacityE">
+<span id="_CPPv2N8Solution8capacityE"></span><span id="Solution::capacity__i"></span><span class="target" id="classSolution_1a1d680be7c10ebedee68ae5cdc3181d14"></span>int <code class="descname">capacity</code><a class="headerlink" href="#_CPPv3N8Solution8capacityE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="classTabuSearchSolution.html" class="btn btn-neutral float-right" title="Class TabuSearchSolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="classSimulatedAnnealingSolution.html" class="btn btn-neutral float-left" title="Class SimulatedAnnealingSolution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, vss2sn
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

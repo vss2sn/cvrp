@@ -1,0 +1,26 @@
+.. _exhale_class_classGASolution:
+
+Class GASolution
+================
+
+- Defined in :ref:`file_inc_genetic_algorithm.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Solution`` (:ref:`exhale_class_classSolution`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: GASolution
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

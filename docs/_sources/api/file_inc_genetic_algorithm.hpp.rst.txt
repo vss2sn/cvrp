@@ -1,0 +1,60 @@
+
+.. _file_inc_genetic_algorithm.hpp:
+
+File genetic_algorithm.hpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_inc>` (``inc``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Contiains the :ref:`exhale_class_classGASolution` (Genetic Algorithm :ref:`exhale_class_classSolution`) class. 
+ 
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``inc/genetic_algorithm.hpp``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_inc_genetic_algorithm.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+Includes
+--------
+
+
+- ``utils.hpp`` (:ref:`file_inc_utils.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_inc_main.hpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classGASolution`
+

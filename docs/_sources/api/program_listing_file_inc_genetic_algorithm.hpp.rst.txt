@@ -1,0 +1,108 @@
+
+.. _program_listing_file_inc_genetic_algorithm.hpp:
+
+Program Listing for File genetic_algorithm.hpp
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_inc_genetic_algorithm.hpp>` (``inc/genetic_algorithm.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef GA_HPP
+   #define GA_HPP
+   
+   #include "utils.hpp"
+   
+   // Still need to account for case if nodes cannot be put into vehilces due to small number of vehicles in initial solution
+   class GASolution : public Solution{
+   public:
+     GASolution(std::vector<Node> nodes,
+                std::vector<Vehicle> vehicles,
+                std::vector<std::vector<double>> distanceMatrix,
+                int n_chromosomes,
+                int generations)
+                :Solution(nodes, vehicles, distanceMatrix){
+                     this->n_chromosomes = n_chromosomes;
+                     this->generations = generations;
+                     n_genes = nodes.size()-1;
+                     costs = std::vector<double>(n_chromosomes);
+                     n_vehicles = vehicles.size();
+                };
+      GASolution(Problem p,
+                 int n_chromosomes,
+                 int generations)
+                 :Solution(p){
+                      this->n_chromosomes = n_chromosomes;
+                      this->generations = generations;
+                      n_genes = nodes.size()-1;
+                      costs = std::vector<double>(n_chromosomes);
+                      n_vehicles = vehicles.size();
+                   };
+   
+     void Solve();
+   private:
+     std::vector<std::vector<int>> chromosomes;
+     std::vector<std::vector<int>> iterators;
+     std::vector<int> chromosome;
+     int n_chromosomes;
+     int n_genes;
+     int n_vehicles;
+     int generations;
+     std::vector<double> costs;
+     int best;
+   
+     void GenerateRandomSolutions();
+   
+     void GenerateGreedySolutions();
+   
+     std::vector<int> GenerateRandomSolution();
+   
+     std::vector<int> GenerateRandomIterSolution();
+   
+     void HGreXCrossover();
+   
+     void RandomSwap();
+   
+     void Mutate();
+   
+     void DeleteWorstChromosome();
+   
+     void RemoveSimilarSolutions();
+   
+     void AddBest();
+   
+     void MutateWhithinAlele();
+   
+     void SwapWhithinAlele();
+   
+     void InsertIterDist();
+   
+     bool MutateIterLeft(int i_chromosome, int j_in);
+   
+     bool MutateIterRight(int i_chromosome, int j_in);
+   
+     double CalculateCost(int i);
+   
+     void CalculateTotalCost();
+   
+     int TournamentSelection();
+   
+     int TournamentSelectionBad();
+   
+     void DeleteBadChromosome();
+   
+     void InsertionBySimilarity();
+   
+     void DeleteRandomChromosome();
+   
+     void GenerateBestSolution();
+   
+     bool checkValidity(int i);
+   
+     void MakeValid(int i);
+   };
+   
+   #endif GA_HPP

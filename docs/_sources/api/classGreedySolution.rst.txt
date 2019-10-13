@@ -1,0 +1,26 @@
+.. _exhale_class_classGreedySolution:
+
+Class GreedySolution
+====================
+
+- Defined in :ref:`file_inc_greedy.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Solution`` (:ref:`exhale_class_classSolution`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: GreedySolution
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

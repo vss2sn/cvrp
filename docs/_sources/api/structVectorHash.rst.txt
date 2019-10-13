@@ -1,0 +1,17 @@
+.. _exhale_struct_structVectorHash:
+
+Struct VectorHash
+=================
+
+- Defined in :ref:`file_inc_tabu_search.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: VectorHash
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

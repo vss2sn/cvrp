@@ -1,0 +1,60 @@
+
+.. _file_inc_local_search_intra.hpp:
+
+File local_search_intra.hpp
+===========================
+
+|exhale_lsh| :ref:`Parent directory <dir_inc>` (``inc``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Contains the :ref:`exhale_class_classLocalSearchIntraSolution` class (Local search restricted to within individual vehicles) 
+ 
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``inc/local_search_intra.hpp``)
+-------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_inc_local_search_intra.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+Includes
+--------
+
+
+- ``utils.hpp`` (:ref:`file_inc_utils.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_inc_main.hpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classLocalSearchIntraSolution`
+

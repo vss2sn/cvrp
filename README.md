@@ -1,6 +1,8 @@
 # Capacitated Vehicle Routing Problem #
 
-### This repository contains implementations of algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) using various methods in C++. ###
+### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++. ###
+
+[![Build Status](https://travis-ci.com/vss2sn/cvrp.svg?branch=master)](https://travis-ci.com/vss2sn/cvrp)
 
 <a name="algorithms"></a>
 #### Algorithms: ####

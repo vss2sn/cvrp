@@ -1,0 +1,26 @@
+.. _exhale_class_classTabuSearchSolution:
+
+Class TabuSearchSolution
+========================
+
+- Defined in :ref:`file_inc_tabu_search.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Solution`` (:ref:`exhale_class_classSolution`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: TabuSearchSolution
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

@@ -1,0 +1,26 @@
+.. _exhale_class_classLocalSearchIntraSolution:
+
+Class LocalSearchIntraSolution
+==============================
+
+- Defined in :ref:`file_inc_local_search_intra.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Solution`` (:ref:`exhale_class_classSolution`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: LocalSearchIntraSolution
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:
