@@ -128,7 +128,7 @@ void GASolution::GenerateGreedySolutions(){
     }
     iterators[j] = iter;
     MakeValid(j);
-    if(!checkValidity(j)) std::cout << "Oi"<<std::endl;
+    // if(!checkValidity(j)) std::cout << "Oi"<<std::endl;
     costs[j] = CalculateCost(j);
   }
 }
@@ -157,6 +157,7 @@ void GASolution::RemoveSimilarSolutions(){
       chromosomes[*it] = GenerateRandomSolution();
       iterators[*it] = GenerateRandomIterSolution();
       MakeValid(*it);
+      // if(!checkValidity(*it)) std::cout << "OI"<< std::endl;
       costs[*it] = CalculateCost(*it);
     }
   }
@@ -196,6 +197,10 @@ void GASolution::Solve(){
   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
   int generation = 0;
   while(generation < generations){
+    // std::cout << "Generation: " << generation << std::endl;
+    // for(int i=0;i<chromosomes.size();i++){
+    //   if(!checkValidity(i)) std::cout << "Invalid" << std::endl;
+    // }
     best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     if(rand()%2==0){
       HGreXCrossover();
@@ -244,9 +249,9 @@ void GASolution::Solve(){
     // }
     CalculateTotalCost();
     generation++;
-    if(generation%100==0){
-      RemoveSimilarSolutions();
-    }
+    // if(generation%100==0){
+    //   RemoveSimilarSolutions();
+    // }
   }
   GenerateBestSolution();
 }
@@ -308,8 +313,8 @@ void GASolution::HGreXCrossover(){
     InsertionBySimilarity();
   }
   else{
-    iterators.erase(iterators.begin()+n_chromosomes);
-    chromosomes.erase(chromosomes.begin()+n_chromosomes);
+    iterators.erase(iterators.begin()+n_chromosomes-1);
+    chromosomes.erase(chromosomes.begin()+n_chromosomes-1);
   }
 }
 
@@ -378,14 +383,16 @@ void GASolution::InsertionBySimilarity(){
       break;
     }
   }
-  // if(flag) DeleteRandomChromosome();
+  if(flag) DeleteRandomChromosome();
 }
 
 void GASolution::DeleteRandomChromosome(){
   int r = rand()%n_chromosomes;
   while(r==best) r = rand()%n_chromosomes;
   chromosomes[r] = chromosomes.back();
+  iterators[r] = iterators.back();
   chromosomes.erase(chromosomes.begin()+chromosomes.size()-1);
+  iterators.erase(iterators.begin()+iterators.size()-1);
 }
 
 void GASolution::Mutate(){
