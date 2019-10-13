@@ -9,6 +9,7 @@
    :maxdepth: 2
    :caption: Contents:
 
+   algorithm_implementations.rst
    api/library_root
 
 Indices and tables

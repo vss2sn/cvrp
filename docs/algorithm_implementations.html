@@ -1,0 +1,353 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Notes on algorithm implementation &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Library API" href="api/library_root.html" />
+    <link rel="prev" title="Capacitated Vehicle Routing Problem" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Capacitated Vehicle Routing Problem
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Notes on algorithm implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#greedy-solution">1. Greedy Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#local-search-ls">3. Local Search (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tabu-search-ts">4. Tabu Search (TS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/structVectorHash.html">Struct VectorHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classGASolution.html">Class GASolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classGreedySolution.html">Class GreedySolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classNode.html">Class Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classProblem.html">Class Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classRoute.html">Class Route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classSimulatedAnnealingSolution.html">Class SimulatedAnnealingSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classSolution.html">Class Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classTabuSearchSolution.html">Class TabuSearchSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classVehicle.html">Class Vehicle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/dir_inc.html">Directory inc</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_greedy.hpp.html">File greedy.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_main.hpp.html">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_README.md.html">File README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_tabu_search.hpp.html">File tabu_search.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_utils.hpp.html">File utils.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Capacitated Vehicle Routing Problem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Notes on algorithm implementation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/algorithm_implementations.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="notes-on-algorithm-implementation">
+<span id="algorithms"></span><h1>Notes on algorithm implementation<a class="headerlink" href="#notes-on-algorithm-implementation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="greedy-solution">
+<h2>1. Greedy Solution<a class="headerlink" href="#greedy-solution" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The greedy algorithm simply starts with the closest node from the depot, adding it to the first vehicle’s route, reducing the load on the vehicle by the demand of the node.</li>
+<li>The algorithm begins using the next vehicle as soon as the next node’s demand exceed the load on the vehicle.</li>
+</ul>
+</div>
+<div class="section" id="local-search-run-on-each-vehicle-individually-ls">
+<h2>2. Local Search (Run on each vehicle individually) (LS)<a class="headerlink" href="#local-search-run-on-each-vehicle-individually-ls" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Run on each vehicle separately.</li>
+<li>For all the nodes in a given vehicle’s route, the search is restricted to the selected vehicle’s route.</li>
+<li>The move as defined here is an move &amp; insert operation. The first node selected is removed from its current position and inserted immediately in front of the second node.</li>
+</ul>
+</div>
+<ul class="simple">
+<li>An initial feasible solution is created.</li>
+<li>The local search algorithm is run on each vehicle separately.</li>
+<li>For each vehicle, the algorithms iterates over every node in its route and attempts to place it at each possible position within the route of the selected vehicle.</li>
+<li>The optimal move (the move that causes the greatest reduction in cost) is implemented.</li>
+<li>This continues until the reduction in cost is non-negative.</li>
+</ul>
+</div>
+<div class="section" id="local-search-ls">
+<h2>3. Local Search (LS)<a class="headerlink" href="#local-search-ls" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Search not restricted to selected vehicle’s route.</li>
+<li>The move as defined here is an move &amp; insert operation. The first node selected is removed from its current route and inserted into the route of the second node, immediately in front of the second node.</li>
+</ul>
+</div>
+<ul class="simple">
+<li>An initial feasible solution is created.</li>
+<li>The local search algorithm is run on all the vehicles collectively.</li>
+<li>The algorithms iterates over every node in every vehicle’s route and attempts to place it at each possible position within the routes of all the vehicles.</li>
+<li>The optimal move (the move that causes the greatest reduction in cost) is implemented.</li>
+<li>This continues until the reduction in cost is non-negative.</li>
+</ul>
+</div>
+<div class="section" id="tabu-search-ts">
+<h2>4. Tabu Search (TS)<a class="headerlink" href="#tabu-search-ts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>An initial feasible solution is created.</li>
+<li>The local search algorithm is run on all the vehicles collectively.</li>
+<li>The algorithms iterates over every node in every vehicle’s route and attempts to place it at each possible position within the routes of all the vehicles.</li>
+<li>If the move is tabu then the move is not considered; however if making the move reduces the cost of the solution such that it is lower than the best cost seen so far, the move is made.</li>
+<li>This allows the solution to once again accept moves that increase the cost of the solution, allowing the algorithm to explore a larger section of the solution space and not get stuck in a local minima.</li>
+<li>The optimal move (the move that causes the greatest reduction/least increase in cost) is implemented.</li>
+<li>The new links formed are added to the tabu list, preventing the newly formed links from being broken for a number of iterations (the size of tabu list is constant, so this translates to number of times a non tabu move is made).</li>
+<li>This continues for a set number of iterations.</li>
+</ul>
+</div>
+<div class="section" id="genetic-algorithm-ga">
+<h2>5. Genetic Algorithm (GA)<a class="headerlink" href="#genetic-algorithm-ga" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>Each node is a <cite>nucleotide pair</cite>.</li>
+<li>A possible solution is a <cite>chromosome</cite> and <cite>iterator</cite> pair.</li>
+<li>A <cite>chromosome</cite> contains all the nodes in the order they are visited. It’s corresponding <cite>iterator</cite> vector is the vector containing the indices at which the chromosome is split into vehicle routes.</li>
+<li>The vehicle routes as split by the iterator vector, and are each referred to as a <cite>gene</cite>.</li>
+<li>If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the <cite>HGreXCrossover()</cite> function. This can happen if using the <cite>GenerateGreedySolutions()</cite> function. A check is set up to exit should this be the case.</li>
+<li>While the <cite>MakeValid()</cite> function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.</li>
+</ul>
+</div>
+<ul class="simple">
+<li>Initial solutions are created (random and greedy heuristic)</li>
+<li>For a given number of generations various operators are applied to the chromosomes randomly.</li>
+<li>Each operator is triggered with a set probability, and randomly selects the chromosome/iterator on which to apply said operator (Both the chromosomes and iterators have disticnt operator functions).</li>
+<li>The number of chromosomes is maintained as constant, removing higher cost solutions (see documentation of functions for details).</li>
+<li>The best solution is chosen and converted to the standard form of the solution.</li>
+</ul>
+</div>
+<div class="section" id="simulated-annealing-sa">
+<h2>6. Simulated Annealing (SA)<a class="headerlink" href="#simulated-annealing-sa" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>The move as defined here is an move &amp; insert operation. The first node selected is removed from its current route and inserted into the route of the second node, immediately in front of the second node.</li>
+</ul>
+</div>
+<ul class="simple">
+<li>An initial feasible solution is created.</li>
+<li>Two vehicles are chosen at random.</li>
+<li>A node within each of them is also chosen at random.</li>
+<li>The move is made if the cost of the solution decreases or based on a probability calculated based on the <cite>temperature</cite> of the solution</li>
+<li>A higher <cite>temperature</cite> allows a greater chance of moves increasing the cost of the solution to be accepted.</li>
+<li>The <cite>temperature</cite> is reduced after every iteration using a geometric progression.</li>
+<li>If the solution does not improve (<cite>is stagnant</cite>) over a number of iterations (<cite>stag_limit</cite>) a reheat operation is performed, increasing the temperature once again.</li>
+<li>This allows the solution to once again accept moves that increase the cost of the solution, allowing the algorithm to explore a larger section of the solution space and not get stuck in a local minima.</li>
+<li>The algorithm runs for a set number of reheats.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api/library_root.html" class="btn btn-neutral float-right" title="Library API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Capacitated Vehicle Routing Problem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, vss2sn
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

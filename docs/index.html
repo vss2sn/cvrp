@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Library API" href="api/library_root.html" /> 
+    <link rel="next" title="Notes on algorithm implementation" href="algorithm_implementations.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,6 +84,15 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithm_implementations.html">Notes on algorithm implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#greedy-solution">1. Greedy Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#local-search-ls">3. Local Search (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#file-hierarchy">File Hierarchy</a></li>
@@ -193,19 +202,19 @@
             
   <div class="section" id="capacitated-vehicle-routing-problem">
 <h1>Capacitated Vehicle Routing Problem<a class="headerlink" href="#capacitated-vehicle-routing-problem" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="this-repository-contains-implementations-of-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-using-various-methods-in-c">
-<h2>This repository contains implementations of algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) using various methods in C++.<a class="headerlink" href="#this-repository-contains-implementations-of-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-using-various-methods-in-c" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="this-repository-contains-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-in-c">
+<h2>This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++.<a class="headerlink" href="#this-repository-contains-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-in-c" title="Permalink to this headline">¶</a></h2>
 <a class="reference external image-reference" href="https://travis-ci.com/vss2sn/cvrp"><img alt="Build Status" src="https://travis-ci.com/vss2sn/cvrp.svg?branch=master" /></a>
 <p><span class="raw-html-m2r"><a name="algorithms"></a></span></p>
 <div class="section" id="algorithms">
 <h3>Algorithms:<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Greedy Solution</li>
-<li>Local Search (Run on each vehicle separately; search restricted to the selected vehicle’s initial route)</li>
-<li>Local Search</li>
-<li>Tabu Search</li>
-<li>Genetic Algorithm</li>
-<li>Simulated Annealing</li>
+<li>Local Search (Run on each vehicle separately; search restricted to the selected vehicle’s initial route) (LS)</li>
+<li>Local Search (LS)</li>
+<li>Tabu Search (TS)</li>
+<li>Genetic Algorithm (GA)</li>
+<li>Simulated Annealing (SA)</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="instructions"></a></span></p>
 </div>
@@ -214,7 +223,7 @@
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">vss2sn</span><span class="o">/</span><span class="n">cvrp</span><span class="p">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">cvrp</span>
 <span class="n">mkdir</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="n">build</span>
+<span class="n">cd</span> <span class="n">build</span>  <span class="n">Problem</span>
 <span class="n">cmake</span> <span class="p">..</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">-</span><span class="n">j4</span>
 <span class="p">.</span><span class="o">/</span><span class="n">cvrp</span>
 </pre></div>
@@ -235,11 +244,12 @@
 <div class="section" id="id3">
 <h3>Notes:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.</li>
 <li>The metaheuristic parameters need to be set based on the problem size and structure.</li>
-<li>The genetic algorithm is implemented using a vector who’s elements point to positions in another vector containing the all nodes in the order in which they will be visited. The first vector mentioned here shows how the second vector is split into the routes of the various vehicles.</li>
-<li>If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the HGreXCrossover() function. This can happen if using the GenerateGreedySolutions() function. Check set up to exit should this be the case.</li>
-<li>While the MakeValid() function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.</li>
+<li>The problem is setup using the problem class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.</li>
+<li>A base class called <code class="docutils literal notranslate"><span class="pre">Solution</span></code> has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle’s route. A function called <code class="docutils literal notranslate"><span class="pre">PrintStatus()</span></code> can be used to display each of the vehicles attributes.</li>
+<li>The solution class also contains a pure virtual function called <code class="docutils literal notranslate"><span class="pre">Solve()</span></code>. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the <code class="docutils literal notranslate"><span class="pre">Solve()</span></code> method.</li>
+<li>For a brief overview on specific implementations of the algorithms, see <a class="reference external" href="https://vss2sn.github.io/cvrp/algorithm_implementations.html">here</a>.</li>
+<li>The documentation for private functions (such as operator in the GASolution class) has been made available to aid understanding.</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="todos"></a></span></p>
 </div>
@@ -247,17 +257,22 @@
 <h3>TODOs:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution</li>
-<li>Refactor</li>
-<li>Code documentation (<strong>Priority</strong>)</li>
-<li>Consider adding max distance</li>
-<li>Add references (<strong>Priority</strong>)</li>
-<li>Set up tests</li>
-<li>Code coverage integration</li>
 <li>Run all the algorithms on different threads to speed up comparison</li>
+<li>Refactor</li>
+<li>Consider adding savings algorithm</li>
 </ol>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithm_implementations.html">Notes on algorithm implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#greedy-solution">1. Greedy Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#local-search-ls">3. Local Search (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#file-hierarchy">File Hierarchy</a></li>
@@ -285,7 +300,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api/library_root.html" class="btn btn-neutral float-right" title="Library API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="algorithm_implementations.html" class="btn btn-neutral float-right" title="Notes on algorithm implementation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
     </div>
