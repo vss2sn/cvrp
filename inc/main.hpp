@@ -11,4 +11,9 @@
 #include "tabu_search.hpp"
 #include "simulated_annealing.hpp"
 
+/**
+* @brief Main function
+* @return int 0
+* @details Main function that creates the problem and calls the various solve functions for each of teh solution algorithms
+*/
 int main();

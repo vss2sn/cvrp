@@ -231,10 +231,6 @@ void GASolution::Solve(){
       MutateWhithinAlele();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
     }
-    if(rand()%100<50) {
-      RandomSwapAlele();
-      best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-    }
     if(rand()%100<70) {
       InsertIterDist();
       best = std::min_element(costs.begin(), costs.end()) - costs.begin();
@@ -348,8 +344,8 @@ void GASolution::MakeValid(int i){
 }
 
 void GASolution::DeleteBadChromosome(){
-  // int i = TournamentSelectionBad();
-  // chromosomes[i] = GenerateRandomSolution();
+  int i = TournamentSelectionBad();
+  chromosomes[i] = GenerateRandomSolution();
 }
 
 int GASolution::TournamentSelection(){
@@ -374,7 +370,7 @@ void GASolution::InsertionBySimilarity(){
   best = std::min_element(costs.begin(), costs.end()) - costs.begin();
   bool flag = true;
   for(int i=0;i<n_genes;++i){
-    if(i!=best && abs(costs.back()-costs[i]) < 2*(costs[best]/100.0)){
+    if(i!=best && costs.back()-costs[i] < 2*(costs[best]/100.0)){
       costs.erase(costs.begin()+i);
       chromosomes.erase(chromosomes.begin()+i);
       iterators.erase(iterators.begin()+i);
@@ -382,7 +378,14 @@ void GASolution::InsertionBySimilarity(){
       break;
     }
   }
-  if(flag) DeleteWorstChromosome();
+  // if(flag) DeleteRandomChromosome();
+}
+
+void GASolution::DeleteRandomChromosome(){
+  int r = rand()%n_chromosomes;
+  while(r==best) r = rand()%n_chromosomes;
+  chromosomes[r] = chromosomes.back();
+  chromosomes.erase(chromosomes.begin()+chromosomes.size()-1);
 }
 
 void GASolution::Mutate(){
@@ -575,29 +578,6 @@ void GASolution::AddBest(){
   chromosomes[worst] = chromosomes[best];
   costs[worst] = costs[best];
   iterators[worst] = iterators[best];
-}
-
-void GASolution::RandomSwapAlele(){
-  int count =0;
-  while(count<20){
-    best = std::min_element(costs.begin(), costs.end()) - costs.begin();
-    int r = rand()%n_chromosomes;
-    // while(r==best) r = rand()%n_chromosomes;
-    int i1 = rand()%n_genes;
-    int i2 = rand()%n_genes;
-    std::reverse(chromosomes[r].begin() + i1,chromosomes[r].begin() + i2);
-    auto temp_it = iterators[r];
-    MakeValid(r);
-    double p = costs[r];
-    costs[r] = CalculateCost(r);
-    if(p<costs[r]){
-      std::reverse(chromosomes[r].begin() + i1,chromosomes[r].begin() + i2);
-      iterators[r] = temp_it;
-      count++;
-      costs[r] = p;
-    }
-    else if( checkValidity(r)) break;
-  }
 }
 
 void GASolution::DeleteWorstChromosome(){

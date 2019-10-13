@@ -30,7 +30,7 @@ int main(){
   std::cout << std::endl;
 
   std::cout << "Genetic Algorithm: " << std::endl;
-  GASolution vrp_ga(p, 25, 50000);
+  GASolution vrp_ga(p, 25, 500);
   vrp_ga.Solve();
   std::cout << std::endl;
 
