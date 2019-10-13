@@ -1,0 +1,28 @@
+
+.. _program_listing_file_inc_greedy.hpp:
+
+Program Listing for File greedy.hpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_inc_greedy.hpp>` (``inc/greedy.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef GREEDY_HPP
+   #define GREEDY_HPP
+   
+   #include "utils.hpp"
+   
+   class GreedySolution:public Solution{
+   public:
+     GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
+       :Solution(nodes, vehicles, distanceMatrix){};
+     GreedySolution(Problem p)
+         :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+   
+     void Solve();
+   };
+   #endif GREEDY_HPP

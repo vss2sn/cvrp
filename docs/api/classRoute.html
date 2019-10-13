@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Class Route &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class SimulatedAnnealingSolution" href="classSimulatedAnnealingSolution.html" />
+    <link rel="prev" title="Class Problem" href="classProblem.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Capacitated Vehicle Routing Problem
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../algorithm_implementations.html">Notes on algorithm implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#greedy-solution">1. Greedy Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#local-search-ls">3. Local Search (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structVectorHash.html">Struct VectorHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGASolution.html">Class GASolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNode.html">Class Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classProblem.html">Class Problem</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class Route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSimulatedAnnealingSolution.html">Class SimulatedAnnealingSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSolution.html">Class Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTabuSearchSolution.html">Class TabuSearchSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classVehicle.html">Class Vehicle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_inc.html">Directory inc</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_greedy.hpp.html">File greedy.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_main.hpp.html">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_README.md.html">File README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_tabu_search.hpp.html">File tabu_search.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_utils.hpp.html">File utils.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capacitated Vehicle Routing Problem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class Route</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/classRoute.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-route">
+<span id="exhale-class-classroute"></span><h1>Class Route<a class="headerlink" href="#class-route" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Defined in <a class="reference internal" href="file_inc_utils.hpp.html#file-inc-utils-hpp"><span class="std std-ref">File utils.hpp</span></a></li>
+</ul>
+<div class="section" id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="derived-type">
+<h3>Derived Type<a class="headerlink" href="#derived-type" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Vehicle</span></code> (<a class="reference internal" href="classVehicle.html#exhale-class-classvehicle"><span class="std std-ref">Class Vehicle</span></a>)</li>
+</ul>
+</div>
+</div>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv35Route">
+<span id="_CPPv25Route"></span><span id="Route"></span><span class="target" id="classRoute"></span><em class="property">class </em><code class="descname">Route</code><a class="headerlink" href="#_CPPv35Route" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subclassed by <a class="reference internal" href="classVehicle.html#classVehicle"><span class="std std-ref">Vehicle</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv3N5Route11PrintStatusEv">
+<span id="_CPPv2N5Route11PrintStatusEv"></span><span id="Route::PrintStatus"></span><span class="target" id="classRoute_1afe64a7feaff604d084e043bd4d5eaba7"></span>void <code class="descname">PrintStatus</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N5Route11PrintStatusEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>print status of route </p>
+<p>prints the status of the route, ie, each of its elements </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N5Route10PrintRouteEv">
+<span id="_CPPv2N5Route10PrintRouteEv"></span><span id="Route::PrintRoute"></span><span class="target" id="classRoute_1aba140b217524b135c04cf5e50132ab4d"></span>void <code class="descname">PrintRoute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N5Route10PrintRouteEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>prints the route </p>
+<p>prints the route, ie, each of its elements in order </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N5Route13CalculateCostENSt6vectorINSt6vectorIdEEEE">
+<span id="_CPPv2N5Route13CalculateCostENSt6vectorINSt6vectorIdEEEE"></span><span id="Route::CalculateCost__std::vector:std::vector:double::"></span><span class="target" id="classRoute_1a7d9b73e099cf7f15ebd6c2d2e685d7f5"></span>void <code class="descname">CalculateCost</code><span class="sig-paren">(</span>std::vector&lt;std::vector&lt;double&gt;&gt; <em>distanceMatrix</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N5Route13CalculateCostENSt6vectorINSt6vectorIdEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calculates cost of the route. </p>
+<p><p>Calculates cost of the route </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>void</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::vector&lt;double&gt;&gt;</span></code>: distanceMatrix Holds the distances between each pair of nodes </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv3N5Route4costE">
+<span id="_CPPv2N5Route4costE"></span><span id="Route::cost__double"></span><span class="target" id="classRoute_1a45cdcf778b2967db1c5fd2fbb83bd3aa"></span>double <code class="descname">cost</code> = 0<a class="headerlink" href="#_CPPv3N5Route4costE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N5Route5nodesE">
+<span id="_CPPv2N5Route5nodesE"></span><span id="Route::nodes__std::vector:i:"></span><span class="target" id="classRoute_1a34bb11590fd5201ed5c59b13b0ad0f72"></span>std::vector&lt;int&gt; <code class="descname">nodes</code><a class="headerlink" href="#_CPPv3N5Route5nodesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="classSimulatedAnnealingSolution.html" class="btn btn-neutral float-right" title="Class SimulatedAnnealingSolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="classProblem.html" class="btn btn-neutral float-left" title="Class Problem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, vss2sn
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

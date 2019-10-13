@@ -109,7 +109,7 @@ public:
 
   /**
   * @brief Constructor
-  * @param int noc number of nodes (dropoff points)
+  * @param int noc number of nodes (centres/dropoff points)
   * @param int demand_range max demand of each node (random value between 0 and this value)
   * @param int mov number of vehicles
   * @param int capacity maximum capacityof each vehicle

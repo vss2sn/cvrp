@@ -1,0 +1,62 @@
+
+.. _file_inc_tabu_search.hpp:
+
+File tabu_search.hpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_inc>` (``inc``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Contains the :ref:`exhale_class_classTabuSearchSolution` class. 
+ 
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``inc/tabu_search.hpp``)
+------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_inc_tabu_search.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+Includes
+--------
+
+
+- ``utils.hpp`` (:ref:`file_inc_utils.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_inc_main.hpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structVectorHash`
+
+- :ref:`exhale_class_classTabuSearchSolution`
+

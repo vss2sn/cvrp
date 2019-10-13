@@ -1,0 +1,30 @@
+
+.. _program_listing_file_inc_local_search_intra.hpp:
+
+Program Listing for File local_search_intra.hpp
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_inc_local_search_intra.hpp>` (``inc/local_search_intra.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef LSI_HPP
+   #define LSI_HPP
+   
+   #include "utils.hpp"
+   
+   class LocalSearchIntraSolution : public Solution{
+   public:
+     LocalSearchIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
+       :Solution(nodes, vehicles, distanceMatrix){} ;
+   
+     LocalSearchIntraSolution(Problem p)
+       :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+   
+     void Solve();
+   };
+   
+   #endif

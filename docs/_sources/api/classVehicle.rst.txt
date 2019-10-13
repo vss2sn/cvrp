@@ -1,0 +1,26 @@
+.. _exhale_class_classVehicle:
+
+Class Vehicle
+=============
+
+- Defined in :ref:`file_inc_utils.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Route`` (:ref:`exhale_class_classRoute`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Vehicle
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

@@ -1,0 +1,545 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Index &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Capacitated Vehicle Routing Problem
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="algorithm_implementations.html">Notes on algorithm implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#greedy-solution">1. Greedy Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#local-search-ls">3. Local Search (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/structVectorHash.html">Struct VectorHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classGASolution.html">Class GASolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classGreedySolution.html">Class GreedySolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classNode.html">Class Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classProblem.html">Class Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classRoute.html">Class Route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classSimulatedAnnealingSolution.html">Class SimulatedAnnealingSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classSolution.html">Class Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classTabuSearchSolution.html">Class TabuSearchSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classVehicle.html">Class Vehicle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/dir_inc.html">Directory inc</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_greedy.hpp.html">File greedy.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_main.hpp.html">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_README.md.html">File README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_tabu_search.hpp.html">File tabu_search.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_inc_utils.hpp.html">File utils.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Capacitated Vehicle Routing Problem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Index</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#G"><strong>G</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ 
+</div>
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classGASolution.html#_CPPv310GASolution">GASolution (C++ class)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution7AddBestEv">GASolution::AddBest (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution4bestE">GASolution::best (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution13CalculateCostEi">GASolution::CalculateCost (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution18CalculateTotalCostEv">GASolution::CalculateTotalCost (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution13checkValidityEi">GASolution::checkValidity (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution10chromosomeE">GASolution::chromosome (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution11chromosomesE">GASolution::chromosomes (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution5costsE">GASolution::costs (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution19DeleteBadChromosomeEv">GASolution::DeleteBadChromosome (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution22DeleteRandomChromosomeEv">GASolution::DeleteRandomChromosome (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution21DeleteWorstChromosomeEv">GASolution::DeleteWorstChromosome (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution10GASolutionE7Problemii">GASolution::GASolution (C++ function)</a>, <a href="api/classGASolution.html#_CPPv3N10GASolution10GASolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEEii">[1]</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution20GenerateBestSolutionEv">GASolution::GenerateBestSolution (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution23GenerateGreedySolutionsEv">GASolution::GenerateGreedySolutions (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution26GenerateRandomIterSolutionEv">GASolution::GenerateRandomIterSolution (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution22GenerateRandomSolutionEv">GASolution::GenerateRandomSolution (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution23GenerateRandomSolutionsEv">GASolution::GenerateRandomSolutions (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution11generationsE">GASolution::generations (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution14HGreXCrossoverEv">GASolution::HGreXCrossover (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution21InsertionBySimilarityEv">GASolution::InsertionBySimilarity (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution14InsertIterDistEv">GASolution::InsertIterDist (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution9iteratorsE">GASolution::iterators (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution9MakeValidEi">GASolution::MakeValid (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution6MutateEv">GASolution::Mutate (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution14MutateIterLeftEii">GASolution::MutateIterLeft (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution15MutateIterRightEii">GASolution::MutateIterRight (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution18MutateWhithinAleleEv">GASolution::MutateWhithinAlele (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution13n_chromosomesE">GASolution::n_chromosomes (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution7n_genesE">GASolution::n_genes (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution10n_vehiclesE">GASolution::n_vehicles (C++ member)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution10RandomSwapEv">GASolution::RandomSwap (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution22RemoveSimilarSolutionsEv">GASolution::RemoveSimilarSolutions (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution5SolveEv">GASolution::Solve (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution16SwapWhithinAleleEv">GASolution::SwapWhithinAlele (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution19TournamentSelectionEv">GASolution::TournamentSelection (C++ function)</a>
+</li>
+      <li><a href="api/classGASolution.html#_CPPv3N10GASolution22TournamentSelectionBadEv">GASolution::TournamentSelectionBad (C++ function)</a>
+</li>
+      <li><a href="api/classGreedySolution.html#_CPPv314GreedySolution">GreedySolution (C++ class)</a>
+</li>
+      <li><a href="api/classGreedySolution.html#_CPPv3N14GreedySolution14GreedySolutionE7Problem">GreedySolution::GreedySolution (C++ function)</a>, <a href="api/classGreedySolution.html#_CPPv3N14GreedySolution14GreedySolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">[1]</a>
+</li>
+      <li><a href="api/classGreedySolution.html#_CPPv3N14GreedySolution5SolveEv">GreedySolution::Solve (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classLocalSearchInterIntraSolution.html#_CPPv329LocalSearchInterIntraSolution">LocalSearchInterIntraSolution (C++ class)</a>
+</li>
+      <li><a href="api/classLocalSearchInterIntraSolution.html#_CPPv3N29LocalSearchInterIntraSolution29LocalSearchInterIntraSolutionE7Problem">LocalSearchInterIntraSolution::LocalSearchInterIntraSolution (C++ function)</a>, <a href="api/classLocalSearchInterIntraSolution.html#_CPPv3N29LocalSearchInterIntraSolution29LocalSearchInterIntraSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">[1]</a>
+</li>
+      <li><a href="api/classLocalSearchInterIntraSolution.html#_CPPv3N29LocalSearchInterIntraSolution5SolveEv">LocalSearchInterIntraSolution::Solve (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classLocalSearchIntraSolution.html#_CPPv324LocalSearchIntraSolution">LocalSearchIntraSolution (C++ class)</a>
+</li>
+      <li><a href="api/classLocalSearchIntraSolution.html#_CPPv3N24LocalSearchIntraSolution24LocalSearchIntraSolutionE7Problem">LocalSearchIntraSolution::LocalSearchIntraSolution (C++ function)</a>, <a href="api/classLocalSearchIntraSolution.html#_CPPv3N24LocalSearchIntraSolution24LocalSearchIntraSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">[1]</a>
+</li>
+      <li><a href="api/classLocalSearchIntraSolution.html#_CPPv3N24LocalSearchIntraSolution5SolveEv">LocalSearchIntraSolution::Solve (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html#_CPPv34mainv">main (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classNode.html#_CPPv34Node">Node (C++ class)</a>
+</li>
+      <li><a href="api/classNode.html#_CPPv3N4Node6demandE">Node::demand (C++ member)</a>
+</li>
+      <li><a href="api/classNode.html#_CPPv3N4Node2idE">Node::id (C++ member)</a>
+</li>
+      <li><a href="api/classNode.html#_CPPv3N4Node9is_routedE">Node::is_routed (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classNode.html#_CPPv3N4Node4NodeEiiiib">Node::Node (C++ function)</a>
+</li>
+      <li><a href="api/classNode.html#_CPPv3N4Node11PrintStatusEv">Node::PrintStatus (C++ function)</a>
+</li>
+      <li><a href="api/classNode.html#_CPPv3N4Node1xE">Node::x (C++ member)</a>
+</li>
+      <li><a href="api/classNode.html#_CPPv3N4Node1yE">Node::y (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classProblem.html#_CPPv37Problem">Problem (C++ class)</a>
+</li>
+      <li><a href="api/classProblem.html#_CPPv3N7Problem8capacityE">Problem::capacity (C++ member)</a>
+</li>
+      <li><a href="api/classProblem.html#_CPPv3N7Problem5depotE">Problem::depot (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classProblem.html#_CPPv3N7Problem14distanceMatrixE">Problem::distanceMatrix (C++ member)</a>
+</li>
+      <li><a href="api/classProblem.html#_CPPv3N7Problem5nodesE">Problem::nodes (C++ member)</a>
+</li>
+      <li><a href="api/classProblem.html#_CPPv3N7Problem7ProblemEiiiiiNSt6stringEii">Problem::Problem (C++ function)</a>
+</li>
+      <li><a href="api/classProblem.html#_CPPv3N7Problem8vehiclesE">Problem::vehicles (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classRoute.html#_CPPv35Route">Route (C++ class)</a>
+</li>
+      <li><a href="api/classRoute.html#_CPPv3N5Route13CalculateCostENSt6vectorINSt6vectorIdEEEE">Route::CalculateCost (C++ function)</a>
+</li>
+      <li><a href="api/classRoute.html#_CPPv3N5Route4costE">Route::cost (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classRoute.html#_CPPv3N5Route5nodesE">Route::nodes (C++ member)</a>
+</li>
+      <li><a href="api/classRoute.html#_CPPv3N5Route10PrintRouteEv">Route::PrintRoute (C++ function)</a>
+</li>
+      <li><a href="api/classRoute.html#_CPPv3N5Route11PrintStatusEv">Route::PrintStatus (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv326SimulatedAnnealingSolution">SimulatedAnnealingSolution (C++ class)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution9AllowMoveEd">SimulatedAnnealingSolution::AllowMove (C++ function)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution9best_costE">SimulatedAnnealingSolution::best_cost (C++ member)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution12cooling_rateE">SimulatedAnnealingSolution::cooling_rate (C++ member)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution12current_costE">SimulatedAnnealingSolution::current_cost (C++ member)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution8max_tempE">SimulatedAnnealingSolution::max_temp (C++ member)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution10n_reheatesE">SimulatedAnnealingSolution::n_reheates (C++ member)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE7Problem">SimulatedAnnealingSolution::SimulatedAnnealingSolution (C++ function)</a>, <a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">[1]</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution5SolveEv">SimulatedAnnealingSolution::Solve (C++ function)</a>
+</li>
+      <li><a href="api/classSimulatedAnnealingSolution.html#_CPPv3N26SimulatedAnnealingSolution4tempE">SimulatedAnnealingSolution::temp (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classSolution.html#_CPPv38Solution">Solution (C++ class)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution8capacityE">Solution::capacity (C++ member)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution18CheckSolutionValidEv">Solution::CheckSolutionValid (C++ function)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution21CreateInitialSolutionEv">Solution::CreateInitialSolution (C++ function)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution5depotE">Solution::depot (C++ member)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution14distanceMatrixE">Solution::distanceMatrix (C++ member)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution12find_closestER7VehicleRNSt6vectorINSt6vectorIdEEEERNSt6vectorI4NodeEE">Solution::find_closest (C++ function)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution5nodesE">Solution::nodes (C++ member)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution8SolutionE7Problem">Solution::Solution (C++ function)</a>, <a href="api/classSolution.html#_CPPv3N8Solution8SolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">[1]</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution5SolveEv">Solution::Solve (C++ function)</a>
+</li>
+      <li><a href="api/classSolution.html#_CPPv3N8Solution8vehiclesE">Solution::vehicles (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv318TabuSearchSolution">TabuSearchSolution (C++ class)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution10AspirationERdRd">TabuSearchSolution::Aspiration (C++ function)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution9best_costE">TabuSearchSolution::best_cost (C++ member)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution8capacityE">TabuSearchSolution::capacity (C++ member)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution6IsTabuERKiRKi">TabuSearchSolution::IsTabu (C++ function)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution6n_tabuE">TabuSearchSolution::n_tabu (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution8new_costE">TabuSearchSolution::new_cost (C++ member)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution5SolveEv">TabuSearchSolution::Solve (C++ function)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution15tabu_list_queueE">TabuSearchSolution::tabu_list_queue (C++ member)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution13tabu_list_setE">TabuSearchSolution::tabu_list_set (C++ member)</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution18TabuSearchSolutionE7Problem">TabuSearchSolution::TabuSearchSolution (C++ function)</a>, <a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution18TabuSearchSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">[1]</a>
+</li>
+      <li><a href="api/classTabuSearchSolution.html#_CPPv3N18TabuSearchSolution8to_checkE">TabuSearchSolution::to_check (C++ member)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/structVectorHash.html#_CPPv310VectorHash">VectorHash (C++ class)</a>
+</li>
+      <li><a href="api/structVectorHash.html#_CPPv3NK10VectorHashclERKNSt6vectorIiEE">VectorHash::operator() (C++ function)</a>
+</li>
+      <li><a href="api/classVehicle.html#_CPPv37Vehicle">Vehicle (C++ class)</a>
+</li>
+      <li><a href="api/classVehicle.html#_CPPv3N7Vehicle8capacityE">Vehicle::capacity (C++ member)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/classVehicle.html#_CPPv3N7Vehicle2idE">Vehicle::id (C++ member)</a>
+</li>
+      <li><a href="api/classVehicle.html#_CPPv3N7Vehicle4loadE">Vehicle::load (C++ member)</a>
+</li>
+      <li><a href="api/classVehicle.html#_CPPv3N7Vehicle11PrintStatusEv">Vehicle::PrintStatus (C++ function)</a>
+</li>
+      <li><a href="api/classVehicle.html#_CPPv3N7Vehicle7VehicleEiii">Vehicle::Vehicle (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, vss2sn
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,22 +1,24 @@
 # Capacitated Vehicle Routing Problem #
 
-### This repository contains implementations of algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) using various methods in C++. ###
+### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++. ###
+
+[![Build Status](https://travis-ci.com/vss2sn/cvrp.svg?branch=master)](https://travis-ci.com/vss2sn/cvrp)
 
 <a name="algorithms"></a>
 #### Algorithms: ####
 1. Greedy Solution
-2. Local Search (Run on each vehicle separately; search restricted to the selected vehicle's initial route)
-3. Local Search
-4. Tabu Search
-5. Genetic Algorithm
-6. Simulated Annealing
+2. Local Search (Run on each vehicle separately; search restricted to the selected vehicle's initial route) (LS)
+3. Local Search (LS)
+4. Tabu Search (TS)
+5. Genetic Algorithm (GA)
+6. Simulated Annealing (SA)
 
 <a name="instructions"></a>
 #### To build and run: ####
      git clone https://github.com/vss2sn/cvrp.git  
      cd cvrp
      mkdir build  
-     cd build  
+     cd build  Problem
      cmake .. && make -j4
      ./cvrp  
 
@@ -30,19 +32,16 @@
 
 <a name="notes"></a>
 #### Notes: ####
-1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
-2. The metaheuristic parameters need to be set based on the problem size and structure.
-3. The genetic algorithm is implemented using a vector who's elements point to positions in another vector containing the all nodes in the order in which they will be visited. The first vector mentioned here shows how the second vector is split into the routes of the various vehicles.
-4. If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the HGreXCrossover() function. This can happen if using the GenerateGreedySolutions() function. Check set up to exit should this be the case.
-5. While the MakeValid() function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.
+1. The metaheuristic parameters need to be set based on the problem size and structure.
+2. The problem is setup using the problem class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
+3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the `Vehicle` class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. A function called `PrintStatus()` can be used to display each of the vehicles attributes.
+4. The solution class also contains a pure virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the `Solve()` method.
+5. For a brief overview on specific implementations of the algorithms, see [here](https://vss2sn.github.io/cvrp/algorithm_implementations.html).
+6. The documentation for private functions (such as operator in the GASolution class) has been made available to aid understanding.
 
 <a name="todos"></a>
 #### TODOs: ####
 1. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
-2. Refactor
-3. Code documentation (**Priority**)
-4. Consider adding max distance
-5. Add references (**Priority**)
-6. Set up tests
-7. Code coverage integration
-8. Run all the algorithms on different threads to speed up comparison
+2. Run all the algorithms on different threads to speed up comparison
+3. Refactor
+4. Consider adding savings algorithm

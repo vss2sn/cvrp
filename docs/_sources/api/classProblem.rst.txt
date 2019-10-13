@@ -1,0 +1,17 @@
+.. _exhale_class_classProblem:
+
+Class Problem
+=============
+
+- Defined in :ref:`file_inc_utils.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Problem
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

@@ -1,0 +1,35 @@
+
+.. _program_listing_file_inc_simulated_annealing.hpp:
+
+Program Listing for File simulated_annealing.hpp
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_inc_simulated_annealing.hpp>` (``inc/simulated_annealing.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef SA_HPP
+   #define SA_HPP
+   
+   #include "utils.hpp"
+   
+   class SimulatedAnnealingSolution : public Solution{
+   public:
+     SimulatedAnnealingSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
+       :Solution(nodes, vehicles, distanceMatrix){} ;
+   
+     SimulatedAnnealingSolution(Problem p)
+       :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+   
+     void Solve();
+   private:
+     double temp = 0, cooling_rate = 0.9999, best_cost, current_cost;
+     int max_temp = 5000, n_reheates = 20;
+   
+     inline bool AllowMove(double delta);
+   };
+   
+   #endif SA_HPP

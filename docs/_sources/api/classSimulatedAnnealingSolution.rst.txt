@@ -1,0 +1,26 @@
+.. _exhale_class_classSimulatedAnnealingSolution:
+
+Class SimulatedAnnealingSolution
+================================
+
+- Defined in :ref:`file_inc_simulated_annealing.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public Solution`` (:ref:`exhale_class_classSolution`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: SimulatedAnnealingSolution
+   :members:
+   :protected-members:
+   :private-members:
+   :undoc-members:

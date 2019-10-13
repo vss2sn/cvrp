@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Struct VectorHash &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class GASolution" href="classGASolution.html" />
+    <link rel="prev" title="Library API" href="library_root.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Capacitated Vehicle Routing Problem
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../algorithm_implementations.html">Notes on algorithm implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#greedy-solution">1. Greedy Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#local-search-ls">3. Local Search (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Struct VectorHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGASolution.html">Class GASolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classNode.html">Class Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classProblem.html">Class Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classRoute.html">Class Route</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSimulatedAnnealingSolution.html">Class SimulatedAnnealingSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSolution.html">Class Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTabuSearchSolution.html">Class TabuSearchSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classVehicle.html">Class Vehicle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_inc.html">Directory inc</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_greedy.hpp.html">File greedy.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_main.hpp.html">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_README.md.html">File README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_tabu_search.hpp.html">File tabu_search.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_utils.hpp.html">File utils.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capacitated Vehicle Routing Problem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Struct VectorHash</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/structVectorHash.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="struct-vectorhash">
+<span id="exhale-struct-structvectorhash"></span><h1>Struct VectorHash<a class="headerlink" href="#struct-vectorhash" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Defined in <a class="reference internal" href="file_inc_tabu_search.hpp.html#file-inc-tabu-search-hpp"><span class="std std-ref">File tabu_search.hpp</span></a></li>
+</ul>
+<div class="section" id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv310VectorHash">
+<span id="_CPPv210VectorHash"></span><span id="VectorHash"></span><span class="target" id="structVectorHash"></span><em class="property">struct </em><code class="descname">VectorHash</code><a class="headerlink" href="#_CPPv310VectorHash" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Struct to create hash for vector. </p>
+<p>Contains overloaded operator to create the hash for a vector </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv3NK10VectorHashclERKNSt6vectorIiEE">
+<span id="_CPPv2NK10VectorHashclERKNSt6vectorIiEE"></span><span id="VectorHash::call-operator__std::vector:i:CRC"></span><span class="target" id="structVectorHash_1a92159a2dc136c69bf2b5d701637321f3"></span>size_t <code class="descname">operator()</code><span class="sig-paren">(</span><em class="property">const</em> std::vector&lt;int&gt; &amp;<em>v</em><span class="sig-paren">)</span> <em class="property">const</em><a class="headerlink" href="#_CPPv3NK10VectorHashclERKNSt6vectorIiEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Overloaded operator to return hash value of a vector. </p>
+<p><p>Overloaded operator to return hash value of a vector. Used to create an unordered set for vectors. </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>size_t hash of the vector</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">vector&lt;int&gt;</span></code>: vector who’s hash is to be calculated </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="classGASolution.html" class="btn btn-neutral float-right" title="Class GASolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="library_root.html" class="btn btn-neutral float-left" title="Library API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, vss2sn
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
