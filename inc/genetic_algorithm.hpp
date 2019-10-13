@@ -30,7 +30,7 @@ public:
              :Solution(nodes, vehicles, distanceMatrix){
                   this->n_chromosomes = n_chromosomes;
                   this->generations = generations;
-                  n_genes = nodes.size()-1;
+                  n_nucleotide_pairs = nodes.size()-1;
                   costs = std::vector<double>(n_chromosomes);
                   n_vehicles = vehicles.size();
              };
@@ -48,7 +48,7 @@ public:
               :Solution(p){
                    this->n_chromosomes = n_chromosomes;
                    this->generations = generations;
-                   n_genes = nodes.size()-1;
+                   n_nucleotide_pairs = nodes.size()-1;
                    costs = std::vector<double>(n_chromosomes);
                    n_vehicles = vehicles.size();
                 };
@@ -64,7 +64,7 @@ private:
   std::vector<std::vector<int>> iterators;
   std::vector<int> chromosome;
   int n_chromosomes;
-  int n_genes;
+  int n_nucleotide_pairs;
   int n_vehicles;
   int generations;
   std::vector<double> costs;
@@ -106,16 +106,16 @@ private:
   void HGreXCrossover();
 
   /**
-  * @brief Swaps two random genes within a chromosome
+  * @brief Swaps two random nucleotide pairs  within a chromosome
   * @return void
-  * @details Attempts to swap two random genes within a chromosome 20 times, if the solution is improved by said swap
+  * @details Attempts to swap two random nucleotide pairs  within a chromosome 20 times, if the solution is improved by said swap
   */
   void RandomSwap();
 
   /**
   * @brief Mutates a chromosome
   * @return void
-  * @details Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 genes within the chromosome are selected and the order of all the genes between those 2 genes (inclusive) is reversed, if the solution is improved by said operation
+  * @details Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 nucleotide pairs  within the chromosome are selected and the order of all the nucleotide pairs  between those 2 nucleotide pairs  (inclusive) is reversed, if the solution is improved by said operation
   */
   void Mutate();
 
@@ -141,18 +141,18 @@ private:
   void AddBest();
 
   /**
-  * @brief Mutates a chromosome within an alele
+  * @brief Mutates a chromosome within an gene
   * @return void
-  * @details Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 genes within the chromosome, belonging to the same alele, are selected and the order of all the genes between those 2 genes (inclusive) is reversed, if the solution is improved by said operation
+  * @details Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 nucleotide pairs  within the chromosome, belonging to the same gene, are selected and the order of all the nucleotide pairs  between those 2 nucleotide pairs  (inclusive) is reversed, if the solution is improved by said operation
   */
-  void MutateWhithinAlele();
+  void MutateWhithinGene();
 
   /**
-  * @brief Swaps two random genes within an alele of a given chromosome
+  * @brief Swaps two random nucleotide pairs  within an gene of a given chromosome
   * @return void
-  * @details Attempts to swap two random genes within an alele of a given chromosome 20 times, ie, selects two genes within the route of a vehicle and swaps them if the solution is improved by the move
+  * @details Attempts to swap two random nucleotide pairs  within an gene of a given chromosome 20 times, ie, selects two nucleotide pairs  within the route of a vehicle and swaps them if the solution is improved by the move
   */
-  void SwapWhithinAlele();
+  void SwapWhithinGene();
 
   /**
   * @brief Split a route between 2 vehicles
@@ -166,7 +166,7 @@ private:
   * @param i_chromosome Chromosome selected
   * @param j_in Vehicle selected
   * @return bool True if operation successful
-  * @details Decrements the value at j_in position of the iterator vector of the chomosome selected, effectively including the last gene in the previous alele into the succeeding gene. Hence the last visited node from the preceeding vehicle is moved into the route of the current vehicle and is the first node visited by the current vehicle. Operation performed if solution is improved by said operation.
+  * @details Decrements the value at j_in position of the iterator vector of the chomosome selected, effectively including the last nucleotide pair in the previous gene into the succeeding nucleotide pair. Hence the last visited node from the preceeding vehicle is moved into the route of the current vehicle and is the first node visited by the current vehicle. Operation performed if solution is improved by said operation.
   */
   bool MutateIterLeft(int i_chromosome, int j_in);
 
@@ -175,7 +175,7 @@ private:
   * @param i_chromosome Chromosome selected
   * @param j_in Vehicle selected
   * @return bool True if operation successful
-  * @details Increments the value at j_in position of the iterator vector of the chomosome selected, effectively including the first gene in the current alele into the preceeding gene. Hence the first visited node from the current vehicle is moved into the route of the preceeding vehicle and is the last node visited by the preceeding vehicle. Operation performed if solution is improved by said operation.
+  * @details Increments the value at j_in position of the iterator vector of the chomosome selected, effectively including the first nucleotide pair in the current gene into the preceeding nucleotide pair. Hence the first visited node from the current vehicle is moved into the route of the preceeding vehicle and is the last node visited by the preceeding vehicle. Operation performed if solution is improved by said operation.
   */
   bool MutateIterRight(int i_chromosome, int j_in);
 
