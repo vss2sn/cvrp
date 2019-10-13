@@ -25,7 +25,7 @@ int main(){
   std::cout << std::endl;
 
   std::cout << "Tabu Search: " << std::endl;
-  TabuSearchSolution vrp_ts(p);
+  TabuSearchSolution vrp_ts(p, 10);
   vrp_ts.Solve();
   std::cout << std::endl;
 
@@ -35,7 +35,7 @@ int main(){
   std::cout << std::endl;
 
   std::cout << "Simulated Annealing: " << std::endl;
-  SimulatedAnnealingSolution vrp_sa(p);
+  SimulatedAnnealingSolution vrp_sa(p, 500000, 5000, 0.9999);
   vrp_sa.Solve();
   std::cout << std::endl;
 

@@ -37,19 +37,25 @@ public:
   * @param nodes Vector of nodes
   * @param vehicles Vector of vehicles
   * @param distanceMatrix Matrix containing distance between each pair of nodes
+  * @param n_tabu Size of tabu list
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
-    :Solution(nodes, vehicles, distanceMatrix){} ;
+  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50)
+    :Solution(nodes, vehicles, distanceMatrix){
+      this->n_tabu = n_tabu;
+    } ;
   /**
   * @brief Constructor
   * @param p Instance of problem class defining the problem parameters
+  * @param n_tabu Size of tabu list
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(Problem p)
-    :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+  TabuSearchSolution(Problem p, int n_tabu = 50)
+    :Solution(p.nodes, p.vehicles, p.distanceMatrix){
+      this->n_tabu = n_tabu;
+    };
 
   /**
   * @brief Function called to solve the given problem using a tabu search algorithm
@@ -57,7 +63,7 @@ public:
   * @details Generates random iniitial solutions. Applies selected algorithm. Prints cost of best solution, and its validity.
   */
   void Solve();
-private:  
+private:
   int capacity, n_tabu;
   double best_cost, new_cost;
 

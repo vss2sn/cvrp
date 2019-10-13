@@ -23,7 +23,6 @@ void SimulatedAnnealingSolution::Solve(){
   // std::cout << CheckSolutionValid() << std::endl;
   best_cost = cost;
   current_cost = cost;
-  int stag_limit = 500000,stag;
   int n_vehicles = vehicles.size();
   for(int r=0;r<n_reheates;r++){
     // std::cout << "Reheat number: " << r << std::endl;
@@ -70,6 +69,7 @@ void SimulatedAnnealingSolution::Solve(){
       if(current_cost < best_cost){
         // best_vehicles[v1->id] = *v1;
         // best_vehicles[v2->id] = *v2;
+        stag = stag_limit;
         best_vehicles= vehicles;
         best_cost = current_cost;
       }

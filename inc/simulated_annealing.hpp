@@ -16,20 +16,32 @@ public:
   * @param nodes Vector of nodes
   * @param vehicles Vector of vehicles
   * @param distanceMatrix Matrix containing distance between each pair of nodes
+  * @param stag_limit Number of iterations without an improvement to the best solution
+  * @param init_temp Initial temperature
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm
   */
-  SimulatedAnnealingSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
-    :Solution(nodes, vehicles, distanceMatrix){} ;
+  SimulatedAnnealingSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int stag_limit  = 500000, double init_temp = 5000, double cooling_rate = 0.9999)
+    :Solution(nodes, vehicles, distanceMatrix){
+      this->stag_limit = stag_limit;
+      this->max_temp = init_temp;
+      this->cooling_rate = cooling_rate;
+    } ;
 
   /**
   * @brief Constructor
   * @param p Instance of problem class defining the problem parameters
+  * @param stag_limit Number of iterations without an improvement to the best solution
+  * @param init_temp Initial temperature
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm
   */
-  SimulatedAnnealingSolution(Problem p)
-    :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+  SimulatedAnnealingSolution(Problem p, int stag_limit  = 500000, double init_temp = 5000, double cooling_rate = 0.9999)
+    :Solution(p.nodes, p.vehicles, p.distanceMatrix){
+      this->stag_limit = stag_limit;
+      this->max_temp = init_temp;
+      this->cooling_rate = cooling_rate;
+    };
 
   /**
   * @brief Function called to solve the given problem using a simulated annealing algorithm
@@ -38,9 +50,8 @@ public:
   */
   void Solve();
 private:
-  double temp = 0, cooling_rate = 0.9999, best_cost, current_cost;
-  int max_temp = 5000, n_reheates = 20;
-
+  double temp = 0, cooling_rate, best_cost, current_cost;
+  int max_temp, n_reheates = 20, stag_limit, stag;
   /**
   * @brief Checks whether the move is allowable
   * @param double delta change in cost of solution due to move

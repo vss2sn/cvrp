@@ -34,10 +34,10 @@ public:
 
   /**
   * @brief Consructor
-  * @param int x x coordinate
-  * @param int y y coordinate
-  * @param int id node id
-  * @param int demand node demand
+  * @param x x coordinate
+  * @param y y coordinate
+  * @param id node id
+  * @param demand node demand
   * @param bool is_routed
   * @return no return parameter
   * @details Constructor for a node
@@ -70,7 +70,7 @@ public:
 
   /**
   * @brief Calculates cost of the route
-  * @param std::vector<std::vector<double>> distanceMatrix Holds the distances between each pair of nodes
+  * @param distanceMatrix Holds the distances between each pair of nodes
   * @return void
   * @details Calculates cost of the route
   */
@@ -109,14 +109,14 @@ public:
 
   /**
   * @brief Constructor
-  * @param int noc number of nodes (centres/dropoff points)
-  * @param int demand_range max demand of each node (random value between 0 and this value)
-  * @param int mov number of vehicles
-  * @param int capacity maximum capacityof each vehicle
-  * @param int grid_range maximum x and y coordinates of any node
-  * @param string distribution distribution of nodes. Can be either clustered or uniform.
-  * @param int n_clusters If clustered, number of clusters the nodes are divided into
-  * @param int cluster_range If clustered, maximum distance from center of cluster.
+  * @param noc number of nodes (centres/dropoff points)
+  * @param demand_range max demand of each node (random value between 0 and this value)
+  * @param mov number of vehicles
+  * @param capacity maximum capacityof each vehicle
+  * @param grid_range maximum x and y coordinates of any node
+  * @param distribution distribution of nodes. Can be either clustered or uniform.
+  * @param n_clusters If clustered, number of clusters the nodes are divided into
+  * @param cluster_range If clustered, maximum distance from center of cluster.
   * @return no return value
   * @details Constructor for problem class
   */
@@ -132,9 +132,9 @@ public:
   int capacity;
   /**
   * @brief Constructor
-  * @param std::vector<Node> nodes Vector of all nodes
-  * @param std::vector<Vehicle> vehicles Vector of vehicles
-  * @param std::vector<std::vector<double>> distanceMatrix Matrix containing distance between each pair of nodes
+  * @param nodes Vector of all nodes
+  * @param vehicles Vector of vehicles
+  * @param distanceMatrix Matrix containing distance between each pair of nodes
   * @return no return type
   * @details Constructor for solution class
   */
@@ -171,9 +171,9 @@ public:
 
   /**
   * @brief find closest node
-  * @param Vehicle& v vehicle under consideration
-  * @param std::vector<std::vector<double>>& distanceMatrix Matrix containing distance between each pair of nodes
-  * @param std::vector<Node>& nodes
+  * @param v vehicle under consideration
+  * @param distanceMatrix Matrix containing distance between each pair of nodes
+  * @param nodes
   * @return Node nearest node
   * @details Finds the node nearest to the last node in the route of the vehicle under constideration that has not been routed already
   */

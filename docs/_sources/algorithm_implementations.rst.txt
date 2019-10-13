@@ -43,6 +43,7 @@ Notes on algorithm implementation
 - This allows the solution to once again accept moves that increase the cost of the solution, allowing the algorithm to explore a larger section of the solution space and not get stuck in a local minima.
 - The optimal move (the move that causes the greatest reduction/least increase in cost) is implemented.
 - The new links formed are added to the tabu list, preventing the newly formed links from being broken for a number of iterations (the size of tabu list is constant, so this translates to number of times a non tabu move is made).
+- The search stops if there are no possible moves.
 - This continues for a set number of iterations.
 
 5. Genetic Algorithm (GA)
@@ -54,6 +55,7 @@ Notes on algorithm implementation
   - The vehicle routes as split by the iterator vector, and are each referred to as a `gene`.
   - If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the `HGreXCrossover()` function. This can happen if using the `GenerateGreedySolutions()` function. A check is set up to exit should this be the case.
   - While the `MakeValid()` function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.
+  - The main crossover operator implemented is the Heuristic Greedy Crossover (HGreX)
 
 - Initial solutions are created (random and greedy heuristic)
 - For a given number of generations various operators are applied to the chromosomes randomly.

@@ -255,6 +255,7 @@
 <li>This allows the solution to once again accept moves that increase the cost of the solution, allowing the algorithm to explore a larger section of the solution space and not get stuck in a local minima.</li>
 <li>The optimal move (the move that causes the greatest reduction/least increase in cost) is implemented.</li>
 <li>The new links formed are added to the tabu list, preventing the newly formed links from being broken for a number of iterations (the size of tabu list is constant, so this translates to number of times a non tabu move is made).</li>
+<li>The search stops if there are no possible moves.</li>
 <li>This continues for a set number of iterations.</li>
 </ul>
 </div>
@@ -269,6 +270,7 @@
 <li>The vehicle routes as split by the iterator vector, and are each referred to as a <cite>gene</cite>.</li>
 <li>If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the <cite>HGreXCrossover()</cite> function. This can happen if using the <cite>GenerateGreedySolutions()</cite> function. A check is set up to exit should this be the case.</li>
 <li>While the <cite>MakeValid()</cite> function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.</li>
+<li>The main crossover operator implemented is the Heuristic Greedy Crossover (HGreX)</li>
 </ul>
 </div>
 <ul class="simple">

@@ -20,7 +20,6 @@ inline bool TabuSearchSolution::Aspiration(double& cost_increase, double& cost_r
 void TabuSearchSolution::Solve(){
   CreateInitialSolution();
   double cost = 0;
-  n_tabu = 50;
   for(auto& v:vehicles) cost += v.cost;
   auto best_vehicles = vehicles;
   bool flag = false, flag2 = true;
