@@ -67,6 +67,7 @@ Notes on algorithm implementation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. note::
   - The move as defined here is an move & insert operation. The first node selected is removed from its current route and inserted into the route of the second node, immediately in front of the second node.
+  - Given that this algorithm chooses 2 random nodes and attempts insertion, it works well only for smaller problems. Changing it to choose its moves with some heuristic, or in a manner similar to local search would improve its efficiency significantly.
 
 - An initial feasible solution is created.
 - Two vehicles are chosen at random.

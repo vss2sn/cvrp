@@ -249,7 +249,7 @@
 <li>The problem is setup using the problem class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.</li>
 <li>A base class called <code class="docutils literal notranslate"><span class="pre">Solution</span></code> has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle’s route. A function called <code class="docutils literal notranslate"><span class="pre">PrintStatus()</span></code> can be used to display each of the vehicles attributes.</li>
 <li>The solution class also contains a pure virtual function called <code class="docutils literal notranslate"><span class="pre">Solve()</span></code>. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the <code class="docutils literal notranslate"><span class="pre">Solve()</span></code> method.</li>
-<li>The documentation for private functions (such as operator in the GASolution class) has been made available to aid understanding.</li>
+<li>The documentation for private functions (such as operators in the GASolution class) has been made available to aid understanding.</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="algorithm_implementations"></a></span></p>
 </div>
@@ -261,7 +261,6 @@
 <div class="section" id="id5">
 <h3>TODOs:<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution</li>
 <li>Run all the algorithms on different threads to speed up comparison</li>
 <li>Refactor</li>
 <li>Consider adding savings algorithm</li>

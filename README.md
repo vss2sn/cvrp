@@ -37,7 +37,7 @@
 2. The problem is setup using the problem class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
 3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the `Vehicle` class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. A function called `PrintStatus()` can be used to display each of the vehicles attributes.
 4. The solution class also contains a pure virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the `Solve()` method.
-5. The documentation for private functions (such as operator in the GASolution class) has been made available to aid understanding.
+5. The documentation for private functions (such as operators in the GASolution class) has been made available to aid understanding.
 
 <a name="algorithm_implementations"></a>
 #### Overview of Algorithm Implementations ####
@@ -45,7 +45,6 @@ For a brief overview on the implementations of the algorithms, see [here](https:
 
 <a name="todos"></a>
 #### TODOs: ####
-1. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
-2. Run all the algorithms on different threads to speed up comparison
-3. Refactor
-4. Consider adding savings algorithm
+1. Run all the algorithms on different threads to speed up comparison
+2. Refactor
+3. Consider adding savings algorithm
