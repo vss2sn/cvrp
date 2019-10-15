@@ -223,7 +223,7 @@
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">vss2sn</span><span class="o">/</span><span class="n">cvrp</span><span class="p">.</span><span class="n">git</span>
 <span class="n">cd</span> <span class="n">cvrp</span>
 <span class="n">mkdir</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="n">build</span>  <span class="n">Problem</span>
+<span class="n">cd</span> <span class="n">build</span>
 <span class="n">cmake</span> <span class="p">..</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">-</span><span class="n">j4</span>
 <span class="p">.</span><span class="o">/</span><span class="n">cvrp</span>
 </pre></div>
@@ -246,7 +246,7 @@
 <h3>Notes:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>The metaheuristic parameters need to be set based on the problem size and structure.</li>
-<li>The problem is setup using the problem class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.</li>
+<li>The problem is setup using the <code class="docutils literal notranslate"><span class="pre">Problem</span></code> class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.</li>
 <li>A base class called <code class="docutils literal notranslate"><span class="pre">Solution</span></code> has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle’s route. A function called <code class="docutils literal notranslate"><span class="pre">PrintStatus()</span></code> can be used to display each of the vehicles attributes.</li>
 <li>The solution class also contains a pure virtual function called <code class="docutils literal notranslate"><span class="pre">Solve()</span></code>. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the <code class="docutils literal notranslate"><span class="pre">Solve()</span></code> method.</li>
 <li>The documentation for private functions (such as operators in the GASolution class) has been made available to aid understanding.</li>

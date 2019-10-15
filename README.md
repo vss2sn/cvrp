@@ -18,7 +18,7 @@
      git clone https://github.com/vss2sn/cvrp.git  
      cd cvrp
      mkdir build  
-     cd build  Problem
+     cd build
      cmake .. && make -j4
      ./cvrp  
 
@@ -34,7 +34,7 @@
 <a name="notes"></a>
 #### Notes: ####
 1. The metaheuristic parameters need to be set based on the problem size and structure.
-2. The problem is setup using the problem class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
+2. The problem is setup using the `Problem` class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
 3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the `Vehicle` class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. A function called `PrintStatus()` can be used to display each of the vehicles attributes.
 4. The solution class also contains a pure virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the `Solve()` method.
 5. The documentation for private functions (such as operators in the GASolution class) has been made available to aid understanding.
