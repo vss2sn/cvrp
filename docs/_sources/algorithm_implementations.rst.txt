@@ -55,9 +55,9 @@ Notes on algorithm implementation
   - The vehicle routes as split by the iterator vector, and are each referred to as a `gene`.
   - If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the `HGreXCrossover()` function. This can happen if using the `GenerateGreedySolutions()` function. A check is set up to exit should this be the case.
   - While the `MakeValid()` function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.
-  - The main crossover operator implemented is the Heuristic Greedy Crossover (HGreX)
+  - The main crossover operator implemented is the Heuristic Greedy Crossover (HGreX).
 
-- Initial solutions are created (random and greedy heuristic)
+- Initial solutions are created (random and greedy heuristic).
 - For a given number of generations various operators are applied to the chromosomes randomly.
 - Each operator is triggered with a set probability, and randomly selects the chromosome/iterator on which to apply said operator (Both the chromosomes and iterators have disticnt operator functions).
 - The number of chromosomes is maintained as constant, removing higher cost solutions (see documentation of functions for details).
@@ -72,7 +72,7 @@ Notes on algorithm implementation
 - An initial feasible solution is created.
 - Two vehicles are chosen at random.
 - A node within each of them is also chosen at random.
-- The move is made if the cost of the solution decreases or based on a probability calculated based on the `temperature` of the solution
+- The move is made if the cost of the solution decreases or based on a probability calculated based on the `temperature` of the solution.
 - A higher `temperature` allows a greater chance of moves increasing the cost of the solution to be accepted.
 - The `temperature` is reduced after every iteration using a geometric progression.
 - If the solution does not improve (`is stagnant`) over a number of iterations (`stag_limit`) a reheat operation is performed, increasing the temperature once again.
