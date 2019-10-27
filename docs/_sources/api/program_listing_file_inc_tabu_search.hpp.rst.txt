@@ -29,13 +29,13 @@ Program Listing for File tabu_search.hpp
    
    class TabuSearchSolution : public Solution{
    public:
-     TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
-       :Solution(nodes, vehicles, distanceMatrix){} ;
-     TabuSearchSolution(Problem p)
-       :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+     TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50);
+     TabuSearchSolution(Problem p, int n_tabu = 50);
+   
+     TabuSearchSolution(Solution s, int n_tabu = 50);
    
      void Solve();
-   private:  
+   private:
      int capacity, n_tabu;
      double best_cost, new_cost;
    

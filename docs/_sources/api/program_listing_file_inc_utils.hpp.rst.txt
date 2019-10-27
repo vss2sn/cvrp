@@ -73,6 +73,7 @@ Program Listing for File utils.hpp
      Problem(int noc = 1000, int demand_range = 40, int nov = 50, int capacity = 800, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
    };
    
+   // Solution class should not call problems's constructor so not inheriting.
    class Solution{
    public:
      std::vector<Node> nodes;
@@ -88,7 +89,7 @@ Program Listing for File utils.hpp
    
      bool CheckSolutionValid();
    
-     virtual void Solve(){};
+     virtual void Solve();
    
      Node find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes);
    };

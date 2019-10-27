@@ -143,7 +143,7 @@ public:
 
   /**
   * @brief Constructor
-  * @param p Instance of problem class defining the problem parameters
+  * @param p Instance of Problem class defining the problem parameters
   * @return no return type
   * @details Constructor for solution class
   */

@@ -39,5 +39,14 @@ int main(){
   vrp_sa.Solve();
   std::cout << std::endl;
 
+  // NOTE: The following is an example of how to create solutions by using the
+  // algorithms coding in this repository sequentially, effectively allowing
+  // the creation of hybrid algorithms/solutions
+  // 
+  // Solution s = vrp_greedy; // Strip out solution from vrp_greedy.
+  // LocalSearchInterIntraSolution hybrid(s);
+  // hybrid.Solve();
+  // std::cout << std::endl;
+
   return 0;
 }

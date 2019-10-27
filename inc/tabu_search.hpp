@@ -44,7 +44,7 @@ public:
   TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50);
   /**
   * @brief Constructor
-  * @param p Instance of problem class defining the problem parameters
+  * @param p Instance of Problem class defining the problem parameters
   * @param n_tabu Size of tabu list
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm

@@ -29,7 +29,7 @@ public:
              int generations);
   /**
   * @brief Constructor
-  * @param p Instance of problem class defining the problem parameters
+  * @param p Instance of Problem class defining the problem parameters
   * @param n_chromosomes Number of solutions
   * @param generations Number of generations the algorithm should run for
   * @return No return parameter
