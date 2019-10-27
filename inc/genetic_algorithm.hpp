@@ -40,6 +40,18 @@ public:
               int generations);
 
   /**
+  * @brief Constructor
+  * @param s Instance of predefined solution containing problem parameters
+  * @param n_chromosomes Number of solutions
+  * @param generations Number of generations the algorithm should run for
+  * @return No return parameter
+  * @details Constructor
+  */
+   GASolution(Solution s,
+              int n_chromosomes,
+              int generations);
+
+  /**
   * @brief Function called to solve the given problem using Genetic Algorithm
   * @return void
   * @details Generates random iniitial solutions. Applies selected algorithm. Prints cost of best solution, and its validity.

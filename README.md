@@ -62,3 +62,4 @@ For a brief overview on the implementations of the algorithms, please refer to t
 8. Read in problem from a file.
 9. Showcase simple use case of any algorithm in README.md as well as hybrid algorithm case
 10. Consider adding background of repository.
+11. Consider adding plot of best solution cost vs time.

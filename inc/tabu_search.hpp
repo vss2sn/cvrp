@@ -52,6 +52,15 @@ public:
   TabuSearchSolution(Problem p, int n_tabu = 50);
 
   /**
+  * @brief Constructor
+  * @param s Instance of predefined solution containing problem parameters
+  * @param n_tabu Size of tabu list
+  * @return No return parameter
+  * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
+  */
+  TabuSearchSolution(Solution s, int n_tabu = 50);
+
+  /**
   * @brief Function called to solve the given problem using a tabu search algorithm
   * @return void
   * @details Generates random iniitial solutions. Applies selected algorithm. Prints cost of best solution, and its validity.

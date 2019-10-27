@@ -7,7 +7,7 @@
 #include "main.hpp"
 
 int main(){
-  Problem p(100,4,8,50,100, "uniform");
+  Problem p(10,4,8,5,10, "uniform");
 
   std::cout << "Greedy: " << std::endl;
   GreedySolution vrp_greedy(p);

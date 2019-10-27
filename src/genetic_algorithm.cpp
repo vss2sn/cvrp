@@ -15,6 +15,58 @@ GASolution::GASolution(Problem p,
   n_nucleotide_pairs = nodes.size()-1;
   costs = std::vector<double>(n_chromosomes);
   n_vehicles = vehicles.size();
+
+  GenerateRandomSolutions();
+  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
+  GenerateGreedySolutions();
+  CalculateTotalCost();
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+}
+
+GASolution::GASolution(Solution s,
+           int n_chromosomes,
+           int generations)
+           :Solution(s){
+  this->n_chromosomes = n_chromosomes;
+  this->generations = generations;
+  n_nucleotide_pairs = nodes.size()-1;
+  costs = std::vector<double>(n_chromosomes);
+  n_vehicles = vehicles.size();
+
+  std::vector<int> temp_c, temp_i;
+  temp_i.push_back(0);
+  for(auto& v:vehicles){
+    for(int i=1;i<v.nodes.size()-1;i++) temp_c.push_back(v.nodes[i]);
+    temp_i.push_back(temp_c.size());
+  }
+
+  for(auto& v:vehicles){
+    v.nodes.clear();
+    v.nodes.push_back(0);
+    v.load = capacity;
+  }
+
+  for(auto& v:vehicles){
+    v.nodes.clear();
+    v.nodes.push_back(0);
+    v.load = capacity;
+  }
+  for(auto& n:nodes) n.is_routed = false;
+  nodes[0].is_routed = true;
+
+  GenerateRandomSolutions();
+  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
+  GenerateGreedySolutions();
+  // Replacing the greedy solution (1st chromosome) with the solution given as input
+  chromosomes[0] = temp_c;
+  iterators[0] = temp_i;
+  if(!checkValidity(0) || chromosomes[0].size() != n_nucleotide_pairs){
+    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    exit(0);
+  }
+
+  CalculateTotalCost();
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
 }
 
 GASolution::GASolution(std::vector<Node> nodes,
@@ -28,6 +80,12 @@ GASolution::GASolution(std::vector<Node> nodes,
   n_nucleotide_pairs = nodes.size()-1;
   costs = std::vector<double>(n_chromosomes);
   n_vehicles = vehicles.size();
+
+  GenerateRandomSolutions();
+  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
+  GenerateGreedySolutions();
+  CalculateTotalCost();
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
 }
 
 std::vector<int> GASolution::GenerateRandomSolution(){
@@ -214,11 +272,6 @@ void GASolution::CalculateTotalCost(){
 }
 
 void GASolution::Solve(){
-  GenerateRandomSolutions();
-  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
-  GenerateGreedySolutions();
-  CalculateTotalCost();
-  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
   int generation = 0;
   while(generation < generations){
     // std::cout << "Generation: " << generation << std::endl;
@@ -650,7 +703,7 @@ void GASolution::InsertIterDist(){
   int val = iterators[n][i]+rand()%(range-1)+1;
   iterators[n].erase(iterators[n].begin()+j);
   iterators[n].insert(iterators[n].begin()+i+1, val);
-  MakeValid(n); // dont  htink this is req
+  MakeValid(n); // dont think this is req
   if(!checkValidity(n)) std::cout << "Invalid from insertiterdist"<<std::endl;
   int c2 = CalculateCost(n);
   if(costs[n]<c2) iterators[n] = temp;

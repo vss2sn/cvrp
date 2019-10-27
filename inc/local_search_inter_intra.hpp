@@ -30,6 +30,13 @@ public:
   LocalSearchInterIntraSolution(Problem p);
 
   /**
+  * @brief Constructor
+  * @param s Instance of predefined solution containing problem parameters
+  * @return No return parameter
+  * @details Constructor for initial setup of problem, and solution using Local Search within all vehicles
+  */
+  LocalSearchInterIntraSolution(Solution s);
+  /**
   * @brief Function called to solve the given problem using a local search algorithm
   * @return void
   * @details Generates random iniitial solutions. Applies selected algorithm. Prints cost of best solution, and its validity.

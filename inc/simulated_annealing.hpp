@@ -34,6 +34,16 @@ public:
   SimulatedAnnealingSolution(Problem p, int stag_limit  = 500000, double init_temp = 5000, double cooling_rate = 0.9999);
 
   /**
+  * @brief Constructor
+  * @param * @param s Instance of predefined solution containing problem parameters
+  * @param stag_limit Number of iterations without an improvement to the best solution
+  * @param init_temp Initial temperature
+  * @return No return parameter
+  * @details Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm
+  */
+  SimulatedAnnealingSolution(Solution s, int stag_limit  = 500000, double init_temp = 5000, double cooling_rate = 0.9999);
+
+  /**
   * @brief Function called to solve the given problem using a simulated annealing algorithm
   * @return void
   * @details Generates random iniitial solutions. Applies selected algorithm. Prints cost of best solution, and its validity.

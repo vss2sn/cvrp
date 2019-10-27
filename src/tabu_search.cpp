@@ -8,13 +8,20 @@
 
 TabuSearchSolution::TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu)
   :Solution(nodes, vehicles, distanceMatrix){
-    this->n_tabu = n_tabu;
-  }
+  this->n_tabu = n_tabu;
+  CreateInitialSolution();
+}
 
 TabuSearchSolution::TabuSearchSolution(Problem p, int n_tabu)
   :Solution(p.nodes, p.vehicles, p.distanceMatrix){
-    this->n_tabu = n_tabu;
-  }
+  this->n_tabu = n_tabu;
+  CreateInitialSolution();
+}
+
+TabuSearchSolution::TabuSearchSolution(Solution s, int n_tabu)
+  :Solution(s){
+  this->n_tabu = n_tabu;
+}
 
 inline bool TabuSearchSolution::IsTabu(const int& begin, const int& end){
   for(int i=begin; i<=end;i++){
@@ -28,7 +35,6 @@ inline bool TabuSearchSolution::Aspiration(double& cost_increase, double& cost_r
 }
 
 void TabuSearchSolution::Solve(){
-  CreateInitialSolution();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   auto best_vehicles = vehicles;

@@ -7,13 +7,20 @@
 #include "local_search_inter_intra.hpp"
 
 LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
-  :Solution(nodes, vehicles, distanceMatrix){} ;
+  :Solution(nodes, vehicles, distanceMatrix){
+  CreateInitialSolution();
+};
 
 LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Problem p)
-  :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+  :Solution(p.nodes, p.vehicles, p.distanceMatrix){
+  CreateInitialSolution();
+};
+
+LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Solution s)
+  :Solution(s){
+};
 
 void LocalSearchInterIntraSolution::Solve(){
-  CreateInitialSolution();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   double delta = 0.0, cost_reduction, cost_increase, bcr, bci;
