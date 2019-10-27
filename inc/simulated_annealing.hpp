@@ -35,7 +35,7 @@ public:
 
   /**
   * @brief Constructor
-  * @param * @param s Instance of predefined solution containing problem parameters
+  * @param s Instance of Solution class containing a valid solution and problem parameters
   * @param stag_limit Number of iterations without an improvement to the best solution
   * @param init_temp Initial temperature
   * @return No return parameter

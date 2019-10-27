@@ -31,7 +31,7 @@ public:
 
   /**
   * @brief Constructor
-  * @param s Instance of predefined solution containing problem parameters
+  * @param s Instance of Solution class containing a valid solution and problem parameters
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Local Search applied to the routes of each of the vehicles separately
   */

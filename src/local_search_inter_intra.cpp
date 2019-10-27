@@ -18,6 +18,10 @@ LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Problem p)
 
 LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Solution s)
   :Solution(s){
+    if(!s.CheckSolutionValid()){
+      std::cout << "The input solution is invalid. Exiting." <<std::endl;
+      exit(0);
+    }
 };
 
 void LocalSearchInterIntraSolution::Solve(){

@@ -27,6 +27,10 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(Solution s, int stag_limi
   this->stag_limit = stag_limit;
   this->max_temp = init_temp;
   this->cooling_rate = cooling_rate;
+  if(!s.CheckSolutionValid()){
+    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    exit(0);
+  }
 }
 
 inline bool SimulatedAnnealingSolution::AllowMove(double delta){//Vehicle *v1, Vehicle *v2, int cur, int rep){

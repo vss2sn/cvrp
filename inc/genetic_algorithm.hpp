@@ -41,7 +41,7 @@ public:
 
   /**
   * @brief Constructor
-  * @param s Instance of predefined solution containing problem parameters
+  * @param s Instance of Solution class containing a valid solution and problem parameters
   * @param n_chromosomes Number of solutions
   * @param generations Number of generations the algorithm should run for
   * @return No return parameter

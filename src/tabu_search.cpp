@@ -21,6 +21,10 @@ TabuSearchSolution::TabuSearchSolution(Problem p, int n_tabu)
 TabuSearchSolution::TabuSearchSolution(Solution s, int n_tabu)
   :Solution(s){
   this->n_tabu = n_tabu;
+  if(!s.CheckSolutionValid()){
+    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    exit(0);
+  }
 }
 
 inline bool TabuSearchSolution::IsTabu(const int& begin, const int& end){

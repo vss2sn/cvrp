@@ -61,6 +61,7 @@ GASolution::GASolution(Solution s,
   chromosomes[0] = temp_c;
   iterators[0] = temp_i;
   if(!checkValidity(0) || chromosomes[0].size() != n_nucleotide_pairs){
+    // Extra sanity check for size of solution 
     std::cout << "The input solution is invalid. Exiting." <<std::endl;
     exit(0);
   }

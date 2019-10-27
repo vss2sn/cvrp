@@ -53,7 +53,7 @@ public:
 
   /**
   * @brief Constructor
-  * @param s Instance of predefined solution containing problem parameters
+  * @param s Instance of Solution class containing a valid solution and problem parameters
   * @param n_tabu Size of tabu list
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
