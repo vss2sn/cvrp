@@ -1,7 +1,7 @@
 /**
 * @file main.cpp
 * @author vss2sn
-* @brief The main function that setsup the problem and runsthe solution algorithms
+* @brief The main function that sets up the problem and runs the solution algorithms
 */
 
 #include "main.hpp"

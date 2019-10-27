@@ -15,21 +15,30 @@
 
 <a name="instructions"></a>
 #### To build and run: ####
-     git clone https://github.com/vss2sn/cvrp.git  
-     cd cvrp
-     mkdir build  
-     cd build
-     cmake .. && make -j4
-     ./cvrp  
+    git clone https://github.com/vss2sn/cvrp.git  
+    cd cvrp
+    mkdir build  
+    cd build
+    cmake .. && make -j4
+    ./cvrp  
 
 <a name="toc"></a>
 #### Table of contents: ####
 - [Algorithms](#algorithms)
 - [Instructions](#instructions)
 - [Table of contents](#toc)
-- [Notes](#notes)
+- [Documentation](#docs)
 - [Overview of Algorithm Implementations](#algorithm_implementations)
+- [Notes](#notes)
 - [TODOs](#todos)
+
+<a name="docs"></a>
+1. Please refer to the documentation [here](https://vss2sn.github.io/cvrp/)
+2. Documentation can be found on GitHub pages. It has been created using Doxygen, and pip3 packages Sphinx (sphinx==1.8.3), Breathe (breathe==4.12.0), Exhale (exhale==0.2.2), Read the Docs Sphinx Theme (sphinx_rtd_theme==0.4.3) and m2r.
+
+<a name="algorithm_implementations"></a>
+#### Overview of Algorithm Implementations ####
+For a brief overview on the implementations of the algorithms, please refer to the document [here](https://vss2sn.github.io/cvrp/algorithm_implementations.html).
 
 <a name="notes"></a>
 #### Notes: ####
@@ -38,13 +47,17 @@
 3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the `Vehicle` class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. A function called `PrintStatus()` can be used to display each of the vehicles attributes.
 4. The solution class also contains a pure virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the `Solve()` method.
 5. The documentation for private functions (such as operators in the GASolution class) has been made available to aid understanding.
-
-<a name="algorithm_implementations"></a>
-#### Overview of Algorithm Implementations ####
-For a brief overview on the implementations of the algorithms, see [here](https://vss2sn.github.io/cvrp/algorithm_implementations.html).
+6. `main.cpp` contains the main function in which the probelm is set up and from which all the algorithms are called.
 
 <a name="todos"></a>
 #### TODOs: ####
 1. Run all the algorithms on different threads to speed up comparison
 2. Refactor
 3. Consider adding savings algorithm
+4. Refactor problem and solution class to allow multiple algorithms to be applied to same solution sequentially (e.g.:  Simulated annealing followed by local search after a point) allowing for the creation of a hybrid algorithm directly, rather than coding it in separately. Create initial solution iff the current solution is not valid/move to constructor.
+5. Add visualizer using ROS/ROS2.
+6. Consider adding maximum distance constraint
+7. Consider modifying to allow heterogeneous vehicles.
+8. Read in problem from a file.
+9. Showcase simple use case of any algorithm in README.md as well as hybrid algorithm case
+10. Consider adding background of repository.

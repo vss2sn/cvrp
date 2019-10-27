@@ -56,6 +56,7 @@ Notes on algorithm implementation
   - If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the `HGreXCrossover()` function. This can happen if using the `GenerateGreedySolutions()` function. A check is set up to exit should this be the case.
   - While the `MakeValid()` function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.
   - The main crossover operator implemented is the Heuristic Greedy Crossover (HGreX).
+  - Reference for operator selection: Puljic, K. & Manger, R. (2013). Comparison of eight evolutionary crossover operators for the vehicle routing problem. Mathematical Communication, 18, 359–375
 
 - Initial solutions are created (random and greedy heuristic).
 - For a given number of generations various operators are applied to the chromosomes randomly.

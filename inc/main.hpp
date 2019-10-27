@@ -14,6 +14,6 @@
 /**
 * @brief Main function
 * @return int 0
-* @details Main function that creates the problem and calls the various solve functions for each of teh solution algorithms
+* @details Main function that creates the problem and calls the various solve functions for each of the solution algorithms
 */
 int main();
