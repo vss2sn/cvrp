@@ -55,10 +55,11 @@ For a brief overview on the implementations of the algorithms, please refer to t
 1. Run all the algorithms on different threads to speed up comparison
 2. Refactor
 3. Consider adding savings algorithm
-4. Refactor problem and solution class to allow multiple algorithms to be applied to same solution sequentially (e.g.:  Simulated annealing followed by local search after a point) allowing for the creation of a hybrid algorithm directly, rather than coding it in separately. Create initial solution iff the current solution is not valid/move to constructor.
+4. Refactor problem and solution class to allow multiple algorithms to be applied to same solution sequentially (e.g.:  Simulated annealing followed by local search after a point) allowing for the creation of a hybrid algorithm directly, rather than coding it in separately. Create initial solution iff the current solution is not valid/move to constructor. (Done)
 5. Add visualizer using ROS/ROS2.
 6. Consider adding maximum distance constraint
 7. Consider modifying to allow heterogeneous vehicles.
 8. Read in problem from a file.
-9. Showcase simple use case of any algorithm in README.md as well as hybrid algorithm case
+9. Showcase simple use case of any algorithm in README.md as well as hybrid algorithm case. (Done)
 10. Consider adding background of repository.
+11. Consider adding plot of best solution cost vs time.

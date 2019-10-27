@@ -87,6 +87,8 @@ void Solution::CreateInitialSolution(){
   }
 }
 
+void Solution::Solve(){}
+
 Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes){
     double cost = INT_MAX;
     int id = -1;

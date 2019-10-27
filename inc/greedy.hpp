@@ -19,16 +19,15 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using greedy algorithm
   */
-  GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
-    :Solution(nodes, vehicles, distanceMatrix){};
+  GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
+
   /**
   * @brief Constructor
-  * @param p Instance of problem class defining the problem parameters
+  * @param p Instance of Problem class defining the problem parameters
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using greedy algorithm
   */
-  GreedySolution(Problem p)
-      :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+  GreedySolution(Problem p);
 
   /**
   * @brief Function called to solve the given problem using a greedy algorithm

@@ -19,18 +19,23 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Local Search applied to the routes of each of the vehicles separately
   */
-  LocalSearchIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
-    :Solution(nodes, vehicles, distanceMatrix){} ;
+  LocalSearchIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
 
   /**
   * @brief Constructor
-  * @param p Instance of problem class defining the problem parameters
+  * @param p Instance of Problem class defining the problem parameters
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Local Search applied to the routes of each of the vehicles separately
   */
-  LocalSearchIntraSolution(Problem p)
-    :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+  LocalSearchIntraSolution(Problem p);
 
+  /**
+  * @brief Constructor
+  * @param s Instance of Solution class containing a valid solution and problem parameters
+  * @return No return parameter
+  * @details Constructor for initial setup of problem, and solution using Local Search applied to the routes of each of the vehicles separately
+  */
+  LocalSearchIntraSolution(Solution s);
   /**
   * @brief Function called to solve the given problem using a local search algorithm
   * @return void

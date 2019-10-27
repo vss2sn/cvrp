@@ -6,8 +6,25 @@
 
 #include "local_search_intra.hpp"
 
-void LocalSearchIntraSolution::Solve(){
+LocalSearchIntraSolution::LocalSearchIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
+  :Solution(nodes, vehicles, distanceMatrix){
   CreateInitialSolution();
+} ;
+
+LocalSearchIntraSolution::LocalSearchIntraSolution(Problem p)
+  :Solution(p.nodes, p.vehicles, p.distanceMatrix){
+  CreateInitialSolution();
+};
+
+LocalSearchIntraSolution::LocalSearchIntraSolution(Solution s)
+  :Solution(s){
+    if(!s.CheckSolutionValid()){
+      std::cout << "The input solution is invalid. Exiting." <<std::endl;
+      exit(0);
+    }
+};
+
+void LocalSearchIntraSolution::Solve(){
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   for(auto& v:vehicles){

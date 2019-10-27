@@ -6,6 +6,33 @@
 
 #include "simulated_annealing.hpp"
 
+SimulatedAnnealingSolution::SimulatedAnnealingSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int stag_limit, double init_temp, double cooling_rate)
+  :Solution(nodes, vehicles, distanceMatrix){
+  this->stag_limit = stag_limit;
+  this->max_temp = init_temp;
+  this->cooling_rate = cooling_rate;
+  CreateInitialSolution();
+}
+
+SimulatedAnnealingSolution::SimulatedAnnealingSolution(Problem p, int stag_limit, double init_temp, double cooling_rate)
+  :Solution(p.nodes, p.vehicles, p.distanceMatrix){
+  this->stag_limit = stag_limit;
+  this->max_temp = init_temp;
+  this->cooling_rate = cooling_rate;
+  CreateInitialSolution();
+}
+
+SimulatedAnnealingSolution::SimulatedAnnealingSolution(Solution s, int stag_limit, double init_temp, double cooling_rate)
+  :Solution(s){
+  this->stag_limit = stag_limit;
+  this->max_temp = init_temp;
+  this->cooling_rate = cooling_rate;
+  if(!s.CheckSolutionValid()){
+    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    exit(0);
+  }
+}
+
 inline bool SimulatedAnnealingSolution::AllowMove(double delta){//Vehicle *v1, Vehicle *v2, int cur, int rep){
   if(delta < -0.0000000001) return true;
   else if(((double)rand()/RAND_MAX) < exp(-delta/temp)){
@@ -15,7 +42,6 @@ inline bool SimulatedAnnealingSolution::AllowMove(double delta){//Vehicle *v1, V
 }
 
 void SimulatedAnnealingSolution::Solve(){
-  CreateInitialSolution();
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   // std::cout << "Init cost: "<< cost << std::endl;
