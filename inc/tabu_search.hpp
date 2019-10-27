@@ -41,10 +41,7 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50)
-    :Solution(nodes, vehicles, distanceMatrix){
-      this->n_tabu = n_tabu;
-    } ;
+  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50);
   /**
   * @brief Constructor
   * @param p Instance of problem class defining the problem parameters
@@ -52,10 +49,7 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(Problem p, int n_tabu = 50)
-    :Solution(p.nodes, p.vehicles, p.distanceMatrix){
-      this->n_tabu = n_tabu;
-    };
+  TabuSearchSolution(Problem p, int n_tabu = 50);
 
   /**
   * @brief Function called to solve the given problem using a tabu search algorithm

@@ -25,7 +25,7 @@
 
 /**
 * @brief Class node
-* @details Contains the x, y coordinates of the locationof the node, its id, its demand, andwhether it has been added to the routes of any of the vehicles
+* @details Contains the x, y coordinates of the locationof the node, its id, its demand, and whether it has been added to the routes of any of the vehicles
 */
 class Node{
 public:
@@ -123,6 +123,7 @@ public:
   Problem(int noc = 1000, int demand_range = 40, int nov = 50, int capacity = 800, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
 };
 
+// Solution class should not call problems's constructor so not inheriting.
 class Solution{
 public:
   std::vector<Node> nodes;
@@ -167,7 +168,7 @@ public:
   * @return void
   * @details Virtual function overloaded by solution classes to solve the given problem.
   */
-  virtual void Solve(){};
+  virtual void Solve();
 
   /**
   * @brief find closest node

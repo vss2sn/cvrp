@@ -26,14 +26,7 @@ public:
              std::vector<Vehicle> vehicles,
              std::vector<std::vector<double>> distanceMatrix,
              int n_chromosomes,
-             int generations)
-             :Solution(nodes, vehicles, distanceMatrix){
-                  this->n_chromosomes = n_chromosomes;
-                  this->generations = generations;
-                  n_nucleotide_pairs = nodes.size()-1;
-                  costs = std::vector<double>(n_chromosomes);
-                  n_vehicles = vehicles.size();
-             };
+             int generations);
   /**
   * @brief Constructor
   * @param p Instance of problem class defining the problem parameters
@@ -44,14 +37,7 @@ public:
   */
    GASolution(Problem p,
               int n_chromosomes,
-              int generations)
-              :Solution(p){
-                   this->n_chromosomes = n_chromosomes;
-                   this->generations = generations;
-                   n_nucleotide_pairs = nodes.size()-1;
-                   costs = std::vector<double>(n_chromosomes);
-                   n_vehicles = vehicles.size();
-                };
+              int generations);
 
   /**
   * @brief Function called to solve the given problem using Genetic Algorithm

@@ -6,6 +6,12 @@
 
 #include "greedy.hpp"
 
+GreedySolution::GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
+  :Solution(nodes, vehicles, distanceMatrix){};
+
+GreedySolution::GreedySolution(Problem p)
+  :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+
 void GreedySolution::Solve(){
   for(auto& v:vehicles){
     while(true){

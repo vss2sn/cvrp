@@ -6,6 +6,30 @@
 
 #include "genetic_algorithm.hpp"
 
+GASolution::GASolution(Problem p,
+           int n_chromosomes,
+           int generations)
+           :Solution(p){
+  this->n_chromosomes = n_chromosomes;
+  this->generations = generations;
+  n_nucleotide_pairs = nodes.size()-1;
+  costs = std::vector<double>(n_chromosomes);
+  n_vehicles = vehicles.size();
+}
+
+GASolution::GASolution(std::vector<Node> nodes,
+           std::vector<Vehicle> vehicles,
+           std::vector<std::vector<double>> distanceMatrix,
+           int n_chromosomes,
+           int generations)
+           :Solution(nodes, vehicles, distanceMatrix){
+  this->n_chromosomes = n_chromosomes;
+  this->generations = generations;
+  n_nucleotide_pairs = nodes.size()-1;
+  costs = std::vector<double>(n_chromosomes);
+  n_vehicles = vehicles.size();
+}
+
 std::vector<int> GASolution::GenerateRandomSolution(){
   std::vector<int> temp(n_nucleotide_pairs);
   for(int i=0; i<n_nucleotide_pairs; ++i){

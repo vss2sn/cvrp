@@ -6,6 +6,12 @@
 
 #include "local_search_inter_intra.hpp"
 
+LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
+  :Solution(nodes, vehicles, distanceMatrix){} ;
+
+LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Problem p)
+  :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+
 void LocalSearchInterIntraSolution::Solve(){
   CreateInitialSolution();
   double cost = 0;
