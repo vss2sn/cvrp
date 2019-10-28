@@ -23,24 +23,14 @@ Program Listing for File genetic_algorithm.hpp
                 std::vector<Vehicle> vehicles,
                 std::vector<std::vector<double>> distanceMatrix,
                 int n_chromosomes,
-                int generations)
-                :Solution(nodes, vehicles, distanceMatrix){
-                     this->n_chromosomes = n_chromosomes;
-                     this->generations = generations;
-                     n_genes = nodes.size()-1;
-                     costs = std::vector<double>(n_chromosomes);
-                     n_vehicles = vehicles.size();
-                };
+                int generations);
       GASolution(Problem p,
                  int n_chromosomes,
-                 int generations)
-                 :Solution(p){
-                      this->n_chromosomes = n_chromosomes;
-                      this->generations = generations;
-                      n_genes = nodes.size()-1;
-                      costs = std::vector<double>(n_chromosomes);
-                      n_vehicles = vehicles.size();
-                   };
+                 int generations);
+   
+      GASolution(Solution s,
+                 int n_chromosomes,
+                 int generations);
    
      void Solve();
    private:
@@ -48,7 +38,7 @@ Program Listing for File genetic_algorithm.hpp
      std::vector<std::vector<int>> iterators;
      std::vector<int> chromosome;
      int n_chromosomes;
-     int n_genes;
+     int n_nucleotide_pairs;
      int n_vehicles;
      int generations;
      std::vector<double> costs;
@@ -74,9 +64,9 @@ Program Listing for File genetic_algorithm.hpp
    
      void AddBest();
    
-     void MutateWhithinAlele();
+     void MutateWhithinGene();
    
-     void SwapWhithinAlele();
+     void SwapWhithinGene();
    
      void InsertIterDist();
    
@@ -105,4 +95,4 @@ Program Listing for File genetic_algorithm.hpp
      void MakeValid(int i);
    };
    
-   #endif GA_HPP
+   #endif

@@ -25,7 +25,7 @@
 
 /**
 * @brief Class node
-* @details Contains the x, y coordinates of the locationof the node, its id, its demand, andwhether it has been added to the routes of any of the vehicles
+* @details Contains the x, y coordinates of the locationof the node, its id, its demand, and whether it has been added to the routes of any of the vehicles
 */
 class Node{
 public:
@@ -38,7 +38,7 @@ public:
   * @param y y coordinate
   * @param id node id
   * @param demand node demand
-  * @param bool is_routed
+  * @param is_routed has the node been included in a route
   * @return no return parameter
   * @details Constructor for a node
   */
@@ -111,7 +111,7 @@ public:
   * @brief Constructor
   * @param noc number of nodes (centres/dropoff points)
   * @param demand_range max demand of each node (random value between 0 and this value)
-  * @param mov number of vehicles
+  * @param nov number of vehicles
   * @param capacity maximum capacityof each vehicle
   * @param grid_range maximum x and y coordinates of any node
   * @param distribution distribution of nodes. Can be either clustered or uniform.
@@ -123,6 +123,7 @@ public:
   Problem(int noc = 1000, int demand_range = 40, int nov = 50, int capacity = 800, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
 };
 
+// Solution class should not call problems's constructor so not inheriting.
 class Solution{
 public:
   std::vector<Node> nodes;
@@ -142,7 +143,7 @@ public:
 
   /**
   * @brief Constructor
-  * @param p Instance of problem class defining the problem parameters
+  * @param p Instance of Problem class defining the problem parameters
   * @return no return type
   * @details Constructor for solution class
   */
@@ -167,7 +168,7 @@ public:
   * @return void
   * @details Virtual function overloaded by solution classes to solve the given problem.
   */
-  virtual void Solve(){};
+  virtual void Solve();
 
   /**
   * @brief find closest node

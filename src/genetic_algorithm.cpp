@@ -6,6 +6,84 @@
 
 #include "genetic_algorithm.hpp"
 
+GASolution::GASolution(Problem p,
+           int n_chromosomes,
+           int generations)
+           :Solution(p){
+  this->n_chromosomes = n_chromosomes;
+  this->generations = generations;
+  n_nucleotide_pairs = nodes.size()-1;
+  costs = std::vector<double>(n_chromosomes);
+  n_vehicles = vehicles.size();
+
+  GenerateRandomSolutions();
+  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
+  GenerateGreedySolutions();
+  CalculateTotalCost();
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+}
+
+GASolution::GASolution(Solution s,
+           int n_chromosomes,
+           int generations)
+           :Solution(s){
+  this->n_chromosomes = n_chromosomes;
+  this->generations = generations;
+  n_nucleotide_pairs = nodes.size()-1;
+  costs = std::vector<double>(n_chromosomes);
+  n_vehicles = vehicles.size();
+
+  std::vector<int> temp_c, temp_i;
+  temp_i.push_back(0);
+  for(auto& v:vehicles){
+    for(size_t i=1;i<v.nodes.size()-1;i++) temp_c.push_back(v.nodes[i]);
+    temp_i.push_back(temp_c.size());
+  }
+
+  for(auto& v:vehicles){
+    v.nodes.clear();
+    v.nodes.push_back(0);
+    v.load = capacity;
+  }
+
+  for(auto& n:nodes) n.is_routed = false;
+  nodes[0].is_routed = true;
+
+  GenerateRandomSolutions();
+  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
+  GenerateGreedySolutions();
+  // Replacing the greedy solution (1st chromosome) with the solution given as input
+  chromosomes[0] = temp_c;
+  iterators[0] = temp_i;
+  if(!checkValidity(0) || chromosomes[0].size() != size_t(n_nucleotide_pairs)){
+    // Extra sanity check for size of solution
+    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    exit(0);
+  }
+
+  CalculateTotalCost();
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+}
+
+GASolution::GASolution(std::vector<Node> nodes,
+           std::vector<Vehicle> vehicles,
+           std::vector<std::vector<double>> distanceMatrix,
+           int n_chromosomes,
+           int generations)
+           :Solution(nodes, vehicles, distanceMatrix){
+  this->n_chromosomes = n_chromosomes;
+  this->generations = generations;
+  n_nucleotide_pairs = nodes.size()-1;
+  costs = std::vector<double>(n_chromosomes);
+  n_vehicles = vehicles.size();
+
+  GenerateRandomSolutions();
+  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
+  GenerateGreedySolutions();
+  CalculateTotalCost();
+  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
+}
+
 std::vector<int> GASolution::GenerateRandomSolution(){
   std::vector<int> temp(n_nucleotide_pairs);
   for(int i=0; i<n_nucleotide_pairs; ++i){
@@ -82,7 +160,7 @@ void GASolution::GenerateGreedySolutions(){
   }
   double cost = 0;
   for(auto& v:vehicles2) cost += v.cost;
-  if(gs.size() != n_nucleotide_pairs){
+  if(gs.size() != size_t(n_nucleotide_pairs)){
     std::cout << "Initial solution does not contain all the nodes. Exiting" << std::endl;
     exit(0);
   }
@@ -122,13 +200,12 @@ void GASolution::GenerateGreedySolutions(){
       }
     }
     chromosomes[j] = gs;
-    if(gs.size() != n_nucleotide_pairs){
+    if(gs.size() != size_t(n_nucleotide_pairs)){
       std::cout << "Initial solutions do not contain all the nodes. Exiting" << std::endl;
       exit(0);
     }
     iterators[j] = iter;
     MakeValid(j);
-    // if(!checkValidity(j)) std::cout << "Oi"<<std::endl;
     costs[j] = CalculateCost(j);
   }
 }
@@ -157,7 +234,6 @@ void GASolution::RemoveSimilarSolutions(){
       chromosomes[*it] = GenerateRandomSolution();
       iterators[*it] = GenerateRandomIterSolution();
       MakeValid(*it);
-      // if(!checkValidity(*it)) std::cout << "OI"<< std::endl;
       costs[*it] = CalculateCost(*it);
     }
   }
@@ -165,8 +241,7 @@ void GASolution::RemoveSimilarSolutions(){
 
 double GASolution::CalculateCost(int i){
   double cost = 0;
-  double tmp = costs[i];
-  for(int k=0;k<iterators[0].size()-1;k++){
+  for(size_t k=0;k<iterators[0].size()-1;k++){
     if(iterators[i][k]==n_nucleotide_pairs) break;
     int j=iterators[i][k];
     if(j<iterators[i][k+1]) cost+=distanceMatrix[0][chromosomes[i][j]];
@@ -190,11 +265,6 @@ void GASolution::CalculateTotalCost(){
 }
 
 void GASolution::Solve(){
-  GenerateRandomSolutions();
-  for(int i=0;i<n_chromosomes;i++) MakeValid(i);
-  GenerateGreedySolutions();
-  CalculateTotalCost();
-  best = std::min_element(costs.begin(), costs.end()) - costs.begin();
   int generation = 0;
   while(generation < generations){
     // std::cout << "Generation: " << generation << std::endl;
@@ -266,7 +336,7 @@ void GASolution::HGreXCrossover(){
   child.push_back((*itp1)[0]);
   reached.insert(child.back());
   int n1, n2;
-  while(child.size() < n_nucleotide_pairs){
+  while(child.size() < size_t(n_nucleotide_pairs)){
     auto it_1 = find((*itp1).begin(), (*itp1).end(), child.back());
     auto it_2 = find((*itp2).begin(), (*itp2).end(), child.back());
     // if it = itp1.end() there is something wrong as both chromosomes should contain all the nodes
@@ -358,8 +428,8 @@ int GASolution::TournamentSelection(){
   int i2 = rand()%chromosomes.size();
   int i3 = rand()%chromosomes.size();
   if(costs[i1] <= costs[i2] && costs[i1] <= costs[i3]) return i1;
-  if(costs[i2] <= costs[i1] && costs[i2] <= costs[i3]) return i2;
-  if(costs[i3] <= costs[i1] && costs[i3] <= costs[i2]) return i3;
+  else if(costs[i2] <= costs[i1] && costs[i2] <= costs[i3]) return i2;
+  else return i3;
 }
 
 int GASolution::TournamentSelectionBad(){
@@ -367,8 +437,8 @@ int GASolution::TournamentSelectionBad(){
   int i2 = rand()%chromosomes.size();
   int i3 = rand()%chromosomes.size();
   if(costs[i1] >= costs[i2] && costs[i1] >= costs[i3]) return i1;
-  if(costs[i2] >= costs[i1] && costs[i2] >= costs[i3]) return i2;
-  if(costs[i3] >= costs[i1] && costs[i3] >= costs[i2]) return i3;
+  else if(costs[i2] >= costs[i1] && costs[i2] >= costs[i3]) return i2;
+  else return i3;
 }
 
 void GASolution::InsertionBySimilarity(){
@@ -476,8 +546,6 @@ bool GASolution::MutateIterLeft(int i_chromosome, int j_in){
   if(j_in==n_vehicles || j_in==0) return false;
 
   int i = i_chromosome;
-  auto temp = iterators[i][j_in];
-
   if(iterators[i][j_in] > iterators[i][j_in-1])iterators[i][j_in]--;
   for(int j=j_in;j<n_vehicles-1;j++){
     int load = capacity;
@@ -511,10 +579,7 @@ bool GASolution::MutateIterRight(int i_chromosome, int j_in){
   if(j_in==n_vehicles || j_in==0) return false;
 
   int i = i_chromosome;
-  auto temp = iterators[i][j_in];
-
   if(iterators[i][j_in] < iterators[i][j_in-1])iterators[i][j_in]++;
-
   for(int j=j_in;j>1;j--){
     int load = capacity;
     int iter = iterators[i][j]-1;
@@ -596,14 +661,13 @@ void GASolution::DeleteWorstChromosome(){
 }
 
 void GASolution::InsertIterDist(){
-  // std::cout << "1"<<std::endl;
   int n = rand()%n_chromosomes;
   auto temp = iterators[n];
   int j = n_vehicles;
   while(iterators[n][j]==n_nucleotide_pairs) j--;
   if(j==n_vehicles-1) return;
   j++;
-  //that found the ierator to insert
+  // that found the ierator to insert
   double cost = 0;
   int iter_begin;
   int range = 0;
@@ -622,11 +686,11 @@ void GASolution::InsertIterDist(){
     }
   }
   int i = iter_begin;
-  if(cost = 0 || range<2) return;
+  if(cost == 0 || range<2) return;
   int val = iterators[n][i]+rand()%(range-1)+1;
   iterators[n].erase(iterators[n].begin()+j);
   iterators[n].insert(iterators[n].begin()+i+1, val);
-  MakeValid(n); // dont  htink this is req
+  MakeValid(n); // dont think this is req
   if(!checkValidity(n)) std::cout << "Invalid from insertiterdist"<<std::endl;
   int c2 = CalculateCost(n);
   if(costs[n]<c2) iterators[n] = temp;
@@ -637,14 +701,8 @@ void GASolution::GenerateBestSolution(){
   auto it = std::min_element(costs.begin(), costs.end());
   std::cout << "Cost: " << *it << std::endl;
   int i = it-costs.begin();
-  // for(auto& m:chromosomes[i])std::cout << m << " ";
-  // std::cout << std::endl;
-  // for(auto& m:iterators[i])std::cout << m << " ";
-  // std::cout << std::endl;
-
-  // std::cout << "Valid" << checkValidity(i) << std::endl;
   auto v = vehicles.begin();
-  for(int k=0;k<iterators[0].size()-1;k++, v++){
+  for(size_t k=0;k<iterators[0].size()-1;k++, v++){
     v->cost = 0;
     if(iterators[i][k]==n_nucleotide_pairs) break;
     int j=iterators[i][k];
@@ -666,6 +724,5 @@ void GASolution::GenerateBestSolution(){
     v->cost = 0;
     ++v;
   }
-  // for(auto& v2:vehicles) v2.PrintRoute();
   std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
 }

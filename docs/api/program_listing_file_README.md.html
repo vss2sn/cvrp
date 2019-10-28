@@ -210,54 +210,66 @@
 <p>↰ <a class="reference internal" href="file_README.md.html#file-readme-md"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">README.md</span></code>)</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span># Capacitated Vehicle Routing Problem #
 
-### This repository contains implementations of algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) using various methods in C++. ###
+### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++. ###
 
 [![Build Status](https://travis-ci.com/vss2sn/cvrp.svg?branch=master)](https://travis-ci.com/vss2sn/cvrp)
 
 &lt;a name=&quot;algorithms&quot;&gt;&lt;/a&gt;
 #### Algorithms: ####
 1. Greedy Solution
-2. Local Search (Run on each vehicle separately; search restricted to the selected vehicle&#39;s initial route)
-3. Local Search
-4. Tabu Search
-5. Genetic Algorithm
-6. Simulated Annealing
+2. Local Search (Run on each vehicle separately; search restricted to the selected vehicle&#39;s initial route) (LS)
+3. Local Search (LS)
+4. Tabu Search (TS)
+5. Genetic Algorithm (GA)
+6. Simulated Annealing (SA)
+7. Hybrid Algorithms (Using the solution found using one of the algorithms above as the input/starting point for another) (HA)
 
 &lt;a name=&quot;instructions&quot;&gt;&lt;/a&gt;
 #### To build and run: ####
-     git clone https://github.com/vss2sn/cvrp.git
-     cd cvrp
-     mkdir build
-     cd build
-     cmake .. &amp;&amp; make -j4
-     ./cvrp
+    git clone https://github.com/vss2sn/cvrp.git
+    cd cvrp
+    mkdir build
+    cd build
+    cmake .. &amp;&amp; make -j4
+    ./cvrp
 
 &lt;a name=&quot;toc&quot;&gt;&lt;/a&gt;
 #### Table of contents: ####
 - [Algorithms](#algorithms)
 - [Instructions](#instructions)
 - [Table of contents](#toc)
+- [Documentation](#docs)
+- [Overview of Algorithm Implementations](#algorithm_implementations)
 - [Notes](#notes)
 - [TODOs](#todos)
 
+&lt;a name=&quot;docs&quot;&gt;&lt;/a&gt;
+#### Documentation: ####
+1. [Documentation](https://vss2sn.github.io/cvrp/) can be found on GitHub pages.
+2. It has been created using Doxygen, and pip3 packages Sphinx (sphinx==1.8.3), Breathe (breathe==4.12.0), Exhale (exhale==0.2.2), Read the Docs Sphinx Theme (sphinx_rtd_theme==0.4.3) and m2r.
+
+&lt;a name=&quot;algorithm_implementations&quot;&gt;&lt;/a&gt;
+#### Overview of Algorithm Implementations ####
+For a brief overview on the implementations of the algorithms, please refer to this [document](https://vss2sn.github.io/cvrp/algorithm_implementations.html).
+
 &lt;a name=&quot;notes&quot;&gt;&lt;/a&gt;
 #### Notes: ####
-1. This repository is currently in its initial stage where most of the algorithms have been coded in without optimsation.
-2. The metaheuristic parameters need to be set based on the problem size and structure.
-3. The genetic algorithm is implemented using a vector who&#39;s elements point to positions in another vector containing the all nodes in the order in which they will be visited. The first vector mentioned here shows how the second vector is split into the routes of the various vehicles.
-4. If there is a node missing in the initial solutions, the algorithm will go into an infinite loop in the HGreXCrossover() function. This can happen if using the GenerateGreedySolutions() function. Check set up to exit should this be the case.
-5. While the MakeValid() function ensures an order of nodes visited is valid if it is possible, there is still the possibility that the ordering is not feasible. In this case the final solution might be invalid.
+1. The problem is setup using the `Problem` class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
+2. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the `Vehicle` class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle&#39;s route.
+3. The solution class also contains a virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the `Solve()` method.
+4. The documentation for private functions (such as operators in the GASolution class) has been made available to aid understanding.
+5. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
 
 &lt;a name=&quot;todos&quot;&gt;&lt;/a&gt;
 #### TODOs: ####
-1. Improve Local Search (all vehicle variant) to include vehicles not picked by the initial solution
-2. Refactor
-3. Code documentation (**Priority**)
-4. Consider adding max distance
-5. Add references (**Priority**)
-6. Set up tests
-7. Code coverage integration
-8. Run all the algorithms on different threads to speed up comparison
+1. Run all the algorithms on different threads to speed up comparison
+2. Consider adding plot of best solution cost vs time.
+3. Consider adding savings algorithm
+4. Add visualizer using ROS/ROS2.
+5. Consider adding maximum distance constraint
+6. Consider modifying to allow heterogeneous vehicles.
+7. Read in problem from a file.
+8. Consider adding background of repository.
 </pre></div>
 </div>
 </div>

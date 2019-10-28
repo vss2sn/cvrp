@@ -6,6 +6,12 @@
 
 #include "greedy.hpp"
 
+GreedySolution::GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
+  :Solution(nodes, vehicles, distanceMatrix){};
+
+GreedySolution::GreedySolution(Problem p)
+  :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+
 void GreedySolution::Solve(){
   for(auto& v:vehicles){
     while(true){
@@ -15,8 +21,6 @@ void GreedySolution::Solve(){
         v.cost += distanceMatrix[v.nodes.back()][closest_node.id];
         v.nodes.push_back(closest_node.id);
         nodes[closest_node.id].is_routed = true;
-        // v.PrintStatus();
-        // usleep(1000000);
       }
       else{
         v.cost += distanceMatrix[v.nodes.back()][depot.id];
@@ -24,8 +28,6 @@ void GreedySolution::Solve(){
         break;
       }
     }
-    // v.PrintStatus();
-    // v.PrintRoute();
   }
   double cost = 0;
   for(auto &v:vehicles) cost +=v.cost;
@@ -37,7 +39,5 @@ void GreedySolution::Solve(){
       i.PrintStatus();
     }
   }
-  // std::cout << "---------------------------" << std::endl;
-  // std::cout << "End of greedy solution" << std::endl;
   std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
 }

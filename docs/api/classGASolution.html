@@ -255,7 +255,26 @@
 <dd>No return parameter</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: Instance of problem class defining the problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: Instance of <a class="reference internal" href="classProblem.html#classProblem"><span class="std std-ref">Problem</span></a> class defining the problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">n_chromosomes</span></code>: Number of solutions </li>
+<li><code class="docutils literal notranslate"><span class="pre">generations</span></code>: Number of generations the algorithm should run for </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N10GASolution10GASolutionE8Solutionii">
+<span id="_CPPv2N10GASolution10GASolutionE8Solutionii"></span><span id="GASolution::GASolution__Solution.i.i"></span><span class="target" id="classGASolution_1a930bc29b13a49dc3d0d4e813c4e58629"></span><code class="descname">GASolution</code><span class="sig-paren">(</span><a class="reference internal" href="classSolution.html#_CPPv38Solution" title="Solution">Solution</a> <em>s</em>, int <em>n_chromosomes</em>, int <em>generations</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution10GASolutionE8Solutionii" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><p>Constructor </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>No return parameter</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">s</span></code>: Instance of <a class="reference internal" href="classSolution.html#classSolution"><span class="std std-ref">Solution</span></a> class containing a valid solution and problem parameters </li>
 <li><code class="docutils literal notranslate"><span class="pre">n_chromosomes</span></code>: Number of solutions </li>
 <li><code class="docutils literal notranslate"><span class="pre">generations</span></code>: Number of generations the algorithm should run for </li>
 </ul>
@@ -342,8 +361,8 @@
 <dl class="function">
 <dt id="_CPPv3N10GASolution10RandomSwapEv">
 <span id="_CPPv2N10GASolution10RandomSwapEv"></span><span id="GASolution::RandomSwap"></span><span class="target" id="classGASolution_1a923f851e34b24e4c2d44a4ee6ced3ea3"></span>void <code class="descname">RandomSwap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution10RandomSwapEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Swaps two random genes within a chromosome. </p>
-<p><p>Attempts to swap two random genes within a chromosome 20 times, if the solution is improved by said swap </p>
+<dd><p>Swaps two random nucleotide pairs within a chromosome. </p>
+<p><p>Attempts to swap two random nucleotide pairs within a chromosome 20 times, if the solution is improved by said swap </p>
 <dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>void</dd>
@@ -355,7 +374,7 @@
 <dt id="_CPPv3N10GASolution6MutateEv">
 <span id="_CPPv2N10GASolution6MutateEv"></span><span id="GASolution::Mutate"></span><span class="target" id="classGASolution_1a04777d8f3d6316db4c80eb730929207d"></span>void <code class="descname">Mutate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution6MutateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Mutates a chromosome. </p>
-<p><p>Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 genes within the chromosome are selected and the order of all the genes between those 2 genes (inclusive) is reversed, if the solution is improved by said operation </p>
+<p><p>Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 nucleotide pairs within the chromosome are selected and the order of all the nucleotide pairs between those 2 nucleotide pairs (inclusive) is reversed, if the solution is improved by said operation </p>
 <dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>void</dd>
@@ -400,10 +419,10 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv3N10GASolution18MutateWhithinAleleEv">
-<span id="_CPPv2N10GASolution18MutateWhithinAleleEv"></span><span id="GASolution::MutateWhithinAlele"></span><span class="target" id="classGASolution_1a87b7dd526dddc28ab31a2b76ced9ee39"></span>void <code class="descname">MutateWhithinAlele</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution18MutateWhithinAleleEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Mutates a chromosome within an alele. </p>
-<p><p>Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 genes within the chromosome, belonging to the same alele, are selected and the order of all the genes between those 2 genes (inclusive) is reversed, if the solution is improved by said operation </p>
+<dt id="_CPPv3N10GASolution17MutateWhithinGeneEv">
+<span id="_CPPv2N10GASolution17MutateWhithinGeneEv"></span><span id="GASolution::MutateWhithinGene"></span><span class="target" id="classGASolution_1ab0fc815c8516f9f591a34ebfcd3aff53"></span>void <code class="descname">MutateWhithinGene</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution17MutateWhithinGeneEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mutates a chromosome within an gene. </p>
+<p><p>Attempts to mutate a random chromosomes 20 times. Each time a chromosome is selected, 2 nucleotide pairs within the chromosome, belonging to the same gene, are selected and the order of all the nucleotide pairs between those 2 nucleotide pairs (inclusive) is reversed, if the solution is improved by said operation </p>
 <dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>void</dd>
@@ -412,10 +431,10 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv3N10GASolution16SwapWhithinAleleEv">
-<span id="_CPPv2N10GASolution16SwapWhithinAleleEv"></span><span id="GASolution::SwapWhithinAlele"></span><span class="target" id="classGASolution_1a4434d767d1e00b30593f74671ee6aa86"></span>void <code class="descname">SwapWhithinAlele</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution16SwapWhithinAleleEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Swaps two random genes within an alele of a given chromosome. </p>
-<p><p>Attempts to swap two random genes within an alele of a given chromosome 20 times, ie, selects two genes within the route of a vehicle and swaps them if the solution is improved by the move </p>
+<dt id="_CPPv3N10GASolution15SwapWhithinGeneEv">
+<span id="_CPPv2N10GASolution15SwapWhithinGeneEv"></span><span id="GASolution::SwapWhithinGene"></span><span class="target" id="classGASolution_1adbf9346884d80225973078b3e72fd734"></span>void <code class="descname">SwapWhithinGene</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution15SwapWhithinGeneEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Swaps two random nucleotide pairs within an gene of a given chromosome. </p>
+<p><p>Attempts to swap two random nucleotide pairs within an gene of a given chromosome 20 times, ie, selects two nucleotide pairs within the route of a vehicle and swaps them if the solution is improved by the move </p>
 <dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>void</dd>
@@ -439,7 +458,7 @@
 <dt id="_CPPv3N10GASolution14MutateIterLeftEii">
 <span id="_CPPv2N10GASolution14MutateIterLeftEii"></span><span id="GASolution::MutateIterLeft__i.i"></span><span class="target" id="classGASolution_1a9554f50bc293bbe6077f757f9297328c"></span>bool <code class="descname">MutateIterLeft</code><span class="sig-paren">(</span>int <em>i_chromosome</em>, int <em>j_in</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution14MutateIterLeftEii" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Decrements a selected point in the iterator vector of a selected chromosome. </p>
-<p><p>Decrements the value at j_in position of the iterator vector of the chomosome selected, effectively including the last gene in the previous alele into the succeeding gene. Hence the last visited node from the preceeding vehicle is moved into the route of the current vehicle and is the first node visited by the current vehicle. Operation performed if solution is improved by said operation. </p>
+<p><p>Decrements the value at j_in position of the iterator vector of the chomosome selected, effectively including the last nucleotide pair in the previous gene into the succeeding nucleotide pair. Hence the last visited node from the preceeding vehicle is moved into the route of the current vehicle and is the first node visited by the current vehicle. Operation performed if solution is improved by said operation. </p>
 <dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>bool True if operation successful</dd>
@@ -457,7 +476,7 @@
 <dt id="_CPPv3N10GASolution15MutateIterRightEii">
 <span id="_CPPv2N10GASolution15MutateIterRightEii"></span><span id="GASolution::MutateIterRight__i.i"></span><span class="target" id="classGASolution_1ae31609cb4c53316a5c86c25320dc71bb"></span>bool <code class="descname">MutateIterRight</code><span class="sig-paren">(</span>int <em>i_chromosome</em>, int <em>j_in</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N10GASolution15MutateIterRightEii" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Increments a selected point in the iterator vector of a selected chromosome. </p>
-<p><p>Increments the value at j_in position of the iterator vector of the chomosome selected, effectively including the first gene in the current alele into the preceeding gene. Hence the first visited node from the current vehicle is moved into the route of the preceeding vehicle and is the last node visited by the preceeding vehicle. Operation performed if solution is improved by said operation. </p>
+<p><p>Increments the value at j_in position of the iterator vector of the chomosome selected, effectively including the first nucleotide pair in the current gene into the preceeding nucleotide pair. Hence the first visited node from the current vehicle is moved into the route of the preceeding vehicle and is the last node visited by the preceeding vehicle. Operation performed if solution is improved by said operation. </p>
 <dl class="docutils">
 <dt><strong>Return</strong></dt>
 <dd>bool True if operation successful</dd>
@@ -594,7 +613,7 @@
 <dd>void</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">indes</span></code>: of solution to be made valid </li>
+<li><code class="docutils literal notranslate"><span class="pre">i</span></code>: index of solution to be made valid </li>
 </ul>
 </dd>
 </dl>
@@ -625,8 +644,8 @@
 <dd></dd></dl>
 
 <dl class="member">
-<dt id="_CPPv3N10GASolution7n_genesE">
-<span id="_CPPv2N10GASolution7n_genesE"></span><span id="GASolution::n_genes__i"></span><span class="target" id="classGASolution_1a1fe1321ad5033189529e934a58f53cf8"></span>int <code class="descname">n_genes</code><a class="headerlink" href="#_CPPv3N10GASolution7n_genesE" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N10GASolution18n_nucleotide_pairsE">
+<span id="_CPPv2N10GASolution18n_nucleotide_pairsE"></span><span id="GASolution::n_nucleotide_pairs__i"></span><span class="target" id="classGASolution_1a79dec936a3e78871eb567d44cb770a19"></span>int <code class="descname">n_nucleotide_pairs</code><a class="headerlink" href="#_CPPv3N10GASolution18n_nucleotide_pairsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="member">

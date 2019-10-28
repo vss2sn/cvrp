@@ -16,7 +16,7 @@
 struct VectorHash {
   /**
   * @brief Overloaded operator to return hash value of a vector
-  * @param vector<int> vector who's hash is to be calculated
+  * @param v vector who's hash is to be calculated
   * @return size_t hash of the vector
   * @details Overloaded operator to return hash value of a vector. Used to create an unordered set for vectors.
   */
@@ -41,21 +41,24 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50)
-    :Solution(nodes, vehicles, distanceMatrix){
-      this->n_tabu = n_tabu;
-    } ;
+  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50);
   /**
   * @brief Constructor
-  * @param p Instance of problem class defining the problem parameters
+  * @param p Instance of Problem class defining the problem parameters
   * @param n_tabu Size of tabu list
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(Problem p, int n_tabu = 50)
-    :Solution(p.nodes, p.vehicles, p.distanceMatrix){
-      this->n_tabu = n_tabu;
-    };
+  TabuSearchSolution(Problem p, int n_tabu = 50);
+
+  /**
+  * @brief Constructor
+  * @param s Instance of Solution class containing a valid solution and problem parameters
+  * @param n_tabu Size of tabu list
+  * @return No return parameter
+  * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
+  */
+  TabuSearchSolution(Solution s, int n_tabu = 50);
 
   /**
   * @brief Function called to solve the given problem using a tabu search algorithm
@@ -73,21 +76,21 @@ private:
 
   /**
   * @brief Check if set of vector is tabu
-  * @param int begin index at which to begin iteration
-  * @param int end index at which to end iteration (inclusive)
+  * @param begin index at which to begin iteration
+  * @param end index at which to end iteration (inclusive)
   * @return bool True if any of the vectors checked are tabu
   * @details Iterates over vector of vectors to_check to check if any of the moves listed in to_check are tabu. to_check is updated for each move considered
   */
-  inline bool IsTabu(const int& begin, const int& end);
+  inline bool IsTabu(const int begin, const int end);
 
   /**
   * @brief Aspiration criteria
-  * @param double cost_increase Increase in cost due to move
-  * @param double cost_reduction Reduction in cost due to move
+  * @param cost_increase Increase in cost due to move
+  * @param cost_reduction Reduction in cost due to move
   * @return bool True if the total cost reduction alls the cost of the solution tobe less than the best cost.
   * @details Ensures that if a move provides a better solution than the best currently available, the move is accepted even if it is tabu
   */
-  inline bool Aspiration(double& cost_increase, double& cost_reduction);
+  inline bool Aspiration(double cost_increase, double cost_reduction);
 };
 
-#endif TS_HPP
+#endif

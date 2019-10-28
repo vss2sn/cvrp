@@ -18,18 +18,17 @@ Program Listing for File simulated_annealing.hpp
    
    class SimulatedAnnealingSolution : public Solution{
    public:
-     SimulatedAnnealingSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
-       :Solution(nodes, vehicles, distanceMatrix){} ;
+     SimulatedAnnealingSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int stag_limit  = 500000, double init_temp = 5000, double cooling_rate = 0.9999);
    
-     SimulatedAnnealingSolution(Problem p)
-       :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+     SimulatedAnnealingSolution(Problem p, int stag_limit  = 500000, double init_temp = 5000, double cooling_rate = 0.9999);
+   
+     SimulatedAnnealingSolution(Solution s, int stag_limit  = 500000, double init_temp = 5000, double cooling_rate = 0.9999);
    
      void Solve();
    private:
-     double temp = 0, cooling_rate = 0.9999, best_cost, current_cost;
-     int max_temp = 5000, n_reheates = 20;
-   
+     double temp = 0, cooling_rate, best_cost, current_cost;
+     int max_temp, n_reheates = 20, stag_limit, stag;
      inline bool AllowMove(double delta);
    };
    
-   #endif SA_HPP
+   #endif

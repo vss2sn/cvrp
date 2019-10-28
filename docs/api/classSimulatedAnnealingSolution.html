@@ -225,8 +225,8 @@
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">
-<span id="_CPPv2N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE"></span><span id="SimulatedAnnealingSolution::SimulatedAnnealingSolution__std::vector:Node:.std::vector:Vehicle:.std::vector:std::vector:double::"></span><span class="target" id="classSimulatedAnnealingSolution_1a6553c971081acaad0e054d2eff0cc151"></span><code class="descname">SimulatedAnnealingSolution</code><span class="sig-paren">(</span>std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; <em>nodes</em>, std::vector&lt;<a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a>&gt; <em>vehicles</em>, std::vector&lt;std::vector&lt;double&gt;&gt; <em>distanceMatrix</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEEidd">
+<span id="_CPPv2N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEEidd"></span><span id="SimulatedAnnealingSolution::SimulatedAnnealingSolution__std::vector:Node:.std::vector:Vehicle:.std::vector:std::vector:double::.i.double.double"></span><span class="target" id="classSimulatedAnnealingSolution_1a438f45c8b78cde96cee8446435818684"></span><code class="descname">SimulatedAnnealingSolution</code><span class="sig-paren">(</span>std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; <em>nodes</em>, std::vector&lt;<a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a>&gt; <em>vehicles</em>, std::vector&lt;std::vector&lt;double&gt;&gt; <em>distanceMatrix</em>, int <em>stag_limit</em> = 500000, double <em>init_temp</em> = 5000, double <em>cooling_rate</em> = 0.9999<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEEidd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
 <p><p>Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm </p>
 <dl class="docutils">
@@ -237,6 +237,9 @@
 <li><code class="docutils literal notranslate"><span class="pre">nodes</span></code>: Vector of nodes </li>
 <li><code class="docutils literal notranslate"><span class="pre">vehicles</span></code>: Vector of vehicles </li>
 <li><code class="docutils literal notranslate"><span class="pre">distanceMatrix</span></code>: Matrix containing distance between each pair of nodes </li>
+<li><code class="docutils literal notranslate"><span class="pre">stag_limit</span></code>: Number of iterations without an improvement to the best solution </li>
+<li><code class="docutils literal notranslate"><span class="pre">init_temp</span></code>: Initial temperature </li>
+<li><code class="docutils literal notranslate"><span class="pre">cooling_rate</span></code>: tempertaure multipluies with this variable to get new temperature at every iteration </li>
 </ul>
 </dd>
 </dl>
@@ -244,8 +247,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE7Problem">
-<span id="_CPPv2N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE7Problem"></span><span id="SimulatedAnnealingSolution::SimulatedAnnealingSolution__Problem"></span><span class="target" id="classSimulatedAnnealingSolution_1a554cf69859c0dadbf7cda0edd004a65d"></span><code class="descname">SimulatedAnnealingSolution</code><span class="sig-paren">(</span><a class="reference internal" href="classProblem.html#_CPPv37Problem" title="Problem">Problem</a> <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE7Problem" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE7Problemidd">
+<span id="_CPPv2N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE7Problemidd"></span><span id="SimulatedAnnealingSolution::SimulatedAnnealingSolution__Problem.i.double.double"></span><span class="target" id="classSimulatedAnnealingSolution_1a1754cd5592cd34bfe9ae8feb923b35ed"></span><code class="descname">SimulatedAnnealingSolution</code><span class="sig-paren">(</span><a class="reference internal" href="classProblem.html#_CPPv37Problem" title="Problem">Problem</a> <em>p</em>, int <em>stag_limit</em> = 500000, double <em>init_temp</em> = 5000, double <em>cooling_rate</em> = 0.9999<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE7Problemidd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
 <p><p>Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm </p>
 <dl class="docutils">
@@ -253,7 +256,30 @@
 <dd>No return parameter</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: Instance of problem class defining the problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: Instance of <a class="reference internal" href="classProblem.html#classProblem"><span class="std std-ref">Problem</span></a> class defining the problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">stag_limit</span></code>: Number of iterations without an improvement to the best solution </li>
+<li><code class="docutils literal notranslate"><span class="pre">init_temp</span></code>: Initial temperature </li>
+<li><code class="docutils literal notranslate"><span class="pre">cooling_rate</span></code>: tempertaure multipluies with this variable to get new temperature at every iteration </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE8Solutionidd">
+<span id="_CPPv2N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE8Solutionidd"></span><span id="SimulatedAnnealingSolution::SimulatedAnnealingSolution__Solution.i.double.double"></span><span class="target" id="classSimulatedAnnealingSolution_1a107615b62ac62762fa758939c2ae578d"></span><code class="descname">SimulatedAnnealingSolution</code><span class="sig-paren">(</span><a class="reference internal" href="classSolution.html#_CPPv38Solution" title="Solution">Solution</a> <em>s</em>, int <em>stag_limit</em> = 500000, double <em>init_temp</em> = 5000, double <em>cooling_rate</em> = 0.9999<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution26SimulatedAnnealingSolutionE8Solutionidd" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><p>Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>No return parameter</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">s</span></code>: Instance of <a class="reference internal" href="classSolution.html#classSolution"><span class="std std-ref">Solution</span></a> class containing a valid solution and problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">stag_limit</span></code>: Number of iterations without an improvement to the best solution </li>
+<li><code class="docutils literal notranslate"><span class="pre">init_temp</span></code>: Initial temperature </li>
+<li><code class="docutils literal notranslate"><span class="pre">cooling_rate</span></code>: tempertaure multipluies with this variable to get new temperature at every iteration </li>
 </ul>
 </dd>
 </dl>
@@ -285,7 +311,7 @@
 <dd>bool True if move accepted</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">double</span></code>: delta change in cost of solution due to move </li>
+<li><code class="docutils literal notranslate"><span class="pre">delta</span></code>: change in cost of solution due to move </li>
 </ul>
 </dd>
 </dl>
@@ -302,7 +328,7 @@
 
 <dl class="member">
 <dt id="_CPPv3N26SimulatedAnnealingSolution12cooling_rateE">
-<span id="_CPPv2N26SimulatedAnnealingSolution12cooling_rateE"></span><span id="SimulatedAnnealingSolution::cooling_rate__double"></span><span class="target" id="classSimulatedAnnealingSolution_1a9e7376d61fac64d297b7ea17e1dbb98a"></span>double <code class="descname">cooling_rate</code> = 0.9999<a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution12cooling_rateE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2N26SimulatedAnnealingSolution12cooling_rateE"></span><span id="SimulatedAnnealingSolution::cooling_rate__double"></span><span class="target" id="classSimulatedAnnealingSolution_1a9e7376d61fac64d297b7ea17e1dbb98a"></span>double <code class="descname">cooling_rate</code><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution12cooling_rateE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="member">
@@ -317,12 +343,22 @@
 
 <dl class="member">
 <dt id="_CPPv3N26SimulatedAnnealingSolution8max_tempE">
-<span id="_CPPv2N26SimulatedAnnealingSolution8max_tempE"></span><span id="SimulatedAnnealingSolution::max_temp__i"></span><span class="target" id="classSimulatedAnnealingSolution_1af915643c6b93d9f38fa03ff60dce98b1"></span>int <code class="descname">max_temp</code> = 5000<a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution8max_tempE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv2N26SimulatedAnnealingSolution8max_tempE"></span><span id="SimulatedAnnealingSolution::max_temp__i"></span><span class="target" id="classSimulatedAnnealingSolution_1af915643c6b93d9f38fa03ff60dce98b1"></span>int <code class="descname">max_temp</code><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution8max_tempE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="member">
 <dt id="_CPPv3N26SimulatedAnnealingSolution10n_reheatesE">
 <span id="_CPPv2N26SimulatedAnnealingSolution10n_reheatesE"></span><span id="SimulatedAnnealingSolution::n_reheates__i"></span><span class="target" id="classSimulatedAnnealingSolution_1a9a1b325f747c38aef0db452c8f1297ec"></span>int <code class="descname">n_reheates</code> = 20<a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution10n_reheatesE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N26SimulatedAnnealingSolution10stag_limitE">
+<span id="_CPPv2N26SimulatedAnnealingSolution10stag_limitE"></span><span id="SimulatedAnnealingSolution::stag_limit__i"></span><span class="target" id="classSimulatedAnnealingSolution_1a3d0b7a55b9cee02281d25d5b69781581"></span>int <code class="descname">stag_limit</code><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution10stag_limitE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N26SimulatedAnnealingSolution4stagE">
+<span id="_CPPv2N26SimulatedAnnealingSolution4stagE"></span><span id="SimulatedAnnealingSolution::stag__i"></span><span class="target" id="classSimulatedAnnealingSolution_1a780fca8c59343116d7fd55c6bfc977dd"></span>int <code class="descname">stag</code><a class="headerlink" href="#_CPPv3N26SimulatedAnnealingSolution4stagE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>

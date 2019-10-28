@@ -225,8 +225,8 @@
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Public Functions</p>
 <dl class="function">
-<dt id="_CPPv3N18TabuSearchSolution18TabuSearchSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE">
-<span id="_CPPv2N18TabuSearchSolution18TabuSearchSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE"></span><span id="TabuSearchSolution::TabuSearchSolution__std::vector:Node:.std::vector:Vehicle:.std::vector:std::vector:double::"></span><span class="target" id="classTabuSearchSolution_1a58207c6a42ccdd9096fd0208f5b4a89d"></span><code class="descname">TabuSearchSolution</code><span class="sig-paren">(</span>std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; <em>nodes</em>, std::vector&lt;<a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a>&gt; <em>vehicles</em>, std::vector&lt;std::vector&lt;double&gt;&gt; <em>distanceMatrix</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution18TabuSearchSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N18TabuSearchSolution18TabuSearchSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEEi">
+<span id="_CPPv2N18TabuSearchSolution18TabuSearchSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEEi"></span><span id="TabuSearchSolution::TabuSearchSolution__std::vector:Node:.std::vector:Vehicle:.std::vector:std::vector:double::.i"></span><span class="target" id="classTabuSearchSolution_1a01e0914dee650fcfb7f4ef48b6737843"></span><code class="descname">TabuSearchSolution</code><span class="sig-paren">(</span>std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; <em>nodes</em>, std::vector&lt;<a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a>&gt; <em>vehicles</em>, std::vector&lt;std::vector&lt;double&gt;&gt; <em>distanceMatrix</em>, int <em>n_tabu</em> = 50<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution18TabuSearchSolutionENSt6vectorI4NodeEENSt6vectorI7VehicleEENSt6vectorINSt6vectorIdEEEEi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
 <p><p>Constructor for initial setup of problem, and solution using Tabu Search Algorithm </p>
 <dl class="docutils">
@@ -237,6 +237,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">nodes</span></code>: Vector of nodes </li>
 <li><code class="docutils literal notranslate"><span class="pre">vehicles</span></code>: Vector of vehicles </li>
 <li><code class="docutils literal notranslate"><span class="pre">distanceMatrix</span></code>: Matrix containing distance between each pair of nodes </li>
+<li><code class="docutils literal notranslate"><span class="pre">n_tabu</span></code>: Size of tabu list </li>
 </ul>
 </dd>
 </dl>
@@ -244,8 +245,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv3N18TabuSearchSolution18TabuSearchSolutionE7Problem">
-<span id="_CPPv2N18TabuSearchSolution18TabuSearchSolutionE7Problem"></span><span id="TabuSearchSolution::TabuSearchSolution__Problem"></span><span class="target" id="classTabuSearchSolution_1a1b9d89f20d1eeb788443ed48ea8de0ce"></span><code class="descname">TabuSearchSolution</code><span class="sig-paren">(</span><a class="reference internal" href="classProblem.html#_CPPv37Problem" title="Problem">Problem</a> <em>p</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution18TabuSearchSolutionE7Problem" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N18TabuSearchSolution18TabuSearchSolutionE7Problemi">
+<span id="_CPPv2N18TabuSearchSolution18TabuSearchSolutionE7Problemi"></span><span id="TabuSearchSolution::TabuSearchSolution__Problem.i"></span><span class="target" id="classTabuSearchSolution_1abd08ad24f430365745d90a506c07b305"></span><code class="descname">TabuSearchSolution</code><span class="sig-paren">(</span><a class="reference internal" href="classProblem.html#_CPPv37Problem" title="Problem">Problem</a> <em>p</em>, int <em>n_tabu</em> = 50<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution18TabuSearchSolutionE7Problemi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor. </p>
 <p><p>Constructor for initial setup of problem, and solution using Tabu Search Algorithm </p>
 <dl class="docutils">
@@ -253,7 +254,26 @@
 <dd>No return parameter</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: Instance of problem class defining the problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">p</span></code>: Instance of <a class="reference internal" href="classProblem.html#classProblem"><span class="std std-ref">Problem</span></a> class defining the problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">n_tabu</span></code>: Size of tabu list </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N18TabuSearchSolution18TabuSearchSolutionE8Solutioni">
+<span id="_CPPv2N18TabuSearchSolution18TabuSearchSolutionE8Solutioni"></span><span id="TabuSearchSolution::TabuSearchSolution__Solution.i"></span><span class="target" id="classTabuSearchSolution_1ae874c4eeea4626f89a9b5f5f783d9195"></span><code class="descname">TabuSearchSolution</code><span class="sig-paren">(</span><a class="reference internal" href="classSolution.html#_CPPv38Solution" title="Solution">Solution</a> <em>s</em>, int <em>n_tabu</em> = 50<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution18TabuSearchSolutionE8Solutioni" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><p>Constructor for initial setup of problem, and solution using Tabu Search Algorithm </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>No return parameter</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">s</span></code>: Instance of <a class="reference internal" href="classSolution.html#classSolution"><span class="std std-ref">Solution</span></a> class containing a valid solution and problem parameters </li>
+<li><code class="docutils literal notranslate"><span class="pre">n_tabu</span></code>: Size of tabu list </li>
 </ul>
 </dd>
 </dl>
@@ -276,8 +296,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Private Functions</p>
 <dl class="function">
-<dt id="_CPPv3N18TabuSearchSolution6IsTabuERKiRKi">
-<span id="_CPPv2N18TabuSearchSolution6IsTabuERKiRKi"></span><span id="TabuSearchSolution::IsTabu__iCR.iCR"></span><span class="target" id="classTabuSearchSolution_1af5292c20b9d70a6a0b1df08272482ac6"></span>bool <code class="descname">IsTabu</code><span class="sig-paren">(</span><em class="property">const</em> int &amp;<em>begin</em>, <em class="property">const</em> int &amp;<em>end</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution6IsTabuERKiRKi" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N18TabuSearchSolution6IsTabuEKiKi">
+<span id="_CPPv2N18TabuSearchSolution6IsTabuEKiKi"></span><span id="TabuSearchSolution::IsTabu__iC.iC"></span><span class="target" id="classTabuSearchSolution_1a06318c54413aa6b72fa707007df611dc"></span>bool <code class="descname">IsTabu</code><span class="sig-paren">(</span><em class="property">const</em> int <em>begin</em>, <em class="property">const</em> int <em>end</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution6IsTabuEKiKi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Check if set of vector is tabu. </p>
 <p><p>Iterates over vector of vectors to_check to check if any of the moves listed in to_check are tabu. to_check is updated for each move considered </p>
 <dl class="docutils">
@@ -285,8 +305,8 @@
 <dd>bool True if any of the vectors checked are tabu</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">int</span></code>: begin index at which to begin iteration </li>
-<li><code class="docutils literal notranslate"><span class="pre">int</span></code>: end index at which to end iteration (inclusive) </li>
+<li><code class="docutils literal notranslate"><span class="pre">begin</span></code>: index at which to begin iteration </li>
+<li><code class="docutils literal notranslate"><span class="pre">end</span></code>: index at which to end iteration (inclusive) </li>
 </ul>
 </dd>
 </dl>
@@ -294,8 +314,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv3N18TabuSearchSolution10AspirationERdRd">
-<span id="_CPPv2N18TabuSearchSolution10AspirationERdRd"></span><span id="TabuSearchSolution::Aspiration__doubleR.doubleR"></span><span class="target" id="classTabuSearchSolution_1a5ad8f6974ec27404d5b8278705ea9315"></span>bool <code class="descname">Aspiration</code><span class="sig-paren">(</span>double &amp;<em>cost_increase</em>, double &amp;<em>cost_reduction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution10AspirationERdRd" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N18TabuSearchSolution10AspirationEdd">
+<span id="_CPPv2N18TabuSearchSolution10AspirationEdd"></span><span id="TabuSearchSolution::Aspiration__double.double"></span><span class="target" id="classTabuSearchSolution_1aa42df8e87adc5c599b7b6e6e66ac6ee3"></span>bool <code class="descname">Aspiration</code><span class="sig-paren">(</span>double <em>cost_increase</em>, double <em>cost_reduction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution10AspirationEdd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Aspiration criteria. </p>
 <p><p>Ensures that if a move provides a better solution than the best currently available, the move is accepted even if it is tabu </p>
 <dl class="docutils">
@@ -303,8 +323,8 @@
 <dd>bool True if the total cost reduction alls the cost of the solution tobe less than the best cost.</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">double</span></code>: cost_increase Increase in cost due to move </li>
-<li><code class="docutils literal notranslate"><span class="pre">double</span></code>: cost_reduction Reduction in cost due to move </li>
+<li><code class="docutils literal notranslate"><span class="pre">cost_increase</span></code>: Increase in cost due to move </li>
+<li><code class="docutils literal notranslate"><span class="pre">cost_reduction</span></code>: Reduction in cost due to move </li>
 </ul>
 </dd>
 </dl>
