@@ -61,4 +61,4 @@ private:
   inline bool AllowMove(double delta);
 };
 
-#endif SA_HPP
+#endif

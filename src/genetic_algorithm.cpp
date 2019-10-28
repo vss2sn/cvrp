@@ -61,7 +61,7 @@ GASolution::GASolution(Solution s,
   chromosomes[0] = temp_c;
   iterators[0] = temp_i;
   if(!checkValidity(0) || chromosomes[0].size() != n_nucleotide_pairs){
-    // Extra sanity check for size of solution 
+    // Extra sanity check for size of solution
     std::cout << "The input solution is invalid. Exiting." <<std::endl;
     exit(0);
   }
@@ -248,7 +248,7 @@ void GASolution::RemoveSimilarSolutions(){
 
 double GASolution::CalculateCost(int i){
   double cost = 0;
-  double tmp = costs[i];
+  // double tmp = costs[i];
   for(int k=0;k<iterators[0].size()-1;k++){
     if(iterators[i][k]==n_nucleotide_pairs) break;
     int j=iterators[i][k];
@@ -436,8 +436,8 @@ int GASolution::TournamentSelection(){
   int i2 = rand()%chromosomes.size();
   int i3 = rand()%chromosomes.size();
   if(costs[i1] <= costs[i2] && costs[i1] <= costs[i3]) return i1;
-  if(costs[i2] <= costs[i1] && costs[i2] <= costs[i3]) return i2;
-  if(costs[i3] <= costs[i1] && costs[i3] <= costs[i2]) return i3;
+  else if(costs[i2] <= costs[i1] && costs[i2] <= costs[i3]) return i2;
+  else return i3;
 }
 
 int GASolution::TournamentSelectionBad(){
@@ -445,8 +445,8 @@ int GASolution::TournamentSelectionBad(){
   int i2 = rand()%chromosomes.size();
   int i3 = rand()%chromosomes.size();
   if(costs[i1] >= costs[i2] && costs[i1] >= costs[i3]) return i1;
-  if(costs[i2] >= costs[i1] && costs[i2] >= costs[i3]) return i2;
-  if(costs[i3] >= costs[i1] && costs[i3] >= costs[i2]) return i3;
+  else if(costs[i2] >= costs[i1] && costs[i2] >= costs[i3]) return i2;
+  else return i3;
 }
 
 void GASolution::InsertionBySimilarity(){
@@ -554,7 +554,7 @@ bool GASolution::MutateIterLeft(int i_chromosome, int j_in){
   if(j_in==n_vehicles || j_in==0) return false;
 
   int i = i_chromosome;
-  auto temp = iterators[i][j_in];
+  // auto temp = iterators[i][j_in];
 
   if(iterators[i][j_in] > iterators[i][j_in-1])iterators[i][j_in]--;
   for(int j=j_in;j<n_vehicles-1;j++){
@@ -589,7 +589,7 @@ bool GASolution::MutateIterRight(int i_chromosome, int j_in){
   if(j_in==n_vehicles || j_in==0) return false;
 
   int i = i_chromosome;
-  auto temp = iterators[i][j_in];
+  // auto temp = iterators[i][j_in];
 
   if(iterators[i][j_in] < iterators[i][j_in-1])iterators[i][j_in]++;
 
@@ -700,7 +700,7 @@ void GASolution::InsertIterDist(){
     }
   }
   int i = iter_begin;
-  if(cost = 0 || range<2) return;
+  if(cost == 0 || range<2) return;
   int val = iterators[n][i]+rand()%(range-1)+1;
   iterators[n].erase(iterators[n].begin()+j);
   iterators[n].insert(iterators[n].begin()+i+1, val);

@@ -44,4 +44,4 @@ public:
   void Solve();
 };
 
-#endif LSII_HPP
+#endif

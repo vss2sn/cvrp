@@ -103,7 +103,7 @@ Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distan
 }
 
 bool Solution::CheckSolutionValid(){
-  double cost = 0;
+  // double cost = 0;
   std::vector<bool> check_nodes(nodes.size(), false);
   check_nodes[0]=true;
   for(auto&v:vehicles){

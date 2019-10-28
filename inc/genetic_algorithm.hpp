@@ -250,4 +250,4 @@ private:
   void MakeValid(int i);
 };
 
-#endif GA_HPP
+#endif

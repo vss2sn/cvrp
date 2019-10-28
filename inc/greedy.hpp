@@ -36,4 +36,4 @@ public:
   */
   void Solve();
 };
-#endif GREEDY_HPP
+#endif

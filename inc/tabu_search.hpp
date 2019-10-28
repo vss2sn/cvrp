@@ -93,4 +93,4 @@ private:
   inline bool Aspiration(double& cost_increase, double& cost_reduction);
 };
 
-#endif TS_HPP
+#endif

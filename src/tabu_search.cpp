@@ -42,11 +42,12 @@ void TabuSearchSolution::Solve(){
   double cost = 0;
   for(auto& v:vehicles) cost += v.cost;
   auto best_vehicles = vehicles;
-  bool flag = false, flag2 = true;
+  // bool flag = false, flag2 = true;
   int max_it = 500, c_it = 0;
-  int  cur, prev, next_c, rep, next_r, best_c=-1, best_r;
+  // int  cur, prev, next_c, rep, next_r, best_c=-1, best_r;
+  int  cur, rep, best_c=-1, best_r;
   int  v_cur, v_prev, v_next_c, v_rep, v_next_r;
-  double delta = INT_MAX, cost_reduction, cost_increase, bcr, bci;
+  double delta = INT_MAX, cost_reduction, cost_increase;//, bcr, bci;
   best_cost = cost, new_cost = cost;
   Vehicle *v_temp_2, *v_temp;
   to_check = std::vector<std::vector<int>>(6,std::vector<int>(2,0));
@@ -55,36 +56,35 @@ void TabuSearchSolution::Solve(){
     ++c_it;
     delta = 1<<16;
     for(auto& v:vehicles){
-      for(auto& v2:vehicles){
-        for(cur=1;cur<v.nodes.size()-1;cur++){
-          prev = cur-1;
-          next_c = cur+1;
+      for(cur=1;cur<v.nodes.size()-1;cur++){
+        // prev = cur-1;
+        // next_c = cur+1;
 
-          v_cur = v.nodes[cur];
-          v_prev = v.nodes[cur-1];
-          v_next_c = v.nodes[cur+1];
+        v_cur = v.nodes[cur];
+        v_prev = v.nodes[cur-1];
+        v_next_c = v.nodes[cur+1];
 
-          to_check[0][0] = v_prev;
-          to_check[0][1] = v_cur;
-          to_check[1][0] = v_cur;
-          to_check[1][1] = v_prev;
-          to_check[2][0] = v_cur;
-          to_check[2][1] = v_next_c;
-          to_check[3][0] = v_next_c;
-          to_check[3][1] = v_cur;
+        to_check[0][0] = v_prev;
+        to_check[0][1] = v_cur;
+        to_check[1][0] = v_cur;
+        to_check[1][1] = v_prev;
+        to_check[2][0] = v_cur;
+        to_check[2][1] = v_next_c;
+        to_check[3][0] = v_next_c;
+        to_check[3][1] = v_cur;
 
-          cost_reduction = distanceMatrix[v_prev][v_next_c]
-                         - distanceMatrix[v_prev][v_cur]
-                         - distanceMatrix[v_cur][v_next_c];
+        cost_reduction = distanceMatrix[v_prev][v_next_c]
+                       - distanceMatrix[v_prev][v_cur]
+                       - distanceMatrix[v_cur][v_next_c];
 
-          to_check[4][1] = v_cur;
-          to_check[5][0] = v_cur;
+        to_check[4][1] = v_cur;
+        to_check[5][0] = v_cur;
 
+        for(auto& v2:vehicles){
           for(rep=0;rep<v2.nodes.size()-1;rep++){
             v_rep = v2.nodes[rep];
             v_next_r = v2.nodes[rep+1];
             if(v_rep!=v_cur && (v.id!=v2.id || v_rep!=v_prev)){
-              next_r = rep + 1;
               to_check[4][0] = v_rep;
               to_check[5][1] = v_next_r;
 
@@ -95,8 +95,8 @@ void TabuSearchSolution::Solve(){
                 (v2.load - nodes[v_cur].demand >= 0 || v.id == v2.id) &&
                 (!IsTabu(0,5) || Aspiration(cost_increase, cost_reduction))
                 ){
-                  bci = cost_increase;
-                  bcr = cost_reduction;
+                  // bci = cost_increase;
+                  // bcr = cost_reduction;
                   delta = cost_increase + cost_reduction;
                   best_c = cur;
                   best_r = rep;
