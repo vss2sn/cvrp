@@ -42,7 +42,9 @@ int main(){
   // NOTE: The following is an example of how to create solutions by using the
   // algorithms coding in this repository sequentially, effectively allowing
   // the creation of hybrid algorithms/solutions
-  // 
+  //
+  // GreedySolution vrp_greedy(p);
+  // vrp_greedy.Solve();
   // Solution s = vrp_greedy; // Strip out solution from vrp_greedy.
   // LocalSearchInterIntraSolution hybrid(s);
   // hybrid.Solve();

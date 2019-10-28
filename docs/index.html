@@ -215,6 +215,7 @@
 <li>Tabu Search (TS)</li>
 <li>Genetic Algorithm (GA)</li>
 <li>Simulated Annealing (SA)</li>
+<li>Hybrid Algorithms (Using the solution found using one of the algorithms above as the input/starting point for another) (HA)</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="instructions"></a></span></p>
 </div>
@@ -253,18 +254,17 @@
 </div>
 <div class="section" id="id5">
 <h3>Overview of Algorithm Implementations<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<p>For a brief overview on the implementations of the algorithms, please refer to the document <a class="reference external" href="https://vss2sn.github.io/cvrp/algorithm_implementations.html">here</a>.</p>
+<p>For a brief overview on the implementations of the algorithms, please refer to this <a class="reference external" href="https://vss2sn.github.io/cvrp/algorithm_implementations.html">document</a>.</p>
 <p><span class="raw-html-m2r"><a name="notes"></a></span></p>
 </div>
 <div class="section" id="id6">
 <h3>Notes:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>The metaheuristic parameters need to be set based on the problem size and structure.</li>
 <li>The problem is setup using the <code class="docutils literal notranslate"><span class="pre">Problem</span></code> class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.</li>
-<li>A base class called <code class="docutils literal notranslate"><span class="pre">Solution</span></code> has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle’s route. A function called <code class="docutils literal notranslate"><span class="pre">PrintStatus()</span></code> can be used to display each of the vehicles attributes.</li>
-<li>The solution class also contains a pure virtual function called <code class="docutils literal notranslate"><span class="pre">Solve()</span></code>. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the <code class="docutils literal notranslate"><span class="pre">Solve()</span></code> method.</li>
+<li>A base class called <code class="docutils literal notranslate"><span class="pre">Solution</span></code> has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle’s route.</li>
+<li>The solution class also contains a virtual function called <code class="docutils literal notranslate"><span class="pre">Solve()</span></code>. Each algorithm mentioned above is implemented in its own class by inheriting the Solution class and overriding the <code class="docutils literal notranslate"><span class="pre">Solve()</span></code> method.</li>
 <li>The documentation for private functions (such as operators in the GASolution class) has been made available to aid understanding.</li>
-<li><code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> contains the main function in which the probelm is set up and from which all the algorithms are called.</li>
+<li>Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>.</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="todos"></a></span></p>
 </div>
@@ -272,16 +272,13 @@
 <h3>TODOs:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Run all the algorithms on different threads to speed up comparison</li>
-<li>Refactor</li>
+<li>Consider adding plot of best solution cost vs time.</li>
 <li>Consider adding savings algorithm</li>
-<li>Refactor problem and solution class to allow multiple algorithms to be applied to same solution sequentially (e.g.:  Simulated annealing followed by local search after a point) allowing for the creation of a hybrid algorithm directly, rather than coding it in separately. Create initial solution iff the current solution is not valid/move to constructor. (Done)</li>
 <li>Add visualizer using ROS/ROS2.</li>
 <li>Consider adding maximum distance constraint</li>
 <li>Consider modifying to allow heterogeneous vehicles.</li>
 <li>Read in problem from a file.</li>
-<li>Showcase simple use case of any algorithm in README.md as well as hybrid algorithm case. (Done)</li>
 <li>Consider adding background of repository.</li>
-<li>Consider adding plot of best solution cost vs time.</li>
 </ol>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>

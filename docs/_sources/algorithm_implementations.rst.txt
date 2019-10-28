@@ -49,6 +49,7 @@ Notes on algorithm implementation
 5. Genetic Algorithm (GA)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. note::
+  - The implementation of the genetic algorithm attempts to keep to its biological analogy
   - Each node is a `nucleotide pair`.
   - A possible solution is a `chromosome` and `iterator` pair.
   - A `chromosome` contains all the nodes in the order they are visited. It's corresponding `iterator` vector is the vector containing the indices at which the chromosome is split into vehicle routes.

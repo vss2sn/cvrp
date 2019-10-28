@@ -9,12 +9,12 @@
 LocalSearchIntraSolution::LocalSearchIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
   :Solution(nodes, vehicles, distanceMatrix){
   CreateInitialSolution();
-} ;
+}
 
 LocalSearchIntraSolution::LocalSearchIntraSolution(Problem p)
   :Solution(p.nodes, p.vehicles, p.distanceMatrix){
   CreateInitialSolution();
-};
+}
 
 LocalSearchIntraSolution::LocalSearchIntraSolution(Solution s)
   :Solution(s){
@@ -22,7 +22,7 @@ LocalSearchIntraSolution::LocalSearchIntraSolution(Solution s)
       std::cout << "The input solution is invalid. Exiting." <<std::endl;
       exit(0);
     }
-};
+}
 
 void LocalSearchIntraSolution::Solve(){
   double cost = 0;
