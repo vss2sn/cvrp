@@ -36,7 +36,7 @@ GASolution::GASolution(Solution s,
   std::vector<int> temp_c, temp_i;
   temp_i.push_back(0);
   for(auto& v:vehicles){
-    for(int i=1;i<v.nodes.size()-1;i++) temp_c.push_back(v.nodes[i]);
+    for(size_t i=1;i<v.nodes.size()-1;i++) temp_c.push_back(v.nodes[i]);
     temp_i.push_back(temp_c.size());
   }
 
@@ -46,11 +46,11 @@ GASolution::GASolution(Solution s,
     v.load = capacity;
   }
 
-  for(auto& v:vehicles){
-    v.nodes.clear();
-    v.nodes.push_back(0);
-    v.load = capacity;
-  }
+  // for(auto& v:vehicles){
+  //   v.nodes.clear();
+  //   v.nodes.push_back(0);
+  //   v.load = capacity;
+  // }
   for(auto& n:nodes) n.is_routed = false;
   nodes[0].is_routed = true;
 
@@ -60,7 +60,7 @@ GASolution::GASolution(Solution s,
   // Replacing the greedy solution (1st chromosome) with the solution given as input
   chromosomes[0] = temp_c;
   iterators[0] = temp_i;
-  if(!checkValidity(0) || chromosomes[0].size() != n_nucleotide_pairs){
+  if(!checkValidity(0) || chromosomes[0].size() != size_t(n_nucleotide_pairs)){
     // Extra sanity check for size of solution
     std::cout << "The input solution is invalid. Exiting." <<std::endl;
     exit(0);
@@ -165,7 +165,7 @@ void GASolution::GenerateGreedySolutions(){
   }
   double cost = 0;
   for(auto& v:vehicles2) cost += v.cost;
-  if(gs.size() != n_nucleotide_pairs){
+  if(gs.size() != size_t(n_nucleotide_pairs)){
     std::cout << "Initial solution does not contain all the nodes. Exiting" << std::endl;
     exit(0);
   }
@@ -205,7 +205,7 @@ void GASolution::GenerateGreedySolutions(){
       }
     }
     chromosomes[j] = gs;
-    if(gs.size() != n_nucleotide_pairs){
+    if(gs.size() != size_t(n_nucleotide_pairs)){
       std::cout << "Initial solutions do not contain all the nodes. Exiting" << std::endl;
       exit(0);
     }
@@ -249,7 +249,7 @@ void GASolution::RemoveSimilarSolutions(){
 double GASolution::CalculateCost(int i){
   double cost = 0;
   // double tmp = costs[i];
-  for(int k=0;k<iterators[0].size()-1;k++){
+  for(size_t k=0;k<iterators[0].size()-1;k++){
     if(iterators[i][k]==n_nucleotide_pairs) break;
     int j=iterators[i][k];
     if(j<iterators[i][k+1]) cost+=distanceMatrix[0][chromosomes[i][j]];
@@ -344,7 +344,7 @@ void GASolution::HGreXCrossover(){
   child.push_back((*itp1)[0]);
   reached.insert(child.back());
   int n1, n2;
-  while(child.size() < n_nucleotide_pairs){
+  while(child.size() < size_t(n_nucleotide_pairs)){
     auto it_1 = find((*itp1).begin(), (*itp1).end(), child.back());
     auto it_2 = find((*itp2).begin(), (*itp2).end(), child.back());
     // if it = itp1.end() there is something wrong as both chromosomes should contain all the nodes
@@ -722,7 +722,7 @@ void GASolution::GenerateBestSolution(){
 
   // std::cout << "Valid" << checkValidity(i) << std::endl;
   auto v = vehicles.begin();
-  for(int k=0;k<iterators[0].size()-1;k++, v++){
+  for(size_t k=0;k<iterators[0].size()-1;k++, v++){
     v->cost = 0;
     if(iterators[i][k]==n_nucleotide_pairs) break;
     int j=iterators[i][k];

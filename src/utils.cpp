@@ -21,7 +21,7 @@ void Route::PrintStatus(){
   std::cout << "Path    : ";
   // the nodes.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
-  for(int i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
+  for(size_t i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
   std::cout << "0";
   std::cout << std::endl << std::endl;
 }
@@ -30,14 +30,14 @@ void Route::PrintRoute(){
   std::cout << "Path    : ";
   // the nodes.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
-  for(int i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
+  for(size_t i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
   std::cout << "0";
   std::cout << std::endl << std::endl;
 }
 
 void Route::CalculateCost(std::vector<std::vector<double>> distanceMatrix){
   cost = 0;
-  for(int i=0;i<nodes.size()-1;i++) cost+=distanceMatrix[nodes[i]][nodes[i+1]];
+  for(size_t i=0;i<nodes.size()-1;i++) cost+=distanceMatrix[nodes[i]][nodes[i+1]];
 }
 
 void Vehicle::PrintStatus(){
@@ -49,7 +49,7 @@ void Vehicle::PrintStatus(){
   std::cout << "Path    : "   ;
   // the nodes.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
-  for(int i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
+  for(size_t i = 0; i < nodes.size()-1; ++i) std::cout << nodes[i] << " ---> ";
   std::cout << "0";
   std::cout << std::endl << std::endl;
 }
@@ -92,7 +92,7 @@ void Solution::Solve(){}
 Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes){
     double cost = INT_MAX;
     int id = -1;
-    for(int j=0; j < distanceMatrix[0].size(); j++){
+    for(size_t j=0; j < distanceMatrix[0].size(); j++){
       if(!nodes[j].is_routed && nodes[j].demand <= v.load && distanceMatrix[v.nodes.back()][j] < cost){
         cost = distanceMatrix[v.nodes.back()][j];
         id = j;
@@ -157,9 +157,9 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
 
   // for(auto& n:nodes) n.PrintStatus();
   std::vector<double> tmp(nodes.size());
-  for(int i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
-  for(int i=0; i<nodes.size(); ++i){
-    for(int j=i; j < nodes.size(); ++j){
+  for(size_t i=0; i<nodes.size(); ++i) distanceMatrix.push_back(tmp);
+  for(size_t i=0; i<nodes.size(); ++i){
+    for(size_t j=i; j < nodes.size(); ++j){
       distanceMatrix[i][j] = sqrt(double(pow((nodes[i].x - nodes[j].x),2)
                                        + pow((nodes[i].y - nodes[j].y),2)));
       distanceMatrix[j][i] = distanceMatrix[i][j];

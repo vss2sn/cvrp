@@ -296,8 +296,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Private Functions</p>
 <dl class="function">
-<dt id="_CPPv3N18TabuSearchSolution6IsTabuERKiRKi">
-<span id="_CPPv2N18TabuSearchSolution6IsTabuERKiRKi"></span><span id="TabuSearchSolution::IsTabu__iCR.iCR"></span><span class="target" id="classTabuSearchSolution_1af5292c20b9d70a6a0b1df08272482ac6"></span>bool <code class="descname">IsTabu</code><span class="sig-paren">(</span><em class="property">const</em> int &amp;<em>begin</em>, <em class="property">const</em> int &amp;<em>end</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution6IsTabuERKiRKi" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N18TabuSearchSolution6IsTabuEKiKi">
+<span id="_CPPv2N18TabuSearchSolution6IsTabuEKiKi"></span><span id="TabuSearchSolution::IsTabu__iC.iC"></span><span class="target" id="classTabuSearchSolution_1a06318c54413aa6b72fa707007df611dc"></span>bool <code class="descname">IsTabu</code><span class="sig-paren">(</span><em class="property">const</em> int <em>begin</em>, <em class="property">const</em> int <em>end</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution6IsTabuEKiKi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Check if set of vector is tabu. </p>
 <p><p>Iterates over vector of vectors to_check to check if any of the moves listed in to_check are tabu. to_check is updated for each move considered </p>
 <dl class="docutils">
@@ -305,8 +305,8 @@
 <dd>bool True if any of the vectors checked are tabu</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">int</span></code>: begin index at which to begin iteration </li>
-<li><code class="docutils literal notranslate"><span class="pre">int</span></code>: end index at which to end iteration (inclusive) </li>
+<li><code class="docutils literal notranslate"><span class="pre">begin</span></code>: index at which to begin iteration </li>
+<li><code class="docutils literal notranslate"><span class="pre">end</span></code>: index at which to end iteration (inclusive) </li>
 </ul>
 </dd>
 </dl>
@@ -314,8 +314,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv3N18TabuSearchSolution10AspirationERdRd">
-<span id="_CPPv2N18TabuSearchSolution10AspirationERdRd"></span><span id="TabuSearchSolution::Aspiration__doubleR.doubleR"></span><span class="target" id="classTabuSearchSolution_1a5ad8f6974ec27404d5b8278705ea9315"></span>bool <code class="descname">Aspiration</code><span class="sig-paren">(</span>double &amp;<em>cost_increase</em>, double &amp;<em>cost_reduction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution10AspirationERdRd" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N18TabuSearchSolution10AspirationEdd">
+<span id="_CPPv2N18TabuSearchSolution10AspirationEdd"></span><span id="TabuSearchSolution::Aspiration__double.double"></span><span class="target" id="classTabuSearchSolution_1aa42df8e87adc5c599b7b6e6e66ac6ee3"></span>bool <code class="descname">Aspiration</code><span class="sig-paren">(</span>double <em>cost_increase</em>, double <em>cost_reduction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N18TabuSearchSolution10AspirationEdd" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Aspiration criteria. </p>
 <p><p>Ensures that if a move provides a better solution than the best currently available, the move is accepted even if it is tabu </p>
 <dl class="docutils">
@@ -323,8 +323,8 @@
 <dd>bool True if the total cost reduction alls the cost of the solution tobe less than the best cost.</dd>
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
-<li><code class="docutils literal notranslate"><span class="pre">double</span></code>: cost_increase Increase in cost due to move </li>
-<li><code class="docutils literal notranslate"><span class="pre">double</span></code>: cost_reduction Reduction in cost due to move </li>
+<li><code class="docutils literal notranslate"><span class="pre">cost_increase</span></code>: Increase in cost due to move </li>
+<li><code class="docutils literal notranslate"><span class="pre">cost_reduction</span></code>: Reduction in cost due to move </li>
 </ul>
 </dd>
 </dl>

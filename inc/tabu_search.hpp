@@ -16,7 +16,7 @@
 struct VectorHash {
   /**
   * @brief Overloaded operator to return hash value of a vector
-  * @param vector<int> vector who's hash is to be calculated
+  * @param v vector who's hash is to be calculated
   * @return size_t hash of the vector
   * @details Overloaded operator to return hash value of a vector. Used to create an unordered set for vectors.
   */
@@ -76,21 +76,21 @@ private:
 
   /**
   * @brief Check if set of vector is tabu
-  * @param int begin index at which to begin iteration
-  * @param int end index at which to end iteration (inclusive)
+  * @param begin index at which to begin iteration
+  * @param end index at which to end iteration (inclusive)
   * @return bool True if any of the vectors checked are tabu
   * @details Iterates over vector of vectors to_check to check if any of the moves listed in to_check are tabu. to_check is updated for each move considered
   */
-  inline bool IsTabu(const int& begin, const int& end);
+  inline bool IsTabu(const int begin, const int end);
 
   /**
   * @brief Aspiration criteria
-  * @param double cost_increase Increase in cost due to move
-  * @param double cost_reduction Reduction in cost due to move
+  * @param cost_increase Increase in cost due to move
+  * @param cost_reduction Reduction in cost due to move
   * @return bool True if the total cost reduction alls the cost of the solution tobe less than the best cost.
   * @details Ensures that if a move provides a better solution than the best currently available, the move is accepted even if it is tabu
   */
-  inline bool Aspiration(double& cost_increase, double& cost_reduction);
+  inline bool Aspiration(double cost_increase, double cost_reduction);
 };
 
 #endif

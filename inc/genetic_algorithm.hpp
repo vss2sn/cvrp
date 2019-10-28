@@ -243,7 +243,7 @@ private:
 
   /**
   * @brief Attempts to make a solution valid
-  * @param indes of solution to be made valid
+  * @param i index of solution to be made valid
   * @return void
   * @details Iterates over asolution from left right moving iterators left if the demand of a route is greater than the capacity of the vehicle, then iterates over asolution from right to left moving iterators right if the demand of a route is greater than the capacity of the vehicle. If the ordering of the nodes can give a possible solution, this method ensures that it is found. Does not gaurentee a solution if the ordering is impossible (for eg the total demand exceeds the total capacity of all the vehicles)
   */

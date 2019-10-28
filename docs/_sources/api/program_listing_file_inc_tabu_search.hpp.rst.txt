@@ -43,9 +43,9 @@ Program Listing for File tabu_search.hpp
      std::unordered_set<std::vector<int>, VectorHash> tabu_list_set;
      std::queue<std::vector<int>> tabu_list_queue;
    
-     inline bool IsTabu(const int& begin, const int& end);
+     inline bool IsTabu(const int begin, const int end);
    
-     inline bool Aspiration(double& cost_increase, double& cost_reduction);
+     inline bool Aspiration(double cost_increase, double cost_reduction);
    };
    
-   #endif TS_HPP
+   #endif

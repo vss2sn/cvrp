@@ -24,4 +24,4 @@ Program Listing for File greedy.hpp
    
      void Solve();
    };
-   #endif GREEDY_HPP
+   #endif

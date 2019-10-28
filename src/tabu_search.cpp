@@ -27,14 +27,14 @@ TabuSearchSolution::TabuSearchSolution(Solution s, int n_tabu)
   }
 }
 
-inline bool TabuSearchSolution::IsTabu(const int& begin, const int& end){
+inline bool TabuSearchSolution::IsTabu(const int begin, const int end){
   for(int i=begin; i<=end;i++){
     if(tabu_list_set.find(to_check[i])!=tabu_list_set.end()) return true;
   }
   return false;
 }
 
-inline bool TabuSearchSolution::Aspiration(double& cost_increase, double& cost_reduction){
+inline bool TabuSearchSolution::Aspiration(double cost_increase, double cost_reduction){
   return new_cost + cost_increase + cost_reduction < best_cost;
 }
 
@@ -45,7 +45,8 @@ void TabuSearchSolution::Solve(){
   // bool flag = false, flag2 = true;
   int max_it = 500, c_it = 0;
   // int  cur, prev, next_c, rep, next_r, best_c=-1, best_r;
-  int  cur, rep, best_c=-1, best_r;
+  int  best_c=-1, best_r;
+  size_t cur, rep;
   int  v_cur, v_prev, v_next_c, v_rep, v_next_r;
   double delta = INT_MAX, cost_reduction, cost_increase;//, bcr, bci;
   best_cost = cost, new_cost = cost;

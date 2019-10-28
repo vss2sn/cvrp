@@ -31,4 +31,4 @@ Program Listing for File simulated_annealing.hpp
      inline bool AllowMove(double delta);
    };
    
-   #endif SA_HPP
+   #endif

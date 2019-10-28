@@ -95,4 +95,4 @@ Program Listing for File genetic_algorithm.hpp
      void MakeValid(int i);
    };
    
-   #endif GA_HPP
+   #endif

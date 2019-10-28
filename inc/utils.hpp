@@ -38,7 +38,7 @@ public:
   * @param y y coordinate
   * @param id node id
   * @param demand node demand
-  * @param bool is_routed
+  * @param is_routed has the node been included in a route
   * @return no return parameter
   * @details Constructor for a node
   */
@@ -111,7 +111,7 @@ public:
   * @brief Constructor
   * @param noc number of nodes (centres/dropoff points)
   * @param demand_range max demand of each node (random value between 0 and this value)
-  * @param mov number of vehicles
+  * @param nov number of vehicles
   * @param capacity maximum capacityof each vehicle
   * @param grid_range maximum x and y coordinates of any node
   * @param distribution distribution of nodes. Can be either clustered or uniform.

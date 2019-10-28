@@ -31,7 +31,8 @@ void LocalSearchIntraSolution::Solve(){
     while(true){
       double delta = 0.0, cost_reduction, cost_increase;
       // int cur, prev, next_c, rep, next_r, best_c, best_r;
-      int cur, best_c, best_r;
+      int best_c, best_r;
+      size_t cur, rep;
       int  v_cur, v_prev, v_next_c, v_rep, v_next_r;
       for(cur=1;cur<v.nodes.size()-1;cur++){
         // prev = cur-1;
@@ -44,7 +45,7 @@ void LocalSearchIntraSolution::Solve(){
         cost_reduction = distanceMatrix[v_prev][v_next_c]
                        - distanceMatrix[v_prev][v_cur]
                        - distanceMatrix[v_cur][v_next_c];
-        for(int rep=1;rep<v.nodes.size()-1;rep++){
+        for(rep=1;rep<v.nodes.size()-1;rep++){
           if(rep!=cur && rep!=cur-1){
             // next_r = rep + 1;
             v_rep = v.nodes[rep];

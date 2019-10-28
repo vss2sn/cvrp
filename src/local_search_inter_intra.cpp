@@ -29,7 +29,8 @@ void LocalSearchInterIntraSolution::Solve(){
   for(auto& v:vehicles) cost += v.cost;
   double delta = 0.0, cost_reduction, cost_increase;//, bcr, bci;
   // int cur, prev, next_c, rep, next_r, best_c, best_r;
-  int cur, rep, best_c, best_r;
+  int best_c, best_r;
+  size_t cur, rep;
   int  v_cur, v_prev, v_next_c, v_rep, v_next_r;
   Vehicle *v_temp_2, *v_temp;
   while(true){

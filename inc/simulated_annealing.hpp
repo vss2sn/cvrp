@@ -18,6 +18,7 @@ public:
   * @param distanceMatrix Matrix containing distance between each pair of nodes
   * @param stag_limit Number of iterations without an improvement to the best solution
   * @param init_temp Initial temperature
+  * @param cooling_rate tempertaure multipluies with this variable to get new temperature at every iteration
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm
   */
@@ -28,6 +29,7 @@ public:
   * @param p Instance of Problem class defining the problem parameters
   * @param stag_limit Number of iterations without an improvement to the best solution
   * @param init_temp Initial temperature
+  * @param cooling_rate tempertaure multipluies with this variable to get new temperature at every iteration
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm
   */
@@ -38,6 +40,7 @@ public:
   * @param s Instance of Solution class containing a valid solution and problem parameters
   * @param stag_limit Number of iterations without an improvement to the best solution
   * @param init_temp Initial temperature
+  * @param cooling_rate tempertaure multipluies with this variable to get new temperature at every iteration
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Simulated Annealing Algorithm
   */
@@ -54,7 +57,7 @@ private:
   int max_temp, n_reheates = 20, stag_limit, stag;
   /**
   * @brief Checks whether the move is allowable
-  * @param double delta change in cost of solution due to move
+  * @param delta change in cost of solution due to move
   * @return bool True if move accepted
   * @details Allows move if it improves the solution; also allows move based on probability and temperature at the given time.
   */
