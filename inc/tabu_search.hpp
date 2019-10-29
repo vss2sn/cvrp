@@ -41,7 +41,10 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix, int n_tabu = 50);
+  TabuSearchSolution(std::vector<Node> nodes,
+                     std::vector<Vehicle> vehicles,
+                     std::vector<std::vector<double>> distanceMatrix,
+                     int n_tabu = 50);
   /**
   * @brief Constructor
   * @param p Instance of Problem class defining the problem parameters
@@ -49,7 +52,8 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(Problem p, int n_tabu = 50);
+  TabuSearchSolution(Problem p,
+                     int n_tabu = 50);
 
   /**
   * @brief Constructor
@@ -58,7 +62,8 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Tabu Search Algorithm
   */
-  TabuSearchSolution(Solution s, int n_tabu = 50);
+  TabuSearchSolution(Solution s,
+                     int n_tabu = 50);
 
   /**
   * @brief Function called to solve the given problem using a tabu search algorithm
@@ -67,12 +72,12 @@ public:
   */
   void Solve();
 private:
-  int capacity, n_tabu;
-  double best_cost, new_cost;
+  int n_tabu_;
+  double best_cost_, new_cost_;
 
-  std::vector<std::vector<int>> to_check; // invert order of v1, v2 and cur, rep+1
-  std::unordered_set<std::vector<int>, VectorHash> tabu_list_set;
-  std::queue<std::vector<int>> tabu_list_queue;
+  std::vector<std::vector<int>> to_check_; // invert order of v1, v2 and cur, rep+1
+  std::unordered_set<std::vector<int>, VectorHash> tabu_list_set_;
+  std::queue<std::vector<int>> tabu_list_queue_;
 
   /**
   * @brief Check if set of vector is tabu
@@ -93,4 +98,4 @@ private:
   inline bool Aspiration(double cost_increase, double cost_reduction);
 };
 
-#endif
+#endif // TS_HPP

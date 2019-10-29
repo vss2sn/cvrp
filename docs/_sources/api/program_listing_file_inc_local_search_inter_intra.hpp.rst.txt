@@ -18,7 +18,9 @@ Program Listing for File local_search_inter_intra.hpp
    
    class LocalSearchInterIntraSolution : public Solution{
    public:
-     LocalSearchInterIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
+     LocalSearchInterIntraSolution(std::vector<Node> nodes,
+                                   std::vector<Vehicle> vehicles,
+                                   std::vector<std::vector<double>> distanceMatrix);
    
      LocalSearchInterIntraSolution(Problem p);
    
@@ -26,4 +28,4 @@ Program Listing for File local_search_inter_intra.hpp
      void Solve();
    };
    
-   #endif
+   #endif // LSII_HPP

@@ -29,8 +29,8 @@
 */
 class Node{
 public:
-  int x, y, id, demand;
-  bool is_routed;
+  int x_, y_, id_, demand_;
+  bool is_routed_;
 
   /**
   * @brief Consructor
@@ -42,7 +42,12 @@ public:
   * @return no return parameter
   * @details Constructor for a node
   */
-  Node(int x = 0, int y = 0, int id = 0, int demand = 0, bool is_routed = true):x(x), y(y), id(id), demand(demand), is_routed(is_routed){}
+  Node(int x = 0,
+       int y = 0,
+       int id = 0,
+       int demand = 0,
+       bool is_routed = true)
+       :x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed){}
 
   /**
   * @brief print status of node
@@ -53,8 +58,8 @@ public:
 
 class Route{
 public:
-  double cost = 0;
-  std::vector<int> nodes;
+  double cost_ = 0;
+  std::vector<int> nodes_;
 
   /**
   * @brief print status of route
@@ -80,7 +85,7 @@ public:
 
 class Vehicle: public Route{
 public:
-  int id, load, capacity;
+  int id_, load_, capacity_;
 
   /**
   * @brief Constructor
@@ -90,7 +95,10 @@ public:
   * @return no return value
   * @details Constructor of vehicle class
   */
-  Vehicle(int id = 0, int load = 0, int capacity = 0) : id(id), load(load), capacity(capacity){}
+  Vehicle(int id = 0,
+          int load = 0,
+          int capacity = 0)
+          : id_(id), load_(load), capacity_(capacity){}
 
   /**
   * @brief print status of vehicle
@@ -101,11 +109,11 @@ public:
 
 class Problem{
 public:
-  std::vector<Node> nodes;
-  std::vector<Vehicle> vehicles;
-  std::vector<std::vector<double>> distanceMatrix;
-  Node depot;
-  int capacity;
+  std::vector<Node> nodes_;
+  std::vector<Vehicle> vehicles_;
+  std::vector<std::vector<double>> distanceMatrix_;
+  Node depot_;
+  int capacity_;
 
   /**
   * @brief Constructor
@@ -120,17 +128,24 @@ public:
   * @return no return value
   * @details Constructor for problem class
   */
-  Problem(int noc = 1000, int demand_range = 40, int nov = 50, int capacity = 800, int grid_range = 1000, std::string distribution = "uniform", int n_clusters = 5, int cluster_range = 10);
+  Problem(int noc = 1000,
+          int demand_range = 40,
+          int nov = 50,
+          int capacity = 800,
+          int grid_range = 1000,
+          std::string distribution = "uniform",
+          int n_clusters = 5,
+          int cluster_range = 10);
 };
 
 // Solution class should not call problems's constructor so not inheriting.
 class Solution{
 public:
-  std::vector<Node> nodes;
-  std::vector<Vehicle> vehicles;
-  std::vector<std::vector<double>> distanceMatrix;
-  Node depot;
-  int capacity;
+  std::vector<Node> nodes_;
+  std::vector<Vehicle> vehicles_;
+  std::vector<std::vector<double>> distanceMatrix_;
+  Node depot_;
+  int capacity_;
   /**
   * @brief Constructor
   * @param nodes Vector of all nodes
@@ -139,7 +154,9 @@ public:
   * @return no return type
   * @details Constructor for solution class
   */
-  Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
+  Solution(std::vector<Node> nodes,
+           std::vector<Vehicle> vehicles,
+           std::vector<std::vector<double>> distanceMatrix);
 
   /**
   * @brief Constructor
@@ -178,7 +195,9 @@ public:
   * @return Node nearest node
   * @details Finds the node nearest to the last node in the route of the vehicle under constideration that has not been routed already
   */
-  Node find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes);
+  Node find_closest(Vehicle& v,
+                    std::vector<std::vector<double>>& distanceMatrix,
+                    std::vector<Node>& nodes);
 };
 
-#endif
+#endif // UTILS_HPP

@@ -10,31 +10,31 @@ GreedySolution::GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> veh
   :Solution(nodes, vehicles, distanceMatrix){};
 
 GreedySolution::GreedySolution(Problem p)
-  :Solution(p.nodes, p.vehicles, p.distanceMatrix){};
+  :Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){};
 
 void GreedySolution::Solve(){
-  for(auto& v:vehicles){
+  for(auto& v:vehicles_){
     while(true){
-      Node closest_node = find_closest(v, distanceMatrix, nodes);
-      if(closest_node.id!=-1 && v.load - closest_node.demand >=0){
-        v.load -= closest_node.demand;
-        v.cost += distanceMatrix[v.nodes.back()][closest_node.id];
-        v.nodes.push_back(closest_node.id);
-        nodes[closest_node.id].is_routed = true;
+      Node closest_node = find_closest(v, distanceMatrix_, nodes_);
+      if(closest_node.id_!=-1 && v.load_ - closest_node.demand_ >=0){
+        v.load_ -= closest_node.demand_;
+        v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
+        v.nodes_.push_back(closest_node.id_);
+        nodes_[closest_node.id_].is_routed_ = true;
       }
       else{
-        v.cost += distanceMatrix[v.nodes.back()][depot.id];
-        v.nodes.push_back(depot.id);
+        v.cost_ += distanceMatrix_[v.nodes_.back()][depot_.id_];
+        v.nodes_.push_back(depot_.id_);
         break;
       }
     }
   }
   double cost = 0;
-  for(auto &v:vehicles) cost +=v.cost;
+  for(auto &v:vehicles_) cost +=v.cost_;
   std::cout << "Cost: " << cost << std::endl;
 
-  for(auto& i:nodes){
-    if(!i.is_routed){
+  for(auto& i:nodes_){
+    if(!i.is_routed_){
       std::cout << "Unreached node: " << std::endl;
       i.PrintStatus();
     }

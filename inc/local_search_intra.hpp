@@ -19,7 +19,9 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using Local Search applied to the routes of each of the vehicles separately
   */
-  LocalSearchIntraSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
+  LocalSearchIntraSolution(std::vector<Node> nodes,
+                           std::vector<Vehicle> vehicles,
+                           std::vector<std::vector<double>> distanceMatrix);
 
   /**
   * @brief Constructor
@@ -44,4 +46,4 @@ public:
   void Solve();
 };
 
-#endif
+#endif // LSI_HPP

@@ -231,15 +231,10 @@
 
   <span class="kt">void</span> <span class="nf">Solve</span><span class="p">();</span>
 <span class="k">private</span><span class="o">:</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">chromosomes</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">iterators</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">chromosome</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">n_chromosomes</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">n_nucleotide_pairs</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">n_vehicles</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">generations</span><span class="p">;</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">costs</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">best</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">chromosomes_</span><span class="p">,</span> <span class="n">iterators_</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">costs_</span><span class="p">;</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">chromosome_</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">n_chromosomes_</span><span class="p">,</span> <span class="n">n_nucleotide_pairs_</span><span class="p">,</span> <span class="n">n_vehicles_</span><span class="p">,</span> <span class="n">generations_</span><span class="p">,</span> <span class="n">best_</span><span class="p">;</span>
 
   <span class="kt">void</span> <span class="nf">GenerateRandomSolutions</span><span class="p">();</span>
 
@@ -267,9 +262,11 @@
 
   <span class="kt">void</span> <span class="nf">InsertIterDist</span><span class="p">();</span>
 
-  <span class="kt">bool</span> <span class="nf">MutateIterLeft</span><span class="p">(</span><span class="kt">int</span> <span class="n">i_chromosome</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j_in</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="nf">MutateIterLeft</span><span class="p">(</span><span class="kt">int</span> <span class="n">i_chromosome</span><span class="p">,</span>
+                      <span class="kt">int</span> <span class="n">j_in</span><span class="p">);</span>
 
-  <span class="kt">bool</span> <span class="nf">MutateIterRight</span><span class="p">(</span><span class="kt">int</span> <span class="n">i_chromosome</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j_in</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="nf">MutateIterRight</span><span class="p">(</span><span class="kt">int</span> <span class="n">i_chromosome</span><span class="p">,</span>
+                       <span class="kt">int</span> <span class="n">j_in</span><span class="p">);</span>
 
   <span class="kt">double</span> <span class="nf">CalculateCost</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
 
@@ -292,7 +289,7 @@
   <span class="kt">void</span> <span class="nf">MakeValid</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">);</span>
 <span class="p">};</span>
 
-<span class="cp">#endif</span>
+<span class="cp">#endif </span><span class="c1">// GA_HPP</span>
 </pre></div>
 </div>
 </div>

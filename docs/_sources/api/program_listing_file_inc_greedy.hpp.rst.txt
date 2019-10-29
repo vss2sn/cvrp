@@ -18,10 +18,12 @@ Program Listing for File greedy.hpp
    
    class GreedySolution:public Solution{
    public:
-     GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
+     GreedySolution(std::vector<Node> nodes,
+                    std::vector<Vehicle> vehicles,
+                   std::vector<std::vector<double>> distanceMatrix);
    
      GreedySolution(Problem p);
    
      void Solve();
    };
-   #endif
+   #endif // GREEDY_HPP

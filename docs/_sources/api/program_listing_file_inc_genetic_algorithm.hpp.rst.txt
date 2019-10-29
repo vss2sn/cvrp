@@ -34,15 +34,10 @@ Program Listing for File genetic_algorithm.hpp
    
      void Solve();
    private:
-     std::vector<std::vector<int>> chromosomes;
-     std::vector<std::vector<int>> iterators;
-     std::vector<int> chromosome;
-     int n_chromosomes;
-     int n_nucleotide_pairs;
-     int n_vehicles;
-     int generations;
-     std::vector<double> costs;
-     int best;
+     std::vector<std::vector<int>> chromosomes_, iterators_;
+     std::vector<double> costs_;
+     std::vector<int> chromosome_;
+     int n_chromosomes_, n_nucleotide_pairs_, n_vehicles_, generations_, best_;
    
      void GenerateRandomSolutions();
    
@@ -70,9 +65,11 @@ Program Listing for File genetic_algorithm.hpp
    
      void InsertIterDist();
    
-     bool MutateIterLeft(int i_chromosome, int j_in);
+     bool MutateIterLeft(int i_chromosome,
+                         int j_in);
    
-     bool MutateIterRight(int i_chromosome, int j_in);
+     bool MutateIterRight(int i_chromosome,
+                          int j_in);
    
      double CalculateCost(int i);
    
@@ -95,4 +92,4 @@ Program Listing for File genetic_algorithm.hpp
      void MakeValid(int i);
    };
    
-   #endif
+   #endif // GA_HPP

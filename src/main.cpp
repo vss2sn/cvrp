@@ -7,7 +7,7 @@
 #include "main.hpp"
 
 int main(){
-  Problem p(10,4,8,5,10, "uniform");
+  Problem p(100,4,8,50,100, "uniform");
 
   std::cout << "Greedy: " << std::endl;
   GreedySolution vrp_greedy(p);
@@ -30,7 +30,7 @@ int main(){
   std::cout << std::endl;
 
   std::cout << "Genetic Algorithm: " << std::endl;
-  GASolution vrp_ga(p, 25, 50000);
+  GASolution vrp_ga(p, 25, 500000);
   vrp_ga.Solve();
   std::cout << std::endl;
 

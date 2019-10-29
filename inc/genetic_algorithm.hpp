@@ -58,15 +58,10 @@ public:
   */
   void Solve();
 private:
-  std::vector<std::vector<int>> chromosomes;
-  std::vector<std::vector<int>> iterators;
-  std::vector<int> chromosome;
-  int n_chromosomes;
-  int n_nucleotide_pairs;
-  int n_vehicles;
-  int generations;
-  std::vector<double> costs;
-  int best;
+  std::vector<std::vector<int>> chromosomes_, iterators_;
+  std::vector<double> costs_;
+  std::vector<int> chromosome_;
+  int n_chromosomes_, n_nucleotide_pairs_, n_vehicles_, generations_, best_;
 
   /**
   * @brief Generates random solutions
@@ -166,7 +161,8 @@ private:
   * @return bool True if operation successful
   * @details Decrements the value at j_in position of the iterator vector of the chomosome selected, effectively including the last nucleotide pair in the previous gene into the succeeding nucleotide pair. Hence the last visited node from the preceeding vehicle is moved into the route of the current vehicle and is the first node visited by the current vehicle. Operation performed if solution is improved by said operation.
   */
-  bool MutateIterLeft(int i_chromosome, int j_in);
+  bool MutateIterLeft(int i_chromosome,
+                      int j_in);
 
   /**
   * @brief Increments a selected point in the iterator vector of a selected chromosome
@@ -175,7 +171,8 @@ private:
   * @return bool True if operation successful
   * @details Increments the value at j_in position of the iterator vector of the chomosome selected, effectively including the first nucleotide pair in the current gene into the preceeding nucleotide pair. Hence the first visited node from the current vehicle is moved into the route of the preceeding vehicle and is the last node visited by the preceeding vehicle. Operation performed if solution is improved by said operation.
   */
-  bool MutateIterRight(int i_chromosome, int j_in);
+  bool MutateIterRight(int i_chromosome,
+                       int j_in);
 
   /**
   * @brief Calculates the cost of a given solution
@@ -250,4 +247,4 @@ private:
   void MakeValid(int i);
 };
 
-#endif
+#endif // GA_HPP

@@ -19,7 +19,9 @@ public:
   * @return No return parameter
   * @details Constructor for initial setup of problem, and solution using greedy algorithm
   */
-  GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix);
+  GreedySolution(std::vector<Node> nodes,
+                 std::vector<Vehicle> vehicles,
+                 std::vector<std::vector<double>> distanceMatrix);
 
   /**
   * @brief Constructor
@@ -36,4 +38,4 @@ public:
   */
   void Solve();
 };
-#endif
+#endif // GREEDY_HPP

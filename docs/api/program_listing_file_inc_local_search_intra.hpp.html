@@ -215,7 +215,9 @@
 
 <span class="k">class</span> <span class="nc">LocalSearchIntraSolution</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Solution</span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-  <span class="n">LocalSearchIntraSolution</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">nodes</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vehicle</span><span class="o">&gt;</span> <span class="n">vehicles</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span> <span class="n">distanceMatrix</span><span class="p">);</span>
+  <span class="n">LocalSearchIntraSolution</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">nodes</span><span class="p">,</span>
+                           <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Vehicle</span><span class="o">&gt;</span> <span class="n">vehicles</span><span class="p">,</span>
+                           <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span> <span class="n">distanceMatrix</span><span class="p">);</span>
 
   <span class="n">LocalSearchIntraSolution</span><span class="p">(</span><span class="n">Problem</span> <span class="n">p</span><span class="p">);</span>
 
@@ -223,7 +225,7 @@
   <span class="kt">void</span> <span class="nf">Solve</span><span class="p">();</span>
 <span class="p">};</span>
 
-<span class="cp">#endif</span>
+<span class="cp">#endif </span><span class="c1">// LSI_HPP</span>
 </pre></div>
 </div>
 </div>
