@@ -28,10 +28,19 @@
 - [Algorithms](#algorithms)
 - [Instructions](#instructions)
 - [Table of contents](#toc)
+- [Code Overview](#overview)
 - [Documentation](#docs)
 - [Overview of Algorithm Implementations](#algorithm_implementations)
 - [Notes](#notes)
 - [TODOs](#todos)
+
+<a name="overview"></a>
+#### Code Overview: ####
+1. The code contains `Problem`, `Solution` and `Vehicle` classes.
+2. The problem is setup using the `Problem` class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
+3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a `vector` of instances of the `Vehicle` class.
+4. The `Vehicle` class stores the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. The `PrintStatus()` and `PrintRoute()` functions show the status and route of the vehicle respectively.
+5. The `Solution` class also contains a virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the `Solution` class and overriding the `Solve()` method.
 
 <a name="docs"></a>
 #### Documentation: ####
@@ -44,19 +53,16 @@ For a brief overview on the implementations of the algorithms, please refer to t
 
 <a name="notes"></a>
 #### Notes: ####
-1. The problem is setup using the `Problem` class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
-2. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the `Vehicle` class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. The `PrintStatus()` and `PrintRoute()` functions show the status and route of the vehicle respectively.
-3. The `Solution` class also contains a virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the `Solution` class and overriding the `Solve()` method.
-4. The documentation for private functions (such as operators in the `GASolution` class) has been made available to aid understanding.
-5. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
+1. The documentation for private functions (such as operators in the `GASolution` class) has been made available to aid understanding.
+2. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
 
 <a name="todos"></a>
 #### TODOs: ####
-1. Run all the algorithms on different threads to speed up comparison
+1. Read in problem from a file.
 2. Consider adding plot of best solution cost vs time.
 3. Consider adding savings algorithm
 4. Add visualizer using ROS/ROS2.
 5. Consider adding maximum distance constraint
 6. Consider modifying to allow heterogeneous vehicles.
-7. Read in problem from a file.
-8. Consider adding background of repository.
+7. Consider adding background of repository.
+8. Add `PrintSolution()` function.
