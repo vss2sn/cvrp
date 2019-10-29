@@ -172,3 +172,31 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
     vehicles_[i].nodes_.push_back(0);
   }
 }
+
+void Solution::PrintSolution(const std::string& option){
+  int status;
+  char * demangled = abi::__cxa_demangle(typeid(*this).name(),0,0,&status);
+  std::cout << demangled << ":" << std::endl;
+  double total_cost = 0;
+  for(auto& v:vehicles_){
+    total_cost+=v.cost_;
+    if(option=="status"){
+      v.PrintStatus();
+    }
+    else if(option=="route"){
+      std::cout << "Vehicle ID: " << v.id_ << " | ";
+      v.PrintRoute();
+    }
+  }
+  bool valid = CheckSolutionValid();
+  std::cout << "Total solution cost: " << total_cost << std::endl;
+  std::cout << "Solution validity  : " << valid << std::endl;
+  if(!valid){
+    for(auto& i:nodes_){
+      if(!i.is_routed_){
+        std::cout << "Unreached node: " << std::endl;
+        i.PrintStatus();
+      }
+    }
+  }
+}

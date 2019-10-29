@@ -22,6 +22,8 @@
 #include <unistd.h>
 #include <cstdio>
 #include <ctime>
+#include <cxxabi.h>
+#include <typeinfo>
 
 /**
 * @brief Class node
@@ -198,6 +200,14 @@ public:
   Node find_closest(Vehicle& v,
                     std::vector<std::vector<double>>& distanceMatrix,
                     std::vector<Node>& nodes);
+
+  /**
+  * @brief Prints the status of solution
+  * @param option allows the option to print routes or vehicle statuses
+  * @return void
+  * @details Prints the solution status including cost, the vehicle status, and solution validity
+  */
+  void PrintSolution(const std::string& option="");
 };
 
 #endif // UTILS_HPP

@@ -66,3 +66,4 @@ For a brief overview on the implementations of the algorithms, please refer to t
 6. Consider modifying to allow heterogeneous vehicles.
 7. Consider adding background of repository.
 8. Add `PrintSolution()` function.
+9. Consider making Hybrid a class

@@ -3,11 +3,8 @@ project(cvrp)
 cmake_minimum_required(VERSION 3.5)
 add_definitions(-std=c++11)
 
-set( CXX_FLAGS "-Wall")
-set( CMAKE_CXX_FLAGS "${CXX_FLAGS} -std=c++11 -g")
-
-# set(CMAKE_CXX_STANDARD 11)
-# set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS 1)
+set( CXX_FLAGS "-Wall -Werror")
+set( CMAKE_CXX_FLAGS "${CXX_FLAGS} -std=c++11 -O3")
 
 include_directories( ${CMAKE_SOURCE_DIR}/inc )
 
