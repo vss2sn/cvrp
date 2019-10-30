@@ -39,15 +39,26 @@ int main(){
   vrp_sa.Solve();
   std::cout << std::endl;
 
-  // NOTE: The following is an example of how to create solutions by using the
-  // algorithms coding in this repository sequentially, effectively allowing
-  // the creation of hybrid algorithms/solutions
-  //
-  // GreedySolution vrp_greedy(p);
-  // vrp_greedy.Solve();
-  // Solution s = vrp_greedy; // Strip out solution from vrp_greedy.
-  // LocalSearchInterIntraSolution hybrid(s);
-  // hybrid.Solve();
+  // NOTE: The following are examples of how to create solutions by using the
+  // algorithms coded in this repository sequentially, effectively allowing
+  // the creation of hybrid algorithms/solutions.
+
+  // Example 1
+  // std::cout << "Hybrid Example 1: " << std::endl;
+  // GreedySolution vrp_greedy_for_hybrid(p);
+  // vrp_greedy_for_hybrid.Solve();
+  // Solution s = vrp_greedy_for_hybrid; // Strip out solution from vrp_greedy_for_hybrid.
+  // LocalSearchInterIntraSolution vrp_lsii_for_hybrid(s);
+  // vrp_lsii_for_hybrid.Solve();
+  // std::cout << std::endl;
+
+  // Example 2
+  // std::cout << "Hybrid Example 2: " << std::endl;
+  // GASolution vrp_ga_for_hybrid(p, 25, 500000);;
+  // vrp_ga_for_hybrid.Solve();
+  // Solution s = vrp_ga_for_hybrid; // Strip out solution from vrp_greedy_for_hybrid.
+  // LocalSearchInterIntraSolution vrp_lsii_for_hybrid(s);
+  // vrp_lsii_for_hybrid.Solve();
   // std::cout << std::endl;
 
   return 0;

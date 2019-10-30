@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#tabu-search-ts">4. Tabu Search (TS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hybrid-algorithm-ha">7. Hybrid Algorithm (HA)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
@@ -278,7 +279,7 @@
 <ul class="simple">
 <li>Initial solutions are created (random and greedy heuristic).</li>
 <li>For a given number of generations various operators are applied to the chromosomes randomly.</li>
-<li>Each operator is triggered with a set probability, and randomly selects the chromosome/iterator on which to apply said operator (Both the chromosomes and iterators have disticnt operator functions).</li>
+<li>Each operator is triggered with a set probability, and randomly selects the chromosome/iterator on which to apply said operator (Both the chromosomes and iterators have distinct operator functions).</li>
 <li>The number of chromosomes is maintained as constant, removing higher cost solutions (see documentation of functions for details).</li>
 <li>The best solution is chosen and converted to the standard form of the solution.</li>
 </ul>
@@ -288,7 +289,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ul class="last simple">
-<li>The move as defined here is an move &amp; insert operation. The first node selected is removed from its current route and inserted into the route of the second node, immediately in front of the second node.</li>
+<li>The move as defined here is a move &amp; insert operation. The first node selected is removed from its current route and inserted into the route of the second node, immediately after the second node.</li>
 <li>Given that this algorithm chooses 2 random nodes and attempts insertion, it works well only for smaller problems. Changing it to choose its moves with some heuristic, or in a manner similar to local search would improve its efficiency significantly.</li>
 </ul>
 </div>
@@ -302,6 +303,13 @@
 <li>If the solution does not improve (<cite>is stagnant</cite>) over a number of iterations (<cite>stag_limit</cite>) a reheat operation is performed, increasing the temperature once again.</li>
 <li>This allows the solution to once again accept moves that increase the cost of the solution, allowing the algorithm to explore a larger section of the solution space and not get stuck in a local minima.</li>
 <li>The algorithm runs for a set number of reheats.</li>
+</ul>
+</div>
+<div class="section" id="hybrid-algorithm-ha">
+<h2>7. Hybrid Algorithm (HA)<a class="headerlink" href="#hybrid-algorithm-ha" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>This refers to the possibility of using the code to run the algorithms sequentially on the same problem, using the final solution of one algorithm as the input/initial solution for the next.</li>
+<li>The example at the end of main.cpp uses simulated annealing followed by local search.</li>
 </ul>
 </div>
 </div>

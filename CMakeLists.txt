@@ -3,7 +3,10 @@ project(cvrp)
 cmake_minimum_required(VERSION 3.5)
 add_definitions(-std=c++11)
 
-set( CXX_FLAGS "-Wall -Werror")
+# set( CXX_FLAGS "-Wall -Wextra -Werror")
+# set( CMAKE_CXX_FLAGS "${CXX_FLAGS} -std=c++11 -g")
+
+set( CXX_FLAGS "-Wall -Wextra")
 set( CMAKE_CXX_FLAGS "${CXX_FLAGS} -std=c++11 -O3")
 
 include_directories( ${CMAKE_SOURCE_DIR}/inc )

@@ -192,14 +192,10 @@ public:
   /**
   * @brief find closest node
   * @param v vehicle under consideration
-  * @param distanceMatrix Matrix containing distance between each pair of nodes
-  * @param nodes
   * @return Node nearest node
   * @details Finds the node nearest to the last node in the route of the vehicle under constideration that has not been routed already
   */
-  Node find_closest(Vehicle& v,
-                    std::vector<std::vector<double>>& distanceMatrix,
-                    std::vector<Node>& nodes);
+  Node find_closest(Vehicle& v);
 
   /**
   * @brief Prints the status of solution

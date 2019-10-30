@@ -36,11 +36,12 @@
 
 <a name="overview"></a>
 #### Code Overview: ####
-1. The code contains `Problem`, `Solution` and `Vehicle` classes.
+1. The code contains `Problem`, `Solution` and `Vehicle` classes. Each algorithm implementation has its own class and inherits the `Solution` class.
 2. The problem is setup using the `Problem` class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
 3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a `vector` of instances of the `Vehicle` class.
 4. The `Vehicle` class stores the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. The `PrintStatus()` and `PrintRoute()` functions show the status and route of the vehicle respectively.
-5. The `Solution` class also contains a virtual function called `Solve()`. Each algorithm mentioned above is implemented in its own class by inheriting the `Solution` class and overriding the `Solve()` method.
+5. The `Solution` class also contains a virtual method called `Solve()`. Each algorithm class overrides the `Solve()` method.
+6. The `Solution` class also contains a method called `PrintSolution(option)` with the an input option (`option`) to print vehicles' statuses or routes in addition to the total cost and validity of the solution.
 
 <a name="docs"></a>
 #### Documentation: ####
@@ -65,5 +66,5 @@ For a brief overview on the implementations of the algorithms, please refer to t
 5. Consider adding maximum distance constraint
 6. Consider modifying to allow heterogeneous vehicles.
 7. Consider adding background of repository.
-8. Add `PrintSolution()` function.
-9. Consider making Hybrid a class
+8. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
+9. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.

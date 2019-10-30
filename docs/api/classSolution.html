@@ -92,6 +92,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#hybrid-algorithm-ha">7. Hybrid Algorithm (HA)</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
@@ -303,8 +304,8 @@
 </dd></dl>
 
 <dl class="function">
-<dt id="_CPPv3N8Solution12find_closestER7VehicleRNSt6vectorINSt6vectorIdEEEERNSt6vectorI4NodeEE">
-<span id="_CPPv2N8Solution12find_closestER7VehicleRNSt6vectorINSt6vectorIdEEEERNSt6vectorI4NodeEE"></span><span id="Solution::find_closest__VehicleR.std::vector:std::vector:double::R.std::vector:Node:R"></span><span class="target" id="classSolution_1adfb7e5fda3dafe74f894f49ba54d899e"></span><a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a> <code class="descname">find_closest</code><span class="sig-paren">(</span><a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a> &amp;<em>v</em>, std::vector&lt;std::vector&lt;double&gt;&gt; &amp;<em>distanceMatrix</em>, std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; &amp;<em>nodes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution12find_closestER7VehicleRNSt6vectorINSt6vectorIdEEEERNSt6vectorI4NodeEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv3N8Solution12find_closestER7Vehicle">
+<span id="_CPPv2N8Solution12find_closestER7Vehicle"></span><span id="Solution::find_closest__VehicleR"></span><span class="target" id="classSolution_1a8a7bc4393e2b0188e912e7f672cbf87e"></span><a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a> <code class="descname">find_closest</code><span class="sig-paren">(</span><a class="reference internal" href="classVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a> &amp;<em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution12find_closestER7Vehicle" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>find closest node </p>
 <p><p>Finds the node nearest to the last node in the route of the vehicle under constideration that has not been routed already </p>
 <dl class="docutils">
@@ -313,8 +314,23 @@
 <dt><strong>Parameters</strong></dt>
 <dd><ul class="breatheparameterlist first last simple">
 <li><code class="docutils literal notranslate"><span class="pre">v</span></code>: vehicle under consideration </li>
-<li><code class="docutils literal notranslate"><span class="pre">distanceMatrix</span></code>: Matrix containing distance between each pair of nodes </li>
-<li><code class="docutils literal notranslate"><span class="pre">nodes</span></code>: </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N8Solution13PrintSolutionERKNSt6stringE">
+<span id="_CPPv2N8Solution13PrintSolutionERKNSt6stringE"></span><span id="Solution::PrintSolution__ssCR"></span><span class="target" id="classSolution_1a38a848335342d35b6f64c02b4c9994e5"></span>void <code class="descname">PrintSolution</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>option</em> = &quot;&quot;<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N8Solution13PrintSolutionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Prints the status of solution. </p>
+<p><p>Prints the solution status including cost, the vehicle status, and solution validity </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>void</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">option</span></code>: allows the option to print routes or vehicle statuses </li>
 </ul>
 </dd>
 </dl>

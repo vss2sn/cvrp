@@ -20,7 +20,7 @@ Program Listing for File greedy.hpp
    public:
      GreedySolution(std::vector<Node> nodes,
                     std::vector<Vehicle> vehicles,
-                   std::vector<std::vector<double>> distanceMatrix);
+                    std::vector<std::vector<double>> distanceMatrix);
    
      GreedySolution(Problem p);
    

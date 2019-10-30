@@ -15,7 +15,7 @@ GreedySolution::GreedySolution(Problem p)
 void GreedySolution::Solve(){
   for(auto& v:vehicles_){
     while(true){
-      Node closest_node = find_closest(v, distanceMatrix_, nodes_);
+      Node closest_node = find_closest(v);
       if(closest_node.id_!=-1 && v.load_ - closest_node.demand_ >=0){
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];

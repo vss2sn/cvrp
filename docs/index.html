@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#hybrid-algorithm-ha">7. Hybrid Algorithm (HA)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
@@ -237,48 +238,59 @@
 <li><a class="reference external" href="#algorithms">Algorithms</a></li>
 <li><a class="reference external" href="#instructions">Instructions</a></li>
 <li><a class="reference external" href="#toc">Table of contents</a></li>
+<li><a class="reference external" href="#overview">Code Overview</a></li>
 <li><a class="reference external" href="#docs">Documentation</a></li>
 <li><a class="reference external" href="#algorithm_implementations">Overview of Algorithm Implementations</a></li>
 <li><a class="reference external" href="#notes">Notes</a></li>
 <li><a class="reference external" href="#todos">TODOs</a></li>
 </ul>
-<p><span class="raw-html-m2r"><a name="docs"></a></span></p>
+<p><span class="raw-html-m2r"><a name="overview"></a></span></p>
 </div>
 <div class="section" id="id3">
-<h3>Documentation:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<h3>Code Overview:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>The code contains <code class="docutils literal notranslate"><span class="pre">Problem</span></code>, <code class="docutils literal notranslate"><span class="pre">Solution</span></code> and <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> classes. Each algorithm implementation has its own class and inherits the <code class="docutils literal notranslate"><span class="pre">Solution</span></code> class.</li>
+<li>The problem is setup using the <code class="docutils literal notranslate"><span class="pre">Problem</span></code> class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.</li>
+<li>A base class called <code class="docutils literal notranslate"><span class="pre">Solution</span></code> has been created to store the basic elements of the solution in a user friendly format. This includes a <code class="docutils literal notranslate"><span class="pre">vector</span></code> of instances of the <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class stores the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle’s route. The <code class="docutils literal notranslate"><span class="pre">PrintStatus()</span></code> and <code class="docutils literal notranslate"><span class="pre">PrintRoute()</span></code> functions show the status and route of the vehicle respectively.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">Solution</span></code> class also contains a virtual method called <code class="docutils literal notranslate"><span class="pre">Solve()</span></code>. Each algorithm class overrides the <code class="docutils literal notranslate"><span class="pre">Solve()</span></code> method.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">Solution</span></code> class also contains a method called <code class="docutils literal notranslate"><span class="pre">PrintSolution(option)</span></code> with the an input option (<code class="docutils literal notranslate"><span class="pre">option</span></code>) to print vehicles’ statuses or routes in addition to the total cost and validity of the solution.</li>
+</ol>
+<p><span class="raw-html-m2r"><a name="docs"></a></span></p>
+</div>
+<div class="section" id="id4">
+<h3>Documentation:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><a class="reference external" href="https://vss2sn.github.io/cvrp/">Documentation</a> can be found on GitHub pages.</li>
 <li>It has been created using Doxygen, and pip3 packages Sphinx (sphinx==1.8.3), Breathe (breathe==4.12.0), Exhale (exhale==0.2.2), Read the Docs Sphinx Theme (sphinx_rtd_theme==0.4.3) and m2r.</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="algorithm_implementations"></a></span></p>
 </div>
-<div class="section" id="id5">
-<h3>Overview of Algorithm Implementations<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Overview of Algorithm Implementations<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>For a brief overview on the implementations of the algorithms, please refer to this <a class="reference external" href="https://vss2sn.github.io/cvrp/algorithm_implementations.html">document</a>.</p>
 <p><span class="raw-html-m2r"><a name="notes"></a></span></p>
 </div>
-<div class="section" id="id6">
-<h3>Notes:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Notes:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>The problem is setup using the <code class="docutils literal notranslate"><span class="pre">Problem</span></code> class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.</li>
-<li>A base class called <code class="docutils literal notranslate"><span class="pre">Solution</span></code> has been created to store the basic elements of the solution in a user friendly format. This includes a number of instances of the <code class="docutils literal notranslate"><span class="pre">Vehicle</span></code> class that store the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle’s route. The <code class="docutils literal notranslate"><span class="pre">PrintStatus()</span></code> and <code class="docutils literal notranslate"><span class="pre">PrintRoute()</span></code> functions show the status and route of the vehicle respectively.</li>
-<li>The <code class="docutils literal notranslate"><span class="pre">Solution</span></code> class also contains a virtual function called <code class="docutils literal notranslate"><span class="pre">Solve()</span></code>. Each algorithm mentioned above is implemented in its own class by inheriting the <code class="docutils literal notranslate"><span class="pre">Solution</span></code> class and overriding the <code class="docutils literal notranslate"><span class="pre">Solve()</span></code> method.</li>
 <li>The documentation for private functions (such as operators in the <code class="docutils literal notranslate"><span class="pre">GASolution</span></code> class) has been made available to aid understanding.</li>
 <li>Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>.</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="todos"></a></span></p>
 </div>
-<div class="section" id="id7">
-<h3>TODOs:<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id8">
+<h3>TODOs:<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Run all the algorithms on different threads to speed up comparison</li>
+<li>Read in problem from a file.</li>
 <li>Consider adding plot of best solution cost vs time.</li>
 <li>Consider adding savings algorithm</li>
 <li>Add visualizer using ROS/ROS2.</li>
 <li>Consider adding maximum distance constraint</li>
 <li>Consider modifying to allow heterogeneous vehicles.</li>
-<li>Read in problem from a file.</li>
 <li>Consider adding background of repository.</li>
+<li>Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.</li>
+<li>Consider adding in a clustering algorithm to break large problems into a <code class="docutils literal notranslate"><span class="pre">vector</span></code> of small problems.</li>
 </ol>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
@@ -290,6 +302,7 @@
 <li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="algorithm_implementations.html#hybrid-algorithm-ha">7. Hybrid Algorithm (HA)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>

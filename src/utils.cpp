@@ -71,7 +71,7 @@ Solution::Solution(Problem p){
 void Solution::CreateInitialSolution(){
   for(auto& v:vehicles_){
     while(true){
-      Node closest_node = find_closest(v, distanceMatrix_, nodes_);
+      Node closest_node = find_closest(v);
       if(closest_node.id_!=-1 && v.load_ - closest_node.demand_ >=0){//}.2*capacity){
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
@@ -89,7 +89,7 @@ void Solution::CreateInitialSolution(){
 
 void Solution::Solve(){}
 
-Node Solution::find_closest(Vehicle& v, std::vector<std::vector<double>>& distanceMatrix, std::vector<Node>& nodes){
+Node Solution::find_closest(Vehicle& v){
     double cost = INT_MAX;
     int id = -1;
     for(size_t j=0; j < distanceMatrix_[0].size(); j++){

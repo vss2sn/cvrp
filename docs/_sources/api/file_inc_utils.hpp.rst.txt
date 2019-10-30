@@ -47,6 +47,8 @@ Includes
 
 - ``ctime``
 
+- ``cxxabi.h``
+
 - ``iomanip``
 
 - ``iostream``
@@ -62,6 +64,8 @@ Includes
 - ``random``
 
 - ``set``
+
+- ``typeinfo``
 
 - ``unistd.h``
 
