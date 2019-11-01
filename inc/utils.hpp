@@ -88,19 +88,24 @@ public:
 class Vehicle: public Route{
 public:
   int id_, load_, capacity_;
+  double distance_, max_distance_;
 
   /**
   * @brief Constructor
   * @param id Vehicle id
   * @param load Current vehicle load
   * @param capacity Maximum vehicle capacity (initial load)
+  * @param distance Distance the vehicle can still travel
+  * @param max_distance Maximum distance the vehicle can travel
   * @return no return value
   * @details Constructor of vehicle class
   */
   Vehicle(int id = 0,
           int load = 0,
-          int capacity = 0)
-          : id_(id), load_(load), capacity_(capacity){}
+          int capacity = 0,
+          double distance = std::numeric_limits<double>::max(),
+          double max_distance = std::numeric_limits<double>::max())
+          : id_(id), load_(load), capacity_(capacity), distance_(distance), max_distance_(max_distance){}
 
   /**
   * @brief print status of vehicle
@@ -116,6 +121,7 @@ public:
   std::vector<std::vector<double>> distanceMatrix_;
   Node depot_;
   int capacity_;
+  double max_distance_;
 
   /**
   * @brief Constructor
@@ -137,7 +143,8 @@ public:
           int grid_range = 1000,
           std::string distribution = "uniform",
           int n_clusters = 5,
-          int cluster_range = 10);
+          int cluster_range = 10,
+          double max_distance_ = std::numeric_limits<double>::max());
 };
 
 // Solution class should not call problems's constructor so not inheriting.
@@ -148,6 +155,7 @@ public:
   std::vector<std::vector<double>> distanceMatrix_;
   Node depot_;
   int capacity_;
+  double max_distance_;
   /**
   * @brief Constructor
   * @param nodes Vector of all nodes

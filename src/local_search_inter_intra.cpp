@@ -12,7 +12,7 @@ LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(std::vector<Node> n
 };
 
 LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Problem p)
-  :Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){
+  :Solution(p){
   CreateInitialSolution();
 };
 

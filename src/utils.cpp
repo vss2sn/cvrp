@@ -17,8 +17,8 @@ void Node::PrintStatus(){
 
 void Route::PrintStatus(){
   std::cout << "Route Status" << std::endl;
-  std::cout << "Cost    : " << cost_ << std::endl;
-  std::cout << "Path    : ";
+  std::cout << "Cost        : " << cost_ << std::endl;
+  std::cout << "Path        : "   ;
   // the nodes_.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
   for(size_t i = 0; i < nodes_.size()-1; ++i) std::cout << nodes_[i] << " ---> ";
@@ -27,7 +27,7 @@ void Route::PrintStatus(){
 }
 
 void Route::PrintRoute(){
-  std::cout << "Path    : ";
+  std::cout << "Path        : "   ;
   // the nodes_.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
   for(size_t i = 0; i < nodes_.size()-1; ++i) std::cout << nodes_[i] << " ---> ";
@@ -42,11 +42,13 @@ void Route::CalculateCost(std::vector<std::vector<double>> distanceMatrix){
 
 void Vehicle::PrintStatus(){
   std::cout << "Vehicle Status" << std::endl;
-  std::cout << "Cost    : " << cost_ << std::endl;
-  std::cout << "ID      : " << id_ << std::endl;
-  std::cout << "Load    : " << load_ << std::endl;
-  std::cout << "Capacity: " << capacity_ << std::endl;
-  std::cout << "Path    : "   ;
+  std::cout << "Cost        : " << cost_ << std::endl;
+  std::cout << "ID          : " << id_ << std::endl;
+  std::cout << "Load        : " << load_ << std::endl;
+  std::cout << "Capacity    : " << capacity_ << std::endl;
+  std::cout << "Distance    : " << distance_ << std::endl;
+  std::cout << "Max Distance: " << max_distance_ << std::endl;
+  std::cout << "Path        : "   ;
   // the nodes_.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
   for(size_t i = 0; i < nodes_.size()-1; ++i) std::cout << nodes_[i] << " ---> ";
@@ -58,6 +60,7 @@ Solution::Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::
   :nodes_(nodes), vehicles_(vehicles), distanceMatrix_(distanceMatrix){
   depot_ = nodes_[0];
   capacity_ = vehicles[0].load_;
+  max_distance_ = vehicles[0].max_distance_;
 }
 
 Solution::Solution(Problem p){
@@ -66,20 +69,25 @@ Solution::Solution(Problem p){
   distanceMatrix_ = p.distanceMatrix_;
   depot_ = nodes_[0];
   capacity_ = p.capacity_;
+  max_distance_ = p.max_distance_;
 }
 
 void Solution::CreateInitialSolution(){
   for(auto& v:vehicles_){
     while(true){
       Node closest_node = find_closest(v);
-      if(closest_node.id_!=-1 && v.load_ - closest_node.demand_ >=0){//}.2*capacity){
+      if(closest_node.id_!=-1
+        && v.load_ - closest_node.demand_ >=0
+        && (v.distance_ - distanceMatrix_[v.nodes_.back()][closest_node.id_] - distanceMatrix_[closest_node.id_][depot_.id_]>= 0)){//}.2*capacity){
         v.load_ -= closest_node.demand_;
+        v.distance_-=distanceMatrix_[v.nodes_.back()][closest_node.id_];
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
         v.nodes_.push_back(closest_node.id_);
         nodes_[closest_node.id_].is_routed_ = true;
       }
       else{
         v.cost_ += distanceMatrix_[v.nodes_.back()][depot_.id_];
+        v.distance_ -= distanceMatrix_[v.nodes_.back()][depot_.id_];
         v.nodes_.push_back(depot_.id_);
         break;
       }
@@ -93,7 +101,10 @@ Node Solution::find_closest(Vehicle& v){
     double cost = INT_MAX;
     int id = -1;
     for(size_t j=0; j < distanceMatrix_[0].size(); j++){
-      if(!nodes_[j].is_routed_ && nodes_[j].demand_ <= v.load_ && distanceMatrix_[v.nodes_.back()][j] < cost){
+      if(!nodes_[j].is_routed_
+        && nodes_[j].demand_ <= v.load_
+        && (distanceMatrix_[v.nodes_.back()][j] + distanceMatrix_[j][depot_.id_]) <= v.distance_
+        && distanceMatrix_[v.nodes_.back()][j] < cost){
         cost = distanceMatrix_[v.nodes_.back()][j];
         id = j;
       }
@@ -104,6 +115,7 @@ Node Solution::find_closest(Vehicle& v){
 
 bool Solution::CheckSolutionValid(){
   // double cost = 0;
+  std::cout << "max: " << max_distance_ << std::endl;
   std::vector<bool> check_nodes(nodes_.size(), false);
   check_nodes[0]=true;
   for(auto&v:vehicles_){
@@ -113,6 +125,14 @@ bool Solution::CheckSolutionValid(){
       check_nodes[n] = true;
     }
     if(load<0) return false;
+    double distance = max_distance_;
+    for(size_t i=0;i<v.nodes_.size()-1;i++){
+      distance -= distanceMatrix_[v.nodes_[i]][v.nodes_[i+1]];
+    }
+    if(distance<0.000001){
+      std::cout << "Max distance exceeded" << std::endl;
+      return false;
+    }
   }
   for(auto b:check_nodes){
     if(!b) return false;
@@ -120,7 +140,7 @@ bool Solution::CheckSolutionValid(){
   return true;
 }
 
-Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_range, std::string distribution, int n_clusters, int cluster_range){
+Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_range, std::string distribution, int n_clusters, int cluster_range, double max_distance){
 
   std::random_device rd; // obtain a random number from hardware
   std::mt19937 eng(rd()); // seed the generator
@@ -129,7 +149,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
   std::uniform_int_distribution<int> ran_c(-cluster_range,cluster_range);
   Node depot(0, 0, 0, 0, true);
   this->capacity_ = capacity;
-
+  this->max_distance_ = max_distance;
   nodes_.push_back(depot);
 
   if(distribution != "uniform" && distribution != "cluster") distribution = "uniform";
@@ -166,9 +186,9 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
     }
   }
 
-  int load = capacity_;
+  // int load = capacity_;
   for(int i=0; i<nov; ++i){
-    vehicles_.emplace_back(i, load, capacity_);
+    vehicles_.emplace_back(i, capacity_, capacity_);
     vehicles_[i].nodes_.push_back(0);
   }
 }

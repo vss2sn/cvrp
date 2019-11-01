@@ -13,7 +13,7 @@ TabuSearchSolution::TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehi
 }
 
 TabuSearchSolution::TabuSearchSolution(Problem p, int n_tabu)
-  :Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){
+  :Solution(p){
   this->n_tabu_ = n_tabu;
   CreateInitialSolution();
 }

@@ -10,7 +10,7 @@ GreedySolution::GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> veh
   :Solution(nodes, vehicles, distanceMatrix){};
 
 GreedySolution::GreedySolution(Problem p)
-  :Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){};
+  :Solution(p){};
 
 void GreedySolution::Solve(){
   for(auto& v:vehicles_){

@@ -15,7 +15,7 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(std::vector<Node> nodes, 
 }
 
 SimulatedAnnealingSolution::SimulatedAnnealingSolution(Problem p, int stag_limit, double init_temp, double cooling_rate)
-  :Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){
+  :Solution(p){
   this->stag_limit_ = stag_limit;
   this->max_temp_ = init_temp;
   this->cooling_rate_ = cooling_rate;
