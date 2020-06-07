@@ -105,6 +105,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMinimalPublisher.html">Class MinimalPublisher</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classNode.html">Class Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classProblem.html">Class Problem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classRoute.html">Class Route</a></li>
@@ -115,7 +116,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="variable_utils_8hpp_1a65877b1c0625d571f1e969d8bcbd8d64.html">Variable mpp</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
@@ -211,7 +216,7 @@
 <p>↰ <a class="reference internal" href="file_README.md.html#file-readme-md"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">README.md</span></code>)</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span># Capacitated Vehicle Routing Problem #
 
-### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++. ###
+### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++ (with a visualizer). ###
 
 [![Build Status](https://travis-ci.com/vss2sn/cvrp.svg?branch=master)](https://travis-ci.com/vss2sn/cvrp)
 
@@ -267,18 +272,17 @@ For a brief overview on the implementations of the algorithms, please refer to t
 #### Notes: ####
 1. The documentation for private functions (such as operators in the `GASolution` class) has been made available to aid understanding.
 2. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
+3. This repository uses `rviz2` for visualization (topic: `routes`). To run with visualization set the cmake option `VISUALISE` to `ON` and build using `colcon build` in a ROS2 workspace. Adjust the pause time in the `publishToRViz` function as needed. Remember to launch `rviz2`.
 
 &lt;a name=&quot;todos&quot;&gt;&lt;/a&gt;
 #### TODOs: ####
 1. Read in problem from a file.
 2. Consider adding plot of best solution cost vs time.
 3. Consider adding savings algorithm
-4. Add visualizer using ROS/ROS2.
-5. Consider adding maximum distance constraint
-6. Consider modifying to allow heterogeneous vehicles.
-7. Consider adding background of repository.
-8. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
-9. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.
+4. Consider adding maximum distance constraint
+5. Consider modifying to allow heterogeneous vehicles.
+6. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
+7. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.
 </pre></div>
 </div>
 </div>

@@ -96,8 +96,6 @@ void TabuSearchSolution::Solve(){
                 (v2.load_ - nodes_[v_cur].demand_ >= 0 || v.id_ == v2.id_) &&
                 (!IsTabu(0,5) || Aspiration(cost_increase, cost_reduction))
                 ){
-                  // bci = cost_increase;
-                  // bcr = cost_reduction;
                   delta = cost_increase + cost_reduction;
                   best_c = cur;
                   best_r = rep;
@@ -141,9 +139,22 @@ void TabuSearchSolution::Solve(){
 
     new_cost_ = 0;
     for(auto& v:vehicles_) new_cost_+=v.cost_;
+
     if(new_cost_< best_cost_){
       best_vehicles = vehicles_;
       best_cost_ = new_cost_;
+
+      solution_string_ = std::to_string(depot_.id_);
+      for(auto& vehicle:best_vehicles){
+        for(auto& i : vehicle.nodes_) {
+          solution_string_ += ',' + std::to_string(i);
+        }
+        solution_string_ += ',' + std::to_string(depot_.id_);
+      }
+#ifdef VISUALIZE
+
+      mpp->publishToRViz(solution_string_, nodes_);
+#endif // VISUALIZE
     }
     tabu_list_set_.erase(tabu_list_queue_.front());
     tabu_list_queue_.pop();

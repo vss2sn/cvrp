@@ -85,6 +85,19 @@ void SimulatedAnnealingSolution::Solve(){
         stag_ = stag_limit_;
         best_vehicles= vehicles_;
         best_cost_ = current_cost_;
+
+        solution_string_ = std::to_string(depot_.id_);
+        for(auto& vehicle:best_vehicles){
+          for(auto& i : vehicle.nodes_) {
+            solution_string_ += ',' + std::to_string(i);
+          }
+          solution_string_ += ',' + std::to_string(depot_.id_);
+        }
+#ifdef VISUALIZE
+      
+        mpp->publishToRViz(solution_string_, nodes_);;
+#endif // VISUALIZE
+
       }
     }
   }

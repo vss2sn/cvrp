@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>File main.hpp &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  <title>Class MinimalPublisher &mdash; Capacitated Vehicle Routing Problem  documentation</title>
   
 
   
@@ -38,8 +38,8 @@
   <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Program Listing for File main.hpp" href="program_listing_file_inc_main.hpp.html" />
-    <link rel="prev" title="Program Listing for File local_search_intra.hpp" href="program_listing_file_inc_local_search_intra.hpp.html" /> 
+    <link rel="next" title="Class Node" href="classNode.html" />
+    <link rel="prev" title="Class LocalSearchIntraSolution" href="classLocalSearchIntraSolution.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,13 +99,13 @@
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="structVectorHash.html">Struct VectorHash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGASolution.html">Class GASolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
-<li class="toctree-l4"><a class="reference internal" href="classMinimalPublisher.html">Class MinimalPublisher</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class MinimalPublisher</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classNode.html">Class Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classProblem.html">Class Problem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classRoute.html">Class Route</a></li>
@@ -127,12 +127,12 @@
 <li class="toctree-l4"><a class="reference internal" href="dir_inc.html">Directory inc</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#files">Files</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#files">Files</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="file_inc_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_inc_greedy.hpp.html">File greedy.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_inc_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_inc_main.hpp.html">File main.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_README.md.html">File README.md</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_inc_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_inc_tabu_search.hpp.html">File tabu_search.hpp</a></li>
@@ -190,13 +190,13 @@
         
           <li><a href="library_root.html">Library API</a> &raquo;</li>
         
-      <li>File main.hpp</li>
+      <li>Class MinimalPublisher</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/api/file_inc_main.hpp.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/classMinimalPublisher.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -209,47 +209,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="file-main-hpp">
-<span id="file-inc-main-hpp"></span><h1>File main.hpp<a class="headerlink" href="#file-main-hpp" title="Permalink to this headline">¶</a></h1>
-<p>↰ <a class="reference internal" href="dir_inc.html#dir-inc"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">inc</span></code>)</p>
-<p>Just includes header files.</p>
-<div class="contents local topic" id="contents">
-<p class="topic-title">Contents</p>
+  <div class="section" id="class-minimalpublisher">
+<span id="exhale-class-classminimalpublisher"></span><h1>Class MinimalPublisher<a class="headerlink" href="#class-minimalpublisher" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="#definition-inc-main-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">inc/main.hpp</span></code>)</a></li>
-<li><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></li>
-<li><a class="reference internal" href="#includes" id="id3">Includes</a></li>
-<li><a class="reference internal" href="#functions" id="id4">Functions</a></li>
+<li>Defined in <a class="reference internal" href="file_inc_utils.hpp.html#file-inc-utils-hpp"><span class="std std-ref">File utils.hpp</span></a></li>
 </ul>
-</div>
-<div class="section" id="definition-inc-main-hpp">
-<h2>Definition (<code class="docutils literal notranslate"><span class="pre">inc/main.hpp</span></code>)<a class="headerlink" href="#definition-inc-main-hpp" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="program_listing_file_inc_main.hpp.html">Program Listing for File main.hpp</a></li>
-</ul>
-</div>
-</div>
-<div class="section" id="detailed-description">
-<h2>Detailed Description<a class="headerlink" href="#detailed-description" title="Permalink to this headline">¶</a></h2>
-<p>vss2sn</p>
-</div>
-<div class="section" id="includes">
-<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">genetic_algorithm.hpp</span></code> (<a class="reference internal" href="file_inc_genetic_algorithm.hpp.html#file-inc-genetic-algorithm-hpp"><span class="std std-ref">File genetic_algorithm.hpp</span></a>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">greedy.hpp</span></code> (<a class="reference internal" href="file_inc_greedy.hpp.html#file-inc-greedy-hpp"><span class="std std-ref">File greedy.hpp</span></a>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">local_search_inter_intra.hpp</span></code> (<a class="reference internal" href="file_inc_local_search_inter_intra.hpp.html#file-inc-local-search-inter-intra-hpp"><span class="std std-ref">File local_search_inter_intra.hpp</span></a>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">local_search_intra.hpp</span></code> (<a class="reference internal" href="file_inc_local_search_intra.hpp.html#file-inc-local-search-intra-hpp"><span class="std std-ref">File local_search_intra.hpp</span></a>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">simulated_annealing.hpp</span></code> (<a class="reference internal" href="file_inc_simulated_annealing.hpp.html#file-inc-simulated-annealing-hpp"><span class="std std-ref">File simulated_annealing.hpp</span></a>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">tabu_search.hpp</span></code> (<a class="reference internal" href="file_inc_tabu_search.hpp.html#file-inc-tabu-search-hpp"><span class="std std-ref">File tabu_search.hpp</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Node</span></code></li>
 </ul>
 </div>
-<div class="section" id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference internal" href="function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.html#exhale-function-main-8hpp-1a0ddf1224851353fc92bfbff6f499fa97"><span class="std std-ref">Function main</span></a></li>
+</div>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv316MinimalPublisher">
+<span id="_CPPv216MinimalPublisher"></span><span id="MinimalPublisher"></span><span class="target" id="classMinimalPublisher"></span><em class="property">class </em><code class="descname">MinimalPublisher</code> : <em class="property">public</em> <a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a><a class="headerlink" href="#_CPPv316MinimalPublisher" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Class publisher node. </p>
+<p>Allows the visualization of the solution </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv3N16MinimalPublisher16MinimalPublisherEv">
+<span id="_CPPv2N16MinimalPublisher16MinimalPublisherEv"></span><span id="MinimalPublisher::MinimalPublisher"></span><span class="target" id="classMinimalPublisher_1aa04f84fd8b936705856aa3525ec6f119"></span><code class="descname">MinimalPublisher</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N16MinimalPublisher16MinimalPublisherEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+</dd></dl>
+
+<dl class="function">
+<dt id="_CPPv3N16MinimalPublisher13publishToRVizERKNSt6stringERKNSt6vectorI4NodeEE">
+<span id="_CPPv2N16MinimalPublisher13publishToRVizERKNSt6stringERKNSt6vectorI4NodeEE"></span><span id="MinimalPublisher::publishToRViz__ssCR.std::vector:Node:CR"></span><span class="target" id="classMinimalPublisher_1aa700c8f515698ffa5dd70bd7e1592ba8"></span>void <code class="descname">publishToRViz</code><span class="sig-paren">(</span><em class="property">const</em> std::string &amp;<em>solution_string</em>, <em class="property">const</em> std::vector&lt;<a class="reference internal" href="classNode.html#_CPPv34Node" title="Node">Node</a>&gt; &amp;<em>nodes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N16MinimalPublisher13publishToRVizERKNSt6stringERKNSt6vectorI4NodeEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>publishes solution to rviz </p>
+<p><dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>void </dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">solution_string</span></code>: containing node ids in order of nodes visited </li>
+<li><code class="docutils literal notranslate"><span class="pre">nodes</span></code>: of nodes to get x,y coordinates of nodes </li>
 </ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv3N16MinimalPublisher10publisher_E">
+<span id="_CPPv2N16MinimalPublisher10publisher_E"></span><span id="MinimalPublisher::publisher___rclcpp::Publisher:visualization_msgs::msg::Marker:::SharedPtr"></span><span class="target" id="classMinimalPublisher_1a5fd867cde7e28c9483b35b6695c051ad"></span>rclcpp::Publisher&lt;visualization_msgs::msg::Marker&gt;::SharedPtr <code class="descname">publisher_</code><a class="headerlink" href="#_CPPv3N16MinimalPublisher10publisher_E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>publisher for publishing the solution passed in </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 </div>
 </div>
 
@@ -261,10 +278,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="program_listing_file_inc_main.hpp.html" class="btn btn-neutral float-right" title="Program Listing for File main.hpp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="classNode.html" class="btn btn-neutral float-right" title="Class Node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="program_listing_file_inc_local_search_intra.hpp.html" class="btn btn-neutral float-left" title="Program Listing for File local_search_intra.hpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="classLocalSearchIntraSolution.html" class="btn btn-neutral float-left" title="Class LocalSearchIntraSolution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

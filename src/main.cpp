@@ -5,15 +5,23 @@
 */
 
 #include "main.hpp"
+#include <thread>
 
-int main(){
-  Problem p(100,4,8,50,100, "uniform");
+int main(int argc, char * argv[]){
 
+  Problem p(10,4,8,5,10, "uniform");
+
+#ifdef VISUALIZE
+  rclcpp::init(argc, argv);
+  mpp = std::make_shared<MinimalPublisher>();
+  std::thread thread_ros = std::thread([&]{rclcpp::spin(mpp);rclcpp::shutdown();});
+  thread_ros.detach();
+#endif // VISUALIZE
   std::cout << "Greedy: " << std::endl;
   GreedySolution vrp_greedy(p);
   vrp_greedy.Solve();
   std::cout << std::endl;
-
+  //
   std::cout << "Local Search (Within each vehicle separately): " << std::endl;
   LocalSearchIntraSolution vrp_lsi(p);
   vrp_lsi.Solve();
@@ -30,10 +38,10 @@ int main(){
   std::cout << std::endl;
 
   std::cout << "Genetic Algorithm: " << std::endl;
-  GASolution vrp_ga(p, 25, 500000);
+  GASolution vrp_ga(p, 5, 100);
   vrp_ga.Solve();
   std::cout << std::endl;
-
+  //
   std::cout << "Simulated Annealing: " << std::endl;
   SimulatedAnnealingSolution vrp_sa(p, 5000000, 5000, 0.9999);
   vrp_sa.Solve();
@@ -61,5 +69,8 @@ int main(){
   // vrp_lsii_for_hybrid.Solve();
   // std::cout << std::endl;
 
+#ifdef VISUALIZE
+  rclcpp::shutdown();
+#endif //VISUALIZE
   return 0;
 }

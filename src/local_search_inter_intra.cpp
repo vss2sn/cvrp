@@ -75,7 +75,19 @@ void LocalSearchInterIntraSolution::Solve(){
       v_temp_2->CalculateCost(distanceMatrix_);
       v_temp->load_ += nodes_[val_best_c].demand_;
       v_temp_2->load_ -= nodes_[val_best_c].demand_;
+
+      solution_string_ = std::to_string(depot_.id_);
+      for(auto& vehicle:vehicles_){
+        for(auto& i : vehicle.nodes_) {
+          solution_string_ += ',' + std::to_string(i);
+        }
+        solution_string_ += ',' + std::to_string(depot_.id_);
+      }
+#ifdef VISUALIZE
+      mpp->publishToRViz(solution_string_, nodes_);;
+#endif // VISUALIZE
     }
+
   }
   cost = 0;
   for(auto& v:vehicles_) cost += v.cost_;

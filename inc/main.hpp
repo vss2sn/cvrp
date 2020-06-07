@@ -16,4 +16,4 @@
 * @return int 0
 * @details Main function that creates the problem and calls the various solve functions for each of the solution algorithms
 */
-int main();
+int main(int argc, char * argv[]);

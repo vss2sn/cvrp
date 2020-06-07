@@ -37,9 +37,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Directory inc" href="dir_inc.html" />
-    <link rel="prev" title="Class Vehicle" href="classVehicle.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,7 +82,7 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../algorithm_implementations.html">Notes on algorithm implementation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#greedy-solution">1. Greedy Solution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
@@ -95,16 +93,17 @@
 <li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#hybrid-algorithm-ha">7. Hybrid Algorithm (HA)</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="structVectorHash.html">Struct VectorHash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGASolution.html">Class GASolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMinimalPublisher.html">Class MinimalPublisher</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classNode.html">Class Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classProblem.html">Class Problem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classRoute.html">Class Route</a></li>
@@ -114,8 +113,12 @@
 <li class="toctree-l4"><a class="reference internal" href="classVehicle.html">Class Vehicle</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#functions">Functions</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Function main</a></li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="variable_utils_8hpp_1a65877b1c0625d571f1e969d8bcbd8d64.html">Variable mpp</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
@@ -183,8 +186,6 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="library_root.html">Library API</a> &raquo;</li>
-        
       <li>Function main</li>
     
     
@@ -212,8 +213,8 @@
 <div class="section" id="function-documentation">
 <h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="_CPPv34mainv">
-<span id="_CPPv24mainv"></span><span id="main"></span><span class="target" id="main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4"></span>int <code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv34mainv" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv34mainiA_Pc">
+<span id="_CPPv24mainiA_Pc"></span><span id="main__i.cPA"></span><span class="target" id="main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97"></span>int <code class="descname">main</code><span class="sig-paren">(</span>int <em>argc</em>, char *<em>argv</em>[]<span class="sig-paren">)</span><br /></dt>
 <dd><p>Main function. </p>
 <p><p>Main function that creates the problem and calls the various solve functions for each of the solution algorithms </p>
 <dl class="docutils">
@@ -231,15 +232,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="dir_inc.html" class="btn btn-neutral float-right" title="Directory inc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="classVehicle.html" class="btn btn-neutral float-left" title="Class Vehicle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

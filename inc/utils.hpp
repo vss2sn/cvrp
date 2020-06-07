@@ -3,7 +3,6 @@
 * @author vss2sn
 * @brief Contains the structs, classes and functions used for the set up of the problem aand solution as well as some functions that aid in debugging.
 */
-
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
@@ -24,6 +23,21 @@
 #include <ctime>
 #include <cxxabi.h>
 #include <typeinfo>
+
+
+#include <chrono>
+#include <functional>
+#include <memory>
+#include <string>
+#include <cmath>
+
+#ifdef VISUALIZE
+
+#include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/string.hpp"
+#include "visualization_msgs/msg/marker.hpp"
+
+#endif //VISUALIZE
 
 /**
 * @brief Class node
@@ -148,6 +162,8 @@ public:
   std::vector<std::vector<double>> distanceMatrix_;
   Node depot_;
   int capacity_;
+  std::string solution_string_ = "";
+
   /**
   * @brief Constructor
   * @param nodes Vector of all nodes
@@ -204,6 +220,39 @@ public:
   * @details Prints the solution status including cost, the vehicle status, and solution validity
   */
   void PrintSolution(const std::string& option="");
+
 };
+
+#ifdef VISUALIZE
+
+/**
+* @brief Class publisher node
+* @details Allows the visualization of the solution
+*/
+class MinimalPublisher : public rclcpp::Node
+{
+public:
+  /**
+  * @brief Constructor
+  */
+  MinimalPublisher();
+
+  /**
+  * @brief publishes solution to rviz
+  * @param solution_string containing node ids in order of nodes visited
+  * @param nodes of nodes to get x,y coordinates of nodes
+  * @return void
+  */
+  void publishToRViz(const std::string& solution_string, const std::vector<::Node>& nodes);
+
+  /**
+  * @brief publisher for publishing the solution passed in
+  */
+  rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr publisher_;
+};
+
+extern std::shared_ptr<MinimalPublisher> mpp;
+
+#endif // VISUALIZE
 
 #endif // UTILS_HPP

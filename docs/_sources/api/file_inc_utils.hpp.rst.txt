@@ -41,13 +41,19 @@ Includes
 
 - ``algorithm`` (:ref:`file_inc_genetic_algorithm.hpp`)
 
+- ``chrono``
+
 - ``climits``
+
+- ``cmath``
 
 - ``cstdio``
 
 - ``ctime``
 
 - ``cxxabi.h``
+
+- ``functional``
 
 - ``iomanip``
 
@@ -64,6 +70,8 @@ Includes
 - ``random``
 
 - ``set``
+
+- ``string``
 
 - ``typeinfo``
 
@@ -98,6 +106,8 @@ Classes
 -------
 
 
+- :ref:`exhale_class_classMinimalPublisher`
+
 - :ref:`exhale_class_classNode`
 
 - :ref:`exhale_class_classProblem`
@@ -107,4 +117,11 @@ Classes
 - :ref:`exhale_class_classSolution`
 
 - :ref:`exhale_class_classVehicle`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_utils_8hpp_1a65877b1c0625d571f1e969d8bcbd8d64`
 

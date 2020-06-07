@@ -105,6 +105,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMinimalPublisher.html">Class MinimalPublisher</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classNode.html">Class Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classProblem.html">Class Problem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classRoute.html">Class Route</a></li>
@@ -115,7 +116,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="variable_utils_8hpp_1a65877b1c0625d571f1e969d8bcbd8d64.html">Variable mpp</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
@@ -209,13 +214,14 @@
 <p>↰ <a class="reference internal" href="dir_inc.html#dir-inc"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">inc</span></code>)</p>
 <p>Contains the structs, classes and functions used for the set up of the problem aand solution as well as some functions that aid in debugging.</p>
 <div class="contents local topic" id="contents">
-<p class="topic-title first">Contents</p>
+<p class="topic-title">Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#definition-inc-utils-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">inc/utils.hpp</span></code>)</a></li>
 <li><a class="reference internal" href="#detailed-description" id="id2">Detailed Description</a></li>
 <li><a class="reference internal" href="#includes" id="id3">Includes</a></li>
 <li><a class="reference internal" href="#included-by" id="id4">Included By</a></li>
 <li><a class="reference internal" href="#classes" id="id5">Classes</a></li>
+<li><a class="reference internal" href="#variables" id="id6">Variables</a></li>
 </ul>
 </div>
 <div class="section" id="definition-inc-utils-hpp">
@@ -234,10 +240,13 @@
 <h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">algorithm</span></code> (<a class="reference internal" href="file_inc_genetic_algorithm.hpp.html#file-inc-genetic-algorithm-hpp"><span class="std std-ref">File genetic_algorithm.hpp</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">chrono</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">climits</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cmath</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">cstdio</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">ctime</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">cxxabi.h</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">functional</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">iomanip</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">iostream</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">map</span></code></li>
@@ -246,6 +255,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">queue</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">random</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">set</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">string</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">typeinfo</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">unistd.h</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">unordered_set</span></code></li>
@@ -266,11 +276,18 @@
 <div class="section" id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
+<li><a class="reference internal" href="classMinimalPublisher.html#exhale-class-classminimalpublisher"><span class="std std-ref">Class MinimalPublisher</span></a></li>
 <li><a class="reference internal" href="classNode.html#exhale-class-classnode"><span class="std std-ref">Class Node</span></a></li>
 <li><a class="reference internal" href="classProblem.html#exhale-class-classproblem"><span class="std std-ref">Class Problem</span></a></li>
 <li><a class="reference internal" href="classRoute.html#exhale-class-classroute"><span class="std std-ref">Class Route</span></a></li>
 <li><a class="reference internal" href="classSolution.html#exhale-class-classsolution"><span class="std std-ref">Class Solution</span></a></li>
 <li><a class="reference internal" href="classVehicle.html#exhale-class-classvehicle"><span class="std std-ref">Class Vehicle</span></a></li>
+</ul>
+</div>
+<div class="section" id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="variable_utils_8hpp_1a65877b1c0625d571f1e969d8bcbd8d64.html#exhale-variable-utils-8hpp-1a65877b1c0625d571f1e969d8bcbd8d64"><span class="std std-ref">Variable mpp</span></a></li>
 </ul>
 </div>
 </div>

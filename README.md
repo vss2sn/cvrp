@@ -1,6 +1,6 @@
 # Capacitated Vehicle Routing Problem #
 
-### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++. ###
+### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++ (with a visualizer). ###
 
 [![Build Status](https://travis-ci.com/vss2sn/cvrp.svg?branch=master)](https://travis-ci.com/vss2sn/cvrp)
 
@@ -56,15 +56,14 @@ For a brief overview on the implementations of the algorithms, please refer to t
 #### Notes: ####
 1. The documentation for private functions (such as operators in the `GASolution` class) has been made available to aid understanding.
 2. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
+3. This repository uses `rviz2` for visualization (topic: `routes`). To run with visualization set the cmake option `VISUALISE` to `ON` and build using `colcon build` in a ROS2 workspace. Adjust the pause time in the `publishToRViz` function as needed. Remember to launch `rviz2`.
 
 <a name="todos"></a>
 #### TODOs: ####
 1. Read in problem from a file.
 2. Consider adding plot of best solution cost vs time.
 3. Consider adding savings algorithm
-4. Add visualizer using ROS/ROS2.
-5. Consider adding maximum distance constraint
-6. Consider modifying to allow heterogeneous vehicles.
-7. Consider adding background of repository.
-8. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
-9. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.
+4. Consider adding maximum distance constraint
+5. Consider modifying to allow heterogeneous vehicles.
+6. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
+7. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.

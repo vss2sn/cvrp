@@ -104,6 +104,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/classGreedySolution.html">Class GreedySolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classMinimalPublisher.html">Class MinimalPublisher</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classNode.html">Class Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classProblem.html">Class Problem</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classRoute.html">Class Route</a></li>
@@ -114,7 +115,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#functions">Functions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="api/function_main_8hpp_1ae66f6b31b5ad750f1fe042a706a4e3d4.html">Function main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/library_root.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/variable_utils_8hpp_1a65877b1c0625d571f1e969d8bcbd8d64.html">Variable mpp</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#directories">Directories</a><ul>
@@ -203,8 +208,8 @@
             
   <div class="section" id="capacitated-vehicle-routing-problem">
 <h1>Capacitated Vehicle Routing Problem<a class="headerlink" href="#capacitated-vehicle-routing-problem" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="this-repository-contains-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-in-c">
-<h2>This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++.<a class="headerlink" href="#this-repository-contains-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-in-c" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="this-repository-contains-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-in-c-with-a-visualizer">
+<h2>This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++ (with a visualizer).<a class="headerlink" href="#this-repository-contains-algorithms-to-solve-the-cvrp-capacitated-vehicle-routing-problem-in-c-with-a-visualizer" title="Permalink to this headline">¶</a></h2>
 <a class="reference external image-reference" href="https://travis-ci.com/vss2sn/cvrp"><img alt="Build Status" src="https://travis-ci.com/vss2sn/cvrp.svg?branch=master" /></a>
 <p><span class="raw-html-m2r"><a name="algorithms"></a></span></p>
 <div class="section" id="algorithms">
@@ -222,12 +227,12 @@
 </div>
 <div class="section" id="to-build-and-run">
 <h3>To build and run:<a class="headerlink" href="#to-build-and-run" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">vss2sn</span><span class="o">/</span><span class="n">cvrp</span><span class="p">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">cvrp</span>
-<span class="n">mkdir</span> <span class="n">build</span>
-<span class="n">cd</span> <span class="n">build</span>
-<span class="n">cmake</span> <span class="p">..</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="o">-</span><span class="n">j4</span>
-<span class="p">.</span><span class="o">/</span><span class="n">cvrp</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="err">git clone https://github.com/vss2sn/cvrp.git</span>
+<span class="err">cd cvrp</span>
+<span class="err">mkdir build</span>
+<span class="err">cd build</span>
+<span class="err">cmake .. &amp;&amp; make -j4</span>
+<span class="err">./cvrp</span>
 </pre></div>
 </div>
 <p><span class="raw-html-m2r"><a name="toc"></a></span></p>
@@ -276,6 +281,7 @@
 <ol class="arabic simple">
 <li>The documentation for private functions (such as operators in the <code class="docutils literal notranslate"><span class="pre">GASolution</span></code> class) has been made available to aid understanding.</li>
 <li>Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>.</li>
+<li>This repository uses <code class="docutils literal notranslate"><span class="pre">rviz2</span></code> for visualization (topic: <code class="docutils literal notranslate"><span class="pre">routes</span></code>). To run with visualization set the cmake option <code class="docutils literal notranslate"><span class="pre">VISUALISE</span></code> to <code class="docutils literal notranslate"><span class="pre">ON</span></code> and build using <code class="docutils literal notranslate"><span class="pre">colcon</span> <span class="pre">build</span></code> in a ROS2 workspace. Adjust the pause time in the <code class="docutils literal notranslate"><span class="pre">publishToRViz</span></code> function as needed. Remember to launch <code class="docutils literal notranslate"><span class="pre">rviz2</span></code>.</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="todos"></a></span></p>
 </div>
@@ -285,10 +291,8 @@
 <li>Read in problem from a file.</li>
 <li>Consider adding plot of best solution cost vs time.</li>
 <li>Consider adding savings algorithm</li>
-<li>Add visualizer using ROS/ROS2.</li>
 <li>Consider adding maximum distance constraint</li>
 <li>Consider modifying to allow heterogeneous vehicles.</li>
-<li>Consider adding background of repository.</li>
 <li>Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.</li>
 <li>Consider adding in a clustering algorithm to break large problems into a <code class="docutils literal notranslate"><span class="pre">vector</span></code> of small problems.</li>
 </ol>

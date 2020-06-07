@@ -70,6 +70,17 @@ void LocalSearchIntraSolution::Solve(){
         if(best_c < best_r) v.nodes_.insert(v.nodes_.begin()+best_r, val_best_c);
         else v.nodes_.insert(v.nodes_.begin()+best_r+1, val_best_c);
         v.CalculateCost(distanceMatrix_);
+
+        solution_string_ = std::to_string(depot_.id_);
+        for(auto& vehicle:vehicles_){
+          for(auto& i : vehicle.nodes_) {
+            solution_string_ += ',' + std::to_string(i);
+          }
+          solution_string_ += ',' + std::to_string(depot_.id_);
+        }
+#ifdef VISUALIZE
+        mpp->publishToRViz(solution_string_, nodes_);;
+#endif // VISUALIZE
       }
     }
   }

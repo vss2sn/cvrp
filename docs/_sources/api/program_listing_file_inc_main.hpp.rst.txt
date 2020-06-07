@@ -18,4 +18,4 @@ Program Listing for File main.hpp
    #include "tabu_search.hpp"
    #include "simulated_annealing.hpp"
    
-   int main();
+   int main(int argc, char * argv[]);
