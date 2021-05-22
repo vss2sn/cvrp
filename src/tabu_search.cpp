@@ -22,7 +22,7 @@ TabuSearchSolution::TabuSearchSolution(Solution s, int n_tabu)
   :Solution(s){
   this->n_tabu_ = n_tabu;
   if(!s.CheckSolutionValid()){
-    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    std::cout << "The input solution is invalid. Exiting." <<'\n';
     exit(0);
   }
 }
@@ -108,13 +108,13 @@ void TabuSearchSolution::Solve(){
       }
     }
     if(delta == 1<<16){
-      std::cout << "No possible moves. Consider adjusting tabu list size." <<std::endl;
+      std::cout << "No possible moves. Consider adjusting tabu list size." <<'\n';
       break;
     }
     // TO check if solution found here is the same as the one found by the local search
     // if(delta>-0.00001) flag = true;
     // if(flag && flag2){
-    //   std::cout << "Local search solution found. Cost: " << best_cost_ << " Iterations: " << c_it << std::endl;
+    //   std::cout << "Local search solution found. Cost: " << best_cost_ << " Iterations: " << c_it << '\n';
     //   flag2  = false;
     // }
     int val_best_c = *(v_temp->nodes_.begin()+best_c);
@@ -164,12 +164,12 @@ void TabuSearchSolution::Solve(){
   vehicles_ = best_vehicles;
   cost = 0;
   for(auto& v:vehicles_) cost += v.cost_;
-  std::cout << "Cost: " << cost << std::endl;
+  std::cout << "Cost: " << cost << '\n';
   for(auto& i:nodes_){
     if(!i.is_routed_){
-      std::cout << "Unreached node: " << std::endl;
-      std::cout << i << std::endl;
+      std::cout << "Unreached node: " << '\n';
+      std::cout << i << '\n';
     }
   }
-  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
+  std::cout << "Solution valid: " << CheckSolutionValid()<< '\n';
 }

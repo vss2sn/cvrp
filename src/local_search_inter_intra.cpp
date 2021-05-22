@@ -19,7 +19,7 @@ LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Problem p)
 LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Solution s)
   :Solution(s){
     if(!s.CheckSolutionValid()){
-      std::cout << "The input solution is invalid. Exiting." <<std::endl;
+      std::cout << "The input solution is invalid. Exiting." <<'\n';
       exit(0);
     }
 };
@@ -91,12 +91,12 @@ void LocalSearchInterIntraSolution::Solve(){
   }
   cost = 0;
   for(auto& v:vehicles_) cost += v.cost_;
-  std::cout << "Cost: " << cost << std::endl;
+  std::cout << "Cost: " << cost << '\n';
   for(auto& i:nodes_){
     if(!i.is_routed_){
-      std::cout << "Unreached node: " << std::endl;
-      std::cout << i << std::endl;
+      std::cout << "Unreached node: " << '\n';
+      std::cout << i << '\n';
     }
   }
-  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
+  std::cout << "Solution valid: " << CheckSolutionValid()<< '\n';
 }

@@ -28,7 +28,7 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(Solution s, int stag_limi
   this->max_temp_ = init_temp;
   this->cooling_rate_ = cooling_rate;
   if(!s.CheckSolutionValid()){
-    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    std::cout << "The input solution is invalid. Exiting." <<'\n';
     exit(0);
   }
 }
@@ -49,7 +49,7 @@ void SimulatedAnnealingSolution::Solve(){
   Vehicle *v1, *v2;
   double cost_increase, cost_reduction, delta;
   for(int r=0;r<n_reheats_;r++){
-    // std::cout << "Reheat number: " << r << std::endl;
+    // std::cout << "Reheat number: " << r << '\n';
     stag_ = stag_limit_;
     temp_ = max_temp_;
     while(--stag_>=0){
@@ -104,12 +104,12 @@ void SimulatedAnnealingSolution::Solve(){
   vehicles_ = best_vehicles;
   cost = 0;
   for(auto& v:vehicles_) cost += v.cost_;
-  std::cout << "Cost: " << cost << std::endl;
+  std::cout << "Cost: " << cost << '\n';
   for(auto& i:nodes_){
     if(!i.is_routed_){
-      std::cout << "Unreached node: " << std::endl;
-      std::cout << i << std::endl;
+      std::cout << "Unreached node: " << '\n';
+      std::cout << i << '\n';
     }
   }
-  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
+  std::cout << "Solution valid: " << CheckSolutionValid()<< '\n';
 }

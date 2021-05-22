@@ -58,7 +58,7 @@ GASolution::GASolution(Solution s,
   iterators_[0] = temp_i;
   if(!checkValidity(0) || chromosomes_[0].size() != size_t(n_nucleotide_pairs_)){
     // Extra sanity check for size of solution
-    std::cout << "The input solution is invalid. Exiting." <<std::endl;
+    std::cout << "The input solution is invalid. Exiting." <<'\n';
     exit(0);
   }
   CalculateTotalCost();
@@ -161,7 +161,7 @@ void GASolution::GenerateGreedySolutions(){
   double cost = 0;
   for(auto& v:vehicles_2) cost += v.cost_;
   if(gs.size() != size_t(n_nucleotide_pairs_)){
-    std::cout << "Initial solution does not contain all the nodes_. Exiting" << std::endl;
+    std::cout << "Initial solution does not contain all the nodes_. Exiting" << '\n';
     exit(0);
   }
   chromosomes_[0] = gs;
@@ -201,7 +201,7 @@ void GASolution::GenerateGreedySolutions(){
     }
     chromosomes_[j] = gs;
     if(gs.size() != size_t(n_nucleotide_pairs_)){
-      std::cout << "Initial solutions do not contain all the nodes_. Exiting" << std::endl;
+      std::cout << "Initial solutions do not contain all the nodes_. Exiting" << '\n';
       exit(0);
     }
     iterators_[j] = iter;
@@ -264,9 +264,9 @@ void GASolution::CalculateTotalCost(){
 void GASolution::Solve(){
   int generation = 0;
   while(generation < generations_){
-    // std::cout << "Generation: " << generation << std::endl;
+    // std::cout << "Generation: " << generation << '\n';
     // for(int i=0;i<chromosomes_.size();i++){
-    //   if(!checkValidity(i)) std::cout << "Invalid" << std::endl;
+    //   if(!checkValidity(i)) std::cout << "Invalid" << '\n';
     // }
     best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
     if(rand()%2==0){
@@ -707,7 +707,7 @@ void GASolution::InsertIterDist(){
   iterators_[n].erase(iterators_[n].begin()+j);
   iterators_[n].insert(iterators_[n].begin()+i+1, val);
   MakeValid(n); // dont think this is req
-  if(!checkValidity(n)) std::cout << "Invalid from insertiterdist"<<std::endl;
+  if(!checkValidity(n)) std::cout << "Invalid from insertiterdist"<<'\n';
   int c2 = CalculateCost(n);
   if(costs_[n]<c2) iterators_[n] = temp;
   else costs_[n] = c2;
@@ -715,7 +715,7 @@ void GASolution::InsertIterDist(){
 
 void GASolution::GenerateBestSolution(){
   auto it = std::min_element(costs_.begin(), costs_.end());
-  std::cout << "Cost: " << *it << std::endl;
+  std::cout << "Cost: " << *it << '\n';
   int i = it-costs_.begin();
   auto v = vehicles_.begin();
   for(size_t k=0;k<iterators_[0].size()-1;k++, v++){
@@ -740,5 +740,5 @@ void GASolution::GenerateBestSolution(){
     v->cost_ = 0;
     ++v;
   }
-  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
+  std::cout << "Solution valid: " << CheckSolutionValid()<< '\n';
 }

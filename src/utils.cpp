@@ -7,12 +7,12 @@
 #include "utils.hpp"
 
 std::ostream& operator << (std::ostream& os, const Node& node){
-  os << "Node Status" << std::endl;
-  os << "ID    : " << node.id_ << std::endl;
-  os << "X     : " << node.x_ << std::endl;
-  os << "Y     : " << node.y_ << std::endl;
-  os << "Demand: " << node.demand_ << std::endl;
-  os << std::endl;
+  os << "Node Status" << '\n';
+  os << "ID    : " << node.id_ << '\n';
+  os << "X     : " << node.x_ << '\n';
+  os << "Y     : " << node.y_ << '\n';
+  os << "Demand: " << node.demand_ << '\n';
+  os << '\n';
   return os;
 }
 
@@ -22,11 +22,11 @@ void Vehicle::CalculateCost(std::vector<std::vector<double>> distanceMatrix){
 }
 
 std::ostream& operator<<(std::ostream& os, const Vehicle& v) {
-  os << "Vehicle Status" << std::endl;
-  os << "Cost    : " << v.cost_ << std::endl;
-  os << "ID      : " << v.id_ << std::endl;
-  os << "Load    : " << v.load_ << std::endl;
-  os << "Capacity: " << v.capacity_ << std::endl;
+  os << "Vehicle Status" << '\n';
+  os << "Cost    : " << v.cost_ << '\n';
+  os << "ID      : " << v.id_ << '\n';
+  os << "Load    : " << v.load_ << '\n';
+  os << "Capacity: " << v.capacity_ << '\n';
   os << "Path    : ";
   // the nodes_.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
@@ -34,7 +34,7 @@ std::ostream& operator<<(std::ostream& os, const Vehicle& v) {
     os << v.nodes_[i] << " ---> ";
   }
   os << "0";
-  os << std::endl << std::endl;
+  os << '\n' << '\n';
   return os;
 }
 
@@ -43,7 +43,7 @@ void PrintVehicleRoute(const Vehicle& v) {
     std::cout << v.nodes_[i] << " ---> ";
   }
   std::cout << "0";
-  std::cout << std::endl << std::endl;
+  std::cout << '\n' << '\n';
 }
 
 Solution::Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles, std::vector<std::vector<double>> distanceMatrix)
@@ -138,7 +138,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
       int y = ran(eng);
       for(int j=0;j<n_p_c;j++){
         nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
-        // std::cout << nodes_.back() << std::endl;
+        // std::cout << nodes_.back() << '\n';
         id++;
       }
     }
@@ -150,7 +150,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
     }
   }
 
-  // for(auto& n:nodes) // std::cout << n << std::endl;
+  // for(auto& n:nodes) // std::cout << n << '\n';
   std::vector<double> tmp(nodes_.size());
   for(size_t i=0; i<nodes_.size(); ++i) distanceMatrix_.push_back(tmp);
   for(size_t i=0; i<nodes_.size(); ++i){
@@ -171,7 +171,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
 void Solution::PrintSolution(const std::string& option){
   int status;
   char * demangled = abi::__cxa_demangle(typeid(*this).name(),0,0,&status);
-  std::cout << demangled << ":" << std::endl;
+  std::cout << demangled << ":" << '\n';
   double total_cost = 0;
   for(auto& v:vehicles_){
     total_cost+=v.cost_;
@@ -184,13 +184,13 @@ void Solution::PrintSolution(const std::string& option){
     }
   }
   bool valid = CheckSolutionValid();
-  std::cout << "Total solution cost: " << total_cost << std::endl;
-  std::cout << "Solution validity  : " << valid << std::endl;
+  std::cout << "Total solution cost: " << total_cost << '\n';
+  std::cout << "Solution validity  : " << valid << '\n';
   if(!valid){
     for(auto& i:nodes_){
       if(!i.is_routed_){
-        std::cout << "Unreached node: " << std::endl;
-        // std::cout << i << std::endl;
+        std::cout << "Unreached node: " << '\n';
+        // std::cout << i << '\n';
       }
     }
   }

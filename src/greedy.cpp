@@ -38,13 +38,13 @@ void GreedySolution::Solve(){
 
   double cost = 0;
   for(auto &v:vehicles_) cost +=v.cost_;
-  std::cout << "Cost: " << cost << std::endl;
+  std::cout << "Cost: " << cost << '\n';
 
   for(auto& i:nodes_){
     if(!i.is_routed_){
-      std::cout << "Unreached node: " << std::endl;
-      std::cout << i << std::endl;
+      std::cout << "Unreached node: " << '\n';
+      std::cout << i << '\n';
     }
   }
-  std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
+  std::cout << "Solution valid: " << CheckSolutionValid()<< '\n';
 }
