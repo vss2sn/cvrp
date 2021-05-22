@@ -14,7 +14,7 @@ int main(int argc, char * argv[]){
   GreedySolution vrp_greedy(p);
   vrp_greedy.Solve();
   std::cout << '\n';
-  //
+
   std::cout << "Local Search (Within each vehicle separately): " << '\n';
   LocalSearchIntraSolution vrp_lsi(p);
   vrp_lsi.Solve();
@@ -34,11 +34,10 @@ int main(int argc, char * argv[]){
   GASolution vrp_ga(p, 5, 100);
   vrp_ga.Solve();
   std::cout << '\n';
-  //
+
   std::cout << "Simulated Annealing: " << '\n';
   SimulatedAnnealingSolution vrp_sa(p, 5000000, 5000, 0.9999);
   vrp_sa.Solve();
-  vrp_sa.PrintSolution();
   std::cout << '\n';
 
   // NOTE: The following are examples of how to create solutions by using the

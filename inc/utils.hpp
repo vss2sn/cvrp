@@ -30,14 +30,6 @@
 #include <string>
 #include <cmath>
 
-#ifdef VISUALIZE
-
-#include "rclcpp/rclcpp.hpp"
-#include "std_msgs/msg/string.hpp"
-#include "visualization_msgs/msg/marker.hpp"
-
-#endif //VISUALIZE
-
 /**
 * @brief struct node
 * @details Contains the x, y coordinates of the locationof the node, its id, its demand, and whether it has been added to the routes of any of the vehicles

@@ -1,6 +1,6 @@
 # Capacitated Vehicle Routing Problem #
 
-### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++ (with a visualizer). ###
+### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++ ###
 
 [![Build Status](https://travis-ci.com/vss2sn/cvrp.svg?branch=master)](https://travis-ci.com/vss2sn/cvrp)
 
@@ -56,7 +56,6 @@ For a brief overview on the implementations of the algorithms, please refer to t
 #### Notes: ####
 1. The documentation for private functions (such as operators in the `GASolution` class) has been made available to aid understanding.
 2. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
-3. This repository uses `rviz2` for visualization (topic: `routes`). To run with visualization set the cmake option `VISUALISE` to `ON` and build using `colcon build` in a ROS2 workspace. Adjust the pause time in the `publishToRViz` function as needed. Remember to launch `rviz2`.
 
 <a name="todos"></a>
 #### TODOs: ####
