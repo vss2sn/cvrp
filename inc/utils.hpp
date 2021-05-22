@@ -1,60 +1,59 @@
 /**
-* @file utils.hpp
-* @author vss2sn
-* @brief Contains the structs, structes and functions used for the set up of the problem aand solution as well as some functions that aid in debugging.
-*/
+ * @file utils.hpp
+ * @author vss2sn
+ * @brief Contains the structs, structes and functions used for the set up of
+ * the problem aand solution as well as some functions that aid in debugging.
+ */
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <iostream>
-#include <vector>
-#include <random>
-#include <math.h>
-#include <climits>
-#include <unordered_set>
-#include <set>
-#include <memory>
 #include <algorithm>
-#include <iomanip>
-#include <map>
-#include <queue>
-#include <unistd.h>
+#include <climits>
 #include <cstdio>
 #include <ctime>
 #include <cxxabi.h>
+#include <iomanip>
+#include <iostream>
+#include <map>
+#include <math.h>
+#include <memory>
+#include <queue>
+#include <random>
+#include <set>
 #include <typeinfo>
+#include <unistd.h>
+#include <unordered_set>
+#include <vector>
 
 #include <chrono>
+#include <cmath>
 #include <functional>
 #include <memory>
 #include <string>
-#include <cmath>
 
 /**
-* @brief struct node
-* @details Contains the x, y coordinates of the locationof the node, its id, its demand, and whether it has been added to the routes of any of the vehicles
-*/
-struct Node{
+ * @brief struct node
+ * @details Contains the x, y coordinates of the locationof the node, its id,
+ * its demand, and whether it has been added to the routes of any of the
+ * vehicles
+ */
+struct Node {
 public:
   int x_, y_, id_, demand_;
   bool is_routed_;
 
   /**
-  * @brief Consructor
-  * @param x x coordinate
-  * @param y y coordinate
-  * @param id node id
-  * @param demand node demand
-  * @param is_routed has the node been included in a route
-  * @return no return parameter
-  * @details Constructor for a node
-  */
-  Node(int x = 0,
-       int y = 0,
-       int id = 0,
-       int demand = 0,
-       bool is_routed = true)
-       :x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed){}
+   * @brief Consructor
+   * @param x x coordinate
+   * @param y y coordinate
+   * @param id node id
+   * @param demand node demand
+   * @param is_routed has the node been included in a route
+   * @return no return parameter
+   * @details Constructor for a node
+   */
+  Node(int x = 0, int y = 0, int id = 0, int demand = 0, bool is_routed = true)
+      : x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed) {}
 
   /**
    * @brief Overloads the << operator to print the data in the Node struct
@@ -62,10 +61,8 @@ public:
    * @param [in] v node who's status is to be printed
    * @return ostream
    */
-  friend std::ostream& operator << (std::ostream& os, const Node& node);
+  friend std::ostream &operator<<(std::ostream &os, const Node &node);
 };
-
-
 
 struct Vehicle {
 public:
@@ -74,17 +71,15 @@ public:
   std::vector<int> nodes_;
 
   /**
-  * @brief Constructor
-  * @param id Vehicle id
-  * @param load Current vehicle load
-  * @param capacity Maximum vehicle capacity (initial load)
-  * @return no return value
-  * @details Constructor of vehicle struct
-  */
-  Vehicle(int id = 0,
-          int load = 0,
-          int capacity = 0)
-          : id_(id), load_(load), capacity_(capacity){}
+   * @brief Constructor
+   * @param id Vehicle id
+   * @param load Current vehicle load
+   * @param capacity Maximum vehicle capacity (initial load)
+   * @return no return value
+   * @details Constructor of vehicle struct
+   */
+  Vehicle(int id = 0, int load = 0, int capacity = 0)
+      : id_(id), load_(load), capacity_(capacity) {}
 
   /**
    * @brief Overloads the << operator to print the data in the Vehicle struct
@@ -92,17 +87,15 @@ public:
    * @param [in] v vehicle who's status is to be printed
    * @return ostream
    */
-  friend std::ostream& operator<<(std::ostream& os, const Vehicle& v);
-
+  friend std::ostream &operator<<(std::ostream &os, const Vehicle &v);
 
   /**
-  * @brief Calculates cost of the visiting the nodes in order
-  * @param distanceMatrix Holds the distances between each pair of nodes
-  * @return void
-  * @details Calculates cost of the route nd updates the cost variable
-  */
+   * @brief Calculates cost of the visiting the nodes in order
+   * @param distanceMatrix Holds the distances between each pair of nodes
+   * @return void
+   * @details Calculates cost of the route nd updates the cost variable
+   */
   void CalculateCost(std::vector<std::vector<double>> distanceMatrix);
-
 };
 
 /**
@@ -110,30 +103,29 @@ public:
  * @param [in] v vehicle who's route is to be printed
  * @return void
  */
-void PrintVehicleRoute(const Vehicle& v);
+void PrintVehicleRoute(const Vehicle &v);
 
-struct Problem{
+struct Problem {
 public:
   /**
-  * @brief Constructor
-  * @param noc number of nodes (centres/dropoff points)
-  * @param demand_range max demand of each node (random value between 0 and this value)
-  * @param nov number of vehicles
-  * @param capacity maximum capacityof each vehicle
-  * @param grid_range maximum x and y coordinates of any node
-  * @param distribution distribution of nodes. Can be either clustered or uniform.
-  * @param n_clusters If clustered, number of clusters the nodes are divided into
-  * @param cluster_range If clustered, maximum distance from center of cluster.
-  * @return no return value
-  * @details Constructor for problem struct
-  */
-  Problem(int noc = 1000,
-          int demand_range = 40,
-          int nov = 50,
-          int capacity = 800,
-          int grid_range = 1000,
-          std::string distribution = "uniform",
-          int n_clusters = 5,
+   * @brief Constructor
+   * @param noc number of nodes (centres/dropoff points)
+   * @param demand_range max demand of each node (random value between 0 and
+   * this value)
+   * @param nov number of vehicles
+   * @param capacity maximum capacityof each vehicle
+   * @param grid_range maximum x and y coordinates of any node
+   * @param distribution distribution of nodes. Can be either clustered or
+   * uniform.
+   * @param n_clusters If clustered, number of clusters the nodes are divided
+   * into
+   * @param cluster_range If clustered, maximum distance from center of cluster.
+   * @return no return value
+   * @details Constructor for problem struct
+   */
+  Problem(int noc = 1000, int demand_range = 40, int nov = 50,
+          int capacity = 800, int grid_range = 1000,
+          std::string distribution = "uniform", int n_clusters = 5,
           int cluster_range = 10);
 
   std::vector<Node> nodes_;
@@ -141,68 +133,72 @@ public:
   std::vector<std::vector<double>> distanceMatrix_;
   Node depot_;
   int capacity_;
-
 };
 
 // Solution struct should not call problems's constructor so not inheriting.
-struct Solution{
+struct Solution {
 public:
   /**
-  * @brief Constructor
-  * @param nodes Vector of all nodes
-  * @param vehicles Vector of vehicles
-  * @param distanceMatrix Matrix containing distance between each pair of nodes
-  * @return no return type
-  * @details Constructor for solution struct
-  */
-  Solution(std::vector<Node> nodes,
-           std::vector<Vehicle> vehicles,
+   * @brief Constructor
+   * @param nodes Vector of all nodes
+   * @param vehicles Vector of vehicles
+   * @param distanceMatrix Matrix containing distance between each pair of nodes
+   * @return no return type
+   * @details Constructor for solution struct
+   */
+  Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles,
            std::vector<std::vector<double>> distanceMatrix);
 
   /**
-  * @brief Constructor
-  * @param p Instance of Problem struct defining the problem parameters
-  * @return no return type
-  * @details Constructor for solution struct
-  */
+   * @brief Constructor
+   * @param p Instance of Problem struct defining the problem parameters
+   * @return no return type
+   * @details Constructor for solution struct
+   */
   Solution(Problem p);
 
   /**
-  * @brief Creates initial solution
-  * @return void
-  * @details Creates initial solution, currently set to greedy.
-  */
+   * @brief Creates initial solution
+   * @return void
+   * @details Creates initial solution, currently set to greedy.
+   */
   void CreateInitialSolution();
 
   /**
-  * @brief Check whether the solution is valid
-  * @return bool True is solution is valid
-  * @details Check whether the solution is valid by checking whether all the nodes are reached and whether the total edmand of all the nodes on any of the routes exceed the capacity of the respective vehicles
-  */
+   * @brief Check whether the solution is valid
+   * @return bool True is solution is valid
+   * @details Check whether the solution is valid by checking whether all the
+   * nodes are reached and whether the total edmand of all the nodes on any of
+   * the routes exceed the capacity of the respective vehicles
+   */
   bool CheckSolutionValid();
 
   /**
-  * @brief Virtual function overloaded by solution structes to solve the given problem.
-  * @return void
-  * @details Virtual function overloaded by solution structes to solve the given problem.
-  */
+   * @brief Virtual function overloaded by solution structes to solve the given
+   * problem.
+   * @return void
+   * @details Virtual function overloaded by solution structes to solve the
+   * given problem.
+   */
   virtual void Solve();
 
   /**
-  * @brief find closest node
-  * @param v vehicle under consideration
-  * @return Node nearest node
-  * @details Finds the node nearest to the last node in the route of the vehicle under constideration that has not been routed already
-  */
-  Node find_closest(const Vehicle& v);
+   * @brief find closest node
+   * @param v vehicle under consideration
+   * @return Node nearest node
+   * @details Finds the node nearest to the last node in the route of the
+   * vehicle under constideration that has not been routed already
+   */
+  Node find_closest(const Vehicle &v);
 
   /**
-  * @brief Prints the status of solution
-  * @param option allows the option to print routes or vehicle statuses
-  * @return void
-  * @details Prints the solution status including cost, the vehicle status, and solution validity
-  */
-  void PrintSolution(const std::string& option="");
+   * @brief Prints the status of solution
+   * @param option allows the option to print routes or vehicle statuses
+   * @return void
+   * @details Prints the solution status including cost, the vehicle status, and
+   * solution validity
+   */
+  void PrintSolution(const std::string &option = "");
 
 protected:
   std::vector<Node> nodes_;

@@ -1,14 +1,15 @@
 /**
-* @file main.cpp
-* @author vss2sn
-* @brief The main function that sets up the problem and runs the solution algorithms
-*/
+ * @file main.cpp
+ * @author vss2sn
+ * @brief The main function that sets up the problem and runs the solution
+ * algorithms
+ */
 
 #include "main.hpp"
 
-int main(int argc, char * argv[]){
+int main(int argc, char *argv[]) {
 
-  Problem p(10,4,8,5,10, "uniform");
+  Problem p(10, 4, 8, 5, 10, "uniform");
 
   std::cout << "Greedy: " << '\n';
   GreedySolution vrp_greedy(p);
@@ -48,19 +49,17 @@ int main(int argc, char * argv[]){
   // std::cout << "Hybrid Example 1: " << '\n';
   // GreedySolution vrp_greedy_for_hybrid(p);
   // vrp_greedy_for_hybrid.Solve();
-  // Solution s = vrp_greedy_for_hybrid; // Strip out solution from vrp_greedy_for_hybrid.
-  // LocalSearchInterIntraSolution vrp_lsii_for_hybrid(s);
-  // vrp_lsii_for_hybrid.Solve();
-  // std::cout << '\n';
+  // Solution s = vrp_greedy_for_hybrid; // Strip out solution from
+  // vrp_greedy_for_hybrid. LocalSearchInterIntraSolution
+  // vrp_lsii_for_hybrid(s); vrp_lsii_for_hybrid.Solve(); std::cout << '\n';
 
   // Example 2
   // std::cout << "Hybrid Example 2: " << '\n';
   // GASolution vrp_ga_for_hybrid(p, 25, 500000);;
   // vrp_ga_for_hybrid.Solve();
-  // Solution s = vrp_ga_for_hybrid; // Strip out solution from vrp_greedy_for_hybrid.
-  // LocalSearchInterIntraSolution vrp_lsii_for_hybrid(s);
-  // vrp_lsii_for_hybrid.Solve();
-  // std::cout << '\n';
+  // Solution s = vrp_ga_for_hybrid; // Strip out solution from
+  // vrp_greedy_for_hybrid. LocalSearchInterIntraSolution
+  // vrp_lsii_for_hybrid(s); vrp_lsii_for_hybrid.Solve(); std::cout << '\n';
 
   return 0;
 }
