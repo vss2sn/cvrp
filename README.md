@@ -39,7 +39,7 @@
 1. The code contains `Problem`, `Solution` and `Vehicle` classes. Each algorithm implementation has its own class and inherits the `Solution` class.
 2. The problem is setup using the `Problem` class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
 3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a `vector` of instances of the `Vehicle` class.
-4. The `Vehicle` class stores the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. The `PrintStatus()` and `PrintRoute()` functions show the status and route of the vehicle respectively.
+4. The `Vehicle` class stores the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. The `<<` operator is overloaded to show the status of the node and vehicle respectively. `PrintVehicleRoute()` prints only the route of the vehicle.
 5. The `Solution` class also contains a virtual method called `Solve()`. Each algorithm class overrides the `Solve()` method.
 6. The `Solution` class also contains a method called `PrintSolution(option)` with the an input option (`option`) to print vehicles' statuses or routes in addition to the total cost and validity of the solution.
 

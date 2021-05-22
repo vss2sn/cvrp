@@ -95,7 +95,7 @@ void LocalSearchInterIntraSolution::Solve(){
   for(auto& i:nodes_){
     if(!i.is_routed_){
       std::cout << "Unreached node: " << std::endl;
-      i.PrintStatus();
+      std::cout << i << std::endl;
     }
   }
   std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;

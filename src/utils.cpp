@@ -6,50 +6,42 @@
 
 #include "utils.hpp"
 
-void Node::PrintStatus(){
-  std::cout << "Node Status" << std::endl;
-  std::cout << "ID    : " << id_ << std::endl;
-  std::cout << "X     : " << x_ << std::endl;
-  std::cout << "Y     : " << y_ << std::endl;
-  std::cout << "Demand: " << demand_ << std::endl;
-  std::cout << std::endl;
+std::ostream& operator << (std::ostream& os, const Node& node){
+  os << "Node Status" << std::endl;
+  os << "ID    : " << node.id_ << std::endl;
+  os << "X     : " << node.x_ << std::endl;
+  os << "Y     : " << node.y_ << std::endl;
+  os << "Demand: " << node.demand_ << std::endl;
+  os << std::endl;
+  return os;
 }
 
-void Route::PrintStatus(){
-  std::cout << "Route Status" << std::endl;
-  std::cout << "Cost    : " << cost_ << std::endl;
-  std::cout << "Path    : ";
-  // the nodes_.size()-1 limit is only added to ensure that there isnt a --->
-  // after the last node, which is always the depot, ie node 0.
-  for(size_t i = 0; i < nodes_.size()-1; ++i) std::cout << nodes_[i] << " ---> ";
-  std::cout << "0";
-  std::cout << std::endl << std::endl;
-}
-
-void Route::PrintRoute(){
-  std::cout << "Path    : ";
-  // the nodes_.size()-1 limit is only added to ensure that there isnt a --->
-  // after the last node, which is always the depot, ie node 0.
-  for(size_t i = 0; i < nodes_.size()-1; ++i) std::cout << nodes_[i] << " ---> ";
-  std::cout << "0";
-  std::cout << std::endl << std::endl;
-}
-
-void Route::CalculateCost(std::vector<std::vector<double>> distanceMatrix){
+void Vehicle::CalculateCost(std::vector<std::vector<double>> distanceMatrix){
   cost_ = 0;
   for(size_t i=0;i<nodes_.size()-1;i++) cost_+=distanceMatrix[nodes_[i]][nodes_[i+1]];
 }
 
-void Vehicle::PrintStatus(){
-  std::cout << "Vehicle Status" << std::endl;
-  std::cout << "Cost    : " << cost_ << std::endl;
-  std::cout << "ID      : " << id_ << std::endl;
-  std::cout << "Load    : " << load_ << std::endl;
-  std::cout << "Capacity: " << capacity_ << std::endl;
-  std::cout << "Path    : "   ;
+std::ostream& operator<<(std::ostream& os, const Vehicle& v) {
+  os << "Vehicle Status" << std::endl;
+  os << "Cost    : " << v.cost_ << std::endl;
+  os << "ID      : " << v.id_ << std::endl;
+  os << "Load    : " << v.load_ << std::endl;
+  os << "Capacity: " << v.capacity_ << std::endl;
+  os << "Path    : ";
   // the nodes_.size()-1 limit is only added to ensure that there isnt a --->
   // after the last node, which is always the depot, ie node 0.
-  for(size_t i = 0; i < nodes_.size()-1; ++i) std::cout << nodes_[i] << " ---> ";
+  for(size_t i = 0; i < v.nodes_.size()-1; ++i) {
+    os << v.nodes_[i] << " ---> ";
+  }
+  os << "0";
+  os << std::endl << std::endl;
+  return os;
+}
+
+void PrintVehicleRoute(const Vehicle& v) {
+  for(size_t i = 0; i < v.nodes_.size()-1; ++i) {
+    std::cout << v.nodes_[i] << " ---> ";
+  }
   std::cout << "0";
   std::cout << std::endl << std::endl;
 }
@@ -146,7 +138,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
       int y = ran(eng);
       for(int j=0;j<n_p_c;j++){
         nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
-        // nodes_.back().PrintStatus();
+        // std::cout << nodes_.back() << std::endl;
         id++;
       }
     }
@@ -158,7 +150,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
     }
   }
 
-  // for(auto& n:nodes) n.PrintStatus();
+  // for(auto& n:nodes) // std::cout << n << std::endl;
   std::vector<double> tmp(nodes_.size());
   for(size_t i=0; i<nodes_.size(); ++i) distanceMatrix_.push_back(tmp);
   for(size_t i=0; i<nodes_.size(); ++i){
@@ -184,11 +176,11 @@ void Solution::PrintSolution(const std::string& option){
   for(auto& v:vehicles_){
     total_cost+=v.cost_;
     if(option=="status"){
-      v.PrintStatus();
+      PrintVehicleRoute(v);
     }
     else if(option=="route"){
       std::cout << "Vehicle ID: " << v.id_ << " | ";
-      v.PrintRoute();
+      PrintVehicleRoute(v);
     }
   }
   bool valid = CheckSolutionValid();
@@ -198,7 +190,7 @@ void Solution::PrintSolution(const std::string& option){
     for(auto& i:nodes_){
       if(!i.is_routed_){
         std::cout << "Unreached node: " << std::endl;
-        i.PrintStatus();
+        // std::cout << i << std::endl;
       }
     }
   }

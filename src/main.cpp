@@ -45,6 +45,7 @@ int main(int argc, char * argv[]){
   std::cout << "Simulated Annealing: " << std::endl;
   SimulatedAnnealingSolution vrp_sa(p, 5000000, 5000, 0.9999);
   vrp_sa.Solve();
+  vrp_sa.PrintSolution();
   std::cout << std::endl;
 
   // NOTE: The following are examples of how to create solutions by using the

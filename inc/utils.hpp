@@ -1,7 +1,7 @@
 /**
 * @file utils.hpp
 * @author vss2sn
-* @brief Contains the structs, classes and functions used for the set up of the problem aand solution as well as some functions that aid in debugging.
+* @brief Contains the structs, structes and functions used for the set up of the problem aand solution as well as some functions that aid in debugging.
 */
 #ifndef UTILS_HPP
 #define UTILS_HPP
@@ -24,7 +24,6 @@
 #include <cxxabi.h>
 #include <typeinfo>
 
-
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -40,10 +39,10 @@
 #endif //VISUALIZE
 
 /**
-* @brief Class node
+* @brief struct node
 * @details Contains the x, y coordinates of the locationof the node, its id, its demand, and whether it has been added to the routes of any of the vehicles
 */
-class Node{
+struct Node{
 public:
   int x_, y_, id_, demand_;
   bool is_routed_;
@@ -66,42 +65,21 @@ public:
        :x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed){}
 
   /**
-  * @brief print status of node
-  * @details prints the status of the node, ie, each of its elements
-  */
-  void PrintStatus();
-};
-
-class Route{
-public:
-  double cost_ = 0;
-  std::vector<int> nodes_;
-
-  /**
-  * @brief print status of route
-  * @details prints the status of the route, ie, each of its elements
-  */
-  void PrintStatus();
-
-  /**
-  * @brief prints the route
-  * @details prints the route, ie, each of its elements in order
-  */
-  void PrintRoute();
-
-  /**
-  * @brief Calculates cost of the route
-  * @param distanceMatrix Holds the distances between each pair of nodes
-  * @return void
-  * @details Calculates cost of the route
-  */
-  void CalculateCost(std::vector<std::vector<double>> distanceMatrix);
+   * @brief Overloads the << operator to print the data in the Node struct
+   * @param [in] os ostream to which the printing is to be done
+   * @param [in] v node who's status is to be printed
+   * @return ostream
+   */
+  friend std::ostream& operator << (std::ostream& os, const Node& node);
 };
 
 
-class Vehicle: public Route{
+
+struct Vehicle {
 public:
   int id_, load_, capacity_;
+  double cost_ = 0;
+  std::vector<int> nodes_;
 
   /**
   * @brief Constructor
@@ -109,7 +87,7 @@ public:
   * @param load Current vehicle load
   * @param capacity Maximum vehicle capacity (initial load)
   * @return no return value
-  * @details Constructor of vehicle class
+  * @details Constructor of vehicle struct
   */
   Vehicle(int id = 0,
           int load = 0,
@@ -117,20 +95,33 @@ public:
           : id_(id), load_(load), capacity_(capacity){}
 
   /**
-  * @brief print status of vehicle
-  * @details prints the status of the vehicle, ie, each of its elements
+   * @brief Overloads the << operator to print the data in the Vehicle struct
+   * @param [in] os ostream to which the printing is to be done
+   * @param [in] v vehicle who's status is to be printed
+   * @return ostream
+   */
+  friend std::ostream& operator<<(std::ostream& os, const Vehicle& v);
+
+
+  /**
+  * @brief Calculates cost of the visiting the nodes in order
+  * @param distanceMatrix Holds the distances between each pair of nodes
+  * @return void
+  * @details Calculates cost of the route nd updates the cost variable
   */
-  void PrintStatus();
+  void CalculateCost(std::vector<std::vector<double>> distanceMatrix);
+
 };
 
-class Problem{
-public:
-  std::vector<Node> nodes_;
-  std::vector<Vehicle> vehicles_;
-  std::vector<std::vector<double>> distanceMatrix_;
-  Node depot_;
-  int capacity_;
+/**
+ * @brief Prints the vehicle route
+ * @param [in] v vehicle who's route is to be printed
+ * @return void
+ */
+void PrintVehicleRoute(const Vehicle& v);
 
+struct Problem{
+public:
   /**
   * @brief Constructor
   * @param noc number of nodes (centres/dropoff points)
@@ -142,7 +133,7 @@ public:
   * @param n_clusters If clustered, number of clusters the nodes are divided into
   * @param cluster_range If clustered, maximum distance from center of cluster.
   * @return no return value
-  * @details Constructor for problem class
+  * @details Constructor for problem struct
   */
   Problem(int noc = 1000,
           int demand_range = 40,
@@ -152,25 +143,25 @@ public:
           std::string distribution = "uniform",
           int n_clusters = 5,
           int cluster_range = 10);
-};
 
-// Solution class should not call problems's constructor so not inheriting.
-class Solution{
-public:
   std::vector<Node> nodes_;
   std::vector<Vehicle> vehicles_;
   std::vector<std::vector<double>> distanceMatrix_;
   Node depot_;
   int capacity_;
-  std::string solution_string_ = "";
 
+};
+
+// Solution struct should not call problems's constructor so not inheriting.
+struct Solution{
+public:
   /**
   * @brief Constructor
   * @param nodes Vector of all nodes
   * @param vehicles Vector of vehicles
   * @param distanceMatrix Matrix containing distance between each pair of nodes
   * @return no return type
-  * @details Constructor for solution class
+  * @details Constructor for solution struct
   */
   Solution(std::vector<Node> nodes,
            std::vector<Vehicle> vehicles,
@@ -178,9 +169,9 @@ public:
 
   /**
   * @brief Constructor
-  * @param p Instance of Problem class defining the problem parameters
+  * @param p Instance of Problem struct defining the problem parameters
   * @return no return type
-  * @details Constructor for solution class
+  * @details Constructor for solution struct
   */
   Solution(Problem p);
 
@@ -199,9 +190,9 @@ public:
   bool CheckSolutionValid();
 
   /**
-  * @brief Virtual function overloaded by solution classes to solve the given problem.
+  * @brief Virtual function overloaded by solution structes to solve the given problem.
   * @return void
-  * @details Virtual function overloaded by solution classes to solve the given problem.
+  * @details Virtual function overloaded by solution structes to solve the given problem.
   */
   virtual void Solve();
 
@@ -221,15 +212,22 @@ public:
   */
   void PrintSolution(const std::string& option="");
 
+protected:
+  std::vector<Node> nodes_;
+  std::vector<Vehicle> vehicles_;
+  std::vector<std::vector<double>> distanceMatrix_;
+  Node depot_;
+  int capacity_;
+  std::string solution_string_ = "";
 };
 
 #ifdef VISUALIZE
 
 /**
-* @brief Class publisher node
+* @brief struct publisher node
 * @details Allows the visualization of the solution
 */
-class MinimalPublisher : public rclcpp::Node
+struct MinimalPublisher : public rclcpp::Node
 {
 public:
   /**

@@ -94,7 +94,7 @@ void SimulatedAnnealingSolution::Solve(){
           solution_string_ += ',' + std::to_string(depot_.id_);
         }
 #ifdef VISUALIZE
-      
+
         mpp->publishToRViz(solution_string_, nodes_);;
 #endif // VISUALIZE
 
@@ -108,7 +108,7 @@ void SimulatedAnnealingSolution::Solve(){
   for(auto& i:nodes_){
     if(!i.is_routed_){
       std::cout << "Unreached node: " << std::endl;
-      i.PrintStatus();
+      std::cout << i << std::endl;
     }
   }
   std::cout << "Solution valid: " << CheckSolutionValid()<< std::endl;
