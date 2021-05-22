@@ -218,39 +218,6 @@ protected:
   std::vector<std::vector<double>> distanceMatrix_;
   Node depot_;
   int capacity_;
-  std::string solution_string_ = "";
 };
-
-#ifdef VISUALIZE
-
-/**
-* @brief struct publisher node
-* @details Allows the visualization of the solution
-*/
-struct MinimalPublisher : public rclcpp::Node
-{
-public:
-  /**
-  * @brief Constructor
-  */
-  MinimalPublisher();
-
-  /**
-  * @brief publishes solution to rviz
-  * @param solution_string containing node ids in order of nodes visited
-  * @param nodes of nodes to get x,y coordinates of nodes
-  * @return void
-  */
-  void publishToRViz(const std::string& solution_string, const std::vector<::Node>& nodes);
-
-  /**
-  * @brief publisher for publishing the solution passed in
-  */
-  rclcpp::Publisher<visualization_msgs::msg::Marker>::SharedPtr publisher_;
-};
-
-extern std::shared_ptr<MinimalPublisher> mpp;
-
-#endif // VISUALIZE
 
 #endif // UTILS_HPP

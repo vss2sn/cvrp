@@ -61,21 +61,18 @@ Solution::Solution(Problem p){
 }
 
 void Solution::CreateInitialSolution(){
-  solution_string_ = std::to_string(depot_.id_);
   for(auto& v:vehicles_){
     while(true){
       Node closest_node = find_closest(v);
-      if(closest_node.id_!=-1 && v.load_ - closest_node.demand_ >=0){//}.2*capacity){
+      if(closest_node.id_!=-1 && v.load_ - closest_node.demand_ >=0){  // }.2*capacity){
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
         v.nodes_.push_back(closest_node.id_);
         nodes_[closest_node.id_].is_routed_ = true;
-        solution_string_ += ',' + std::to_string(closest_node.id_);
       }
       else{
         v.cost_ += distanceMatrix_[v.nodes_.back()][depot_.id_];
         v.nodes_.push_back(depot_.id_);
-        solution_string_ += ',' + std::to_string(depot_.id_);
         break;
       }
     }
@@ -195,72 +192,3 @@ void Solution::PrintSolution(const std::string& option){
     }
   }
 }
-
-#ifdef VISUALIZE
-void MinimalPublisher::publishToRViz(const std::string& solution_string, const std::vector<::Node>& nodes) {
-
-  visualization_msgs::msg::Marker points, line_strip;
-  points.header.frame_id = line_strip.header.frame_id = "/map";
-  points.header.stamp = line_strip.header.stamp = rclcpp::Clock().now();
-  points.ns = line_strip.ns = "Routes";
-  points.action = line_strip.action = visualization_msgs::msg::Marker::ADD;
-  points.pose.orientation.w = line_strip.pose.orientation.w = 1.0;
-
-  points.id = 0;
-  line_strip.id = 1;
-
-  points.type = visualization_msgs::msg::Marker::POINTS;
-  line_strip.type = visualization_msgs::msg::Marker::LINE_STRIP;
-
-  points.scale.x = 0.2;
-  points.scale.y = 0.2;
-
-  line_strip.scale.x = 0.1;
-
-  points.color.g = 1.0f;
-  points.color.a = 1.0;
-
-  line_strip.color.b = 1.0;
-  line_strip.color.a = 1.0;
-
-  geometry_msgs::msg::Point p;
-  p.z = 0;
-
-  std::string delim = ",";
-  int start = 0, end = solution_string.find(delim);
-  while(end!=std::string::npos){
-    int j = std::stoi(solution_string.substr(start, end - start));
-    p.x = nodes[j].x_;
-    p.y = nodes[j].y_;
-    points.points.push_back(p);
-    line_strip.points.push_back(p);
-    start = end+delim.length();
-    end = solution_string.find(delim, start);
-  }
-  start = end+delim.length();
-  end = solution_string.find(delim, start);
-  if(start!=end) {
-    int j = std::stoi(solution_string.substr(start, end - start));
-    p.x = nodes[j].x_;
-    p.y = nodes[j].y_;
-    points.points.push_back(p);
-    line_strip.points.push_back(p);
-  }
-
-  publisher_->publish(points);
-  publisher_->publish(line_strip);
-
-  // Timeout to slow calculation for observing changes in visualization
-  std::this_thread::sleep_for (std::chrono::milliseconds(250));
-
-}
-
-MinimalPublisher::MinimalPublisher()
-  : Node("cvrp_visualizer_node")
-{
-  publisher_ = this->create_publisher<visualization_msgs::msg::Marker>("routes", 10);
-}
-
-std::shared_ptr<MinimalPublisher> mpp;
-
-#endif // VISUALIZE

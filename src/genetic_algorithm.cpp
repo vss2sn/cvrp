@@ -320,24 +320,21 @@ void GASolution::Solve(){
     //   RemoveSimilarSolutions();
     // }
 
-    solution_string_ = std::to_string(depot_.id_);
-    for(size_t k=0;k<iterators_[0].size()-1;k++){
-      if(iterators_[best_][k]==n_nucleotide_pairs_) break;
-      int j=iterators_[best_][k];
-      if(j<iterators_[best_][k+1]){
-        solution_string_ += ',' + std::to_string(chromosomes_[best_][j]);
-      }
-      while(j+1<iterators_[best_][k+1]){
-        solution_string_ += ',' + std::to_string(chromosomes_[best_][j+1]);
-        j++;
-      }
-      solution_string_ += ',' + std::to_string(depot_.id_);
-    }
-
-#ifdef VISUALIZE
-      mpp->publishToRViz(solution_string_, nodes_);;
-#endif // VISUALIZE
-
+    // NOTE: Kept as a remonder of way to print solution
+    // TODO: Remove
+    // solution_string_ = std::to_string(depot_.id_);
+    // for(size_t k=0;k<iterators_[0].size()-1;k++){
+    //   if(iterators_[best_][k]==n_nucleotide_pairs_) break;
+    //   int j=iterators_[best_][k];
+    //   if(j<iterators_[best_][k+1]){
+    //     solution_string_ += ',' + std::to_string(chromosomes_[best_][j]);
+    //   }
+    //   while(j+1<iterators_[best_][k+1]){
+    //     solution_string_ += ',' + std::to_string(chromosomes_[best_][j+1]);
+    //     j++;
+    //   }
+    //   solution_string_ += ',' + std::to_string(depot_.id_);
+    // }
   }
   GenerateBestSolution();
 }

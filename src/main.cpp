@@ -5,18 +5,11 @@
 */
 
 #include "main.hpp"
-#include <thread>
 
 int main(int argc, char * argv[]){
 
   Problem p(10,4,8,5,10, "uniform");
 
-#ifdef VISUALIZE
-  rclcpp::init(argc, argv);
-  mpp = std::make_shared<MinimalPublisher>();
-  std::thread thread_ros = std::thread([&]{rclcpp::spin(mpp);rclcpp::shutdown();});
-  thread_ros.detach();
-#endif // VISUALIZE
   std::cout << "Greedy: " << '\n';
   GreedySolution vrp_greedy(p);
   vrp_greedy.Solve();
@@ -70,8 +63,5 @@ int main(int argc, char * argv[]){
   // vrp_lsii_for_hybrid.Solve();
   // std::cout << '\n';
 
-#ifdef VISUALIZE
-  rclcpp::shutdown();
-#endif //VISUALIZE
   return 0;
 }
