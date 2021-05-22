@@ -40,7 +40,7 @@ inline bool TabuSearchSolution::Aspiration(double cost_increase, double cost_red
 
 void TabuSearchSolution::Solve(){
   double cost = 0;
-  for(auto& v:vehicles_) cost += v.cost_;
+  for(const auto& v:vehicles_) cost += v.cost_;
   auto best_vehicles = vehicles_;
   // bool flag = false, flag2 = true;
   int max_it = 500, c_it = 0;
@@ -138,7 +138,7 @@ void TabuSearchSolution::Solve(){
     v_temp_2->load_ -= nodes_[val_best_c].demand_;
 
     new_cost_ = 0;
-    for(auto& v:vehicles_) new_cost_+=v.cost_;
+    for(const auto& v:vehicles_) new_cost_+=v.cost_;
 
     if(new_cost_< best_cost_){
       best_vehicles = vehicles_;
@@ -151,9 +151,9 @@ void TabuSearchSolution::Solve(){
   }
   vehicles_ = best_vehicles;
   cost = 0;
-  for(auto& v:vehicles_) cost += v.cost_;
+  for(const auto& v:vehicles_) cost += v.cost_;
   std::cout << "Cost: " << cost << '\n';
-  for(auto& i:nodes_){
+  for(const auto& i:nodes_){
     if(!i.is_routed_){
       std::cout << "Unreached node: " << '\n';
       std::cout << i << '\n';

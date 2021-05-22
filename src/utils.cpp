@@ -81,7 +81,7 @@ void Solution::CreateInitialSolution(){
 
 void Solution::Solve(){}
 
-Node Solution::find_closest(Vehicle& v){
+Node Solution::find_closest(const Vehicle& v){
     double cost = INT_MAX;
     int id = -1;
     for(size_t j=0; j < distanceMatrix_[0].size(); j++){
@@ -98,9 +98,9 @@ bool Solution::CheckSolutionValid(){
   // double cost = 0;
   std::vector<bool> check_nodes(nodes_.size(), false);
   check_nodes[0]=true;
-  for(auto&v:vehicles_){
+  for(const auto&v:vehicles_){
     int load = capacity_;
-    for(auto&n:v.nodes_){
+    for(const auto&n:v.nodes_){
       load-=nodes_[n].demand_;
       check_nodes[n] = true;
     }
@@ -147,7 +147,7 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity, int grid_rang
     }
   }
 
-  // for(auto& n:nodes) // std::cout << n << '\n';
+  // for(const auto& n:nodes) // std::cout << n << '\n';
   std::vector<double> tmp(nodes_.size());
   for(size_t i=0; i<nodes_.size(); ++i) distanceMatrix_.push_back(tmp);
   for(size_t i=0; i<nodes_.size(); ++i){
@@ -170,7 +170,7 @@ void Solution::PrintSolution(const std::string& option){
   char * demangled = abi::__cxa_demangle(typeid(*this).name(),0,0,&status);
   std::cout << demangled << ":" << '\n';
   double total_cost = 0;
-  for(auto& v:vehicles_){
+  for(const auto& v:vehicles_){
     total_cost+=v.cost_;
     if(option=="status"){
       PrintVehicleRoute(v);
@@ -184,7 +184,7 @@ void Solution::PrintSolution(const std::string& option){
   std::cout << "Total solution cost: " << total_cost << '\n';
   std::cout << "Solution validity  : " << valid << '\n';
   if(!valid){
-    for(auto& i:nodes_){
+    for(const auto& i:nodes_){
       if(!i.is_routed_){
         std::cout << "Unreached node: " << '\n';
         // std::cout << i << '\n';

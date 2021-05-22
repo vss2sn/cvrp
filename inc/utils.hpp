@@ -194,7 +194,7 @@ public:
   * @return Node nearest node
   * @details Finds the node nearest to the last node in the route of the vehicle under constideration that has not been routed already
   */
-  Node find_closest(Vehicle& v);
+  Node find_closest(const Vehicle& v);
 
   /**
   * @brief Prints the status of solution

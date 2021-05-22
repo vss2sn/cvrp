@@ -34,7 +34,7 @@ void GreedySolution::Solve(){
   for(auto &v:vehicles_) cost +=v.cost_;
   std::cout << "Cost: " << cost << '\n';
 
-  for(auto& i:nodes_){
+  for(const auto& i:nodes_){
     if(!i.is_routed_){
       std::cout << "Unreached node: " << '\n';
       std::cout << i << '\n';

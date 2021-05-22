@@ -35,7 +35,7 @@ GASolution::GASolution(Solution s,
 
   std::vector<int> temp_c, temp_i;
   temp_i.push_back(0);
-  for(auto& v:vehicles_){
+  for(const auto& v:vehicles_){
     for(size_t i=1;i<v.nodes_.size()-1;i++) temp_c.push_back(v.nodes_[i]);
     temp_i.push_back(temp_c.size());
   }
@@ -159,7 +159,7 @@ void GASolution::GenerateGreedySolutions(){
     }
   }
   double cost = 0;
-  for(auto& v:vehicles_2) cost += v.cost_;
+  for(const auto& v:vehicles_2) cost += v.cost_;
   if(gs.size() != size_t(n_nucleotide_pairs_)){
     std::cout << "Initial solution does not contain all the nodes_. Exiting" << '\n';
     exit(0);

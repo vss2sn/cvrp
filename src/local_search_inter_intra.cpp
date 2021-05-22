@@ -26,7 +26,7 @@ LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(Solution s)
 
 void LocalSearchInterIntraSolution::Solve(){
   double cost = 0;
-  for(auto& v:vehicles_) cost += v.cost_;
+  for(const auto& v:vehicles_) cost += v.cost_;
   double delta = 0.0, cost_reduction, cost_increase;
   int best_c = -1, best_r = -1;
   size_t cur, rep;
@@ -78,9 +78,9 @@ void LocalSearchInterIntraSolution::Solve(){
     }
   }
   cost = 0;
-  for(auto& v:vehicles_) cost += v.cost_;
+  for(const auto& v:vehicles_) cost += v.cost_;
   std::cout << "Cost: " << cost << '\n';
-  for(auto& i:nodes_){
+  for(const auto& i:nodes_){
     if(!i.is_routed_){
       std::cout << "Unreached node: " << '\n';
       std::cout << i << '\n';

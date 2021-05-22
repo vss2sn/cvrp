@@ -41,7 +41,7 @@ inline bool SimulatedAnnealingSolution::AllowMove(double delta){//Vehicle *v1, V
 
 void SimulatedAnnealingSolution::Solve(){
   double cost = 0;
-  for(auto& v:vehicles_) cost += v.cost_;
+  for(const auto& v:vehicles_) cost += v.cost_;
   auto best_vehicles = vehicles_;
   best_cost_ = cost;
   current_cost_ = cost;
@@ -90,9 +90,9 @@ void SimulatedAnnealingSolution::Solve(){
   }
   vehicles_ = best_vehicles;
   cost = 0;
-  for(auto& v:vehicles_) cost += v.cost_;
+  for(const auto& v:vehicles_) cost += v.cost_;
   std::cout << "Cost: " << cost << '\n';
-  for(auto& i:nodes_){
+  for(const auto& i:nodes_){
     if(!i.is_routed_){
       std::cout << "Unreached node: " << '\n';
       std::cout << i << '\n';
