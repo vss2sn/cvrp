@@ -17,7 +17,7 @@ std::ostream &operator<<(std::ostream &os, const Node &node) {
   return os;
 }
 
-void Vehicle::CalculateCost(std::vector<std::vector<double>> distanceMatrix) {
+void Vehicle::CalculateCost(const std::vector<std::vector<double>>& distanceMatrix) {
   cost_ = 0;
   for (size_t i = 0; i < nodes_.size() - 1; i++)
     cost_ += distanceMatrix[nodes_[i]][nodes_[i + 1]];
@@ -48,14 +48,14 @@ void PrintVehicleRoute(const Vehicle &v) {
   std::cout << '\n' << '\n';
 }
 
-Solution::Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles,
-                   std::vector<std::vector<double>> distanceMatrix)
+Solution::Solution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+                   const std::vector<std::vector<double>>& distanceMatrix)
     : nodes_(nodes), vehicles_(vehicles), distanceMatrix_(distanceMatrix) {
   depot_ = nodes_[0];
   capacity_ = vehicles[0].load_;
 }
 
-Solution::Solution(Problem p) {
+Solution::Solution(const Problem& p) {
   nodes_ = p.nodes_;
   vehicles_ = p.vehicles_;
   distanceMatrix_ = p.distanceMatrix_;
@@ -120,9 +120,9 @@ bool Solution::CheckSolutionValid() {
   return true;
 }
 
-Problem::Problem(int noc, int demand_range, int nov, int capacity,
-                 int grid_range, std::string distribution, int n_clusters,
-                 int cluster_range) {
+Problem::Problem(const int noc, const int demand_range, const int nov, const int capacity,
+                 const int grid_range, std::string distribution, const int n_clusters,
+                 const int cluster_range) {
 
   std::random_device rd;  // obtain a random number from hardware
   std::mt19937 eng(rd()); // seed the generator
@@ -148,22 +148,19 @@ Problem::Problem(int noc, int demand_range, int nov, int capacity,
       int x = ran(eng);
       int y = ran(eng);
       for (int j = 0; j < n_p_c; j++) {
-        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
-                            false);
-        // std::cout << nodes_.back() << '\n';
+        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
         id++;
       }
     }
     int x = ran(eng);
     int y = ran(eng);
     for (int j = 0; j < remain; j++) {
-      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
-                          false);
+      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
       id++;
     }
   }
 
-  // for(const auto& n:nodes) // std::cout << n << '\n';
+  // for(const auto& n:nodes) std::cout << n << '\n';
   std::vector<double> tmp(nodes_.size());
   for (size_t i = 0; i < nodes_.size(); ++i)
     distanceMatrix_.push_back(tmp);
@@ -204,7 +201,7 @@ void Solution::PrintSolution(const std::string &option) {
     for (const auto &i : nodes_) {
       if (!i.is_routed_) {
         std::cout << "Unreached node: " << '\n';
-        // std::cout << i << '\n';
+        std::cout << i << '\n';
       }
     }
   }

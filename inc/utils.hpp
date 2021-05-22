@@ -52,7 +52,7 @@ public:
    * @return no return parameter
    * @details Constructor for a node
    */
-  Node(int x = 0, int y = 0, int id = 0, int demand = 0, bool is_routed = true)
+  Node(const int x = 0, const int y = 0, const int id = 0, const int demand = 0, const bool is_routed = true)
       : x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed) {}
 
   /**
@@ -78,7 +78,7 @@ public:
    * @return no return value
    * @details Constructor of vehicle struct
    */
-  Vehicle(int id = 0, int load = 0, int capacity = 0)
+  Vehicle(const int id = 0, const int load = 0, const int capacity = 0)
       : id_(id), load_(load), capacity_(capacity) {}
 
   /**
@@ -95,7 +95,7 @@ public:
    * @return void
    * @details Calculates cost of the route nd updates the cost variable
    */
-  void CalculateCost(std::vector<std::vector<double>> distanceMatrix);
+  void CalculateCost(const std::vector<std::vector<double>>& distanceMatrix);
 };
 
 /**
@@ -123,10 +123,10 @@ public:
    * @return no return value
    * @details Constructor for problem struct
    */
-  Problem(int noc = 1000, int demand_range = 40, int nov = 50,
-          int capacity = 800, int grid_range = 1000,
-          std::string distribution = "uniform", int n_clusters = 5,
-          int cluster_range = 10);
+  Problem(const int noc = 1000, const int demand_range = 40, const int nov = 50,
+          const int capacity = 800, const int grid_range = 1000,
+          std::string distribution = "uniform", const int n_clusters = 5,
+          const int cluster_range = 10);
 
   std::vector<Node> nodes_;
   std::vector<Vehicle> vehicles_;
@@ -146,8 +146,8 @@ public:
    * @return no return type
    * @details Constructor for solution struct
    */
-  Solution(std::vector<Node> nodes, std::vector<Vehicle> vehicles,
-           std::vector<std::vector<double>> distanceMatrix);
+  Solution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+           const std::vector<std::vector<double>>& distanceMatrix);
 
   /**
    * @brief Constructor
@@ -155,7 +155,7 @@ public:
    * @return no return type
    * @details Constructor for solution struct
    */
-  Solution(Problem p);
+  Solution(const Problem& p);
 
   /**
    * @brief Creates initial solution
