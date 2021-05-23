@@ -82,9 +82,7 @@ void Solution::CreateInitialSolution() {
   }
 }
 
-void Solution::Solve() {}
-
-Node Solution::find_closest(const Vehicle &v) {
+Node Solution::find_closest(const Vehicle &v) const {
   double cost = INT_MAX;
   int id = -1;
   for (size_t j = 0; j < distanceMatrix_[0].size(); j++) {
@@ -100,7 +98,7 @@ Node Solution::find_closest(const Vehicle &v) {
     return Node(0, 0, -1, 0);
 }
 
-bool Solution::CheckSolutionValid() {
+bool Solution::CheckSolutionValid() const {
   // double cost = 0;
   std::vector<bool> check_nodes(nodes_.size(), false);
   check_nodes[0] = true;
@@ -180,7 +178,7 @@ Problem::Problem(const int noc, const int demand_range, const int nov, const int
   }
 }
 
-void Solution::PrintSolution(const std::string &option) {
+void Solution::PrintSolution(const std::string &option) const {
   int status;
   char *demangled = abi::__cxa_demangle(typeid(*this).name(), 0, 0, &status);
   std::cout << demangled << ":" << '\n';

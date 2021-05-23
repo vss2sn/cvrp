@@ -135,8 +135,8 @@ public:
   int capacity_;
 };
 
-// Solution struct should not call problems's constructor so not inheriting.
-struct Solution {
+// Solution class should not call problems's constructor so not inheriting.
+class Solution {
 public:
   /**
    * @brief Constructor
@@ -171,7 +171,7 @@ public:
    * nodes are reached and whether the total edmand of all the nodes on any of
    * the routes exceed the capacity of the respective vehicles
    */
-  bool CheckSolutionValid();
+  bool CheckSolutionValid() const;
 
   /**
    * @brief Virtual function overloaded by solution structes to solve the given
@@ -180,7 +180,7 @@ public:
    * @details Virtual function overloaded by solution structes to solve the
    * given problem.
    */
-  virtual void Solve();
+  virtual void Solve() = 0;
 
   /**
    * @brief find closest node
@@ -189,7 +189,7 @@ public:
    * @details Finds the node nearest to the last node in the route of the
    * vehicle under constideration that has not been routed already
    */
-  Node find_closest(const Vehicle &v);
+  Node find_closest(const Vehicle &v) const;
 
   /**
    * @brief Prints the status of solution
@@ -198,7 +198,7 @@ public:
    * @details Prints the solution status including cost, the vehicle status, and
    * solution validity
    */
-  void PrintSolution(const std::string &option = "");
+  void PrintSolution(const std::string &option = "") const;
 
 protected:
   std::vector<Node> nodes_;
