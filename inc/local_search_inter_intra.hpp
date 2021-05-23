@@ -22,8 +22,8 @@ public:
    * Search within all vehicles
    */
   LocalSearchInterIntraSolution(
-      std::vector<Node> nodes, std::vector<Vehicle> vehicles,
-      std::vector<std::vector<double>> distanceMatrix);
+      const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+      const std::vector<std::vector<double>>& distanceMatrix);
 
   /**
    * @brief Constructor
@@ -32,7 +32,7 @@ public:
    * @details Constructor for initial setup of problem, and solution using Local
    * Search within all vehicles
    */
-  LocalSearchInterIntraSolution(Problem p);
+  LocalSearchInterIntraSolution(const Problem& p);
 
   /**
    * @brief Constructor
@@ -42,7 +42,7 @@ public:
    * @details Constructor for initial setup of problem, and solution using Local
    * Search within all vehicles
    */
-  LocalSearchInterIntraSolution(Solution s);
+  LocalSearchInterIntraSolution(const Solution& s);
   /**
    * @brief Function called to solve the given problem using a local search
    * algorithm
