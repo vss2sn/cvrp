@@ -4,7 +4,7 @@
  * @brief Contains the TabuSearchSolution class
  */
 
-#include "tabu_search.hpp"
+#include "cvrp/tabu_search.hpp"
 
 TabuSearchSolution::TabuSearchSolution(
     const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,

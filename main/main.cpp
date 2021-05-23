@@ -5,7 +5,7 @@
  * algorithms
  */
 
-#include "main.hpp"
+#include "cvrp/main.hpp"
 
 int main(int argc, char *argv[]) {
 

@@ -4,7 +4,7 @@
  * @brief Contains the GreedySolution class
  */
 
-#include "greedy.hpp"
+#include "cvrp/greedy.hpp"
 
 GreedySolution::GreedySolution(std::vector<Node> nodes,
                                std::vector<Vehicle> vehicles,

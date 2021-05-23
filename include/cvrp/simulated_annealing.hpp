@@ -7,7 +7,7 @@
 #ifndef SA_HPP
 #define SA_HPP
 
-#include "utils.hpp"
+#include "cvrp/utils.hpp"
 
 class SimulatedAnnealingSolution : public Solution {
 public:

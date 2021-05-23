@@ -4,7 +4,7 @@
  * @brief Contains the SimulatedAnnealingSolution class
  */
 
-#include "simulated_annealing.hpp"
+#include "cvrp/simulated_annealing.hpp"
 
 SimulatedAnnealingSolution::SimulatedAnnealingSolution(
     const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,

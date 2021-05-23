@@ -8,7 +8,7 @@
 #ifndef LSII_HPP
 #define LSII_HPP
 
-#include "utils.hpp"
+#include "cvrp/utils.hpp"
 
 class LocalSearchInterIntraSolution : public Solution {
 public:

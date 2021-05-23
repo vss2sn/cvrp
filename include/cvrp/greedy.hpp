@@ -7,7 +7,7 @@
 #ifndef GREEDY_HPP
 #define GREEDY_HPP
 
-#include "utils.hpp"
+#include "cvrp/utils.hpp"
 
 class GreedySolution : public Solution {
 public:

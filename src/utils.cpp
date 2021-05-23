@@ -5,7 +5,7 @@
  * problem aand solution as well as some functions that aid in debugging.
  */
 
-#include "utils.hpp"
+#include "cvrp/utils.hpp"
 
 std::ostream &operator<<(std::ostream &os, const Node &node) {
   os << "Node Status" << '\n';

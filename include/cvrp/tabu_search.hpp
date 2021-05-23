@@ -7,7 +7,7 @@
 #ifndef TS_HPP
 #define TS_HPP
 
-#include "utils.hpp"
+#include "cvrp/utils.hpp"
 
 /**
  * @brief Struct to create hash for vector

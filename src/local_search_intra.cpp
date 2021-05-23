@@ -5,7 +5,7 @@
  * to within individual vehicles)
  */
 
-#include "local_search_intra.hpp"
+#include "cvrp/local_search_intra.hpp"
 
 LocalSearchIntraSolution::LocalSearchIntraSolution(
     const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
