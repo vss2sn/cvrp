@@ -23,9 +23,9 @@ public:
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using GA.
    */
-  GASolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles,
-             std::vector<std::vector<double>> distanceMatrix, int n_chromosomes,
-             int generations);
+  GASolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+             const std::vector<std::vector<double>>& distanceMatrix, const int n_chromosomes,
+             const int generations);
   /**
    * @brief Constructor
    * @param p Instance of Problem class defining the problem parameters
@@ -34,7 +34,7 @@ public:
    * @return No return parameter
    * @details Constructor
    */
-  GASolution(Problem p, int n_chromosomes, int generations);
+  GASolution(const Problem& p, const int n_chromosomes, const int generations);
 
   /**
    * @brief Constructor
@@ -45,7 +45,7 @@ public:
    * @return No return parameter
    * @details Constructor
    */
-  GASolution(Solution s, int n_chromosomes, int generations);
+  GASolution(const Solution& s, const int n_chromosomes, const int generations);
 
   /**
    * @brief Function called to solve the given problem using Genetic Algorithm
@@ -58,7 +58,6 @@ public:
 private:
   std::vector<std::vector<int>> chromosomes_, iterators_;
   std::vector<double> costs_;
-  std::vector<int> chromosome_;
   int n_chromosomes_, n_nucleotide_pairs_, n_vehicles_, generations_, best_;
 
   /**
@@ -228,7 +227,7 @@ private:
    * @details Randomly selects 3 solutions and returns index of the best amongst
    * the three
    */
-  int TournamentSelection();
+  int TournamentSelection(const int n = 10) const ;
 
   /**
    * @brief Tournament selection of a bad solution
@@ -236,7 +235,7 @@ private:
    * @details Randomly selects 3 solutions and returns index of the worst
    * amongst the three
    */
-  int TournamentSelectionBad();
+  int TournamentSelectionBad(const int n = 10) const ;
 
   /**
    * @brief Deletes a bad chromosome
@@ -293,7 +292,7 @@ private:
    * impossible (for eg the total demand exceeds the total capacity of all the
    * vehicles)
    */
-  void MakeValid(int i);
+  void MakeValid(const int i);
 };
 
 #endif // GA_HPP

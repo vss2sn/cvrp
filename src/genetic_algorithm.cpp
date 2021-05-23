@@ -6,7 +6,7 @@
 
 #include "genetic_algorithm.hpp"
 
-GASolution::GASolution(Problem p, int n_chromosomes, int generations)
+GASolution::GASolution(const Problem& p, const int n_chromosomes, const int generations)
     : Solution(p) {
   this->n_chromosomes_ = n_chromosomes;
   this->generations_ = generations;
@@ -22,7 +22,7 @@ GASolution::GASolution(Problem p, int n_chromosomes, int generations)
   best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
 }
 
-GASolution::GASolution(Solution s, int n_chromosomes, int generations)
+GASolution::GASolution(const Solution& s, const int n_chromosomes, const int generations)
     : Solution(s) {
   this->n_chromosomes_ = n_chromosomes;
   this->generations_ = generations;
@@ -67,9 +67,9 @@ GASolution::GASolution(Solution s, int n_chromosomes, int generations)
   best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
 }
 
-GASolution::GASolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles_,
-                       std::vector<std::vector<double>> distanceMatrix,
-                       int n_chromosomes, int generations)
+GASolution::GASolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles_,
+                       const std::vector<std::vector<double>>& distanceMatrix,
+                       const int n_chromosomes, const int generations)
     : Solution(nodes, vehicles_, distanceMatrix) {
   this->n_chromosomes_ = n_chromosomes;
   this->generations_ = generations;
@@ -424,7 +424,7 @@ void GASolution::HGreXCrossover() {
 
 // Works if and only if a solution is possible. No check on validity after
 // function executes
-void GASolution::MakeValid(int i) {
+void GASolution::MakeValid(const int i) {
   for (int j = 0; j < n_vehicles_ - 1; j++) {
     int load = capacity_;
     int iter = iterators_[i][j];
@@ -453,32 +453,28 @@ void GASolution::MakeValid(int i) {
 }
 
 void GASolution::DeleteBadChromosome() {
-  int i = TournamentSelectionBad();
+  const int i = TournamentSelectionBad();
   chromosomes_[i] = GenerateRandomSolution();
 }
 
-int GASolution::TournamentSelection() {
-  int i1 = rand() % chromosomes_.size();
-  int i2 = rand() % chromosomes_.size();
-  int i3 = rand() % chromosomes_.size();
-  if (costs_[i1] <= costs_[i2] && costs_[i1] <= costs_[i3])
-    return i1;
-  else if (costs_[i2] <= costs_[i1] && costs_[i2] <= costs_[i3])
-    return i2;
-  else
-    return i3;
+int GASolution::TournamentSelection(const int n) const {
+  std::vector<int> indices(n);
+  generate(indices.begin(), indices.end(),
+    [this](){ return rand() % chromosomes_.size(); }
+  );
+  return *std::min_element(std::begin(indices), std::end(indices),
+                              [this](const int i1, const int i2)
+                                { return costs_[i1] < costs_[i2]; });
 }
 
-int GASolution::TournamentSelectionBad() {
-  int i1 = rand() % chromosomes_.size();
-  int i2 = rand() % chromosomes_.size();
-  int i3 = rand() % chromosomes_.size();
-  if (costs_[i1] >= costs_[i2] && costs_[i1] >= costs_[i3])
-    return i1;
-  else if (costs_[i2] >= costs_[i1] && costs_[i2] >= costs_[i3])
-    return i2;
-  else
-    return i3;
+int GASolution::TournamentSelectionBad(const int n) const {
+  std::vector<int> indices(n);
+  generate(indices.begin(), indices.end(),
+    [this](){ return rand() % chromosomes_.size(); }
+  );
+  return *std::max_element(std::begin(indices), std::end(indices),
+                            [this](const int i1, const int i2)
+                              { return costs_[i1] < costs_[i2]; });
 }
 
 void GASolution::InsertionBySimilarity() {
@@ -512,11 +508,12 @@ void GASolution::Mutate() {
   while (count < 20) {
     best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
     int r = rand() % n_chromosomes_;
-    // while(r==best_) r = rand()%n_chromosomes_;
+    while(r==best_) r = rand()%n_chromosomes_;
     int i1 = rand() % n_nucleotide_pairs_;
     int i2 = rand() % n_nucleotide_pairs_;
-    if (i1 > i2)
+    if (i1 > i2) {
       std::swap(i1, i2);
+    }
     auto temp_it = iterators_[r];
     std::reverse(chromosomes_[r].begin() + i1, chromosomes_[r].begin() + i2);
     MakeValid(r);
@@ -564,16 +561,19 @@ void GASolution::MutateWhithinGene() {
   while (count < 20) {
     best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
     int r = rand() % n_chromosomes_;
-    while (r == best_)
-      r = rand() % n_chromosomes_;
+    // while (r == best_) {
+    //   r = rand() % n_chromosomes_;
+    // }
     int v = rand() % n_vehicles_;
     int delta = iterators_[r][v + 1] - iterators_[r][v];
-    if (delta < 1)
+    if (delta < 1) {
       return;
+    }
     int i1 = iterators_[r][v] + rand() % delta;
     int i2 = iterators_[r][v] + rand() % delta;
-    if (i1 > i2)
+    if (i1 > i2) {
       std::swap(i1, i2);
+    }
     std::reverse(chromosomes_[r].begin() + i1, chromosomes_[r].begin() + i2);
     auto temp_it = iterators_[r];
     MakeValid(r);
@@ -594,8 +594,9 @@ bool GASolution::MutateIterLeft(int i_chromosome, int j_in) {
     return false;
 
   int i = i_chromosome;
-  if (iterators_[i][j_in] > iterators_[i][j_in - 1])
+  if (iterators_[i][j_in] > iterators_[i][j_in - 1]) {
     iterators_[i][j_in]--;
+  }
   for (int j = j_in; j < n_vehicles_ - 1; j++) {
     int load = capacity_;
     int iter = iterators_[i][j];
@@ -705,19 +706,20 @@ void GASolution::AddBest() {
 }
 
 void GASolution::DeleteWorstChromosome() {
-  auto it = std::max_element(costs_.begin(), costs_.end());
-  int i = it - costs_.begin();
-  chromosomes_.erase(chromosomes_.begin() + i);
+  const auto it = std::max_element(costs_.begin(), costs_.end());
+  const int dist = std::distance(costs_.begin(), it);
   costs_.erase(it);
-  iterators_.erase(iterators_.begin() + i);
+  chromosomes_.erase(std::next(chromosomes_.begin(), dist));
+  iterators_.erase(std::next(iterators_.begin(), dist));
 }
 
 void GASolution::InsertIterDist() {
-  int n = rand() % n_chromosomes_;
+  const int n = rand() % n_chromosomes_;
   auto temp = iterators_[n];
   int j = n_vehicles_;
-  while (iterators_[n][j] == n_nucleotide_pairs_)
+  while (iterators_[n][j] == n_nucleotide_pairs_) {
     j--;
+  }
   if (j == n_vehicles_ - 1)
     return;
   j++;
