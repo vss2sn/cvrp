@@ -25,11 +25,12 @@ public:
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  SimulatedAnnealingSolution(std::vector<Node> nodes,
-                             std::vector<Vehicle> vehicles,
-                             std::vector<std::vector<double>> distanceMatrix,
-                             int stag_limit = 500000, double init_temp = 5000,
-                             double cooling_rate = 0.9999);
+  SimulatedAnnealingSolution(const std::vector<Node>& nodes,
+                             const std::vector<Vehicle>& vehicles,
+                             const std::vector<std::vector<double>>& distanceMatrix,
+                             const int stag_limit = 500000,
+                             const double init_temp = 5000,
+                             const double cooling_rate = 0.9999);
 
   /**
    * @brief Constructor
@@ -43,9 +44,9 @@ public:
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  SimulatedAnnealingSolution(Problem p, int stag_limit = 500000,
-                             double init_temp = 5000,
-                             double cooling_rate = 0.9999);
+  SimulatedAnnealingSolution(const Problem& p, const int stag_limit = 500000,
+                             const double init_temp = 5000,
+                             const double cooling_rate = 0.9999);
 
   /**
    * @brief Constructor
@@ -60,7 +61,7 @@ public:
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  SimulatedAnnealingSolution(Solution s, int stag_limit = 500000,
+  SimulatedAnnealingSolution(const Solution& s, int stag_limit = 500000,
                              double init_temp = 5000,
                              double cooling_rate = 0.9999);
 
@@ -74,8 +75,9 @@ public:
   void Solve();
 
 private:
-  double temp_ = 0, cooling_rate_, best_cost_, current_cost_;
-  int max_temp_, n_reheats_ = 20, stag_limit_, stag_;
+  const double cooling_rate_;
+  double best_cost_;
+  const int max_temp_, n_reheats_ = 20, stag_limit_;
   /**
    * @brief Checks whether the move is allowable
    * @param delta change in cost of solution due to move
@@ -83,7 +85,7 @@ private:
    * @details Allows move if it improves the solution; also allows move based on
    * probability and temperature at the given time.
    */
-  inline bool AllowMove(double delta);
+  inline bool AllowMove(const double delta, const double temp);
 };
 
 #endif // SA_HPP
