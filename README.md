@@ -66,3 +66,5 @@ For a brief overview on the implementations of the algorithms, please refer to t
 5. Consider modifying to allow heterogeneous vehicles.
 6. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
 7. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.
+8. Consider adding visualization based on sfml
+9. Refactor genetic algorithm to use a struct
