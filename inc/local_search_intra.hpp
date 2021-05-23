@@ -21,9 +21,9 @@ public:
    * @details Constructor for initial setup of problem, and solution using Local
    * Search applied to the routes of each of the vehicles separately
    */
-  LocalSearchIntraSolution(std::vector<Node> nodes,
-                           std::vector<Vehicle> vehicles,
-                           std::vector<std::vector<double>> distanceMatrix);
+  LocalSearchIntraSolution(const std::vector<Node>& nodes,
+                           const std::vector<Vehicle>& vehicles,
+                           const std::vector<std::vector<double>>& distanceMatrix);
 
   /**
    * @brief Constructor
@@ -32,7 +32,7 @@ public:
    * @details Constructor for initial setup of problem, and solution using Local
    * Search applied to the routes of each of the vehicles separately
    */
-  LocalSearchIntraSolution(Problem p);
+  LocalSearchIntraSolution(const Problem& p);
 
   /**
    * @brief Constructor
@@ -42,7 +42,8 @@ public:
    * @details Constructor for initial setup of problem, and solution using Local
    * Search applied to the routes of each of the vehicles separately
    */
-  LocalSearchIntraSolution(Solution s);
+  LocalSearchIntraSolution(const Solution& s);
+
   /**
    * @brief Function called to solve the given problem using a local search
    * algorithm
