@@ -43,9 +43,9 @@ public:
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles,
-                     std::vector<std::vector<double>> distanceMatrix,
-                     int n_tabu = 50);
+  TabuSearchSolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+                     const std::vector<std::vector<double>>& distanceMatrix,
+                     const int n_tabu = 50);
   /**
    * @brief Constructor
    * @param p Instance of Problem class defining the problem parameters
@@ -54,7 +54,7 @@ public:
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(Problem p, int n_tabu = 50);
+  TabuSearchSolution(const Problem& p, const int n_tabu = 50);
 
   /**
    * @brief Constructor
@@ -65,7 +65,7 @@ public:
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(Solution s, int n_tabu = 50);
+  TabuSearchSolution(const Solution& s, const int n_tabu = 50);
 
   /**
    * @brief Function called to solve the given problem using a tabu search
@@ -79,9 +79,10 @@ public:
 private:
   int n_tabu_;
   double best_cost_, new_cost_;
+  const int max_it = 500;
 
-  std::vector<std::vector<int>>
-      to_check_; // invert order of v1, v2 and cur, rep+1
+  std::vector<std::vector<int>> to_check_ = std::vector<std::vector<int>>(6, std::vector<int>(2, 0));; 
+      // invert order of v1, v2 and cur, rep+1
   std::unordered_set<std::vector<int>, VectorHash> tabu_list_set_;
   std::queue<std::vector<int>> tabu_list_queue_;
 
