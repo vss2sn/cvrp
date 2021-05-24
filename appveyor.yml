@@ -1,0 +1,8 @@
+image: Ubuntu
+clone_folder: c:\projects\cvrp
+build:
+- bash:
+    mkdir build
+    cd build
+    cmake ..
+    make -j

@@ -1,12 +1,50 @@
 language: cpp
 
-compiler:
-  - gcc
+jobs:
+  include:
+    - os: osx
+      compiler: gcc
+      osx_image: xcode11.2    # includes gcc-9 by default
+      env:
+        - GCC_VER="9"
+        - MATRIX_EVAL="CC=gcc-${GCC_VER} && CXX=g++-${GCC_VER}"
+    - os: osx
+      compiler: clang
+      osx_image: xcode11.2
+      env:
+        - MATRIX_EVAL=""
+    - os: linux
+      dist: bionic
+      compiler: gcc
+      env:
+        - GCC_VER="9"
+        - MATRIX_EVAL="CC=gcc-${GCC_VER} && CXX=g++-${GCC_VER}"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            # I couldn't get ${GCC_VER} in here successfully
+            - gcc-9
+            - g++-9
+            - doxygen
+            - python3-pip
+      # after_script:
+      #   - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-${GCC_VER}
+    - os: linux
+      dist: bionic
+      compiler: clang
+      env:
+        - MATRIX_EVAL="CC=clang && CXX=clang++"
+      addons: { apt: { packages: ['doxygen', 'python3-pip'] } }
 
 before_script:
-  - mkdir build
-  - cd build
-  - cmake ..
+  - eval "${MATRIX_EVAL}"
 
 script:
-  - make -j4
+  - mkdir build
+  - cd build
+  - make -j
+  # - cmake -D ENABLE_COVERAGE:BOOL=TRUE ../
+  # - cmake --build . -- -j2
+  # - ctest -j2
