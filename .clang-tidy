@@ -1,7 +1,5 @@
 ---
-Checks:          '*,-fuchsia-*,-google-*,-zircon-*,-abseil-*,-modernize-use-trailing-return-type,-llvm*'
+Checks:          '*,-fuchsia-*,-google-*,-zircon-*,-abseil-*,-modernize-use-trailing-return-type,-llvm*,-cert-msc50-cpp,-cert-msc30-c'
 WarningsAsErrors: '*'
 HeaderFilterRegex: ''
 FormatStyle:     none
-
-

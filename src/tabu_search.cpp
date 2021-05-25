@@ -10,36 +10,35 @@
 
 TabuSearchSolution::TabuSearchSolution(
     const std::vector<Node> &nodes, const std::vector<Vehicle> &vehicles,
-    const std::vector<std::vector<double>> &distanceMatrix, const int n_tabu)
-    : Solution(nodes, vehicles, distanceMatrix) {
-  this->n_tabu_ = n_tabu;
+    const std::vector<std::vector<double>> &distanceMatrix, const int n_tabu, const int max_it)
+    : Solution(nodes, vehicles, distanceMatrix), n_tabu_(n_tabu), max_it_(max_it) {
   CreateInitialSolution();
 }
 
-TabuSearchSolution::TabuSearchSolution(const Problem &p, const int n_tabu)
-    : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_) {
-  this->n_tabu_ = n_tabu;
+TabuSearchSolution::TabuSearchSolution(const Problem &p, const int n_tabu, const int max_it)
+    : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_), n_tabu_(n_tabu), max_it_(max_it) {
   CreateInitialSolution();
 }
 
-TabuSearchSolution::TabuSearchSolution(const Solution &s, const int n_tabu)
-    : Solution(s) {
-  this->n_tabu_ = n_tabu;
+TabuSearchSolution::TabuSearchSolution(const Solution &s, const int n_tabu, const int max_it)
+    : Solution(s), n_tabu_(n_tabu), max_it_(max_it) {
   if (!s.CheckSolutionValid()) {
     std::cout << "The input solution is invalid. Exiting." << '\n';
     exit(0);
   }
 }
 
-inline bool TabuSearchSolution::IsTabu(const int begin, const int end) {
+inline bool TabuSearchSolution::IsTabu(const int begin, const int end) const {
   for (int i = begin; i <= end; i++) {
-    if (tabu_list_set_.find(to_check_[i]) != tabu_list_set_.end()) return true;
+    if (tabu_list_set_.find(to_check_[i]) != tabu_list_set_.end()) {
+      return true;
+    }
   }
   return false;
 }
 
 inline bool TabuSearchSolution::Aspiration(const double cost_increase,
-                                           const double cost_reduction) {
+                                           const double cost_reduction) const {
   return new_cost_ + cost_increase + cost_reduction < best_cost_;
 }
 
@@ -55,7 +54,8 @@ void TabuSearchSolution::Solve() {
   }
 
   auto best_vehicles = vehicles_;
-  int best_c = -1, best_r = -1;
+  int best_c = -1;
+  int best_r = -1;
   best_cost_ = cost;
   new_cost_ = cost;
   Vehicle *v_temp = nullptr;
@@ -64,7 +64,7 @@ void TabuSearchSolution::Solve() {
   for (auto &row : to_check_) {
     std::fill(std::begin(row), std::end(row), 0);
   }
-  for (int c_it = 0; c_it < max_it; c_it++) {
+  for (int c_it = 0; c_it < max_it_; c_it++) {
     double delta = std::numeric_limits<double>::max();
     for (auto &v : vehicles_) {
       for (size_t cur = 1; cur < v.nodes_.size() - 1; cur++) {

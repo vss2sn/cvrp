@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+constexpr double margin_of_error = 0.00001;
+
 LocalSearchIntraSolution::LocalSearchIntraSolution(
     const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
     const std::vector<std::vector<double>>& distanceMatrix)
@@ -36,21 +38,21 @@ void LocalSearchIntraSolution::Solve() {
   }
   for (auto& v : vehicles_) {
     while (true) {
-      double delta = 0.0, cost_reduction, cost_increase;
-      int best_c = -1, best_r = -1;
-      size_t cur, rep;
-      for (cur = 1; cur < v.nodes_.size() - 1; cur++) {
+      double delta = 0;
+      int best_c = -1; 
+      int best_r = -1;
+      for (size_t cur = 1; cur < v.nodes_.size() - 1; cur++) {
         const int v_cur = v.nodes_[cur];
         const int v_prev = v.nodes_[cur - 1];
         const int v_next_c = v.nodes_[cur + 1];
-        cost_reduction = distanceMatrix_[v_prev][v_next_c] -
+        const double cost_reduction = distanceMatrix_[v_prev][v_next_c] -
                          distanceMatrix_[v_prev][v_cur] -
                          distanceMatrix_[v_cur][v_next_c];
-        for (rep = 1; rep < v.nodes_.size() - 1; rep++) {
+        for (size_t rep = 1; rep < v.nodes_.size() - 1; rep++) {
           if (rep != cur && rep != cur - 1) {
             const int v_rep = v.nodes_[rep];
             const int v_next_r = v.nodes_[rep + 1];
-            cost_increase = distanceMatrix_[v_rep][v_cur] +
+            const double cost_increase = distanceMatrix_[v_rep][v_cur] +
                             distanceMatrix_[v_cur][v_next_r] -
                             distanceMatrix_[v_rep][v_next_r];
             if (cost_increase + cost_reduction < delta) {
@@ -62,22 +64,23 @@ void LocalSearchIntraSolution::Solve() {
         }
       }
 
-      if (delta > -0.00001)
+      if (delta > -margin_of_error) {
         break;
-      else {
-        const int val_best_c = *std::next(v.nodes_.begin(), best_c);
-        v.nodes_.erase(std::next(v.nodes_.begin(), best_c));
-        if (best_c < best_r) {
-          v.nodes_.insert(std::next(v.nodes_.begin(), best_r), val_best_c);
-        } else {
-          v.nodes_.insert(std::next(v.nodes_.begin(), best_r + 1), val_best_c);
-        }
-        v.CalculateCost(distanceMatrix_);
       }
+      const int val_best_c = *std::next(v.nodes_.begin(), best_c);
+      v.nodes_.erase(std::next(v.nodes_.begin(), best_c));
+      if (best_c < best_r) {
+        v.nodes_.insert(std::next(v.nodes_.begin(), best_r), val_best_c);
+      } else {
+        v.nodes_.insert(std::next(v.nodes_.begin(), best_r + 1), val_best_c);
+      }
+      v.CalculateCost(distanceMatrix_);
     }
   }
   cost = 0;
-  for (auto& v : vehicles_) cost += v.cost_;
+  for (const auto& v : vehicles_) {
+    cost += v.cost_;
+  }
   std::cout << "Cost: " << cost << '\n';
   for (const auto& i : nodes_) {
     if (!i.is_routed_) {

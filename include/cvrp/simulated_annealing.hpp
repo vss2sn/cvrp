@@ -29,7 +29,9 @@ class SimulatedAnnealingSolution : public Solution {
       const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
       const std::vector<std::vector<double>>& distanceMatrix,
       const int stag_limit = 500000, const double init_temp = 5000,
-      const double cooling_rate = 0.9999);
+      const double cooling_rate = 0.9999,
+      const int n_reheats = 20
+    );
 
   /**
    * @brief Constructor
@@ -45,7 +47,9 @@ class SimulatedAnnealingSolution : public Solution {
    */
   SimulatedAnnealingSolution(const Problem& p, const int stag_limit = 500000,
                              const double init_temp = 5000,
-                             const double cooling_rate = 0.9999);
+                             const double cooling_rate = 0.9999,
+                             const int n_reheats = 20
+                            );
 
   /**
    * @brief Constructor
@@ -62,7 +66,9 @@ class SimulatedAnnealingSolution : public Solution {
    */
   SimulatedAnnealingSolution(const Solution& s, int stag_limit = 500000,
                              double init_temp = 5000,
-                             double cooling_rate = 0.9999);
+                             double cooling_rate = 0.9999,
+                             const int n_reheats = 20
+                            );
 
   /**
    * @brief Function called to solve the given problem using a simulated
@@ -75,8 +81,9 @@ class SimulatedAnnealingSolution : public Solution {
 
  private:
   const double cooling_rate_;
-  double best_cost_;
-  const int max_temp_, n_reheats_ = 20, stag_limit_;
+  const double init_temp_;
+  const int n_reheats_;
+  const int stag_limit_;
   /**
    * @brief Checks whether the move is allowable
    * @param delta change in cost of solution due to move
@@ -84,7 +91,7 @@ class SimulatedAnnealingSolution : public Solution {
    * @details Allows move if it improves the solution; also allows move based on
    * probability and temperature at the given time.
    */
-  inline bool AllowMove(const double delta, const double temp);
+  inline bool AllowMove(const double delta, const double temp) const;
 };
 
 #endif  // SA_HPP

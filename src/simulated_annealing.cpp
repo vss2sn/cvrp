@@ -9,34 +9,41 @@
 #include <cmath>
 #include <iostream>
 
+constexpr double margin_of_error = 0.0000000001;
+
 SimulatedAnnealingSolution::SimulatedAnnealingSolution(
     const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
     const std::vector<std::vector<double>>& distanceMatrix,
-    const int stag_limit, const double init_temp, const double cooling_rate)
+    const int stag_limit, const double init_temp, const double cooling_rate,
+    const int n_reheats)
     : Solution(nodes, vehicles, distanceMatrix),
       stag_limit_(stag_limit),
-      max_temp_(init_temp),
-      cooling_rate_(cooling_rate) {
+      init_temp_(init_temp),
+      cooling_rate_(cooling_rate),
+      n_reheats_(n_reheats)
+       {
   CreateInitialSolution();
 }
 
 SimulatedAnnealingSolution::SimulatedAnnealingSolution(
     const Problem& p, const int stag_limit, const double init_temp,
-    const double cooling_rate)
+    const double cooling_rate, const int n_reheats)
     : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_),
       stag_limit_(stag_limit),
-      max_temp_(init_temp),
-      cooling_rate_(cooling_rate) {
+      init_temp_(init_temp),
+      cooling_rate_(cooling_rate),
+      n_reheats_(n_reheats) {
   CreateInitialSolution();
 }
 
 SimulatedAnnealingSolution::SimulatedAnnealingSolution(
     const Solution& s, const int stag_limit, const double init_temp,
-    const double cooling_rate)
+    const double cooling_rate, const int n_reheats)
     : Solution(s),
       stag_limit_(stag_limit),
-      max_temp_(init_temp),
-      cooling_rate_(cooling_rate) {
+      init_temp_(init_temp),
+      cooling_rate_(cooling_rate),
+      n_reheats_(n_reheats) {
   if (!s.CheckSolutionValid()) {
     std::cout << "The input solution is invalid. Exiting." << '\n';
     exit(0);
@@ -44,13 +51,11 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(
 }
 
 inline bool SimulatedAnnealingSolution::AllowMove(const double delta,
-                                                  const double temp) {
-  if (delta < -0.0000000001)
+                                                  const double temp) const {
+  if ((delta < -margin_of_error) || ((static_cast<double>(rand()) / RAND_MAX) < std::exp(-delta / temp))) {
     return true;
-  else if (((double)rand() / RAND_MAX) < std::exp(-delta / temp))
-    return true;
-  else
-    return false;
+  }
+  return false;
 }
 
 void SimulatedAnnealingSolution::Solve() {
@@ -60,13 +65,12 @@ void SimulatedAnnealingSolution::Solve() {
     cost += v.cost_;
   }
   auto best_vehicles = vehicles_;
-  best_cost_ = cost;
+  double best_cost = cost;
   double current_cost = cost;
-  // Vehicle *v1, *v2;
   for (int r = 0; r < n_reheats_; r++) {
     // std::cout << "Reheat number: " << r << '\n';
     int stag = stag_limit_;
-    temp = max_temp_;
+    temp = init_temp_;
     while (--stag >= 0) {
       temp *= cooling_rate_;
       const int n_vehicles = vehicles_.size();
@@ -112,10 +116,10 @@ void SimulatedAnnealingSolution::Solve() {
         }
         current_cost += delta;
       }
-      if (current_cost < best_cost_) {
+      if (current_cost < best_cost) {
         stag = stag_limit_;
         best_vehicles = vehicles_;
-        best_cost_ = current_cost;
+        best_cost = current_cost;
       }
     }
   }

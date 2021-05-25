@@ -8,12 +8,12 @@
 
 #include <iostream>
 
-GreedySolution::GreedySolution(std::vector<Node> nodes,
-                               std::vector<Vehicle> vehicles,
-                               std::vector<std::vector<double>> distanceMatrix)
+GreedySolution::GreedySolution(const std::vector<Node>& nodes,
+                               const std::vector<Vehicle>& vehicles,
+                               const std::vector<std::vector<double>>& distanceMatrix)
     : Solution(nodes, vehicles, distanceMatrix){};
 
-GreedySolution::GreedySolution(Problem p)
+GreedySolution::GreedySolution(const Problem& p)
     : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){};
 
 void GreedySolution::Solve() {
@@ -34,7 +34,9 @@ void GreedySolution::Solve() {
   }
 
   double cost = 0;
-  for (auto &v : vehicles_) cost += v.cost_;
+  for (const auto &v : vehicles_)  {
+    cost += v.cost_;
+  }
   std::cout << "Cost: " << cost << '\n';
 
   for (const auto &i : nodes_) {

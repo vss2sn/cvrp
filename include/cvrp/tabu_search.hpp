@@ -49,7 +49,9 @@ class TabuSearchSolution : public Solution {
   TabuSearchSolution(const std::vector<Node>& nodes,
                      const std::vector<Vehicle>& vehicles,
                      const std::vector<std::vector<double>>& distanceMatrix,
-                     const int n_tabu = 50);
+                     const int n_tabu = 50,
+                     const int max_it = 500
+                    );
   /**
    * @brief Constructor
    * @param p Instance of Problem class defining the problem parameters
@@ -58,7 +60,7 @@ class TabuSearchSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(const Problem& p, const int n_tabu = 50);
+  TabuSearchSolution(const Problem& p, const int n_tabu = 50, const int max_it = 500);
 
   /**
    * @brief Constructor
@@ -69,7 +71,7 @@ class TabuSearchSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(const Solution& s, const int n_tabu = 50);
+  TabuSearchSolution(const Solution& s, const int n_tabu = 50, const int max_it = 500);
 
   /**
    * @brief Function called to solve the given problem using a tabu search
@@ -78,12 +80,13 @@ class TabuSearchSolution : public Solution {
    * @details Generates random iniitial solutions. Applies selected algorithm.
    * Prints cost of best solution, and its validity.
    */
-  void Solve();
+  void Solve() override;
 
  private:
+  const int max_it_;
   int n_tabu_;
-  double best_cost_, new_cost_;
-  const int max_it = 500;
+  double best_cost_ = std::numeric_limits<double>::max();
+  double new_cost_ = std::numeric_limits<double>::max();
 
   std::vector<std::vector<int>> to_check_ =
       std::vector<std::vector<int>>(6, std::vector<int>(2, 0));
@@ -101,7 +104,7 @@ class TabuSearchSolution : public Solution {
    * moves listed in to_check are tabu. to_check is updated for each move
    * considered
    */
-  inline bool IsTabu(const int begin, const int end);
+  inline bool IsTabu(const int begin, const int end) const;
 
   /**
    * @brief Aspiration criteria
@@ -112,7 +115,7 @@ class TabuSearchSolution : public Solution {
    * @details Ensures that if a move provides a better solution than the best
    * currently available, the move is accepted even if it is tabu
    */
-  inline bool Aspiration(double cost_increase, double cost_reduction);
+  inline bool Aspiration(double cost_increase, double cost_reduction) const;
 };
 
 #endif  // TS_HPP

@@ -59,9 +59,14 @@ class GASolution : public Solution {
   void Solve();
 
  private:
-  std::vector<std::vector<int>> chromosomes_, iterators_;
+  std::vector<std::vector<int>> chromosomes_;
+  std::vector<std::vector<int>> iterators_;
   std::vector<double> costs_;
-  int n_chromosomes_, n_nucleotide_pairs_, n_vehicles_, generations_, best_;
+  const int n_chromosomes_;
+  const int n_nucleotide_pairs_;
+  const int n_vehicles_;
+  const int generations_;
+  int best_ = 0;
 
   /**
    * @brief Generates random solutions
@@ -87,7 +92,7 @@ class GASolution : public Solution {
    * @return void
    * @details Generates a random solution.
    */
-  std::vector<int> GenerateRandomSolution();
+  std::vector<int> GenerateRandomSolution() const;
 
   /**
    * @brief Generates a random iterator solution
@@ -95,7 +100,7 @@ class GASolution : public Solution {
    * @details Generates a random iterator solution containing the points using
    * which the chromosome is to be split into routes for the vehicles
    */
-  std::vector<int> GenerateRandomIterSolution();
+  std::vector<int> GenerateRandomIterSolution() const;
 
   /**
    * @brief Heuristic Greedy Crossover (HGreX)
@@ -192,7 +197,7 @@ class GASolution : public Solution {
    * current vehicle and is the first node visited by the current vehicle.
    * Operation performed if solution is improved by said operation.
    */
-  bool MutateIterLeft(int i_chromosome, int j_in);
+  bool MutateIterLeft(const int i_chromosome, const int j_in);
 
   /**
    * @brief Increments a selected point in the iterator vector of a selected
@@ -207,7 +212,7 @@ class GASolution : public Solution {
    * preceeding vehicle and is the last node visited by the preceeding vehicle.
    * Operation performed if solution is improved by said operation.
    */
-  bool MutateIterRight(int i_chromosome, int j_in);
+  bool MutateIterRight(const int i_chromosome, const int j_in);
 
   /**
    * @brief Calculates the cost of a given solution

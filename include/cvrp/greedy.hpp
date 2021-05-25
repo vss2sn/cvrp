@@ -20,8 +20,8 @@ class GreedySolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * greedy algorithm
    */
-  GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles,
-                 std::vector<std::vector<double>> distanceMatrix);
+  GreedySolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+                 const std::vector<std::vector<double>>& distanceMatrix);
 
   /**
    * @brief Constructor
@@ -30,7 +30,7 @@ class GreedySolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * greedy algorithm
    */
-  GreedySolution(Problem p);
+  GreedySolution(const Problem& p);
 
   /**
    * @brief Function called to solve the given problem using a greedy algorithm
@@ -38,6 +38,6 @@ class GreedySolution : public Solution {
    * @details Generates random iniitial solutions. Applies selected algorithm.
    * Prints cost of best solution, and its validity.
    */
-  void Solve();
+  void Solve() override;
 };
 #endif  // GREEDY_HPP

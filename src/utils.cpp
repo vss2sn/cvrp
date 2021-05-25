@@ -24,8 +24,9 @@ std::ostream &operator<<(std::ostream &os, const Node &node) {
 void Vehicle::CalculateCost(
     const std::vector<std::vector<double>> &distanceMatrix) {
   cost_ = 0;
-  for (size_t i = 0; i < nodes_.size() - 1; i++)
+  for (size_t i = 0; i < nodes_.size() - 1; i++) {
     cost_ += distanceMatrix[nodes_[i]][nodes_[i + 1]];
+  }
 }
 
 std::ostream &operator<<(std::ostream &os, const Vehicle &v) {
@@ -98,10 +99,10 @@ Node Solution::find_closest(const Vehicle &v) const {
       id = j;
     }
   }
-  if (id != -1)
+  if (id != -1) {
     return nodes_[id];
-  else
-    return Node(0, 0, -1, 0);
+  }
+  return Node(0, 0, -1, 0);
 }
 
 bool Solution::CheckSolutionValid() const {
@@ -114,10 +115,14 @@ bool Solution::CheckSolutionValid() const {
       load -= nodes_[n].demand_;
       check_nodes[n] = true;
     }
-    if (load < 0) return false;
+    if (load < 0) {
+      return false;
+    }
   }
   for (auto b : check_nodes) {
-    if (!b) return false;
+    if (!b) {
+      return false;
+    }
   }
   return true;
 }
@@ -138,12 +143,14 @@ Problem::Problem(const int noc, const int demand_range, const int nov,
 
   nodes_.push_back(depot);
 
-  if (distribution != "uniform" && distribution != "cluster")
+  if (distribution != "uniform" && distribution != "cluster") {
     distribution = "uniform";
-  if (distribution == "uniform")
-    for (int i = 1; i <= noc; ++i)
+  }
+  if (distribution == "uniform") {
+    for (int i = 1; i <= noc; ++i) {
       nodes_.emplace_back(ran(eng), ran(eng), i, ran_d(eng), false);
-  else if (distribution == "cluster") {
+    }
+  } else if (distribution == "cluster") {
     int id = 1;
     int n_p_c = noc / n_clusters;
     int remain = noc % n_clusters;
@@ -151,23 +158,23 @@ Problem::Problem(const int noc, const int demand_range, const int nov,
       int x = ran(eng);
       int y = ran(eng);
       for (int j = 0; j < n_p_c; j++) {
-        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
-                            false);
+        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
         id++;
       }
     }
     int x = ran(eng);
     int y = ran(eng);
     for (int j = 0; j < remain; j++) {
-      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
-                          false);
+      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
       id++;
     }
   }
 
   // for(const auto& n:nodes) std::cout << n << '\n';
   std::vector<double> tmp(nodes_.size());
-  for (size_t i = 0; i < nodes_.size(); ++i) distanceMatrix_.push_back(tmp);
+  for (size_t i = 0; i < nodes_.size(); ++i) {
+    distanceMatrix_.push_back(tmp);
+  }
   for (size_t i = 0; i < nodes_.size(); ++i) {
     for (size_t j = i; j < nodes_.size(); ++j) {
       distanceMatrix_[i][j] =
