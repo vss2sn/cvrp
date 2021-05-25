@@ -20,8 +20,7 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(
       stag_limit_(stag_limit),
       init_temp_(init_temp),
       cooling_rate_(cooling_rate),
-      n_reheats_(n_reheats)
-       {
+      n_reheats_(n_reheats) {
   CreateInitialSolution();
 }
 

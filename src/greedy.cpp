@@ -11,10 +11,10 @@
 GreedySolution::GreedySolution(const std::vector<Node>& nodes,
                                const std::vector<Vehicle>& vehicles,
                                const std::vector<std::vector<double>>& distanceMatrix)
-    : Solution(nodes, vehicles, distanceMatrix){};
+    : Solution(nodes, vehicles, distanceMatrix) {}
 
 GreedySolution::GreedySolution(const Problem& p)
-    : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){};
+    : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_) {}
 
 void GreedySolution::Solve() {
   for (auto &v : vehicles_) {

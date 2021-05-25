@@ -39,7 +39,7 @@ void LocalSearchIntraSolution::Solve() {
   for (auto& v : vehicles_) {
     while (true) {
       double delta = 0;
-      int best_c = -1; 
+      int best_c = -1;
       int best_r = -1;
       for (size_t cur = 1; cur < v.nodes_.size() - 1; cur++) {
         const int v_cur = v.nodes_[cur];

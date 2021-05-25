@@ -86,7 +86,7 @@ std::vector<int> GASolution::GenerateRandomSolution() const {
   for (int i = 0; i < n_nucleotide_pairs_; ++i) {
     temp[i] = i + 1;
   }
-  unsigned seed = rand(); // std::chrono::system_clock::now().time_since_epoch().count();
+  unsigned seed = rand();  // std::chrono::system_clock::now().time_since_epoch().count();
   std::shuffle(temp.begin(), temp.end(), std::default_random_engine(seed));
   return temp;
 }
@@ -352,7 +352,7 @@ void GASolution::Solve() {
     // }
 
     // NOTE: Kept as a remonder of way to print solution
-    // TODO: Remove
+    // TODO(vss): Remove
     // solution_string_ = std::to_string(depot_.id_);
     // for(size_t k=0;k<iterators_[0].size()-1;k++){
     //   if(iterators_[best_][k]==n_nucleotide_pairs_) break;
@@ -711,7 +711,7 @@ void GASolution::RandomSwap() {
   while (count < n_attempts) {
     best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
     int r = rand() % n_chromosomes_;
-    while(r==best_) {
+    while (r == best_) {
       r = rand()%n_chromosomes_;
     }
     size_t i1 = rand() % n_nucleotide_pairs_;

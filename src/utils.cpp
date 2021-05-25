@@ -179,7 +179,7 @@ Problem::Problem(const int noc, const int demand_range, const int nov,
   for (size_t i = 0; i < nodes_.size(); ++i) {
     for (size_t j = i; j < nodes_.size(); ++j) {
       distanceMatrix_[i][j] =
-          sqrt(double(pow((nodes_[i].x_ - nodes_[j].x_), 2) +
+          sqrt(static_cast<double>(pow((nodes_[i].x_ - nodes_[j].x_), 2) +
                       pow((nodes_[i].y_ - nodes_[j].y_), 2)));
       distanceMatrix_[j][i] = distanceMatrix_[i][j];
     }
