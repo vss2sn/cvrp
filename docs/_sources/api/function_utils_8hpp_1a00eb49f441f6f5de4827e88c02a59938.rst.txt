@@ -1,0 +1,13 @@
+.. _exhale_function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938:
+
+Function PrintVehicleRoute(const Vehicle&)
+==========================================
+
+- Defined in :ref:`file_include_cvrp_utils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: PrintVehicleRoute(const Vehicle&)

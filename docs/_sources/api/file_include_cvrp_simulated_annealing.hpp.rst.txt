@@ -1,0 +1,61 @@
+
+.. _file_include_cvrp_simulated_annealing.hpp:
+
+File simulated_annealing.hpp
+============================
+
+
+Contains the :ref:`exhale_class_classSimulatedAnnealingSolution` class. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/cvrp/simulated_annealing.hpp``)
+-----------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_cvrp_simulated_annealing.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cvrp/utils.hpp`` (:ref:`file_include_cvrp_utils.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_cvrp_main.hpp`
+
+- :ref:`file_src_simulated_annealing.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classSimulatedAnnealingSolution`
+

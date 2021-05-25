@@ -1,0 +1,16 @@
+.. _exhale_struct_structNode:
+
+Struct Node
+===========
+
+- Defined in :ref:`file_include_cvrp_utils.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Node
+   :members:
+   :protected-members:
+   :undoc-members:

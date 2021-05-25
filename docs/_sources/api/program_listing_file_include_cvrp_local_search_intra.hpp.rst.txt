@@ -1,0 +1,32 @@
+
+.. _program_listing_file_include_cvrp_local_search_intra.hpp:
+
+Program Listing for File local_search_intra.hpp
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_cvrp_local_search_intra.hpp>` (``include/cvrp/local_search_intra.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef LSI_HPP
+   #define LSI_HPP
+   
+   #include "cvrp/utils.hpp"
+   
+   class LocalSearchIntraSolution : public Solution {
+   public:
+     LocalSearchIntraSolution(const std::vector<Node>& nodes,
+                              const std::vector<Vehicle>& vehicles,
+                              const std::vector<std::vector<double>>& distanceMatrix);
+   
+     LocalSearchIntraSolution(const Problem& p);
+   
+     LocalSearchIntraSolution(const Solution& s);
+   
+     void Solve();
+   };
+   
+   #endif // LSI_HPP

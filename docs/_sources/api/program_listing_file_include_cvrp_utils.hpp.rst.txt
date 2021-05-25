@@ -1,0 +1,112 @@
+
+.. _program_listing_file_include_cvrp_utils.hpp:
+
+Program Listing for File utils.hpp
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_cvrp_utils.hpp>` (``include/cvrp/utils.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef UTILS_HPP
+   #define UTILS_HPP
+   
+   #include <algorithm>
+   #include <climits>
+   #include <cstdio>
+   #include <ctime>
+   #include <cxxabi.h>
+   #include <iomanip>
+   #include <iostream>
+   #include <map>
+   #include <math.h>
+   #include <memory>
+   #include <queue>
+   #include <random>
+   #include <set>
+   #include <typeinfo>
+   #include <unistd.h>
+   #include <unordered_set>
+   #include <vector>
+   
+   #include <chrono>
+   #include <cmath>
+   #include <functional>
+   #include <memory>
+   #include <string>
+   
+   struct Node {
+   public:
+     int x_, y_, id_, demand_;
+     bool is_routed_;
+   
+     Node(const int x = 0, const int y = 0, const int id = 0, const int demand = 0, const bool is_routed = true)
+         : x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed) {}
+   
+     friend std::ostream &operator<<(std::ostream &os, const Node &node);
+   };
+   
+   std::ostream &operator<<(std::ostream &os, const Node &node);
+   
+   struct Vehicle {
+   public:
+     int id_, load_, capacity_;
+     double cost_ = 0;
+     std::vector<int> nodes_;
+   
+     Vehicle(const int id = 0, const int load = 0, const int capacity = 0)
+         : id_(id), load_(load), capacity_(capacity) {}
+   
+     friend std::ostream &operator<<(std::ostream &os, const Vehicle &v);
+   
+     void CalculateCost(const std::vector<std::vector<double>>& distanceMatrix);
+   };
+   
+   std::ostream &operator<<(std::ostream &os, const Vehicle &v);
+   
+   void PrintVehicleRoute(const Vehicle &v);
+   
+   struct Problem {
+   public:
+     Problem(const int noc = 1000, const int demand_range = 40, const int nov = 50,
+             const int capacity = 800, const int grid_range = 1000,
+             std::string distribution = "uniform", const int n_clusters = 5,
+             const int cluster_range = 10);
+   
+     std::vector<Node> nodes_;
+     std::vector<Vehicle> vehicles_;
+     std::vector<std::vector<double>> distanceMatrix_;
+     Node depot_;
+     int capacity_;
+   };
+   
+   // Solution class should not call problems's constructor so not inheriting.
+   class Solution {
+   public:
+     Solution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+              const std::vector<std::vector<double>>& distanceMatrix);
+   
+     Solution(const Problem& p);
+   
+     void CreateInitialSolution();
+   
+     bool CheckSolutionValid() const;
+   
+     virtual void Solve() = 0;
+   
+     Node find_closest(const Vehicle &v) const;
+   
+     void PrintSolution(const std::string &option = "") const;
+   
+   protected:
+     std::vector<Node> nodes_;
+     std::vector<Vehicle> vehicles_;
+     std::vector<std::vector<double>> distanceMatrix_;
+     Node depot_;
+     int capacity_;
+   };
+   
+   #endif // UTILS_HPP

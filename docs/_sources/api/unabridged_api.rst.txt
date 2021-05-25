@@ -10,7 +10,22 @@ Classes and Structs
 .. toctree::
    :maxdepth: 5
 
+   structNode.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structProblem.rst
+
+.. toctree::
+   :maxdepth: 5
+
    structVectorHash.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   structVehicle.rst
 
 .. toctree::
    :maxdepth: 5
@@ -35,26 +50,6 @@ Classes and Structs
 .. toctree::
    :maxdepth: 5
 
-   classMinimalPublisher.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   classNode.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   classProblem.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   classRoute.rst
-
-.. toctree::
-   :maxdepth: 5
-
    classSimulatedAnnealingSolution.rst
 
 .. toctree::
@@ -67,11 +62,6 @@ Classes and Structs
 
    classTabuSearchSolution.rst
 
-.. toctree::
-   :maxdepth: 5
-
-   classVehicle.rst
-
 Functions
 *********
 
@@ -79,16 +69,42 @@ Functions
 .. toctree::
    :maxdepth: 5
 
-   function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.rst
-
-Variables
-*********
-
+   function_main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97.rst
 
 .. toctree::
    :maxdepth: 5
 
-   variable_utils_8hpp_1a65877b1c0625d571f1e969d8bcbd8d64.rst
+   function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_utils_8cpp_1ada22d1a125cc70e462992da2385c04a1.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_utils_8cpp_1a0668602fe9a0f81c22a34d9f50fce57f.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_utils_8hpp_1ada22d1a125cc70e462992da2385c04a1.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_utils_8hpp_1a0668602fe9a0f81c22a34d9f50fce57f.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_utils_8cpp_1a00eb49f441f6f5de4827e88c02a59938.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938.rst
 
 Directories
 ***********
@@ -97,7 +113,22 @@ Directories
 .. toctree::
    :maxdepth: 5
 
-   dir_inc.rst
+   dir_cvrp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_include.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_main.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   dir_src.rst
 
 Files
 *****
@@ -106,27 +137,52 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_inc_genetic_algorithm.hpp.rst
+   file_src_genetic_algorithm.cpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_inc_greedy.hpp.rst
+   file_include_cvrp_genetic_algorithm.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_inc_local_search_inter_intra.hpp.rst
+   file_src_greedy.cpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_inc_local_search_intra.hpp.rst
+   file_include_cvrp_greedy.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_inc_main.hpp.rst
+   file_src_local_search_inter_intra.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_cvrp_local_search_inter_intra.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_src_local_search_intra.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_cvrp_local_search_intra.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_main_main.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_cvrp_main.hpp.rst
 
 .. toctree::
    :maxdepth: 5
@@ -136,14 +192,29 @@ Files
 .. toctree::
    :maxdepth: 5
 
-   file_inc_simulated_annealing.hpp.rst
+   file_src_simulated_annealing.cpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_inc_tabu_search.hpp.rst
+   file_include_cvrp_simulated_annealing.hpp.rst
 
 .. toctree::
    :maxdepth: 5
 
-   file_inc_utils.hpp.rst
+   file_src_tabu_search.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_cvrp_tabu_search.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_src_utils.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_cvrp_utils.hpp.rst

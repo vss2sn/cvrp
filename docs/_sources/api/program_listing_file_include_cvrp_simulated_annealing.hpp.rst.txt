@@ -1,0 +1,45 @@
+
+.. _program_listing_file_include_cvrp_simulated_annealing.hpp:
+
+Program Listing for File simulated_annealing.hpp
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_cvrp_simulated_annealing.hpp>` (``include/cvrp/simulated_annealing.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef SA_HPP
+   #define SA_HPP
+   
+   #include "cvrp/utils.hpp"
+   
+   class SimulatedAnnealingSolution : public Solution {
+   public:
+     SimulatedAnnealingSolution(const std::vector<Node>& nodes,
+                                const std::vector<Vehicle>& vehicles,
+                                const std::vector<std::vector<double>>& distanceMatrix,
+                                const int stag_limit = 500000,
+                                const double init_temp = 5000,
+                                const double cooling_rate = 0.9999);
+   
+     SimulatedAnnealingSolution(const Problem& p, const int stag_limit = 500000,
+                                const double init_temp = 5000,
+                                const double cooling_rate = 0.9999);
+   
+     SimulatedAnnealingSolution(const Solution& s, int stag_limit = 500000,
+                                double init_temp = 5000,
+                                double cooling_rate = 0.9999);
+   
+     void Solve();
+   
+   private:
+     const double cooling_rate_;
+     double best_cost_;
+     const int max_temp_, n_reheats_ = 20, stag_limit_;
+     inline bool AllowMove(const double delta, const double temp);
+   };
+   
+   #endif // SA_HPP

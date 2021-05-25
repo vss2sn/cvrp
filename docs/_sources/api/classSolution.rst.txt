@@ -3,7 +3,7 @@
 Class Solution
 ==============
 
-- Defined in :ref:`file_inc_utils.hpp`
+- Defined in :ref:`file_include_cvrp_utils.hpp`
 
 
 Inheritance Relationships
@@ -27,5 +27,4 @@ Class Documentation
 .. doxygenclass:: Solution
    :members:
    :protected-members:
-   :private-members:
    :undoc-members:

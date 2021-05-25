@@ -1,0 +1,61 @@
+
+.. _file_include_cvrp_local_search_inter_intra.hpp:
+
+File local_search_inter_intra.hpp
+=================================
+
+
+Contains the :ref:`exhale_class_classLocalSearchInterIntraSolution` class (Local search extends to all vehicles) 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/cvrp/local_search_inter_intra.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_cvrp_local_search_inter_intra.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cvrp/utils.hpp`` (:ref:`file_include_cvrp_utils.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_cvrp_main.hpp`
+
+- :ref:`file_src_local_search_inter_intra.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classLocalSearchInterIntraSolution`
+

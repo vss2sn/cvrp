@@ -3,7 +3,7 @@
 Class TabuSearchSolution
 ========================
 
-- Defined in :ref:`file_inc_tabu_search.hpp`
+- Defined in :ref:`file_include_cvrp_tabu_search.hpp`
 
 
 Inheritance Relationships
@@ -22,5 +22,4 @@ Class Documentation
 .. doxygenclass:: TabuSearchSolution
    :members:
    :protected-members:
-   :private-members:
    :undoc-members:

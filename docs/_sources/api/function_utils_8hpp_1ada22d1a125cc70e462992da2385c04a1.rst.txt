@@ -1,0 +1,13 @@
+.. _exhale_function_utils_8hpp_1ada22d1a125cc70e462992da2385c04a1:
+
+Function operator<<(std::ostream&, const Node&)
+===============================================
+
+- Defined in :ref:`file_include_cvrp_utils.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: operator<<(std::ostream&, const Node&)

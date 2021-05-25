@@ -1,0 +1,88 @@
+
+.. _program_listing_file_include_cvrp_genetic_algorithm.hpp:
+
+Program Listing for File genetic_algorithm.hpp
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_cvrp_genetic_algorithm.hpp>` (``include/cvrp/genetic_algorithm.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef GA_HPP
+   #define GA_HPP
+   
+   #include "cvrp/utils.hpp"
+   
+   // Still need to account for case if nodes cannot be put into vehilces due to
+   // small number of vehicles in initial solution
+   class GASolution : public Solution {
+   public:
+     GASolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+                const std::vector<std::vector<double>>& distanceMatrix, const int n_chromosomes,
+                const int generations);
+     GASolution(const Problem& p, const int n_chromosomes, const int generations);
+   
+     GASolution(const Solution& s, const int n_chromosomes, const int generations);
+   
+     void Solve();
+   
+   private:
+     std::vector<std::vector<int>> chromosomes_, iterators_;
+     std::vector<double> costs_;
+     int n_chromosomes_, n_nucleotide_pairs_, n_vehicles_, generations_, best_;
+   
+     void GenerateRandomSolutions();
+   
+     void GenerateGreedySolutions();
+   
+     std::vector<int> GenerateRandomSolution();
+   
+     std::vector<int> GenerateRandomIterSolution();
+   
+     void HGreXCrossover();
+   
+     void RandomSwap();
+   
+     void Mutate();
+   
+     void DeleteWorstChromosome();
+   
+     void RemoveSimilarSolutions();
+   
+     void AddBest();
+   
+     void MutateWhithinGene();
+   
+     void SwapWhithinGene();
+   
+     void InsertIterDist();
+   
+     bool MutateIterLeft(int i_chromosome, int j_in);
+   
+     bool MutateIterRight(int i_chromosome, int j_in);
+   
+     double CalculateCost(int i);
+   
+     void CalculateTotalCost();
+   
+     int TournamentSelection(const int n = 10) const ;
+   
+     int TournamentSelectionBad(const int n = 10) const ;
+   
+     void DeleteBadChromosome();
+   
+     void InsertionBySimilarity();
+   
+     void DeleteRandomChromosome();
+   
+     void GenerateBestSolution();
+   
+     bool checkValidity(int i);
+   
+     void MakeValid(const int i);
+   };
+   
+   #endif // GA_HPP

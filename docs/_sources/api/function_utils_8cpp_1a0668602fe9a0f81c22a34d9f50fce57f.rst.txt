@@ -1,0 +1,13 @@
+.. _exhale_function_utils_8cpp_1a0668602fe9a0f81c22a34d9f50fce57f:
+
+Function operator<<(std::ostream&, const Vehicle&)
+==================================================
+
+- Defined in :ref:`file_src_utils.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: operator<<(std::ostream&, const Vehicle&)

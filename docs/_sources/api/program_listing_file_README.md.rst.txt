@@ -12,7 +12,7 @@ Program Listing for File README.md
 
    # Capacitated Vehicle Routing Problem #
    
-   ### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++ (with a visualizer). ###
+   ### This repository contains algorithms to solve the CVRP (Capacitated Vehicle Routing Problem) in C++ ###
    
    [![Build Status](https://travis-ci.com/vss2sn/cvrp.svg?branch=master)](https://travis-ci.com/vss2sn/cvrp)
    
@@ -51,7 +51,7 @@ Program Listing for File README.md
    1. The code contains `Problem`, `Solution` and `Vehicle` classes. Each algorithm implementation has its own class and inherits the `Solution` class.
    2. The problem is setup using the `Problem` class which specifies the number of nodes (centres/dropoff points), maximum demand, number of vehicles, their capacity, the grid range and the type of distribution. The demand for each centre as well as its location is randomly generated.
    3. A base class called `Solution` has been created to store the basic elements of the solution in a user friendly format. This includes a `vector` of instances of the `Vehicle` class.
-   4. The `Vehicle` class stores the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. The `PrintStatus()` and `PrintRoute()` functions show the status and route of the vehicle respectively.
+   4. The `Vehicle` class stores the vehicle id, the route it takes, the total capacity, the number of units still left in the vehicle, and the cost associated with the vehicle's route. The `<<` operator is overloaded to show the status of the node and vehicle respectively. `PrintVehicleRoute()` prints only the route of the vehicle.
    5. The `Solution` class also contains a virtual method called `Solve()`. Each algorithm class overrides the `Solve()` method.
    6. The `Solution` class also contains a method called `PrintSolution(option)` with the an input option (`option`) to print vehicles' statuses or routes in addition to the total cost and validity of the solution.
    
@@ -68,7 +68,6 @@ Program Listing for File README.md
    #### Notes: ####
    1. The documentation for private functions (such as operators in the `GASolution` class) has been made available to aid understanding.
    2. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
-   3. This repository uses `rviz2` for visualization (topic: `routes`). To run with visualization set the cmake option `VISUALISE` to `ON` and build using `colcon build` in a ROS2 workspace. Adjust the pause time in the `publishToRViz` function as needed. Remember to launch `rviz2`.
    
    <a name="todos"></a>
    #### TODOs: ####
@@ -79,3 +78,5 @@ Program Listing for File README.md
    5. Consider modifying to allow heterogeneous vehicles.
    6. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
    7. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.
+   8. Consider adding visualization based on sfml
+   9. Refactor genetic algorithm to use a struct

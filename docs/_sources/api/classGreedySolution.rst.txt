@@ -3,7 +3,7 @@
 Class GreedySolution
 ====================
 
-- Defined in :ref:`file_inc_greedy.hpp`
+- Defined in :ref:`file_include_cvrp_greedy.hpp`
 
 
 Inheritance Relationships
@@ -22,5 +22,4 @@ Class Documentation
 .. doxygenclass:: GreedySolution
    :members:
    :protected-members:
-   :private-members:
    :undoc-members:

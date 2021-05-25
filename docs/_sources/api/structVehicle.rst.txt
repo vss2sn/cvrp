@@ -1,0 +1,16 @@
+.. _exhale_struct_structVehicle:
+
+Struct Vehicle
+==============
+
+- Defined in :ref:`file_include_cvrp_utils.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Vehicle
+   :members:
+   :protected-members:
+   :undoc-members:

@@ -1,0 +1,16 @@
+.. _exhale_struct_structProblem:
+
+Struct Problem
+==============
+
+- Defined in :ref:`file_include_cvrp_utils.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: Problem
+   :members:
+   :protected-members:
+   :undoc-members:

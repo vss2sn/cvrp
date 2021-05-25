@@ -1,0 +1,128 @@
+
+.. _file_include_cvrp_utils.hpp:
+
+File utils.hpp
+==============
+
+
+Contains the structs, structes and functions used for the set up of the problem aand solution as well as some functions that aid in debugging. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/cvrp/utils.hpp``)
+---------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_cvrp_utils.hpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm`` (:ref:`file_src_genetic_algorithm.cpp`)
+
+- ``chrono``
+
+- ``climits``
+
+- ``cmath``
+
+- ``cstdio``
+
+- ``ctime``
+
+- ``cxxabi.h``
+
+- ``functional``
+
+- ``iomanip``
+
+- ``iostream``
+
+- ``map``
+
+- ``math.h``
+
+- ``memory``
+
+- ``queue``
+
+- ``random``
+
+- ``set``
+
+- ``string``
+
+- ``typeinfo``
+
+- ``unistd.h``
+
+- ``unordered_set``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_cvrp_genetic_algorithm.hpp`
+
+- :ref:`file_include_cvrp_greedy.hpp`
+
+- :ref:`file_include_cvrp_local_search_inter_intra.hpp`
+
+- :ref:`file_include_cvrp_local_search_intra.hpp`
+
+- :ref:`file_include_cvrp_simulated_annealing.hpp`
+
+- :ref:`file_include_cvrp_tabu_search.hpp`
+
+- :ref:`file_src_utils.cpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structNode`
+
+- :ref:`exhale_struct_structProblem`
+
+- :ref:`exhale_struct_structVehicle`
+
+- :ref:`exhale_class_classSolution`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_utils_8hpp_1a0668602fe9a0f81c22a34d9f50fce57f`
+
+- :ref:`exhale_function_utils_8hpp_1ada22d1a125cc70e462992da2385c04a1`
+
+- :ref:`exhale_function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938`
+

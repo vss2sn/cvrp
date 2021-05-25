@@ -1,0 +1,13 @@
+.. _exhale_function_utils_8cpp_1a00eb49f441f6f5de4827e88c02a59938:
+
+Function PrintVehicleRoute(const Vehicle&)
+==========================================
+
+- Defined in :ref:`file_src_utils.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: PrintVehicleRoute(const Vehicle&)

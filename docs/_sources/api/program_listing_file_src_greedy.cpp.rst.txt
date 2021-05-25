@@ -1,0 +1,53 @@
+
+.. _program_listing_file_src_greedy.cpp:
+
+Program Listing for File greedy.cpp
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_src_greedy.cpp>` (``src/greedy.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #include "cvrp/greedy.hpp"
+   
+   GreedySolution::GreedySolution(std::vector<Node> nodes,
+                                  std::vector<Vehicle> vehicles,
+                                  std::vector<std::vector<double>> distanceMatrix)
+       : Solution(nodes, vehicles, distanceMatrix){};
+   
+   GreedySolution::GreedySolution(Problem p)
+       : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_){};
+   
+   void GreedySolution::Solve() {
+     for (auto &v : vehicles_) {
+       while (true) {
+         Node closest_node = find_closest(v);
+         if (closest_node.id_ != -1 && v.load_ - closest_node.demand_ >= 0) {
+           v.load_ -= closest_node.demand_;
+           v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
+           v.nodes_.push_back(closest_node.id_);
+           nodes_[closest_node.id_].is_routed_ = true;
+         } else {
+           v.cost_ += distanceMatrix_[v.nodes_.back()][depot_.id_];
+           v.nodes_.push_back(depot_.id_);
+           break;
+         }
+       }
+     }
+   
+     double cost = 0;
+     for (auto &v : vehicles_)
+       cost += v.cost_;
+     std::cout << "Cost: " << cost << '\n';
+   
+     for (const auto &i : nodes_) {
+       if (!i.is_routed_) {
+         std::cout << "Unreached node: " << '\n';
+         std::cout << i << '\n';
+       }
+     }
+     std::cout << "Solution valid: " << CheckSolutionValid() << '\n';
+   }

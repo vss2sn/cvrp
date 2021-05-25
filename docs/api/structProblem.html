@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Struct Problem &mdash; Capacitated Vehicle Routing Problem  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script type="text/javascript" src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Struct VectorHash" href="structVectorHash.html" />
+    <link rel="prev" title="Struct Node" href="structNode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: white" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Capacitated Vehicle Routing Problem
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../algorithm_implementations.html">Notes on algorithm implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#greedy-solution">1. Greedy Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#local-search-run-on-each-vehicle-individually-ls">2. Local Search (Run on each vehicle individually) (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#local-search-ls">3. Local Search (LS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#tabu-search-ts">4. Tabu Search (TS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#genetic-algorithm-ga">5. Genetic Algorithm (GA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#simulated-annealing-sa">6. Simulated Annealing (SA)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../algorithm_implementations.html#hybrid-algorithm-ha">7. Hybrid Algorithm (HA)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="structNode.html">Struct Node</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Struct Problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structVectorHash.html">Struct VectorHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structVehicle.html">Struct Vehicle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGASolution.html">Class GASolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchInterIntraSolution.html">Class LocalSearchInterIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classLocalSearchIntraSolution.html">Class LocalSearchIntraSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSimulatedAnnealingSolution.html">Class SimulatedAnnealingSolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classSolution.html">Class Solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTabuSearchSolution.html">Class TabuSearchSolution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main(int, char *)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main(int, char *)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_utils_8cpp_1ada22d1a125cc70e462992da2385c04a1.html">Function operator&lt;&lt;(std::ostream&amp;, const Node&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_utils_8cpp_1a0668602fe9a0f81c22a34d9f50fce57f.html">Function operator&lt;&lt;(std::ostream&amp;, const Vehicle&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_utils_8hpp_1ada22d1a125cc70e462992da2385c04a1.html">Function operator&lt;&lt;(std::ostream&amp;, const Node&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_utils_8hpp_1a0668602fe9a0f81c22a34d9f50fce57f.html">Function operator&lt;&lt;(std::ostream&amp;, const Vehicle&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_utils_8cpp_1a00eb49f441f6f5de4827e88c02a59938.html">Function PrintVehicleRoute(const Vehicle&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938.html">Function PrintVehicleRoute(const Vehicle&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_cvrp.html">Directory cvrp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_main.html">Directory main</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_src.html">Directory src</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_src_genetic_algorithm.cpp.html">File genetic_algorithm.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_src_greedy.cpp.html">File greedy.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_greedy.hpp.html">File greedy.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_src_local_search_inter_intra.cpp.html">File local_search_inter_intra.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_local_search_inter_intra.hpp.html">File local_search_inter_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_src_local_search_intra.cpp.html">File local_search_intra.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_main_main.cpp.html">File main.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_main.hpp.html">File main.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_README.md.html">File README.md</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_src_simulated_annealing.cpp.html">File simulated_annealing.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_src_tabu_search.cpp.html">File tabu_search.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_tabu_search.hpp.html">File tabu_search.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_src_utils.cpp.html">File utils.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_utils.hpp.html">File utils.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Capacitated Vehicle Routing Problem</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Struct Problem</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/api/structProblem.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="struct-problem">
+<span id="exhale-struct-structproblem"></span><h1>Struct Problem<a class="headerlink" href="#struct-problem" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Defined in <a class="reference internal" href="file_include_cvrp_utils.hpp.html#file-include-cvrp-utils-hpp"><span class="std std-ref">File utils.hpp</span></a></li>
+</ul>
+<div class="section" id="struct-documentation">
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="_CPPv37Problem">
+<span id="_CPPv27Problem"></span><span id="Problem"></span><span class="target" id="structProblem"></span><em class="property">struct </em><code class="descname">Problem</code><a class="headerlink" href="#_CPPv37Problem" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="function">
+<dt id="_CPPv3N7Problem7ProblemEKiKiKiKiKiNSt6stringEKiKi">
+<span id="_CPPv2N7Problem7ProblemEKiKiKiKiKiNSt6stringEKiKi"></span><span id="Problem::Problem__iC.iC.iC.iC.iC.ss.iC.iC"></span><span class="target" id="structProblem_1a2438e00e8b48b0a07c62f990c3bee286"></span><code class="descname">Problem</code><span class="sig-paren">(</span><em class="property">const</em> int <em>noc</em> = 1000, <em class="property">const</em> int <em>demand_range</em> = 40, <em class="property">const</em> int <em>nov</em> = 50, <em class="property">const</em> int <em>capacity</em> = 800, <em class="property">const</em> int <em>grid_range</em> = 1000, std::string <em>distribution</em> = &quot;uniform&quot;, <em class="property">const</em> int <em>n_clusters</em> = 5, <em class="property">const</em> int <em>cluster_range</em> = 10<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv3N7Problem7ProblemEKiKiKiKiKiNSt6stringEKiKi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor. </p>
+<p><p>Constructor for problem struct </p>
+<dl class="docutils">
+<dt><strong>Return</strong></dt>
+<dd>no return value</dd>
+<dt><strong>Parameters</strong></dt>
+<dd><ul class="breatheparameterlist first last simple">
+<li><code class="docutils literal notranslate"><span class="pre">noc</span></code>: number of nodes (centres/dropoff points) </li>
+<li><code class="docutils literal notranslate"><span class="pre">demand_range</span></code>: max demand of each node (random value between 0 and this value) </li>
+<li><code class="docutils literal notranslate"><span class="pre">nov</span></code>: number of vehicles </li>
+<li><code class="docutils literal notranslate"><span class="pre">capacity</span></code>: maximum capacityof each vehicle </li>
+<li><code class="docutils literal notranslate"><span class="pre">grid_range</span></code>: maximum x and y coordinates of any node </li>
+<li><code class="docutils literal notranslate"><span class="pre">distribution</span></code>: distribution of nodes. Can be either clustered or uniform. </li>
+<li><code class="docutils literal notranslate"><span class="pre">n_clusters</span></code>: If clustered, number of clusters the nodes are divided into </li>
+<li><code class="docutils literal notranslate"><span class="pre">cluster_range</span></code>: If clustered, maximum distance from center of cluster. </li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="member">
+<dt id="_CPPv3N7Problem6nodes_E">
+<span id="_CPPv2N7Problem6nodes_E"></span><span id="Problem::nodes___std::vector:Node:"></span><span class="target" id="structProblem_1a911e19b9ec8d83be4843783e9a29d528"></span>std::vector&lt;<a class="reference internal" href="structNode.html#_CPPv34Node" title="Node">Node</a>&gt; <code class="descname">nodes_</code><a class="headerlink" href="#_CPPv3N7Problem6nodes_E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N7Problem9vehicles_E">
+<span id="_CPPv2N7Problem9vehicles_E"></span><span id="Problem::vehicles___std::vector:Vehicle:"></span><span class="target" id="structProblem_1a0674402e5bf5ffba4b1922c774259702"></span>std::vector&lt;<a class="reference internal" href="structVehicle.html#_CPPv37Vehicle" title="Vehicle">Vehicle</a>&gt; <code class="descname">vehicles_</code><a class="headerlink" href="#_CPPv3N7Problem9vehicles_E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N7Problem15distanceMatrix_E">
+<span id="_CPPv2N7Problem15distanceMatrix_E"></span><span id="Problem::distanceMatrix___std::vector:std::vector:double::"></span><span class="target" id="structProblem_1a1aafc7135c452d2a0322fc8aa2ebd7a7"></span>std::vector&lt;std::vector&lt;double&gt;&gt; <code class="descname">distanceMatrix_</code><a class="headerlink" href="#_CPPv3N7Problem15distanceMatrix_E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N7Problem6depot_E">
+<span id="_CPPv2N7Problem6depot_E"></span><span id="Problem::depot___Node"></span><span class="target" id="structProblem_1a09e1cd36322c757102ac0886bf2ad5ae"></span><a class="reference internal" href="structNode.html#_CPPv34Node" title="Node">Node</a> <code class="descname">depot_</code><a class="headerlink" href="#_CPPv3N7Problem6depot_E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="member">
+<dt id="_CPPv3N7Problem9capacity_E">
+<span id="_CPPv2N7Problem9capacity_E"></span><span id="Problem::capacity___i"></span><span class="target" id="structProblem_1abd90fa59f4694e8f8e19be093bb7b71b"></span>int <code class="descname">capacity_</code><a class="headerlink" href="#_CPPv3N7Problem9capacity_E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="structVectorHash.html" class="btn btn-neutral float-right" title="Struct VectorHash" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="structNode.html" class="btn btn-neutral float-left" title="Struct Node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, vss2sn
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+
+.. _file_src_genetic_algorithm.cpp:
+
+File genetic_algorithm.cpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_src>` (``src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Contiains the :ref:`exhale_class_classGASolution` (Genetic Algorithm :ref:`exhale_class_classSolution`) class. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``src/genetic_algorithm.cpp``)
+------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_src_genetic_algorithm.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cvrp/genetic_algorithm.hpp`` (:ref:`file_include_cvrp_genetic_algorithm.hpp`)
+
+
+
+
+

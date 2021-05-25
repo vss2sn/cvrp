@@ -3,7 +3,7 @@
 Class SimulatedAnnealingSolution
 ================================
 
-- Defined in :ref:`file_inc_simulated_annealing.hpp`
+- Defined in :ref:`file_include_cvrp_simulated_annealing.hpp`
 
 
 Inheritance Relationships
@@ -22,5 +22,4 @@ Class Documentation
 .. doxygenclass:: SimulatedAnnealingSolution
    :members:
    :protected-members:
-   :private-members:
    :undoc-members:

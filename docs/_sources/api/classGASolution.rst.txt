@@ -3,7 +3,7 @@
 Class GASolution
 ================
 
-- Defined in :ref:`file_inc_genetic_algorithm.hpp`
+- Defined in :ref:`file_include_cvrp_genetic_algorithm.hpp`
 
 
 Inheritance Relationships
@@ -22,5 +22,4 @@ Class Documentation
 .. doxygenclass:: GASolution
    :members:
    :protected-members:
-   :private-members:
    :undoc-members:

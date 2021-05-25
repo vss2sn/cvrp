@@ -1,0 +1,50 @@
+
+.. _file_src_local_search_inter_intra.cpp:
+
+File local_search_inter_intra.cpp
+=================================
+
+|exhale_lsh| :ref:`Parent directory <dir_src>` (``src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Contains the :ref:`exhale_class_classLocalSearchInterIntraSolution` class (Local search extends to all vehicles) 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``src/local_search_inter_intra.cpp``)
+-------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_src_local_search_inter_intra.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cvrp/local_search_inter_intra.hpp`` (:ref:`file_include_cvrp_local_search_inter_intra.hpp`)
+
+
+
+
+

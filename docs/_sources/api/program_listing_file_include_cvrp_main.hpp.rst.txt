@@ -1,0 +1,21 @@
+
+.. _program_listing_file_include_cvrp_main.hpp:
+
+Program Listing for File main.hpp
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_cvrp_main.hpp>` (``include/cvrp/main.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #include "cvrp/genetic_algorithm.hpp"
+   #include "cvrp/greedy.hpp"
+   #include "cvrp/local_search_inter_intra.hpp"
+   #include "cvrp/local_search_intra.hpp"
+   #include "cvrp/simulated_annealing.hpp"
+   #include "cvrp/tabu_search.hpp"
+   
+   int main(int argc, char *argv[]);

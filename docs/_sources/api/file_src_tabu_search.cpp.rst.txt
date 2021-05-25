@@ -1,0 +1,50 @@
+
+.. _file_src_tabu_search.cpp:
+
+File tabu_search.cpp
+====================
+
+|exhale_lsh| :ref:`Parent directory <dir_src>` (``src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+Contains the :ref:`exhale_class_classTabuSearchSolution` class. 
+
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``src/tabu_search.cpp``)
+------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_src_tabu_search.cpp.rst
+
+
+
+Detailed Description
+--------------------
+
+vss2sn 
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``cvrp/tabu_search.hpp`` (:ref:`file_include_cvrp_tabu_search.hpp`)
+
+
+
+
+

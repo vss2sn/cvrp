@@ -3,7 +3,7 @@
 Class LocalSearchInterIntraSolution
 ===================================
 
-- Defined in :ref:`file_inc_local_search_inter_intra.hpp`
+- Defined in :ref:`file_include_cvrp_local_search_inter_intra.hpp`
 
 
 Inheritance Relationships
@@ -22,5 +22,4 @@ Class Documentation
 .. doxygenclass:: LocalSearchInterIntraSolution
    :members:
    :protected-members:
-   :private-members:
    :undoc-members:
