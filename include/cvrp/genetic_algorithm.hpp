@@ -62,8 +62,8 @@ class GASolution : public Solution {
   std::vector<std::vector<int>> chromosomes_;
   std::vector<std::vector<int>> iterators_;
   std::vector<double> costs_;
+  const size_t n_nucleotide_pairs_;
   const int n_chromosomes_;
-  const int n_nucleotide_pairs_;
   const int n_vehicles_;
   const int generations_;
   int best_ = 0;

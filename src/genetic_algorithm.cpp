@@ -96,8 +96,8 @@ std::vector<int> GASolution::GenerateRandomIterSolution() const {
   std::unordered_set<int> added;
   temp[0] = 0;
   added.insert(0);
-  for (int i = 1; i < n_vehicles_; ++i) {
-    int n = rand() % n_nucleotide_pairs_;
+  for (size_t i = 1; i < n_vehicles_; ++i) {
+    size_t n = rand() % n_nucleotide_pairs_;
     if (added.find(n) != added.end()) {
       n = n_nucleotide_pairs_;
     }
@@ -127,7 +127,7 @@ void GASolution::GenerateRandomSolutions() {
     std::unordered_set<int> added;
     temp_i[0] = 0;
     for (int i = 1; i < n_vehicles_; ++i) {
-      int n = rand() % n_nucleotide_pairs_;
+      size_t n = rand() % n_nucleotide_pairs_;
       if (added.find(n) != added.end()) {
         n = n_nucleotide_pairs_;
       }
@@ -187,7 +187,7 @@ void GASolution::GenerateGreedySolutions() {
       while (true) {
         Node closest_node;
         if (count == 0) {
-          int i = rand() % (n_nucleotide_pairs_ - 1) + 1;
+          size_t i = rand() % (n_nucleotide_pairs_ - 1) + 1;
           closest_node = nodes_[i];
           count++;
         } else {
@@ -531,8 +531,8 @@ void GASolution::Mutate() {
     while (r == best_) {
       r = rand() % n_chromosomes_;
     }
-    int i1 = rand() % n_nucleotide_pairs_;
-    int i2 = rand() % n_nucleotide_pairs_;
+    size_t i1 = rand() % n_nucleotide_pairs_;
+    size_t i2 = rand() % n_nucleotide_pairs_;
     if (i1 > i2) {
       std::swap(i1, i2);
     }
@@ -714,8 +714,8 @@ void GASolution::RandomSwap() {
     while(r==best_) {
       r = rand()%n_chromosomes_;
     }
-    int i1 = rand() % n_nucleotide_pairs_;
-    int i2 = rand() % n_nucleotide_pairs_;
+    size_t i1 = rand() % n_nucleotide_pairs_;
+    size_t i2 = rand() % n_nucleotide_pairs_;
     std::swap(chromosomes_[r][i1], chromosomes_[r][i2]);
     const auto temp_it = iterators_[r];
     MakeValid(r);

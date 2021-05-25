@@ -52,10 +52,7 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(
 
 inline bool SimulatedAnnealingSolution::AllowMove(const double delta,
                                                   const double temp) const {
-  if ((delta < -margin_of_error) || ((static_cast<double>(rand()) / RAND_MAX) < std::exp(-delta / temp))) {
-    return true;
-  }
-  return false;
+  return (delta < -margin_of_error) || ((static_cast<double>(rand()) / RAND_MAX) < std::exp(-delta / temp));
 }
 
 void SimulatedAnnealingSolution::Solve() {

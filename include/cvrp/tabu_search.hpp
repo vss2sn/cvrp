@@ -9,28 +9,24 @@
 
 #include <queue>
 #include <unordered_set>
+#include <utility>
 
 #include "cvrp/utils.hpp"
 
 /**
- * @brief Struct to create hash for vector
- * @details Contains overloaded operator to create the hash for a vector
+ * @brief Struct to create hash for pair
  */
-struct VectorHash {
+struct PairHash {
   /**
-   * @brief Overloaded operator to return hash value of a vector
-   * @param v vector who's hash is to be calculated
-   * @return size_t hash of the vector
-   * @details Overloaded operator to return hash value of a vector. Used to
-   * create an unordered set for vectors.
+   * @brief Overloaded operator to return hash value of a pait
+   * @param p pair who's hash is to be calculated
+   * @return size_t hash of the pair
    */
-  size_t operator()(const std::vector<int>& v) const {
-    std::hash<int> hasher;
-    size_t seed = 0;
-    for (int i : v) {
-      seed ^= hasher(i) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-    }
-    return seed;
+  template<typename T1, typename T2>
+  size_t operator()(const std::pair<T1, T2>& p) const {
+    auto hash1 = std::hash<T1>{}(p.first);
+    auto hash2 = std::hash<T2>{}(p.second);
+    return hash1 ^ hash2;
   }
 };
 
@@ -88,12 +84,9 @@ class TabuSearchSolution : public Solution {
   double best_cost_ = std::numeric_limits<double>::max();
   double new_cost_ = std::numeric_limits<double>::max();
 
-  std::vector<std::vector<int>> to_check_ =
-      std::vector<std::vector<int>>(6, std::vector<int>(2, 0));
-  ;
   // invert order of v1, v2 and cur, rep+1
-  std::unordered_set<std::vector<int>, VectorHash> tabu_list_set_;
-  std::queue<std::vector<int>> tabu_list_queue_;
+  std::unordered_set<std::pair<int, int>, PairHash> tabu_list_set_;
+  std::queue<std::pair<int, int>> tabu_list_queue_;
 
   /**
    * @brief Check if set of vector is tabu
@@ -104,7 +97,7 @@ class TabuSearchSolution : public Solution {
    * moves listed in to_check are tabu. to_check is updated for each move
    * considered
    */
-  inline bool IsTabu(const int begin, const int end) const;
+  inline bool IsTabu(const std::pair<int, int>& p) const;
 
   /**
    * @brief Aspiration criteria

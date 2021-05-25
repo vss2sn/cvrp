@@ -28,13 +28,8 @@ TabuSearchSolution::TabuSearchSolution(const Solution &s, const int n_tabu, cons
   }
 }
 
-inline bool TabuSearchSolution::IsTabu(const int begin, const int end) const {
-  for (int i = begin; i <= end; i++) {
-    if (tabu_list_set_.find(to_check_[i]) != tabu_list_set_.end()) {
-      return true;
-    }
-  }
-  return false;
+inline bool TabuSearchSolution::IsTabu(const std::pair<int, int>& p) const {
+  return tabu_list_set_.find(p) != std::end(tabu_list_set_);
 }
 
 inline bool TabuSearchSolution::Aspiration(const double cost_increase,
@@ -54,17 +49,14 @@ void TabuSearchSolution::Solve() {
   }
 
   auto best_vehicles = vehicles_;
-  int best_c = -1;
-  int best_r = -1;
   best_cost_ = cost;
   new_cost_ = cost;
   Vehicle *v_temp = nullptr;
   Vehicle *v_temp_2 = nullptr;
 
-  for (auto &row : to_check_) {
-    std::fill(std::begin(row), std::end(row), 0);
-  }
   for (int c_it = 0; c_it < max_it_; c_it++) {
+    int best_c = -1;
+    int best_r = -1;
     double delta = std::numeric_limits<double>::max();
     for (auto &v : vehicles_) {
       for (size_t cur = 1; cur < v.nodes_.size() - 1; cur++) {
@@ -74,33 +66,22 @@ void TabuSearchSolution::Solve() {
         const double cost_reduction = distanceMatrix_[v_prev][v_next_c] -
                                       distanceMatrix_[v_prev][v_cur] -
                                       distanceMatrix_[v_cur][v_next_c];
-
-        to_check_[0][0] = v_prev;
-        to_check_[0][1] = v_cur;
-        to_check_[1][0] = v_cur;
-        to_check_[1][1] = v_prev;
-        to_check_[2][0] = v_cur;
-        to_check_[2][1] = v_next_c;
-        to_check_[3][0] = v_next_c;
-        to_check_[3][1] = v_cur;
-        to_check_[4][1] = v_cur;
-        to_check_[5][0] = v_cur;
+        const bool is_tabu_1 = IsTabu({v_prev, v_cur}) || IsTabu({v_cur, v_prev}) ||
+        IsTabu({v_cur, v_next_c}) || IsTabu({v_next_c, v_cur});
 
         for (auto &v2 : vehicles_) {
           for (size_t rep = 0; rep < v2.nodes_.size() - 1; rep++) {
             const int v_rep = v2.nodes_[rep];
             const int v_next_r = v2.nodes_[rep + 1];
             if (v_rep != v_cur && (v.id_ != v2.id_ || v_rep != v_prev)) {
-              to_check_[4][0] = v_rep;
-              to_check_[5][1] = v_next_r;
-
+              const bool is_tabu_2 = IsTabu({v_rep, v_cur}) || IsTabu({v_cur, v_next_r});
               const double cost_increase = distanceMatrix_[v_rep][v_cur] +
                                            distanceMatrix_[v_cur][v_next_r] -
                                            distanceMatrix_[v_rep][v_next_r];
-              if (cost_increase + cost_reduction < delta &&
+              if ((cost_increase + cost_reduction < delta) &&
                   (v2.load_ - nodes_[v_cur].demand_ >= 0 || v.id_ == v2.id_) &&
-                  (!IsTabu(0, 5) ||
-                   Aspiration(cost_increase, cost_reduction))) {
+                  (!(is_tabu_1 || is_tabu_2) || Aspiration(cost_increase, cost_reduction))
+                ) {
                 delta = cost_increase + cost_reduction;
                 best_c = cur;
                 best_r = rep;
@@ -112,7 +93,7 @@ void TabuSearchSolution::Solve() {
         }
       }
     }
-    if (delta == std::numeric_limits<double>::max()) {
+    if (delta == std::numeric_limits<double>::max() || v_temp == nullptr || v_temp_2 == nullptr) {
       std::cout << "On iteration " << c_it
                 << "No possible moves. Consider adjusting tabu list size.\n";
       break;
