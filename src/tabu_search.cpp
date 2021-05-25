@@ -4,6 +4,8 @@
  * @brief Contains the TabuSearchSolution class
  */
 
+#include <iostream> 
+
 #include "cvrp/tabu_search.hpp"
 
 TabuSearchSolution::TabuSearchSolution(

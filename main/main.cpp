@@ -5,7 +5,14 @@
  * algorithms
  */
 
-#include "cvrp/main.hpp"
+#include <iostream>
+
+#include "cvrp/genetic_algorithm.hpp"
+#include "cvrp/greedy.hpp"
+#include "cvrp/local_search_inter_intra.hpp"
+#include "cvrp/local_search_intra.hpp"
+#include "cvrp/simulated_annealing.hpp"
+#include "cvrp/tabu_search.hpp"
 
 int main(int argc, char *argv[]) {
 

@@ -7,6 +7,9 @@
 #ifndef TS_HPP
 #define TS_HPP
 
+#include <queue> 
+#include <unordered_set>
+
 #include "cvrp/utils.hpp"
 
 /**
@@ -81,7 +84,7 @@ private:
   double best_cost_, new_cost_;
   const int max_it = 500;
 
-  std::vector<std::vector<int>> to_check_ = std::vector<std::vector<int>>(6, std::vector<int>(2, 0));; 
+  std::vector<std::vector<int>> to_check_ = std::vector<std::vector<int>>(6, std::vector<int>(2, 0));;
       // invert order of v1, v2 and cur, rep+1
   std::unordered_set<std::vector<int>, VectorHash> tabu_list_set_;
   std::queue<std::vector<int>> tabu_list_queue_;

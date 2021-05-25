@@ -5,6 +5,8 @@
  * to all vehicles)
  */
 
+#include <iostream>
+
 #include "cvrp/local_search_inter_intra.hpp"
 
 LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(

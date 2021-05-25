@@ -4,6 +4,11 @@
  * @brief Contiains the GASolution (Genetic Algorithm Solution) class
  */
 
+#include <algorithm>
+#include <iostream>
+#include <random>
+#include <set>
+
 #include "cvrp/genetic_algorithm.hpp"
 
 GASolution::GASolution(const Problem& p, const int n_chromosomes, const int generations)

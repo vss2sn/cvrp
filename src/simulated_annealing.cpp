@@ -4,6 +4,9 @@
  * @brief Contains the SimulatedAnnealingSolution class
  */
 
+#include <cmath>
+#include <iostream>
+
 #include "cvrp/simulated_annealing.hpp"
 
 SimulatedAnnealingSolution::SimulatedAnnealingSolution(
@@ -42,7 +45,7 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(const Solution& s,
 inline bool SimulatedAnnealingSolution::AllowMove(const double delta, const double temp) {
   if (delta < -0.0000000001)
     return true;
-  else if (((double)rand() / RAND_MAX) < exp(-delta / temp))
+  else if (((double)rand() / RAND_MAX) < std::exp(-delta / temp))
     return true;
   else
     return false;

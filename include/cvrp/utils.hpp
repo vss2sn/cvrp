@@ -7,29 +7,8 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <algorithm>
-#include <climits>
-#include <cstdio>
-#include <ctime>
-#include <cxxabi.h>
-#include <iomanip>
-#include <iostream>
-#include <map>
-#include <math.h>
-#include <memory>
-#include <queue>
-#include <random>
-#include <set>
-#include <typeinfo>
-#include <unistd.h>
-#include <unordered_set>
-#include <vector>
-
-#include <chrono>
-#include <cmath>
-#include <functional>
-#include <memory>
 #include <string>
+#include <vector>
 
 /**
  * @brief struct node

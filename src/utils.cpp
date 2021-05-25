@@ -5,6 +5,10 @@
  * problem aand solution as well as some functions that aid in debugging.
  */
 
+#include <iostream>
+#include <limits>
+#include <random>
+
 #include "cvrp/utils.hpp"
 
 std::ostream &operator<<(std::ostream &os, const Node &node) {
@@ -83,7 +87,7 @@ void Solution::CreateInitialSolution() {
 }
 
 Node Solution::find_closest(const Vehicle &v) const {
-  double cost = INT_MAX;
+  double cost = std::numeric_limits<double>::max();
   int id = -1;
   for (size_t j = 0; j < distanceMatrix_[0].size(); j++) {
     if (!nodes_[j].is_routed_ && nodes_[j].demand_ <= v.load_ &&
@@ -179,9 +183,6 @@ Problem::Problem(const int noc, const int demand_range, const int nov, const int
 }
 
 void Solution::PrintSolution(const std::string &option) const {
-  int status;
-  char *demangled = abi::__cxa_demangle(typeid(*this).name(), 0, 0, &status);
-  std::cout << demangled << ":" << '\n';
   double total_cost = 0;
   for (const auto &v : vehicles_) {
     total_cost += v.cost_;

@@ -7,6 +7,8 @@
 #ifndef GA_HPP
 #define GA_HPP
 
+#include <unordered_set>
+
 #include "cvrp/utils.hpp"
 
 // Still need to account for case if nodes cannot be put into vehilces due to
