@@ -29,10 +29,6 @@ set_project_warnings(project_warnings)
 include(cmake/Sanitizers.cmake)
 enable_sanitizers(project_options)
 
-# enable doxygen
-include(cmake/Doxygen.cmake)
-enable_doxygen()
-
 # allow for static analysis options
 include(cmake/StaticAnalyzers.cmake)
 

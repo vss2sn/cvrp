@@ -27,8 +27,6 @@ jobs:
             # I couldn't get ${GCC_VER} in here successfully
             - gcc-9
             - g++-9
-            - doxygen
-            - python3-pip
       # after_script:
       #   - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-${GCC_VER}
     - os: linux
@@ -36,7 +34,6 @@ jobs:
       compiler: clang
       env:
         - MATRIX_EVAL="CC=clang && CXX=clang++"
-      addons: { apt: { packages: ['doxygen', 'python3-pip'] } }
 
 before_script:
   - eval "${MATRIX_EVAL}"
