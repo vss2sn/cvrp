@@ -56,7 +56,7 @@ class GASolution : public Solution {
    * @details Generates random iniitial solutions. Applies selected algorithm.
    * Prints cost of best solution, and its validity.
    */
-  void Solve();
+  void Solve() override;
 
  private:
   std::vector<std::vector<int>> chromosomes_;

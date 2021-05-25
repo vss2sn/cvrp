@@ -51,7 +51,7 @@ class LocalSearchIntraSolution : public Solution {
    * @details Generates random iniitial solutions. Applies selected algorithm.
    * Prints cost of best solution, and its validity.
    */
-  void Solve();
+  void Solve() override;
 };
 
 #endif  // LSI_HPP
