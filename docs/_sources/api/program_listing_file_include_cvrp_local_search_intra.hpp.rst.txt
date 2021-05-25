@@ -26,7 +26,7 @@ Program Listing for File local_search_intra.hpp
    
      LocalSearchIntraSolution(const Solution& s);
    
-     void Solve();
+     void Solve() override;
    };
    
    #endif  // LSI_HPP

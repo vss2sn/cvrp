@@ -25,7 +25,8 @@ Program Listing for File local_search_inter_intra.hpp
      LocalSearchInterIntraSolution(const Problem& p);
    
      LocalSearchInterIntraSolution(const Solution& s);
-     void Solve();
+   
+     void Solve() override;
    };
    
    #endif  // LSII_HPP

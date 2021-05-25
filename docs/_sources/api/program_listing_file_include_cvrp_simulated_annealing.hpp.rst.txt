@@ -38,7 +38,7 @@ Program Listing for File simulated_annealing.hpp
                                 const int n_reheats = 20
                                );
    
-     void Solve();
+     void Solve() override;
    
     private:
      const double cooling_rate_;

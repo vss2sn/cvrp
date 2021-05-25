@@ -71,11 +71,13 @@ Program Listing for File utils.hpp
    
      Solution(const Problem &p);
    
-     Solution(const Solution &) = default;
-     Solution &operator=(const Solution &) = default;
+     Solution(const Solution &s) = default;
    
-     Solution(Solution &&) = default;
-     Solution &operator=(Solution &&) = default;
+     Solution &operator=(const Solution &s) = default;
+   
+     Solution(Solution &&s) = default;
+   
+     Solution &operator=(Solution &&s) = default;
    
      virtual ~Solution() = default;
    

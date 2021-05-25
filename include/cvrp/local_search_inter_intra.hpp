@@ -43,6 +43,7 @@ class LocalSearchInterIntraSolution : public Solution {
    * Search within all vehicles
    */
   LocalSearchInterIntraSolution(const Solution& s);
+
   /**
    * @brief Function called to solve the given problem using a local search
    * algorithm

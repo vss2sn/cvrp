@@ -141,12 +141,38 @@ class Solution {
    */
   Solution(const Problem &p);
 
-  Solution(const Solution &) = default;
-  Solution &operator=(const Solution &) = default;
+  /**
+   * @brief Copy constructor
+   * @param s object to be copied
+   * @return no return value
+   */
+  Solution(const Solution &s) = default;
 
-  Solution(Solution &&) = default;
-  Solution &operator=(Solution &&) = default;
+  /**
+   * @brief Copy assignment
+   * @param s object to be copied
+   * @return solution object
+   */
+  Solution &operator=(const Solution &s) = default;
 
+  /**
+   * @brief Move constructor
+   * @param s object to be moved
+   * @return no return value
+   */
+  Solution(Solution &&s) = default;
+
+  /**
+   * @brief Move assignment
+   * @param s object to be moved
+   * @return solution object
+   */
+  Solution &operator=(Solution &&s) = default;
+
+  /**
+   * @brief Destructor
+   * @return no return value
+   */
   virtual ~Solution() = default;
 
   /**

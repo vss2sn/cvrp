@@ -30,7 +30,7 @@ Program Listing for File genetic_algorithm.hpp
    
      GASolution(const Solution& s, const int n_chromosomes = 10, const int generations = 100);
    
-     void Solve();
+     void Solve() override;
    
     private:
      std::vector<std::vector<int>> chromosomes_;
