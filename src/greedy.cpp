@@ -4,9 +4,9 @@
  * @brief Contains the GreedySolution class
  */
 
-#include <iostream>
-
 #include "cvrp/greedy.hpp"
+
+#include <iostream>
 
 GreedySolution::GreedySolution(std::vector<Node> nodes,
                                std::vector<Vehicle> vehicles,
@@ -34,8 +34,7 @@ void GreedySolution::Solve() {
   }
 
   double cost = 0;
-  for (auto &v : vehicles_)
-    cost += v.cost_;
+  for (auto &v : vehicles_) cost += v.cost_;
   std::cout << "Cost: " << cost << '\n';
 
   for (const auto &i : nodes_) {

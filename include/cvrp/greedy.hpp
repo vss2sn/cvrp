@@ -10,7 +10,7 @@
 #include "cvrp/utils.hpp"
 
 class GreedySolution : public Solution {
-public:
+ public:
   /**
    * @brief Constructor
    * @param nodes Vector of nodes
@@ -40,4 +40,4 @@ public:
    */
   void Solve();
 };
-#endif // GREEDY_HPP
+#endif  // GREEDY_HPP

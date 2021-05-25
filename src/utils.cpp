@@ -5,11 +5,11 @@
  * problem aand solution as well as some functions that aid in debugging.
  */
 
+#include "cvrp/utils.hpp"
+
 #include <iostream>
 #include <limits>
 #include <random>
-
-#include "cvrp/utils.hpp"
 
 std::ostream &operator<<(std::ostream &os, const Node &node) {
   os << "Node Status" << '\n';
@@ -21,7 +21,8 @@ std::ostream &operator<<(std::ostream &os, const Node &node) {
   return os;
 }
 
-void Vehicle::CalculateCost(const std::vector<std::vector<double>>& distanceMatrix) {
+void Vehicle::CalculateCost(
+    const std::vector<std::vector<double>> &distanceMatrix) {
   cost_ = 0;
   for (size_t i = 0; i < nodes_.size() - 1; i++)
     cost_ += distanceMatrix[nodes_[i]][nodes_[i + 1]];
@@ -52,14 +53,15 @@ void PrintVehicleRoute(const Vehicle &v) {
   std::cout << '\n' << '\n';
 }
 
-Solution::Solution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
-                   const std::vector<std::vector<double>>& distanceMatrix)
+Solution::Solution(const std::vector<Node> &nodes,
+                   const std::vector<Vehicle> &vehicles,
+                   const std::vector<std::vector<double>> &distanceMatrix)
     : nodes_(nodes), vehicles_(vehicles), distanceMatrix_(distanceMatrix) {
   depot_ = nodes_[0];
   capacity_ = vehicles[0].load_;
 }
 
-Solution::Solution(const Problem& p) {
+Solution::Solution(const Problem &p) {
   nodes_ = p.nodes_;
   vehicles_ = p.vehicles_;
   distanceMatrix_ = p.distanceMatrix_;
@@ -72,7 +74,7 @@ void Solution::CreateInitialSolution() {
     while (true) {
       Node closest_node = find_closest(v);
       if (closest_node.id_ != -1 &&
-          v.load_ - closest_node.demand_ >= 0) { // }.2*capacity){
+          v.load_ - closest_node.demand_ >= 0) {  // }.2*capacity){
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
         v.nodes_.push_back(closest_node.id_);
@@ -112,25 +114,24 @@ bool Solution::CheckSolutionValid() const {
       load -= nodes_[n].demand_;
       check_nodes[n] = true;
     }
-    if (load < 0)
-      return false;
+    if (load < 0) return false;
   }
   for (auto b : check_nodes) {
-    if (!b)
-      return false;
+    if (!b) return false;
   }
   return true;
 }
 
-Problem::Problem(const int noc, const int demand_range, const int nov, const int capacity,
-                 const int grid_range, std::string distribution, const int n_clusters,
+Problem::Problem(const int noc, const int demand_range, const int nov,
+                 const int capacity, const int grid_range,
+                 std::string distribution, const int n_clusters,
                  const int cluster_range) {
-
-  std::random_device rd;  // obtain a random number from hardware
-  std::mt19937 eng(rd()); // seed the generator
+  std::random_device rd;   // obtain a random number from hardware
+  std::mt19937 eng(rd());  // seed the generator
   std::uniform_int_distribution<int> ran(-grid_range,
-                                         grid_range);        // define the range
-  std::uniform_int_distribution<int> ran_d(0, demand_range); // define the range
+                                         grid_range);  // define the range
+  std::uniform_int_distribution<int> ran_d(0,
+                                           demand_range);  // define the range
   std::uniform_int_distribution<int> ran_c(-cluster_range, cluster_range);
   Node depot(0, 0, 0, 0, true);
   this->capacity_ = capacity;
@@ -150,22 +151,23 @@ Problem::Problem(const int noc, const int demand_range, const int nov, const int
       int x = ran(eng);
       int y = ran(eng);
       for (int j = 0; j < n_p_c; j++) {
-        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
+        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
+                            false);
         id++;
       }
     }
     int x = ran(eng);
     int y = ran(eng);
     for (int j = 0; j < remain; j++) {
-      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
+      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
+                          false);
       id++;
     }
   }
 
   // for(const auto& n:nodes) std::cout << n << '\n';
   std::vector<double> tmp(nodes_.size());
-  for (size_t i = 0; i < nodes_.size(); ++i)
-    distanceMatrix_.push_back(tmp);
+  for (size_t i = 0; i < nodes_.size(); ++i) distanceMatrix_.push_back(tmp);
   for (size_t i = 0; i < nodes_.size(); ++i) {
     for (size_t j = i; j < nodes_.size(); ++j) {
       distanceMatrix_[i][j] =

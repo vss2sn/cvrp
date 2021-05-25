@@ -11,7 +11,7 @@
 #include "cvrp/utils.hpp"
 
 class LocalSearchInterIntraSolution : public Solution {
-public:
+ public:
   /**
    * @brief Constructor
    * @param nodes Vector of nodes
@@ -53,4 +53,4 @@ public:
   void Solve();
 };
 
-#endif // LSII_HPP
+#endif  // LSII_HPP

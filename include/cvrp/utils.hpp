@@ -17,7 +17,7 @@
  * vehicles
  */
 struct Node {
-public:
+ public:
   int x_, y_, id_, demand_;
   bool is_routed_;
 
@@ -31,7 +31,8 @@ public:
    * @return no return parameter
    * @details Constructor for a node
    */
-  Node(const int x = 0, const int y = 0, const int id = 0, const int demand = 0, const bool is_routed = true)
+  Node(const int x = 0, const int y = 0, const int id = 0, const int demand = 0,
+       const bool is_routed = true)
       : x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed) {}
 
   friend std::ostream &operator<<(std::ostream &os, const Node &node);
@@ -46,7 +47,7 @@ public:
 std::ostream &operator<<(std::ostream &os, const Node &node);
 
 struct Vehicle {
-public:
+ public:
   int id_, load_, capacity_;
   double cost_ = 0;
   std::vector<int> nodes_;
@@ -70,7 +71,7 @@ public:
    * @return void
    * @details Calculates cost of the route nd updates the cost variable
    */
-  void CalculateCost(const std::vector<std::vector<double>>& distanceMatrix);
+  void CalculateCost(const std::vector<std::vector<double>> &distanceMatrix);
 };
 
 /**
@@ -89,7 +90,7 @@ std::ostream &operator<<(std::ostream &os, const Vehicle &v);
 void PrintVehicleRoute(const Vehicle &v);
 
 struct Problem {
-public:
+ public:
   /**
    * @brief Constructor
    * @param noc number of nodes (centres/dropoff points)
@@ -120,7 +121,7 @@ public:
 
 // Solution class should not call problems's constructor so not inheriting.
 class Solution {
-public:
+ public:
   /**
    * @brief Constructor
    * @param nodes Vector of all nodes
@@ -129,8 +130,8 @@ public:
    * @return no return type
    * @details Constructor for solution struct
    */
-  Solution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
-           const std::vector<std::vector<double>>& distanceMatrix);
+  Solution(const std::vector<Node> &nodes, const std::vector<Vehicle> &vehicles,
+           const std::vector<std::vector<double>> &distanceMatrix);
 
   /**
    * @brief Constructor
@@ -138,13 +139,13 @@ public:
    * @return no return type
    * @details Constructor for solution struct
    */
-  Solution(const Problem& p);
+  Solution(const Problem &p);
 
-  Solution(const Solution&) = default;
-  Solution& operator = (const Solution&)= default;
+  Solution(const Solution &) = default;
+  Solution &operator=(const Solution &) = default;
 
-  Solution(Solution&&) = default;
-  Solution& operator = (Solution&&)= default;
+  Solution(Solution &&) = default;
+  Solution &operator=(Solution &&) = default;
 
   virtual ~Solution() = default;
 
@@ -191,9 +192,7 @@ public:
    */
   void PrintSolution(const std::string &option = "") const;
 
-
-
-protected:
+ protected:
   std::vector<Node> nodes_;
   std::vector<Vehicle> vehicles_;
   std::vector<std::vector<double>> distanceMatrix_;
@@ -201,4 +200,4 @@ protected:
   int capacity_;
 };
 
-#endif // UTILS_HPP
+#endif  // UTILS_HPP

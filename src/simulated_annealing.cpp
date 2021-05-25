@@ -4,45 +4,47 @@
  * @brief Contains the SimulatedAnnealingSolution class
  */
 
+#include "cvrp/simulated_annealing.hpp"
+
 #include <cmath>
 #include <iostream>
 
-#include "cvrp/simulated_annealing.hpp"
-
 SimulatedAnnealingSolution::SimulatedAnnealingSolution(
     const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
-    const std::vector<std::vector<double>>& distanceMatrix, const int stag_limit,
-    const double init_temp, const double cooling_rate)
+    const std::vector<std::vector<double>>& distanceMatrix,
+    const int stag_limit, const double init_temp, const double cooling_rate)
     : Solution(nodes, vehicles, distanceMatrix),
-      stag_limit_ (stag_limit), max_temp_ (init_temp),
-      cooling_rate_ (cooling_rate) {
+      stag_limit_(stag_limit),
+      max_temp_(init_temp),
+      cooling_rate_(cooling_rate) {
   CreateInitialSolution();
 }
 
-SimulatedAnnealingSolution::SimulatedAnnealingSolution(const Problem& p,
-                                                       const int stag_limit,
-                                                       const double init_temp,
-                                                       const double cooling_rate)
+SimulatedAnnealingSolution::SimulatedAnnealingSolution(
+    const Problem& p, const int stag_limit, const double init_temp,
+    const double cooling_rate)
     : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_),
-    stag_limit_ (stag_limit), max_temp_ (init_temp),
-    cooling_rate_ (cooling_rate) {
+      stag_limit_(stag_limit),
+      max_temp_(init_temp),
+      cooling_rate_(cooling_rate) {
   CreateInitialSolution();
 }
 
-SimulatedAnnealingSolution::SimulatedAnnealingSolution(const Solution& s,
-                                                       const int stag_limit,
-                                                       const double init_temp,
-                                                       const double cooling_rate)
+SimulatedAnnealingSolution::SimulatedAnnealingSolution(
+    const Solution& s, const int stag_limit, const double init_temp,
+    const double cooling_rate)
     : Solution(s),
-    stag_limit_ (stag_limit), max_temp_ (init_temp),
-    cooling_rate_ (cooling_rate) {
+      stag_limit_(stag_limit),
+      max_temp_(init_temp),
+      cooling_rate_(cooling_rate) {
   if (!s.CheckSolutionValid()) {
     std::cout << "The input solution is invalid. Exiting." << '\n';
     exit(0);
   }
 }
 
-inline bool SimulatedAnnealingSolution::AllowMove(const double delta, const double temp) {
+inline bool SimulatedAnnealingSolution::AllowMove(const double delta,
+                                                  const double temp) {
   if (delta < -0.0000000001)
     return true;
   else if (((double)rand() / RAND_MAX) < std::exp(-delta / temp))
@@ -54,7 +56,7 @@ inline bool SimulatedAnnealingSolution::AllowMove(const double delta, const doub
 void SimulatedAnnealingSolution::Solve() {
   double cost = 0;
   double temp = 0;
-  for (const auto &v : vehicles_) {
+  for (const auto& v : vehicles_) {
     cost += v.cost_;
   }
   auto best_vehicles = vehicles_;
@@ -73,26 +75,30 @@ void SimulatedAnnealingSolution::Solve() {
       int cur = 0;
       if (v1.nodes_.size() > 2) {
         // do not select trailing zero or starting zero
-        cur = rand() % (v1.nodes_.size() - 2) +1;
+        cur = rand() % (v1.nodes_.size() - 2) + 1;
       } else {
         continue;
       }
-      const int rep = rand() % (v2.nodes_.size() - 1); // do not select trailing zero
+      const int rep =
+          rand() % (v2.nodes_.size() - 1);  // do not select trailing zero
       if (v1.id_ == v2.id_ && (cur == rep + 1 || cur == rep)) {
         continue;
       }
       const int prev = cur - 1;
       const int next_c = cur + 1;
       const int next_r = rep + 1;
-      const double cost_reduction = distanceMatrix_[v1.nodes_[prev]][v1.nodes_[next_c]] -
-                       distanceMatrix_[v1.nodes_[prev]][v1.nodes_[cur]] -
-                       distanceMatrix_[v1.nodes_[cur]][v1.nodes_[next_c]];
-      const double cost_increase = distanceMatrix_[v2.nodes_[rep]][v1.nodes_[cur]] +
-                      distanceMatrix_[v1.nodes_[cur]][v2.nodes_[next_r]] -
-                      distanceMatrix_[v2.nodes_[rep]][v2.nodes_[next_r]];
+      const double cost_reduction =
+          distanceMatrix_[v1.nodes_[prev]][v1.nodes_[next_c]] -
+          distanceMatrix_[v1.nodes_[prev]][v1.nodes_[cur]] -
+          distanceMatrix_[v1.nodes_[cur]][v1.nodes_[next_c]];
+      const double cost_increase =
+          distanceMatrix_[v2.nodes_[rep]][v1.nodes_[cur]] +
+          distanceMatrix_[v1.nodes_[cur]][v2.nodes_[next_r]] -
+          distanceMatrix_[v2.nodes_[rep]][v2.nodes_[next_r]];
       const double delta = cost_increase + cost_reduction;
       if ((v2.load_ - nodes_[v1.nodes_[cur]].demand_ >= 0 ||
-           v1.id_ == v2.id_) && AllowMove(delta, temp)) {
+           v1.id_ == v2.id_) &&
+          AllowMove(delta, temp)) {
         v1.load_ += nodes_[v1.nodes_[cur]].demand_;
         v2.load_ -= nodes_[v1.nodes_[cur]].demand_;
         v1.cost_ += cost_reduction;
@@ -115,11 +121,11 @@ void SimulatedAnnealingSolution::Solve() {
   }
   vehicles_ = best_vehicles;
   cost = 0;
-  for (const auto &v : vehicles_) {
+  for (const auto& v : vehicles_) {
     cost += v.cost_;
   }
   std::cout << "Cost: " << cost << '\n';
-  for (const auto &i : nodes_) {
+  for (const auto& i : nodes_) {
     if (!i.is_routed_) {
       std::cout << "Unreached node: " << '\n';
       std::cout << i << '\n';

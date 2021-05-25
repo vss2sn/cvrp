@@ -7,7 +7,7 @@
 #ifndef TS_HPP
 #define TS_HPP
 
-#include <queue> 
+#include <queue>
 #include <unordered_set>
 
 #include "cvrp/utils.hpp"
@@ -24,7 +24,7 @@ struct VectorHash {
    * @details Overloaded operator to return hash value of a vector. Used to
    * create an unordered set for vectors.
    */
-  size_t operator()(const std::vector<int> &v) const {
+  size_t operator()(const std::vector<int>& v) const {
     std::hash<int> hasher;
     size_t seed = 0;
     for (int i : v) {
@@ -35,7 +35,7 @@ struct VectorHash {
 };
 
 class TabuSearchSolution : public Solution {
-public:
+ public:
   /**
    * @brief Constructor
    * @param nodes Vector of nodes
@@ -46,7 +46,8 @@ public:
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+  TabuSearchSolution(const std::vector<Node>& nodes,
+                     const std::vector<Vehicle>& vehicles,
                      const std::vector<std::vector<double>>& distanceMatrix,
                      const int n_tabu = 50);
   /**
@@ -79,13 +80,15 @@ public:
    */
   void Solve();
 
-private:
+ private:
   int n_tabu_;
   double best_cost_, new_cost_;
   const int max_it = 500;
 
-  std::vector<std::vector<int>> to_check_ = std::vector<std::vector<int>>(6, std::vector<int>(2, 0));;
-      // invert order of v1, v2 and cur, rep+1
+  std::vector<std::vector<int>> to_check_ =
+      std::vector<std::vector<int>>(6, std::vector<int>(2, 0));
+  ;
+  // invert order of v1, v2 and cur, rep+1
   std::unordered_set<std::vector<int>, VectorHash> tabu_list_set_;
   std::queue<std::vector<int>> tabu_list_queue_;
 
@@ -112,4 +115,4 @@ private:
   inline bool Aspiration(double cost_increase, double cost_reduction);
 };
 
-#endif // TS_HPP
+#endif  // TS_HPP

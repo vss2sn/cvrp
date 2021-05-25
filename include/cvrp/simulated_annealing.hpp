@@ -10,7 +10,7 @@
 #include "cvrp/utils.hpp"
 
 class SimulatedAnnealingSolution : public Solution {
-public:
+ public:
   /**
    * @brief Constructor
    * @param nodes Vector of nodes
@@ -25,12 +25,11 @@ public:
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  SimulatedAnnealingSolution(const std::vector<Node>& nodes,
-                             const std::vector<Vehicle>& vehicles,
-                             const std::vector<std::vector<double>>& distanceMatrix,
-                             const int stag_limit = 500000,
-                             const double init_temp = 5000,
-                             const double cooling_rate = 0.9999);
+  SimulatedAnnealingSolution(
+      const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+      const std::vector<std::vector<double>>& distanceMatrix,
+      const int stag_limit = 500000, const double init_temp = 5000,
+      const double cooling_rate = 0.9999);
 
   /**
    * @brief Constructor
@@ -74,7 +73,7 @@ public:
    */
   void Solve();
 
-private:
+ private:
   const double cooling_rate_;
   double best_cost_;
   const int max_temp_, n_reheats_ = 20, stag_limit_;
@@ -88,4 +87,4 @@ private:
   inline bool AllowMove(const double delta, const double temp);
 };
 
-#endif // SA_HPP
+#endif  // SA_HPP

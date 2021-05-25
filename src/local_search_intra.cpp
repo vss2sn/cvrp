@@ -5,9 +5,9 @@
  * to within individual vehicles)
  */
 
-#include <iostream>
-
 #include "cvrp/local_search_intra.hpp"
+
+#include <iostream>
 
 LocalSearchIntraSolution::LocalSearchIntraSolution(
     const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
@@ -21,7 +21,8 @@ LocalSearchIntraSolution::LocalSearchIntraSolution(const Problem& p)
   CreateInitialSolution();
 }
 
-LocalSearchIntraSolution::LocalSearchIntraSolution(const Solution& s) : Solution(s) {
+LocalSearchIntraSolution::LocalSearchIntraSolution(const Solution& s)
+    : Solution(s) {
   if (!s.CheckSolutionValid()) {
     std::cout << "The input solution is invalid. Exiting." << '\n';
     exit(0);
@@ -30,10 +31,10 @@ LocalSearchIntraSolution::LocalSearchIntraSolution(const Solution& s) : Solution
 
 void LocalSearchIntraSolution::Solve() {
   double cost = 0;
-  for (const auto &v : vehicles_) {
+  for (const auto& v : vehicles_) {
     cost += v.cost_;
   }
-  for (auto &v : vehicles_) {
+  for (auto& v : vehicles_) {
     while (true) {
       double delta = 0.0, cost_reduction, cost_increase;
       int best_c = -1, best_r = -1;
@@ -76,10 +77,9 @@ void LocalSearchIntraSolution::Solve() {
     }
   }
   cost = 0;
-  for (auto &v : vehicles_)
-    cost += v.cost_;
+  for (auto& v : vehicles_) cost += v.cost_;
   std::cout << "Cost: " << cost << '\n';
-  for (const auto &i : nodes_) {
+  for (const auto& i : nodes_) {
     if (!i.is_routed_) {
       std::cout << "Unreached node: " << '\n';
       std::cout << i << '\n';

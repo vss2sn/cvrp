@@ -11,7 +11,7 @@
 #include "cvrp/utils.hpp"
 
 class LocalSearchIntraSolution : public Solution {
-public:
+ public:
   /**
    * @brief Constructor
    * @param nodes Vector of nodes
@@ -21,9 +21,9 @@ public:
    * @details Constructor for initial setup of problem, and solution using Local
    * Search applied to the routes of each of the vehicles separately
    */
-  LocalSearchIntraSolution(const std::vector<Node>& nodes,
-                           const std::vector<Vehicle>& vehicles,
-                           const std::vector<std::vector<double>>& distanceMatrix);
+  LocalSearchIntraSolution(
+      const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+      const std::vector<std::vector<double>>& distanceMatrix);
 
   /**
    * @brief Constructor
@@ -54,4 +54,4 @@ public:
   void Solve();
 };
 
-#endif // LSI_HPP
+#endif  // LSI_HPP

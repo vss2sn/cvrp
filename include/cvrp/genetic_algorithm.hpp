@@ -14,7 +14,7 @@
 // Still need to account for case if nodes cannot be put into vehilces due to
 // small number of vehicles in initial solution
 class GASolution : public Solution {
-public:
+ public:
   /**
    * @brief Constructor
    * @param nodes Vector of nodes
@@ -25,9 +25,10 @@ public:
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using GA.
    */
-  GASolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
-             const std::vector<std::vector<double>>& distanceMatrix, const int n_chromosomes,
-             const int generations);
+  GASolution(const std::vector<Node>& nodes,
+             const std::vector<Vehicle>& vehicles,
+             const std::vector<std::vector<double>>& distanceMatrix,
+             const int n_chromosomes, const int generations);
   /**
    * @brief Constructor
    * @param p Instance of Problem class defining the problem parameters
@@ -57,7 +58,7 @@ public:
    */
   void Solve();
 
-private:
+ private:
   std::vector<std::vector<int>> chromosomes_, iterators_;
   std::vector<double> costs_;
   int n_chromosomes_, n_nucleotide_pairs_, n_vehicles_, generations_, best_;
@@ -229,7 +230,7 @@ private:
    * @details Randomly selects 3 solutions and returns index of the best amongst
    * the three
    */
-  int TournamentSelection(const int n = 10) const ;
+  int TournamentSelection(const int n = 10) const;
 
   /**
    * @brief Tournament selection of a bad solution
@@ -237,7 +238,7 @@ private:
    * @details Randomly selects 3 solutions and returns index of the worst
    * amongst the three
    */
-  int TournamentSelectionBad(const int n = 10) const ;
+  int TournamentSelectionBad(const int n = 10) const;
 
   /**
    * @brief Deletes a bad chromosome
@@ -297,4 +298,4 @@ private:
   void MakeValid(const int i);
 };
 
-#endif // GA_HPP
+#endif  // GA_HPP
