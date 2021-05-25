@@ -15,12 +15,12 @@ Classes and Structs
 .. toctree::
    :maxdepth: 5
 
-   structProblem.rst
+   structPairHash.rst
 
 .. toctree::
    :maxdepth: 5
 
-   structVectorHash.rst
+   structProblem.rst
 
 .. toctree::
    :maxdepth: 5
@@ -69,12 +69,7 @@ Functions
 .. toctree::
    :maxdepth: 5
 
-   function_main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.rst
+   function_main_8cpp_1a2c3f6775325c30275d11c6abee2db6a0.rst
 
 .. toctree::
    :maxdepth: 5
@@ -105,6 +100,50 @@ Functions
    :maxdepth: 5
 
    function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938.rst
+
+Variables
+*********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_local__search__inter__intra_8cpp_1a9b14b3007980c8bd1a5f9aaed06c0475.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_local__search__intra_8cpp_1a9b14b3007980c8bd1a5f9aaed06c0475.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_simulated__annealing_8cpp_1a9b14b3007980c8bd1a5f9aaed06c0475.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_genetic__algorithm_8cpp_1ae335e06fdf5a0b443b1b8b921120ff8c.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_genetic__algorithm_8cpp_1a6e96a5955b234e8ebb57886462299ee4.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_genetic__algorithm_8cpp_1a7530fbe3d96077a06f93f643f9c154ad.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_genetic__algorithm_8cpp_1a890a7308064641263016df5f1f5df7cd.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_genetic__algorithm_8cpp_1a78d086b61152cffd4f5192100eb90a40.rst
 
 Directories
 ***********
@@ -178,11 +217,6 @@ Files
    :maxdepth: 5
 
    file_main_main.cpp.rst
-
-.. toctree::
-   :maxdepth: 5
-
-   file_include_cvrp_main.hpp.rst
 
 .. toctree::
    :maxdepth: 5

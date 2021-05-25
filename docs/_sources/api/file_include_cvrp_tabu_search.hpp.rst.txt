@@ -40,13 +40,19 @@ Includes
 
 - ``cvrp/utils.hpp`` (:ref:`file_include_cvrp_utils.hpp`)
 
+- ``queue``
+
+- ``unordered_set``
+
+- ``utility``
+
 
 
 Included By
 -----------
 
 
-- :ref:`file_include_cvrp_main.hpp`
+- :ref:`file_main_main.cpp`
 
 - :ref:`file_src_tabu_search.cpp`
 
@@ -57,7 +63,7 @@ Classes
 -------
 
 
-- :ref:`exhale_struct_structVectorHash`
+- :ref:`exhale_struct_structPairHash`
 
 - :ref:`exhale_class_classTabuSearchSolution`
 

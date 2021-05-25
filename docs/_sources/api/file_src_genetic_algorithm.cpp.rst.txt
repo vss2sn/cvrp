@@ -42,9 +42,32 @@ Includes
 --------
 
 
+- ``algorithm`` (:ref:`file_src_genetic_algorithm.cpp`)
+
 - ``cvrp/genetic_algorithm.hpp`` (:ref:`file_include_cvrp_genetic_algorithm.hpp`)
 
+- ``iostream``
+
+- ``random``
+
+- ``set``
 
 
 
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_genetic__algorithm_8cpp_1ae335e06fdf5a0b443b1b8b921120ff8c`
+
+- :ref:`exhale_variable_genetic__algorithm_8cpp_1a6e96a5955b234e8ebb57886462299ee4`
+
+- :ref:`exhale_variable_genetic__algorithm_8cpp_1a7530fbe3d96077a06f93f643f9c154ad`
+
+- :ref:`exhale_variable_genetic__algorithm_8cpp_1a890a7308064641263016df5f1f5df7cd`
+
+- :ref:`exhale_variable_genetic__algorithm_8cpp_1a78d086b61152cffd4f5192100eb90a40`
 

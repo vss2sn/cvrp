@@ -42,7 +42,19 @@ Includes
 --------
 
 
-- ``cvrp/main.hpp`` (:ref:`file_include_cvrp_main.hpp`)
+- ``cvrp/genetic_algorithm.hpp`` (:ref:`file_include_cvrp_genetic_algorithm.hpp`)
+
+- ``cvrp/greedy.hpp`` (:ref:`file_include_cvrp_greedy.hpp`)
+
+- ``cvrp/local_search_inter_intra.hpp`` (:ref:`file_include_cvrp_local_search_inter_intra.hpp`)
+
+- ``cvrp/local_search_intra.hpp`` (:ref:`file_include_cvrp_local_search_intra.hpp`)
+
+- ``cvrp/simulated_annealing.hpp`` (:ref:`file_include_cvrp_simulated_annealing.hpp`)
+
+- ``cvrp/tabu_search.hpp`` (:ref:`file_include_cvrp_tabu_search.hpp`)
+
+- ``iostream``
 
 
 
@@ -53,5 +65,5 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97`
+- :ref:`exhale_function_main_8cpp_1a2c3f6775325c30275d11c6abee2db6a0`
 

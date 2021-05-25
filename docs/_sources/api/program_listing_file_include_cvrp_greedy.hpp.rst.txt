@@ -17,12 +17,12 @@ Program Listing for File greedy.hpp
    #include "cvrp/utils.hpp"
    
    class GreedySolution : public Solution {
-   public:
-     GreedySolution(std::vector<Node> nodes, std::vector<Vehicle> vehicles,
-                    std::vector<std::vector<double>> distanceMatrix);
+    public:
+     GreedySolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+                    const std::vector<std::vector<double>>& distanceMatrix);
    
-     GreedySolution(Problem p);
+     GreedySolution(const Problem& p);
    
-     void Solve();
+     void Solve() override;
    };
-   #endif // GREEDY_HPP
+   #endif  // GREEDY_HPP

@@ -38,6 +38,7 @@ class TabuSearchSolution : public Solution {
    * @param vehicles Vector of vehicles
    * @param distanceMatrix Matrix containing distance between each pair of nodes
    * @param n_tabu Size of tabu list
+   * @param max_it Number of iterations of search
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
@@ -52,6 +53,7 @@ class TabuSearchSolution : public Solution {
    * @brief Constructor
    * @param p Instance of Problem class defining the problem parameters
    * @param n_tabu Size of tabu list
+   * @param max_it Number of iterations of search
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
@@ -63,6 +65,7 @@ class TabuSearchSolution : public Solution {
    * @param s Instance of Solution class containing a valid solution and problem
    * parameters
    * @param n_tabu Size of tabu list
+   * @param max_it Number of iterations of search
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
@@ -90,8 +93,7 @@ class TabuSearchSolution : public Solution {
 
   /**
    * @brief Check if set of vector is tabu
-   * @param begin index at which to begin iteration
-   * @param end index at which to end iteration (inclusive)
+   * @param p the pair that must be checked in the tabu list
    * @return bool True if any of the vectors checked are tabu
    * @details Iterates over vector of vectors to_check to check if any of the
    * moves listed in to_check are tabu. to_check is updated for each move

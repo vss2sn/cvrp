@@ -44,7 +44,16 @@ Includes
 
 - ``cvrp/local_search_intra.hpp`` (:ref:`file_include_cvrp_local_search_intra.hpp`)
 
+- ``iostream``
 
 
 
+
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_local__search__intra_8cpp_1a9b14b3007980c8bd1a5f9aaed06c0475`
 

@@ -14,36 +14,16 @@ Program Listing for File utils.hpp
    #ifndef UTILS_HPP
    #define UTILS_HPP
    
-   #include <algorithm>
-   #include <climits>
-   #include <cstdio>
-   #include <ctime>
-   #include <cxxabi.h>
-   #include <iomanip>
-   #include <iostream>
-   #include <map>
-   #include <math.h>
-   #include <memory>
-   #include <queue>
-   #include <random>
-   #include <set>
-   #include <typeinfo>
-   #include <unistd.h>
-   #include <unordered_set>
+   #include <string>
    #include <vector>
    
-   #include <chrono>
-   #include <cmath>
-   #include <functional>
-   #include <memory>
-   #include <string>
-   
    struct Node {
-   public:
+    public:
      int x_, y_, id_, demand_;
      bool is_routed_;
    
-     Node(const int x = 0, const int y = 0, const int id = 0, const int demand = 0, const bool is_routed = true)
+     Node(const int x = 0, const int y = 0, const int id = 0, const int demand = 0,
+          const bool is_routed = true)
          : x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed) {}
    
      friend std::ostream &operator<<(std::ostream &os, const Node &node);
@@ -52,7 +32,7 @@ Program Listing for File utils.hpp
    std::ostream &operator<<(std::ostream &os, const Node &node);
    
    struct Vehicle {
-   public:
+    public:
      int id_, load_, capacity_;
      double cost_ = 0;
      std::vector<int> nodes_;
@@ -62,7 +42,7 @@ Program Listing for File utils.hpp
    
      friend std::ostream &operator<<(std::ostream &os, const Vehicle &v);
    
-     void CalculateCost(const std::vector<std::vector<double>>& distanceMatrix);
+     void CalculateCost(const std::vector<std::vector<double>> &distanceMatrix);
    };
    
    std::ostream &operator<<(std::ostream &os, const Vehicle &v);
@@ -70,7 +50,7 @@ Program Listing for File utils.hpp
    void PrintVehicleRoute(const Vehicle &v);
    
    struct Problem {
-   public:
+    public:
      Problem(const int noc = 1000, const int demand_range = 40, const int nov = 50,
              const int capacity = 800, const int grid_range = 1000,
              std::string distribution = "uniform", const int n_clusters = 5,
@@ -85,11 +65,19 @@ Program Listing for File utils.hpp
    
    // Solution class should not call problems's constructor so not inheriting.
    class Solution {
-   public:
-     Solution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
-              const std::vector<std::vector<double>>& distanceMatrix);
+    public:
+     Solution(std::vector<Node> nodes, const std::vector<Vehicle> &vehicles,
+              std::vector<std::vector<double>> distanceMatrix);
    
-     Solution(const Problem& p);
+     Solution(const Problem &p);
+   
+     Solution(const Solution &) = default;
+     Solution &operator=(const Solution &) = default;
+   
+     Solution(Solution &&) = default;
+     Solution &operator=(Solution &&) = default;
+   
+     virtual ~Solution() = default;
    
      void CreateInitialSolution();
    
@@ -101,7 +89,7 @@ Program Listing for File utils.hpp
    
      void PrintSolution(const std::string &option = "") const;
    
-   protected:
+    protected:
      std::vector<Node> nodes_;
      std::vector<Vehicle> vehicles_;
      std::vector<std::vector<double>> distanceMatrix_;
@@ -109,4 +97,4 @@ Program Listing for File utils.hpp
      int capacity_;
    };
    
-   #endif // UTILS_HPP
+   #endif  // UTILS_HPP

@@ -14,33 +14,41 @@ Program Listing for File genetic_algorithm.hpp
    #ifndef GA_HPP
    #define GA_HPP
    
+   #include <unordered_set>
+   
    #include "cvrp/utils.hpp"
    
    // Still need to account for case if nodes cannot be put into vehilces due to
    // small number of vehicles in initial solution
    class GASolution : public Solution {
-   public:
-     GASolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
-                const std::vector<std::vector<double>>& distanceMatrix, const int n_chromosomes,
-                const int generations);
-     GASolution(const Problem& p, const int n_chromosomes, const int generations);
+    public:
+     GASolution(const std::vector<Node>& nodes,
+                const std::vector<Vehicle>& vehicles,
+                const std::vector<std::vector<double>>& distanceMatrix,
+                const int n_chromosomes = 10, const int generations = 100);
+     GASolution(const Problem& p, const int n_chromosomes = 10, const int generations = 100);
    
-     GASolution(const Solution& s, const int n_chromosomes, const int generations);
+     GASolution(const Solution& s, const int n_chromosomes = 10, const int generations = 100);
    
      void Solve();
    
-   private:
-     std::vector<std::vector<int>> chromosomes_, iterators_;
+    private:
+     std::vector<std::vector<int>> chromosomes_;
+     std::vector<std::vector<int>> iterators_;
      std::vector<double> costs_;
-     int n_chromosomes_, n_nucleotide_pairs_, n_vehicles_, generations_, best_;
+     const size_t n_nucleotide_pairs_;
+     const int n_chromosomes_;
+     const int n_vehicles_;
+     const int generations_;
+     int best_ = 0;
    
      void GenerateRandomSolutions();
    
      void GenerateGreedySolutions();
    
-     std::vector<int> GenerateRandomSolution();
+     std::vector<int> GenerateRandomSolution() const;
    
-     std::vector<int> GenerateRandomIterSolution();
+     std::vector<int> GenerateRandomIterSolution() const;
    
      void HGreXCrossover();
    
@@ -60,17 +68,17 @@ Program Listing for File genetic_algorithm.hpp
    
      void InsertIterDist();
    
-     bool MutateIterLeft(int i_chromosome, int j_in);
+     bool MutateIterLeft(const int i_chromosome, const int j_in);
    
-     bool MutateIterRight(int i_chromosome, int j_in);
+     bool MutateIterRight(const int i_chromosome, const int j_in);
    
      double CalculateCost(int i);
    
      void CalculateTotalCost();
    
-     int TournamentSelection(const int n = 10) const ;
+     int TournamentSelection(const int n = 10) const;
    
-     int TournamentSelectionBad(const int n = 10) const ;
+     int TournamentSelectionBad(const int n = 10) const;
    
      void DeleteBadChromosome();
    
@@ -85,4 +93,4 @@ Program Listing for File genetic_algorithm.hpp
      void MakeValid(const int i);
    };
    
-   #endif // GA_HPP
+   #endif  // GA_HPP

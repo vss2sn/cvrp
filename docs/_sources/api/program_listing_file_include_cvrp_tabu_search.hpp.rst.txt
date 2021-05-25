@@ -14,43 +14,48 @@ Program Listing for File tabu_search.hpp
    #ifndef TS_HPP
    #define TS_HPP
    
+   #include <queue>
+   #include <unordered_set>
+   #include <utility>
+   
    #include "cvrp/utils.hpp"
    
-   struct VectorHash {
-     size_t operator()(const std::vector<int> &v) const {
-       std::hash<int> hasher;
-       size_t seed = 0;
-       for (int i : v) {
-         seed ^= hasher(i) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
-       }
-       return seed;
+   struct PairHash {
+     template<typename T1, typename T2>
+     size_t operator()(const std::pair<T1, T2>& p) const {
+       auto hash1 = std::hash<T1>{}(p.first);
+       auto hash2 = std::hash<T2>{}(p.second);
+       return hash1 ^ hash2;
      }
    };
    
    class TabuSearchSolution : public Solution {
-   public:
-     TabuSearchSolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+    public:
+     TabuSearchSolution(const std::vector<Node>& nodes,
+                        const std::vector<Vehicle>& vehicles,
                         const std::vector<std::vector<double>>& distanceMatrix,
-                        const int n_tabu = 50);
-     TabuSearchSolution(const Problem& p, const int n_tabu = 50);
+                        const int n_tabu = 50,
+                        const int max_it = 500
+                       );
+     TabuSearchSolution(const Problem& p, const int n_tabu = 50, const int max_it = 500);
    
-     TabuSearchSolution(const Solution& s, const int n_tabu = 50);
+     TabuSearchSolution(const Solution& s, const int n_tabu = 50, const int max_it = 500);
    
-     void Solve();
+     void Solve() override;
    
-   private:
+    private:
+     const int max_it_;
      int n_tabu_;
-     double best_cost_, new_cost_;
-     const int max_it = 500;
+     double best_cost_ = std::numeric_limits<double>::max();
+     double new_cost_ = std::numeric_limits<double>::max();
    
-     std::vector<std::vector<int>> to_check_ = std::vector<std::vector<int>>(6, std::vector<int>(2, 0));; 
-         // invert order of v1, v2 and cur, rep+1
-     std::unordered_set<std::vector<int>, VectorHash> tabu_list_set_;
-     std::queue<std::vector<int>> tabu_list_queue_;
+     // invert order of v1, v2 and cur, rep+1
+     std::unordered_set<std::pair<int, int>, PairHash> tabu_list_set_;
+     std::queue<std::pair<int, int>> tabu_list_queue_;
    
-     inline bool IsTabu(const int begin, const int end);
+     inline bool IsTabu(const std::pair<int, int>& p) const;
    
-     inline bool Aspiration(double cost_increase, double cost_reduction);
+     inline bool Aspiration(double cost_increase, double cost_reduction) const;
    };
    
-   #endif // TS_HPP
+   #endif  // TS_HPP

@@ -1,0 +1,16 @@
+.. _exhale_struct_structPairHash:
+
+Struct PairHash
+===============
+
+- Defined in :ref:`file_include_cvrp_tabu_search.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: PairHash
+   :members:
+   :protected-members:
+   :undoc-members:

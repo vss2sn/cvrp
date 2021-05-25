@@ -13,6 +13,11 @@ Program Listing for File utils.cpp
    
    #include "cvrp/utils.hpp"
    
+   #include <iostream>
+   #include <limits>
+   #include <random>
+   #include <utility>
+   
    std::ostream &operator<<(std::ostream &os, const Node &node) {
      os << "Node Status" << '\n';
      os << "ID    : " << node.id_ << '\n';
@@ -23,10 +28,12 @@ Program Listing for File utils.cpp
      return os;
    }
    
-   void Vehicle::CalculateCost(const std::vector<std::vector<double>>& distanceMatrix) {
+   void Vehicle::CalculateCost(
+       const std::vector<std::vector<double>> &distanceMatrix) {
      cost_ = 0;
-     for (size_t i = 0; i < nodes_.size() - 1; i++)
+     for (size_t i = 0; i < nodes_.size() - 1; i++) {
        cost_ += distanceMatrix[nodes_[i]][nodes_[i + 1]];
+     }
    }
    
    std::ostream &operator<<(std::ostream &os, const Vehicle &v) {
@@ -54,14 +61,15 @@ Program Listing for File utils.cpp
      std::cout << '\n' << '\n';
    }
    
-   Solution::Solution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
-                      const std::vector<std::vector<double>>& distanceMatrix)
-       : nodes_(nodes), vehicles_(vehicles), distanceMatrix_(distanceMatrix) {
+   Solution::Solution(std::vector<Node> nodes,
+                      const std::vector<Vehicle> &vehicles,
+                      std::vector<std::vector<double>> distanceMatrix)
+       : nodes_(std::move(nodes)), vehicles_(vehicles), distanceMatrix_(std::move(distanceMatrix)) {
      depot_ = nodes_[0];
      capacity_ = vehicles[0].load_;
    }
    
-   Solution::Solution(const Problem& p) {
+   Solution::Solution(const Problem &p) {
      nodes_ = p.nodes_;
      vehicles_ = p.vehicles_;
      distanceMatrix_ = p.distanceMatrix_;
@@ -74,7 +82,7 @@ Program Listing for File utils.cpp
        while (true) {
          Node closest_node = find_closest(v);
          if (closest_node.id_ != -1 &&
-             v.load_ - closest_node.demand_ >= 0) { // }.2*capacity){
+             v.load_ - closest_node.demand_ >= 0) {  // }.2*capacity){
            v.load_ -= closest_node.demand_;
            v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
            v.nodes_.push_back(closest_node.id_);
@@ -89,7 +97,7 @@ Program Listing for File utils.cpp
    }
    
    Node Solution::find_closest(const Vehicle &v) const {
-     double cost = INT_MAX;
+     double cost = std::numeric_limits<double>::max();
      int id = -1;
      for (size_t j = 0; j < distanceMatrix_[0].size(); j++) {
        if (!nodes_[j].is_routed_ && nodes_[j].demand_ <= v.load_ &&
@@ -98,10 +106,10 @@ Program Listing for File utils.cpp
          id = j;
        }
      }
-     if (id != -1)
+     if (id != -1) {
        return nodes_[id];
-     else
-       return Node(0, 0, -1, 0);
+     }
+     return Node(0, 0, -1, 0);
    }
    
    bool Solution::CheckSolutionValid() const {
@@ -114,37 +122,42 @@ Program Listing for File utils.cpp
          load -= nodes_[n].demand_;
          check_nodes[n] = true;
        }
-       if (load < 0)
+       if (load < 0) {
          return false;
+       }
      }
      for (auto b : check_nodes) {
-       if (!b)
+       if (!b) {
          return false;
+       }
      }
      return true;
    }
    
-   Problem::Problem(const int noc, const int demand_range, const int nov, const int capacity,
-                    const int grid_range, std::string distribution, const int n_clusters,
+   Problem::Problem(const int noc, const int demand_range, const int nov,
+                    const int capacity, const int grid_range,
+                    std::string distribution, const int n_clusters,
                     const int cluster_range) {
-   
-     std::random_device rd;  // obtain a random number from hardware
-     std::mt19937 eng(rd()); // seed the generator
+     std::random_device rd;   // obtain a random number from hardware
+     std::mt19937 eng(rd());  // seed the generator
      std::uniform_int_distribution<int> ran(-grid_range,
-                                            grid_range);        // define the range
-     std::uniform_int_distribution<int> ran_d(0, demand_range); // define the range
+                                            grid_range);  // define the range
+     std::uniform_int_distribution<int> ran_d(0,
+                                              demand_range);  // define the range
      std::uniform_int_distribution<int> ran_c(-cluster_range, cluster_range);
      Node depot(0, 0, 0, 0, true);
      this->capacity_ = capacity;
    
      nodes_.push_back(depot);
    
-     if (distribution != "uniform" && distribution != "cluster")
+     if (distribution != "uniform" && distribution != "cluster") {
        distribution = "uniform";
-     if (distribution == "uniform")
-       for (int i = 1; i <= noc; ++i)
+     }
+     if (distribution == "uniform") {
+       for (int i = 1; i <= noc; ++i) {
          nodes_.emplace_back(ran(eng), ran(eng), i, ran_d(eng), false);
-     else if (distribution == "cluster") {
+       }
+     } else if (distribution == "cluster") {
        int id = 1;
        int n_p_c = noc / n_clusters;
        int remain = noc % n_clusters;
@@ -166,8 +179,9 @@ Program Listing for File utils.cpp
    
      // for(const auto& n:nodes) std::cout << n << '\n';
      std::vector<double> tmp(nodes_.size());
-     for (size_t i = 0; i < nodes_.size(); ++i)
+     for (size_t i = 0; i < nodes_.size(); ++i) {
        distanceMatrix_.push_back(tmp);
+     }
      for (size_t i = 0; i < nodes_.size(); ++i) {
        for (size_t j = i; j < nodes_.size(); ++j) {
          distanceMatrix_[i][j] =
@@ -185,9 +199,6 @@ Program Listing for File utils.cpp
    }
    
    void Solution::PrintSolution(const std::string &option) const {
-     int status;
-     char *demangled = abi::__cxa_demangle(typeid(*this).name(), 0, 0, &status);
-     std::cout << demangled << ":" << '\n';
      double total_cost = 0;
      for (const auto &v : vehicles_) {
        total_cost += v.cost_;

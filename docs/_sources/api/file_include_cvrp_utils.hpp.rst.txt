@@ -38,45 +38,7 @@ Includes
 --------
 
 
-- ``algorithm`` (:ref:`file_src_genetic_algorithm.cpp`)
-
-- ``chrono``
-
-- ``climits``
-
-- ``cmath``
-
-- ``cstdio``
-
-- ``ctime``
-
-- ``cxxabi.h``
-
-- ``functional``
-
-- ``iomanip``
-
-- ``iostream``
-
-- ``map``
-
-- ``math.h``
-
-- ``memory``
-
-- ``queue``
-
-- ``random``
-
-- ``set``
-
 - ``string``
-
-- ``typeinfo``
-
-- ``unistd.h``
-
-- ``unordered_set``
 
 - ``vector``
 

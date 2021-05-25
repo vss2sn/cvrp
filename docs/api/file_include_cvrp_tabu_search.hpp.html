@@ -102,8 +102,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="structNode.html">Struct Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structPairHash.html">Struct PairHash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structProblem.html">Struct Problem</a></li>
-<li class="toctree-l4"><a class="reference internal" href="structVectorHash.html">Struct VectorHash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structVehicle.html">Struct Vehicle</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGASolution.html">Class GASolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classGreedySolution.html">Class GreedySolution</a></li>
@@ -115,14 +115,24 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="function_main_8cpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main(int, char *)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="function_main_8hpp_1a0ddf1224851353fc92bfbff6f499fa97.html">Function main(int, char *)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_main_8cpp_1a2c3f6775325c30275d11c6abee2db6a0.html">Function main</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_utils_8cpp_1ada22d1a125cc70e462992da2385c04a1.html">Function operator&lt;&lt;(std::ostream&amp;, const Node&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_utils_8cpp_1a0668602fe9a0f81c22a34d9f50fce57f.html">Function operator&lt;&lt;(std::ostream&amp;, const Vehicle&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_utils_8hpp_1ada22d1a125cc70e462992da2385c04a1.html">Function operator&lt;&lt;(std::ostream&amp;, const Node&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_utils_8hpp_1a0668602fe9a0f81c22a34d9f50fce57f.html">Function operator&lt;&lt;(std::ostream&amp;, const Vehicle&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_utils_8cpp_1a00eb49f441f6f5de4827e88c02a59938.html">Function PrintVehicleRoute(const Vehicle&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938.html">Function PrintVehicleRoute(const Vehicle&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="variable_local__search__inter__intra_8cpp_1a9b14b3007980c8bd1a5f9aaed06c0475.html">Variable margin_of_error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_local__search__intra_8cpp_1a9b14b3007980c8bd1a5f9aaed06c0475.html">Variable margin_of_error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_simulated__annealing_8cpp_1a9b14b3007980c8bd1a5f9aaed06c0475.html">Variable margin_of_error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_genetic__algorithm_8cpp_1ae335e06fdf5a0b443b1b8b921120ff8c.html">Variable p_insert_iter_dist</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_genetic__algorithm_8cpp_1a6e96a5955b234e8ebb57886462299ee4.html">Variable p_mutate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_genetic__algorithm_8cpp_1a7530fbe3d96077a06f93f643f9c154ad.html">Variable p_mutate_within_gene</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_genetic__algorithm_8cpp_1a890a7308064641263016df5f1f5df7cd.html">Variable p_random_swap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_genetic__algorithm_8cpp_1a78d086b61152cffd4f5192100eb90a40.html">Variable total_percentage</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#directories">Directories</a><ul>
@@ -142,7 +152,6 @@
 <li class="toctree-l4"><a class="reference internal" href="file_src_local_search_intra.cpp.html">File local_search_intra.cpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_local_search_intra.hpp.html">File local_search_intra.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_main_main.cpp.html">File main.cpp</a></li>
-<li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_main.hpp.html">File main.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_README.md.html">File README.md</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_src_simulated_annealing.cpp.html">File simulated_annealing.cpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="file_include_cvrp_simulated_annealing.hpp.html">File simulated_annealing.hpp</a></li>
@@ -251,19 +260,22 @@
 <h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">cvrp/utils.hpp</span></code> (<a class="reference internal" href="file_include_cvrp_utils.hpp.html#file-include-cvrp-utils-hpp"><span class="std std-ref">File utils.hpp</span></a>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">queue</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">unordered_set</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">utility</span></code></li>
 </ul>
 </div>
 <div class="section" id="included-by">
 <h2>Included By<a class="headerlink" href="#included-by" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="file_include_cvrp_main.hpp.html#file-include-cvrp-main-hpp"><span class="std std-ref">File main.hpp</span></a></li>
+<li><a class="reference internal" href="file_main_main.cpp.html#file-main-main-cpp"><span class="std std-ref">File main.cpp</span></a></li>
 <li><a class="reference internal" href="file_src_tabu_search.cpp.html#file-src-tabu-search-cpp"><span class="std std-ref">File tabu_search.cpp</span></a></li>
 </ul>
 </div>
 <div class="section" id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference internal" href="structVectorHash.html#exhale-struct-structvectorhash"><span class="std std-ref">Struct VectorHash</span></a></li>
+<li><a class="reference internal" href="structPairHash.html#exhale-struct-structpairhash"><span class="std std-ref">Struct PairHash</span></a></li>
 <li><a class="reference internal" href="classTabuSearchSolution.html#exhale-class-classtabusearchsolution"><span class="std std-ref">Class TabuSearchSolution</span></a></li>
 </ul>
 </div>

@@ -19,8 +19,9 @@ class SimulatedAnnealingSolution : public Solution {
    * @param stag_limit Number of iterations without an improvement to the best
    * solution
    * @param init_temp Initial temperature
-   * @param cooling_rate tempertaure multipluies with this variable to get new
+   * @param cooling_rate tempertaure multiplies with this variable to get the new
    * temperature at every iteration
+   * @param n_reheats number of reheats
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
@@ -41,6 +42,7 @@ class SimulatedAnnealingSolution : public Solution {
    * @param init_temp Initial temperature
    * @param cooling_rate tempertaure multipluies with this variable to get new
    * temperature at every iteration
+   * @param n_reheats number of reheats
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
@@ -60,6 +62,7 @@ class SimulatedAnnealingSolution : public Solution {
    * @param init_temp Initial temperature
    * @param cooling_rate tempertaure multipluies with this variable to get new
    * temperature at every iteration
+   * @param n_reheats number of reheats
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
@@ -87,6 +90,7 @@ class SimulatedAnnealingSolution : public Solution {
   /**
    * @brief Checks whether the move is allowable
    * @param delta change in cost of solution due to move
+   * @param temp current temperature
    * @return bool True if move accepted
    * @details Allows move if it improves the solution; also allows move based on
    * probability and temperature at the given time.
