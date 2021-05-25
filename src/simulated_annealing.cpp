@@ -51,7 +51,7 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(
 }
 
 inline bool SimulatedAnnealingSolution::AllowMove(const double delta,
-                                                  const double temp) const {
+                                                  const double temp) {
   return (delta < -margin_of_error) || ((static_cast<double>(rand()) / RAND_MAX) < std::exp(-delta / temp));
 }
 
@@ -73,21 +73,21 @@ void SimulatedAnnealingSolution::Solve() {
       const int n_vehicles = vehicles_.size();
       Vehicle& v1 = vehicles_[rand() % n_vehicles];
       Vehicle& v2 = vehicles_[rand() % n_vehicles];
-      int cur = 0;
+      size_t cur = 0;
       if (v1.nodes_.size() > 2) {
         // do not select trailing zero or starting zero
         cur = rand() % (v1.nodes_.size() - 2) + 1;
       } else {
         continue;
       }
-      const int rep =
+      const size_t rep =
           rand() % (v2.nodes_.size() - 1);  // do not select trailing zero
       if (v1.id_ == v2.id_ && (cur == rep + 1 || cur == rep)) {
         continue;
       }
-      const int prev = cur - 1;
-      const int next_c = cur + 1;
-      const int next_r = rep + 1;
+      const size_t prev = cur - 1;
+      const size_t next_c = cur + 1;
+      const size_t next_r = rep + 1;
       const double cost_reduction =
           distanceMatrix_[v1.nodes_[prev]][v1.nodes_[next_c]] -
           distanceMatrix_[v1.nodes_[prev]][v1.nodes_[cur]] -

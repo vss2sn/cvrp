@@ -130,8 +130,8 @@ class Solution {
    * @return no return type
    * @details Constructor for solution struct
    */
-  Solution(const std::vector<Node> &nodes, const std::vector<Vehicle> &vehicles,
-           const std::vector<std::vector<double>> &distanceMatrix);
+  Solution(std::vector<Node> nodes, const std::vector<Vehicle> &vehicles,
+           std::vector<std::vector<double>> distanceMatrix);
 
   /**
    * @brief Constructor

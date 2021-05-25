@@ -28,7 +28,7 @@ class GASolution : public Solution {
   GASolution(const std::vector<Node>& nodes,
              const std::vector<Vehicle>& vehicles,
              const std::vector<std::vector<double>>& distanceMatrix,
-             const int n_chromosomes, const int generations);
+             const int n_chromosomes = 10, const int generations = 100);
   /**
    * @brief Constructor
    * @param p Instance of Problem class defining the problem parameters
@@ -37,7 +37,7 @@ class GASolution : public Solution {
    * @return No return parameter
    * @details Constructor
    */
-  GASolution(const Problem& p, const int n_chromosomes, const int generations);
+  GASolution(const Problem& p, const int n_chromosomes = 10, const int generations = 100);
 
   /**
    * @brief Constructor
@@ -48,7 +48,7 @@ class GASolution : public Solution {
    * @return No return parameter
    * @details Constructor
    */
-  GASolution(const Solution& s, const int n_chromosomes, const int generations);
+  GASolution(const Solution& s, const int n_chromosomes = 10, const int generations = 100);
 
   /**
    * @brief Function called to solve the given problem using Genetic Algorithm

@@ -91,7 +91,7 @@ class SimulatedAnnealingSolution : public Solution {
    * @details Allows move if it improves the solution; also allows move based on
    * probability and temperature at the given time.
    */
-  inline bool AllowMove(const double delta, const double temp) const;
+  inline static bool AllowMove(const double delta, const double temp);
 };
 
 #endif  // SA_HPP

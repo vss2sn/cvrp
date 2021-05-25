@@ -10,6 +10,7 @@
 #include <iostream>
 #include <limits>
 #include <random>
+#include <utility>
 
 std::ostream &operator<<(std::ostream &os, const Node &node) {
   os << "Node Status" << '\n';
@@ -54,10 +55,10 @@ void PrintVehicleRoute(const Vehicle &v) {
   std::cout << '\n' << '\n';
 }
 
-Solution::Solution(const std::vector<Node> &nodes,
+Solution::Solution(std::vector<Node> nodes,
                    const std::vector<Vehicle> &vehicles,
-                   const std::vector<std::vector<double>> &distanceMatrix)
-    : nodes_(nodes), vehicles_(vehicles), distanceMatrix_(distanceMatrix) {
+                   std::vector<std::vector<double>> distanceMatrix)
+    : nodes_(std::move(nodes)), vehicles_(vehicles), distanceMatrix_(std::move(distanceMatrix)) {
   depot_ = nodes_[0];
   capacity_ = vehicles[0].load_;
 }

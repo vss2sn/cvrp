@@ -14,12 +14,17 @@
 #include "cvrp/simulated_annealing.hpp"
 #include "cvrp/tabu_search.hpp"
 
-int main(int argc, char *argv[]) {
+int main(int /* argc */, char** /* argv[] */ ) {
 
-  Problem p(10, 4, 8, 5, 10, "uniform");
+  constexpr int noc = 10;
+  constexpr int demand_range = 4;
+  constexpr int nov = 8;
+  constexpr int capacity = 5;
+  constexpr int grid_range = 10;
+  Problem p(noc, demand_range, nov, capacity, grid_range, "uniform");
 
   std::cout << "Greedy: " << '\n';
-  GreedySolution vrp_greedy(p);
+  GreedySolution vrp_greedy(p.nodes_, p.vehicles_, p.distanceMatrix_);
   vrp_greedy.Solve();
   std::cout << '\n';
 
@@ -34,17 +39,25 @@ int main(int argc, char *argv[]) {
   std::cout << '\n';
 
   std::cout << "Tabu Search: " << '\n';
-  TabuSearchSolution vrp_ts(p, 10);
+  constexpr int n_tabu = 10;
+  constexpr int max_it = 500;
+  TabuSearchSolution vrp_ts(p, n_tabu, max_it);
   vrp_ts.Solve();
   std::cout << '\n';
 
   std::cout << "Genetic Algorithm: " << '\n';
-  GASolution vrp_ga(p, 5, 100);
+  constexpr int n_chromosomes = 5;
+  constexpr int generations = 100;
+  GASolution vrp_ga(p, n_chromosomes, generations);
   vrp_ga.Solve();
   std::cout << '\n';
 
   std::cout << "Simulated Annealing: " << '\n';
-  SimulatedAnnealingSolution vrp_sa(p, 5000000, 5000, 0.9999);
+  constexpr int stag_limit = 500000;
+  constexpr double init_temp = 5000;
+  constexpr double cooling_rate = 0.9999;
+  constexpr int n_reheats = 20;
+  SimulatedAnnealingSolution vrp_sa(p, stag_limit, init_temp, cooling_rate, n_reheats);
   vrp_sa.Solve();
   std::cout << '\n';
 

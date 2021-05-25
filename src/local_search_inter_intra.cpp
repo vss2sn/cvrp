@@ -37,11 +37,11 @@ void LocalSearchInterIntraSolution::Solve() {
   for (const auto &v : vehicles_) {
     cost += v.cost_;
   }
-  int best_c = -1;
-  int best_r = -1;
-  Vehicle *v_temp_2 = nullptr;
-  Vehicle *v_temp = nullptr;
   while (true) {
+    int best_c = -1;
+    int best_r = -1;
+    Vehicle *v_temp_2 = nullptr;
+    Vehicle *v_temp = nullptr;
     double delta = std::numeric_limits<double>::max();
     for (auto &v : vehicles_) {
       for (size_t cur = 1; cur < v.nodes_.size() - 1; cur++) {
@@ -72,7 +72,7 @@ void LocalSearchInterIntraSolution::Solve() {
         }
       }
     }
-    if (delta > -margin_of_error) {
+    if (delta > -margin_of_error || v_temp == nullptr || v_temp_2 == nullptr) {
       break;
     }
     int val_best_c = *(v_temp->nodes_.begin() + best_c);
