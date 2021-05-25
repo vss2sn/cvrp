@@ -55,14 +55,16 @@ public:
   Node(const int x = 0, const int y = 0, const int id = 0, const int demand = 0, const bool is_routed = true)
       : x_(x), y_(y), id_(id), demand_(demand), is_routed_(is_routed) {}
 
-  /**
-   * @brief Overloads the << operator to print the data in the Node struct
-   * @param [in] os ostream to which the printing is to be done
-   * @param [in] v node who's status is to be printed
-   * @return ostream
-   */
   friend std::ostream &operator<<(std::ostream &os, const Node &node);
 };
+
+/**
+ * @brief Overloads the << operator to print the data in the Node struct
+ * @param [in] os ostream to which the printing is to be done
+ * @param [in] node node who's status is to be printed
+ * @return ostream
+ */
+std::ostream &operator<<(std::ostream &os, const Node &node);
 
 struct Vehicle {
 public:
@@ -81,12 +83,6 @@ public:
   Vehicle(const int id = 0, const int load = 0, const int capacity = 0)
       : id_(id), load_(load), capacity_(capacity) {}
 
-  /**
-   * @brief Overloads the << operator to print the data in the Vehicle struct
-   * @param [in] os ostream to which the printing is to be done
-   * @param [in] v vehicle who's status is to be printed
-   * @return ostream
-   */
   friend std::ostream &operator<<(std::ostream &os, const Vehicle &v);
 
   /**
@@ -97,6 +93,14 @@ public:
    */
   void CalculateCost(const std::vector<std::vector<double>>& distanceMatrix);
 };
+
+/**
+ * @brief Overloads the << operator to print the data in the Vehicle struct
+ * @param [in] os ostream to which the printing is to be done
+ * @param [in] v vehicle who's status is to be printed
+ * @return ostream
+ */
+std::ostream &operator<<(std::ostream &os, const Vehicle &v);
 
 /**
  * @brief Prints the vehicle route
@@ -157,6 +161,14 @@ public:
    */
   Solution(const Problem& p);
 
+  Solution(const Solution&) = default;
+  Solution& operator = (const Solution&)= default;
+
+  Solution(Solution&&) = default;
+  Solution& operator = (Solution&&)= default;
+
+  virtual ~Solution() = default;
+
   /**
    * @brief Creates initial solution
    * @return void
@@ -199,6 +211,8 @@ public:
    * solution validity
    */
   void PrintSolution(const std::string &option = "") const;
+
+
 
 protected:
   std::vector<Node> nodes_;
