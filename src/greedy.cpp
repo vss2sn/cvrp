@@ -9,16 +9,16 @@
 #include <iostream>
 #include <numeric>
 
-GreedySolution::GreedySolution(const std::vector<Node>& nodes,
-                               const std::vector<Vehicle>& vehicles,
-                               const std::vector<std::vector<double>>& distanceMatrix)
+GreedySolution::GreedySolution(
+    const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+    const std::vector<std::vector<double>>& distanceMatrix)
     : Solution(nodes, vehicles, distanceMatrix) {}
 
 GreedySolution::GreedySolution(const Problem& p)
     : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_) {}
 
 void GreedySolution::Solve() {
-  for (auto &v : vehicles_) {
+  for (auto& v : vehicles_) {
     while (true) {
       const auto [found, closest_node] = find_closest(v);
       if (found && v.load_ - closest_node.demand_ >= 0) {
@@ -34,9 +34,11 @@ void GreedySolution::Solve() {
     }
   }
 
-  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
+  double cost = std::accumulate(
+      std::begin(vehicles_), std::end(vehicles_), 0.0,
+      [](const double sum, const Vehicle& v) { return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
-  for (const auto &i : nodes_) {
+  for (const auto& i : nodes_) {
     if (!i.is_routed_) {
       std::cout << "Unreached node: " << '\n';
       std::cout << i << '\n';

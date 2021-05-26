@@ -14,8 +14,7 @@
 #include "cvrp/simulated_annealing.hpp"
 #include "cvrp/tabu_search.hpp"
 
-int main(int /* argc */, char** /* argv[] */ ) {
-
+int main(int /* argc */, char** /* argv[] */) {
   constexpr int noc = 10;
   constexpr int demand_range = 4;
   constexpr int nov = 8;
@@ -57,7 +56,8 @@ int main(int /* argc */, char** /* argv[] */ ) {
   constexpr double init_temp = 5000;
   constexpr double cooling_rate = 0.9999;
   constexpr int n_reheats = 20;
-  SimulatedAnnealingSolution vrp_sa(p, stag_limit, init_temp, cooling_rate, n_reheats);
+  SimulatedAnnealingSolution vrp_sa(p, stag_limit, init_temp, cooling_rate,
+                                    n_reheats);
   vrp_sa.Solve();
   std::cout << '\n';
 

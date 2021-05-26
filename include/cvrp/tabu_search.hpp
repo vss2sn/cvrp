@@ -22,7 +22,7 @@ struct PairHash {
    * @param p pair who's hash is to be calculated
    * @return size_t hash of the pair
    */
-  template<typename T1, typename T2>
+  template <typename T1, typename T2>
   size_t operator()(const std::pair<T1, T2>& p) const {
     auto hash1 = std::hash<T1>{}(p.first);
     auto hash2 = std::hash<T2>{}(p.second);
@@ -46,9 +46,7 @@ class TabuSearchSolution : public Solution {
   TabuSearchSolution(const std::vector<Node>& nodes,
                      const std::vector<Vehicle>& vehicles,
                      const std::vector<std::vector<double>>& distanceMatrix,
-                     const int n_tabu = 50,
-                     const int max_it = 500
-                    );
+                     const int n_tabu = 50, const int max_it = 500);
   /**
    * @brief Constructor
    * @param p Instance of Problem class defining the problem parameters
@@ -58,7 +56,8 @@ class TabuSearchSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  explicit TabuSearchSolution(const Problem& p, const int n_tabu = 50, const int max_it = 500);
+  explicit TabuSearchSolution(const Problem& p, const int n_tabu = 50,
+                              const int max_it = 500);
 
   /**
    * @brief Constructor
@@ -70,7 +69,8 @@ class TabuSearchSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  explicit TabuSearchSolution(const Solution& s, const int n_tabu = 50, const int max_it = 500);
+  explicit TabuSearchSolution(const Solution& s, const int n_tabu = 50,
+                              const int max_it = 500);
 
   /**
    * @brief Function called to solve the given problem using a tabu search

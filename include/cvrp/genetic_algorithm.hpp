@@ -37,7 +37,8 @@ class GASolution : public Solution {
    * @return No return parameter
    * @details Constructor
    */
-  explicit GASolution(const Problem& p, const int n_chromosomes = 10, const int generations = 100);
+  explicit GASolution(const Problem& p, const int n_chromosomes = 10,
+                      const int generations = 100);
 
   /**
    * @brief Constructor
@@ -48,7 +49,8 @@ class GASolution : public Solution {
    * @return No return parameter
    * @details Constructor
    */
-  explicit GASolution(const Solution& s, const int n_chromosomes = 10, const int generations = 100);
+  explicit GASolution(const Solution& s, const int n_chromosomes = 10,
+                      const int generations = 100);
 
   /**
    * @brief Function called to solve the given problem using Genetic Algorithm
@@ -220,7 +222,7 @@ class GASolution : public Solution {
    * @return double calculated cost
    * @details Calculates the cost of a given solution
    */
-  double CalculateCost(const int i) const ;
+  double CalculateCost(const int i) const;
 
   /**
    * @brief Calculates the cost of all solutions

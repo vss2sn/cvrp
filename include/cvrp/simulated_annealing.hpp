@@ -19,8 +19,8 @@ class SimulatedAnnealingSolution : public Solution {
    * @param stag_limit Number of iterations without an improvement to the best
    * solution
    * @param init_temp Initial temperature
-   * @param cooling_rate tempertaure multiplies with this variable to get the new
-   * temperature at every iteration
+   * @param cooling_rate tempertaure multiplies with this variable to get the
+   * new temperature at every iteration
    * @param n_reheats number of reheats
    * @return No return parameter
    * @details Constructor for initial setup of problem, and solution using
@@ -30,9 +30,7 @@ class SimulatedAnnealingSolution : public Solution {
       const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
       const std::vector<std::vector<double>>& distanceMatrix,
       const int stag_limit = 500000, const double init_temp = 5000,
-      const double cooling_rate = 0.9999,
-      const int n_reheats = 20
-    );
+      const double cooling_rate = 0.9999, const int n_reheats = 20);
 
   /**
    * @brief Constructor
@@ -47,11 +45,11 @@ class SimulatedAnnealingSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  explicit SimulatedAnnealingSolution(const Problem& p, const int stag_limit = 500000,
-                             const double init_temp = 5000,
-                             const double cooling_rate = 0.9999,
-                             const int n_reheats = 20
-                            );
+  explicit SimulatedAnnealingSolution(const Problem& p,
+                                      const int stag_limit = 500000,
+                                      const double init_temp = 5000,
+                                      const double cooling_rate = 0.9999,
+                                      const int n_reheats = 20);
 
   /**
    * @brief Constructor
@@ -67,11 +65,11 @@ class SimulatedAnnealingSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  explicit SimulatedAnnealingSolution(const Solution& s, int stag_limit = 500000,
-                             double init_temp = 5000,
-                             double cooling_rate = 0.9999,
-                             const int n_reheats = 20
-                            );
+  explicit SimulatedAnnealingSolution(const Solution& s,
+                                      int stag_limit = 500000,
+                                      double init_temp = 5000,
+                                      double cooling_rate = 0.9999,
+                                      const int n_reheats = 20);
 
   /**
    * @brief Function called to solve the given problem using a simulated

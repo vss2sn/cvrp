@@ -139,7 +139,7 @@ class Solution {
    * @return no return type
    * @details Constructor for solution struct
    */
-  Solution(const Problem& p);
+  explicit Solution(const Problem &p);
 
   /**
    * @brief Copy constructor
@@ -195,7 +195,7 @@ class Solution {
    * @brief Virtual function overloaded by solution structes to solve the given
    * problem.
    * @return void
-   * @details Virtual function overloaded by solution structes to solve the
+   * @details Virtual function overloaded by solution struct to solve the
    * given problem.
    */
   virtual void Solve() = 0;
@@ -203,7 +203,8 @@ class Solution {
   /**
    * @brief find closest node
    * @param v vehicle under consideration
-   * @return tuple containing bool as to whether a Node was found and the nearest node
+   * @return tuple containing bool as to whether a Node was found and the
+   * nearest node
    * @details Finds the node nearest to the last node in the route of the
    * vehicle under constideration that has not been routed already
    */

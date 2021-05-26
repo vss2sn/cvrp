@@ -43,15 +43,15 @@ void LocalSearchIntraSolution::Solve() {
         const int v_prev = v.nodes_[cur - 1];
         const int v_next_c = v.nodes_[cur + 1];
         const double cost_reduction = distanceMatrix_[v_prev][v_next_c] -
-                         distanceMatrix_[v_prev][v_cur] -
-                         distanceMatrix_[v_cur][v_next_c];
+                                      distanceMatrix_[v_prev][v_cur] -
+                                      distanceMatrix_[v_cur][v_next_c];
         for (size_t rep = 1; rep < v.nodes_.size() - 1; rep++) {
           if (rep != cur && rep != cur - 1) {
             const int v_rep = v.nodes_[rep];
             const int v_next_r = v.nodes_[rep + 1];
             const double cost_increase = distanceMatrix_[v_rep][v_cur] +
-                            distanceMatrix_[v_cur][v_next_r] -
-                            distanceMatrix_[v_rep][v_next_r];
+                                         distanceMatrix_[v_cur][v_next_r] -
+                                         distanceMatrix_[v_rep][v_next_r];
             if (cost_increase + cost_reduction < delta) {
               delta = cost_increase + cost_reduction;
               best_c = cur;
@@ -74,7 +74,9 @@ void LocalSearchIntraSolution::Solve() {
       v.CalculateCost(distanceMatrix_);
     }
   }
-  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
+  double cost = std::accumulate(
+      std::begin(vehicles_), std::end(vehicles_), 0.0,
+      [](const double sum, const Vehicle& v) { return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
   for (const auto& i : nodes_) {
     if (!i.is_routed_) {

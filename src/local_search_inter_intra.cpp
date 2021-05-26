@@ -5,11 +5,11 @@
  * to all vehicles)
  */
 
+#include "cvrp/local_search_inter_intra.hpp"
+
 #include <iostream>
 #include <limits>
 #include <numeric>
-
-#include "cvrp/local_search_inter_intra.hpp"
 
 constexpr double margin_of_error = 0.00001;
 
@@ -86,7 +86,9 @@ void LocalSearchInterIntraSolution::Solve() {
     v_temp->load_ += nodes_[val_best_c].demand_;
     v_temp_2->load_ -= nodes_[val_best_c].demand_;
   }
-  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
+  double cost = std::accumulate(
+      std::begin(vehicles_), std::end(vehicles_), 0.0,
+      [](const double sum, const Vehicle &v) { return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
   for (const auto &i : nodes_) {
     if (!i.is_routed_) {

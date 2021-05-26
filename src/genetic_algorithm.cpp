@@ -15,7 +15,12 @@ constexpr int total_percentage = 100;
 
 GASolution::GASolution(const Problem &p, const int n_chromosomes,
                        const int generations)
-    : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_), n_chromosomes_(n_chromosomes), generations_(generations), n_nucleotide_pairs_(nodes_.size() - 1), costs_(std::vector<double>(n_chromosomes)), n_vehicles_(vehicles_.size()) {
+    : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_),
+      n_chromosomes_(n_chromosomes),
+      generations_(generations),
+      n_nucleotide_pairs_(nodes_.size() - 1),
+      costs_(std::vector<double>(n_chromosomes)),
+      n_vehicles_(vehicles_.size()) {
   GenerateRandomSolutions();
   for (int i = 0; i < n_chromosomes; i++) {
     MakeValid(i);
@@ -26,7 +31,13 @@ GASolution::GASolution(const Problem &p, const int n_chromosomes,
 }
 
 GASolution::GASolution(const Solution &s, const int n_chromosomes,
-                       const int generations) : Solution(s), n_chromosomes_(n_chromosomes), generations_(generations), n_nucleotide_pairs_(nodes_.size() - 1), costs_(std::vector<double>(n_chromosomes)), n_vehicles_(vehicles_.size()) {
+                       const int generations)
+    : Solution(s),
+      n_chromosomes_(n_chromosomes),
+      generations_(generations),
+      n_nucleotide_pairs_(nodes_.size() - 1),
+      costs_(std::vector<double>(n_chromosomes)),
+      n_vehicles_(vehicles_.size()) {
   std::vector<int> temp_c;
   std::vector<int> temp_i{0};
   for (const auto &v : vehicles_) {
@@ -71,7 +82,12 @@ GASolution::GASolution(const std::vector<Node> &nodes,
                        const std::vector<Vehicle> &vehicles,
                        const std::vector<std::vector<double>> &distanceMatrix,
                        const int n_chromosomes, const int generations)
-                       : Solution(nodes, vehicles, distanceMatrix), n_chromosomes_(n_chromosomes), generations_(generations), n_nucleotide_pairs_(nodes_.size() - 1), costs_(std::vector<double>(n_chromosomes)), n_vehicles_(vehicles_.size()) {
+    : Solution(nodes, vehicles, distanceMatrix),
+      n_chromosomes_(n_chromosomes),
+      generations_(generations),
+      n_nucleotide_pairs_(nodes_.size() - 1),
+      costs_(std::vector<double>(n_chromosomes)),
+      n_vehicles_(vehicles_.size()) {
   GenerateRandomSolutions();
   for (int i = 0; i < n_chromosomes; i++) {
     MakeValid(i);
@@ -86,7 +102,8 @@ std::vector<int> GASolution::GenerateRandomSolution() const {
   for (int i = 0; i < n_nucleotide_pairs_; ++i) {
     temp[i] = i + 1;
   }
-  unsigned seed = rand();  // std::chrono::system_clock::now().time_since_epoch().count();
+  unsigned seed =
+      rand();  // std::chrono::system_clock::now().time_since_epoch().count();
   std::shuffle(temp.begin(), temp.end(), std::default_random_engine(seed));
   return temp;
 }
@@ -225,13 +242,15 @@ void GASolution::RemoveSimilarSolutions() {
       }
       int count = 0;
       for (int k = 0; k < n_nucleotide_pairs_; k++) {
-        if (chromosomes_[i][k] == chromosomes_[j][k])  {
+        if (chromosomes_[i][k] == chromosomes_[j][k]) {
           count++;
         }
       }
       if (count > weight_95 * n_nucleotide_pairs_ &&
-          ((costs_[i] > weight_95 * costs_[j] && costs_[i] < weight_105 * costs_[j]) ||
-           (costs_[j] > weight_95 * costs_[i] && costs_[j] < weight_105 * costs_[i]))) {
+          ((costs_[i] > weight_95 * costs_[j] &&
+            costs_[i] < weight_105 * costs_[j]) ||
+           (costs_[j] > weight_95 * costs_[i] &&
+            costs_[j] < weight_105 * costs_[i]))) {
         if (costs_[i] > costs_[j]) {
           to_delete.insert(i);
         } else {
@@ -494,7 +513,8 @@ void GASolution::InsertionBySimilarity() {
   best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
   bool flag = true;
   for (int i = 0; i < n_nucleotide_pairs_; ++i) {
-    if (i != best_ && costs_.back() - costs_[i] < 2 * (costs_[best_] / total_percentage)) {
+    if (i != best_ &&
+        costs_.back() - costs_[i] < 2 * (costs_[best_] / total_percentage)) {
       costs_.erase(costs_.begin() + i);
       chromosomes_.erase(chromosomes_.begin() + i);
       iterators_.erase(iterators_.begin() + i);
@@ -708,7 +728,7 @@ void GASolution::RandomSwap() {
     best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
     int r = rand() % n_chromosomes_;
     while (r == best_) {
-      r = rand()%n_chromosomes_;
+      r = rand() % n_chromosomes_;
     }
     size_t i1 = rand() % n_nucleotide_pairs_;
     size_t i2 = rand() % n_nucleotide_pairs_;
@@ -730,7 +750,8 @@ void GASolution::RandomSwap() {
 
 void GASolution::AddBest() {
   best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
-  const int worst = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
+  const int worst =
+      std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
   chromosomes_[worst] = chromosomes_[best_];
   costs_[worst] = costs_[best_];
   iterators_[worst] = iterators_[best_];

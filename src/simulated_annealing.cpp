@@ -52,11 +52,14 @@ SimulatedAnnealingSolution::SimulatedAnnealingSolution(
 
 inline bool SimulatedAnnealingSolution::AllowMove(const double delta,
                                                   const double temp) {
-  return (delta < -margin_of_error) || ((static_cast<double>(rand()) / RAND_MAX) < std::exp(-delta / temp));
+  return (delta < -margin_of_error) ||
+         ((static_cast<double>(rand()) / RAND_MAX) < std::exp(-delta / temp));
 }
 
 void SimulatedAnnealingSolution::Solve() {
-  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
+  double cost = std::accumulate(
+      std::begin(vehicles_), std::end(vehicles_), 0.0,
+      [](const double sum, const Vehicle& v) { return sum + v.cost_; });
   auto best_vehicles = vehicles_;
   double best_cost = cost;
   double current_cost = cost;
@@ -117,7 +120,9 @@ void SimulatedAnnealingSolution::Solve() {
     }
   }
   vehicles_ = best_vehicles;
-  cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
+  cost = std::accumulate(
+      std::begin(vehicles_), std::end(vehicles_), 0.0,
+      [](const double sum, const Vehicle& v) { return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
   for (const auto& i : nodes_) {
     if (!i.is_routed_) {

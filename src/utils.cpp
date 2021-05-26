@@ -60,13 +60,18 @@ void PrintVehicleRoute(const Vehicle &v) {
 Solution::Solution(std::vector<Node> nodes,
                    const std::vector<Vehicle> &vehicles,
                    std::vector<std::vector<double>> distanceMatrix)
-    : nodes_(std::move(nodes)), vehicles_(vehicles), distanceMatrix_(std::move(distanceMatrix)) {
+    : nodes_(std::move(nodes)),
+      vehicles_(vehicles),
+      distanceMatrix_(std::move(distanceMatrix)) {
   depot_ = nodes_[0];
   capacity_ = vehicles[0].load_;
 }
 
-Solution::Solution(const Problem& p)
-  : nodes_(p.nodes_), vehicles_(p.vehicles_), distanceMatrix_(p.distanceMatrix_), capacity_(p.capacity_) {
+Solution::Solution(const Problem &p)
+    : nodes_(p.nodes_),
+      vehicles_(p.vehicles_),
+      distanceMatrix_(p.distanceMatrix_),
+      capacity_(p.capacity_) {
   depot_ = nodes_[0];
 }
 
@@ -74,8 +79,7 @@ void Solution::CreateInitialSolution() {
   for (auto &v : vehicles_) {
     while (true) {
       const auto [found, closest_node] = find_closest(v);
-      if (found &&
-          v.load_ - closest_node.demand_ >= 0) {  // }.2*capacity){
+      if (found && v.load_ - closest_node.demand_ >= 0) {  // }.2*capacity){
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
         v.nodes_.push_back(closest_node.id_);
@@ -121,7 +125,8 @@ bool Solution::CheckSolutionValid() const {
       return false;
     }
   }
-  return std::all_of(std::begin(check_nodes), std::end(check_nodes), [](const bool b){ return b; });
+  return std::all_of(std::begin(check_nodes), std::end(check_nodes),
+                     [](const bool b) { return b; });
 }
 
 Problem::Problem(const int noc, const int demand_range, const int nov,
@@ -155,14 +160,16 @@ Problem::Problem(const int noc, const int demand_range, const int nov,
       int x = ran(eng);
       int y = ran(eng);
       for (int j = 0; j < n_p_c; j++) {
-        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
+        nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
+                            false);
         id++;
       }
     }
     int x = ran(eng);
     int y = ran(eng);
     for (int j = 0; j < remain; j++) {
-      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng), false);
+      nodes_.emplace_back(x + ran_c(eng), y + ran_c(eng), id, ran_d(eng),
+                          false);
       id++;
     }
   }
@@ -174,8 +181,8 @@ Problem::Problem(const int noc, const int demand_range, const int nov,
   }
   for (size_t i = 0; i < nodes_.size(); ++i) {
     for (size_t j = i; j < nodes_.size(); ++j) {
-      distanceMatrix_[i][j] =
-          sqrt(pow((nodes_[i].x_ - nodes_[j].x_), 2) + pow((nodes_[i].y_ - nodes_[j].y_), 2));
+      distanceMatrix_[i][j] = sqrt(pow((nodes_[i].x_ - nodes_[j].x_), 2) +
+                                   pow((nodes_[i].y_ - nodes_[j].y_), 2));
       distanceMatrix_[j][i] = distanceMatrix_[i][j];
     }
   }

@@ -20,7 +20,8 @@ class GreedySolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * greedy algorithm
    */
-  GreedySolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+  GreedySolution(const std::vector<Node>& nodes,
+                 const std::vector<Vehicle>& vehicles,
                  const std::vector<std::vector<double>>& distanceMatrix);
 
   /**
