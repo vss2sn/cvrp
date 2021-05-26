@@ -7,6 +7,7 @@
 #include "cvrp/greedy.hpp"
 
 #include <iostream>
+#include <numeric>
 
 GreedySolution::GreedySolution(const std::vector<Node>& nodes,
                                const std::vector<Vehicle>& vehicles,
@@ -19,8 +20,8 @@ GreedySolution::GreedySolution(const Problem& p)
 void GreedySolution::Solve() {
   for (auto &v : vehicles_) {
     while (true) {
-      Node closest_node = find_closest(v);
-      if (closest_node.id_ != -1 && v.load_ - closest_node.demand_ >= 0) {
+      const auto [found, closest_node] = find_closest(v);
+      if (found && v.load_ - closest_node.demand_ >= 0) {
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
         v.nodes_.push_back(closest_node.id_);
@@ -33,12 +34,8 @@ void GreedySolution::Solve() {
     }
   }
 
-  double cost = 0;
-  for (const auto &v : vehicles_)  {
-    cost += v.cost_;
-  }
+  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
-
   for (const auto &i : nodes_) {
     if (!i.is_routed_) {
       std::cout << "Unreached node: " << '\n';

@@ -8,8 +8,8 @@
 #define UTILS_HPP
 
 #include <string>
+#include <tuple>
 #include <vector>
-
 /**
  * @brief struct node
  * @details Contains the x, y coordinates of the locationof the node, its id,
@@ -139,7 +139,7 @@ class Solution {
    * @return no return type
    * @details Constructor for solution struct
    */
-  Solution(const Problem &p);
+  Solution(const Problem& p);
 
   /**
    * @brief Copy constructor
@@ -203,11 +203,11 @@ class Solution {
   /**
    * @brief find closest node
    * @param v vehicle under consideration
-   * @return Node nearest node
+   * @return tuple containing bool as to whether a Node was found and the nearest node
    * @details Finds the node nearest to the last node in the route of the
    * vehicle under constideration that has not been routed already
    */
-  Node find_closest(const Vehicle &v) const;
+  std::tuple<bool, Node> find_closest(const Vehicle &v) const;
 
   /**
    * @brief Prints the status of solution

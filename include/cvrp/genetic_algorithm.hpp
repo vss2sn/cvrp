@@ -37,7 +37,7 @@ class GASolution : public Solution {
    * @return No return parameter
    * @details Constructor
    */
-  GASolution(const Problem& p, const int n_chromosomes = 10, const int generations = 100);
+  explicit GASolution(const Problem& p, const int n_chromosomes = 10, const int generations = 100);
 
   /**
    * @brief Constructor
@@ -48,7 +48,7 @@ class GASolution : public Solution {
    * @return No return parameter
    * @details Constructor
    */
-  GASolution(const Solution& s, const int n_chromosomes = 10, const int generations = 100);
+  explicit GASolution(const Solution& s, const int n_chromosomes = 10, const int generations = 100);
 
   /**
    * @brief Function called to solve the given problem using Genetic Algorithm
@@ -59,13 +59,13 @@ class GASolution : public Solution {
   void Solve() override;
 
  private:
+  const int n_chromosomes_;
+  const int generations_;
+  const size_t n_nucleotide_pairs_;
+  std::vector<double> costs_;
+  const int n_vehicles_;
   std::vector<std::vector<int>> chromosomes_;
   std::vector<std::vector<int>> iterators_;
-  std::vector<double> costs_;
-  const size_t n_nucleotide_pairs_;
-  const int n_chromosomes_;
-  const int n_vehicles_;
-  const int generations_;
   int best_ = 0;
 
   /**
@@ -220,7 +220,7 @@ class GASolution : public Solution {
    * @return double calculated cost
    * @details Calculates the cost of a given solution
    */
-  double CalculateCost(int i);
+  double CalculateCost(const int i) const ;
 
   /**
    * @brief Calculates the cost of all solutions
@@ -285,7 +285,7 @@ class GASolution : public Solution {
    * the nodes on each of the routes does not exceed vehicle capacity)
    * @details Checks whether a solution is valid
    */
-  bool checkValidity(int i);
+  bool checkValidity(const int i) const;
 
   /**
    * @brief Attempts to make a solution valid

@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <limits>
+#include <numeric>
 
 #include "cvrp/local_search_inter_intra.hpp"
 
@@ -33,10 +34,6 @@ LocalSearchInterIntraSolution::LocalSearchInterIntraSolution(const Solution &s)
 }
 
 void LocalSearchInterIntraSolution::Solve() {
-  double cost = 0;
-  for (const auto &v : vehicles_) {
-    cost += v.cost_;
-  }
   while (true) {
     int best_c = -1;
     int best_r = -1;
@@ -89,10 +86,7 @@ void LocalSearchInterIntraSolution::Solve() {
     v_temp->load_ += nodes_[val_best_c].demand_;
     v_temp_2->load_ -= nodes_[val_best_c].demand_;
   }
-  cost = 0;
-  for (const auto &v : vehicles_) {
-    cost += v.cost_;
-  }
+  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
   for (const auto &i : nodes_) {
     if (!i.is_routed_) {

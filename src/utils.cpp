@@ -7,9 +7,11 @@
 
 #include "cvrp/utils.hpp"
 
+#include <algorithm>
 #include <iostream>
 #include <limits>
 #include <random>
+#include <tuple>
 #include <utility>
 
 std::ostream &operator<<(std::ostream &os, const Node &node) {
@@ -63,19 +65,16 @@ Solution::Solution(std::vector<Node> nodes,
   capacity_ = vehicles[0].load_;
 }
 
-Solution::Solution(const Problem &p) {
-  nodes_ = p.nodes_;
-  vehicles_ = p.vehicles_;
-  distanceMatrix_ = p.distanceMatrix_;
+Solution::Solution(const Problem& p)
+  : nodes_(p.nodes_), vehicles_(p.vehicles_), distanceMatrix_(p.distanceMatrix_), capacity_(p.capacity_) {
   depot_ = nodes_[0];
-  capacity_ = p.capacity_;
 }
 
 void Solution::CreateInitialSolution() {
   for (auto &v : vehicles_) {
     while (true) {
-      Node closest_node = find_closest(v);
-      if (closest_node.id_ != -1 &&
+      const auto [found, closest_node] = find_closest(v);
+      if (found &&
           v.load_ - closest_node.demand_ >= 0) {  // }.2*capacity){
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
@@ -90,20 +89,22 @@ void Solution::CreateInitialSolution() {
   }
 }
 
-Node Solution::find_closest(const Vehicle &v) const {
+std::tuple<bool, Node> Solution::find_closest(const Vehicle &v) const {
   double cost = std::numeric_limits<double>::max();
-  int id = -1;
+  size_t id = 0;
+  bool found = false;
   for (size_t j = 0; j < distanceMatrix_[0].size(); j++) {
     if (!nodes_[j].is_routed_ && nodes_[j].demand_ <= v.load_ &&
         distanceMatrix_[v.nodes_.back()][j] < cost) {
       cost = distanceMatrix_[v.nodes_.back()][j];
       id = j;
+      found = true;
     }
   }
-  if (id != -1) {
-    return nodes_[id];
+  if (found) {
+    return {true, nodes_[id]};
   }
-  return Node(0, 0, -1, 0);
+  return {false, Node()};
 }
 
 bool Solution::CheckSolutionValid() const {
@@ -120,12 +121,7 @@ bool Solution::CheckSolutionValid() const {
       return false;
     }
   }
-  for (auto b : check_nodes) {
-    if (!b) {
-      return false;
-    }
-  }
-  return true;
+  return std::all_of(std::begin(check_nodes), std::end(check_nodes), [](const bool b){ return b; });
 }
 
 Problem::Problem(const int noc, const int demand_range, const int nov,
@@ -179,8 +175,7 @@ Problem::Problem(const int noc, const int demand_range, const int nov,
   for (size_t i = 0; i < nodes_.size(); ++i) {
     for (size_t j = i; j < nodes_.size(); ++j) {
       distanceMatrix_[i][j] =
-          sqrt(static_cast<double>(pow((nodes_[i].x_ - nodes_[j].x_), 2) +
-                      pow((nodes_[i].y_ - nodes_[j].y_), 2)));
+          sqrt(pow((nodes_[i].x_ - nodes_[j].x_), 2) + pow((nodes_[i].y_ - nodes_[j].y_), 2));
       distanceMatrix_[j][i] = distanceMatrix_[i][j];
     }
   }

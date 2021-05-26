@@ -123,9 +123,8 @@ void GASolution::GenerateRandomSolutions() {
                  std::default_random_engine(seed));
   }
   for (int j = 0; j < n_chromosomes_; j++) {
-    std::vector<int> temp_i(n_vehicles_ + 1);
+    std::vector<int> temp_i(n_vehicles_ + 1, 0);
     std::unordered_set<int> added;
-    temp_i[0] = 0;
     for (int i = 1; i < n_vehicles_; ++i) {
       size_t n = rand() % n_nucleotide_pairs_;
       if (added.find(n) != added.end()) {
@@ -146,8 +145,8 @@ void GASolution::GenerateGreedySolutions() {
   iter.push_back(0);
   for (auto &v : vehicles_2) {
     while (true) {
-      Node closest_node = find_closest(v);
-      if (closest_node.id_ != -1 && v.load_ - closest_node.demand_ >= 0) {
+      const auto [found, closest_node] = find_closest(v);
+      if (found && v.load_ - closest_node.demand_ >= 0) {
         v.load_ -= closest_node.demand_;
         v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
         v.nodes_.push_back(closest_node.id_);
@@ -160,10 +159,6 @@ void GASolution::GenerateGreedySolutions() {
         break;
       }
     }
-  }
-  double cost = 0;
-  for (const auto &v : vehicles_2) {
-    cost += v.cost_;
   }
   if (gs.size() != size_t(n_nucleotide_pairs_)) {
     std::cout << "Initial solution does not contain all the nodes_. Exiting\n";
@@ -186,14 +181,15 @@ void GASolution::GenerateGreedySolutions() {
     for (auto &v : vehicles_2) {
       while (true) {
         Node closest_node;
+        bool found = false;
         if (count == 0) {
           size_t i = rand() % (n_nucleotide_pairs_ - 1) + 1;
           closest_node = nodes_[i];
           count++;
         } else {
-          closest_node = find_closest(v);
+          std::tie(found, closest_node) = find_closest(v);
         }
-        if (closest_node.id_ != -1 && v.load_ - closest_node.demand_ >= 0) {
+        if (found && v.load_ - closest_node.demand_ >= 0) {
           v.load_ -= closest_node.demand_;
           v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
           v.nodes_.push_back(closest_node.id_);
@@ -255,7 +251,7 @@ void GASolution::RemoveSimilarSolutions() {
   }
 }
 
-double GASolution::CalculateCost(int i) {
+double GASolution::CalculateCost(const int i) const {
   double cost = 0;
   for (size_t k = 0; k < iterators_[0].size() - 1; k++) {
     if (iterators_[i][k] == n_nucleotide_pairs_) {
@@ -371,8 +367,8 @@ void GASolution::Solve() {
 }
 
 void GASolution::HGreXCrossover() {
-  int p1 = TournamentSelection();
-  int p2 = TournamentSelection();
+  const int p1 = TournamentSelection();
+  const int p2 = TournamentSelection();
   std::vector<int> child;
   std::unordered_set<int> reached;
   auto *itp1 = &(chromosomes_[p1]);
@@ -690,7 +686,7 @@ bool GASolution::MutateIterRight(const int i_chromosome, const int j_in) {
   return true;
 }
 
-bool GASolution::checkValidity(int i) {
+bool GASolution::checkValidity(const int i) const {
   for (int j = 0; j < n_vehicles_; j++) {
     int load = capacity_;
     int iter = iterators_[i][j];

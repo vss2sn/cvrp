@@ -47,7 +47,7 @@ class SimulatedAnnealingSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  SimulatedAnnealingSolution(const Problem& p, const int stag_limit = 500000,
+  explicit SimulatedAnnealingSolution(const Problem& p, const int stag_limit = 500000,
                              const double init_temp = 5000,
                              const double cooling_rate = 0.9999,
                              const int n_reheats = 20
@@ -67,7 +67,7 @@ class SimulatedAnnealingSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * Simulated Annealing Algorithm
    */
-  SimulatedAnnealingSolution(const Solution& s, int stag_limit = 500000,
+  explicit SimulatedAnnealingSolution(const Solution& s, int stag_limit = 500000,
                              double init_temp = 5000,
                              double cooling_rate = 0.9999,
                              const int n_reheats = 20
@@ -83,10 +83,10 @@ class SimulatedAnnealingSolution : public Solution {
   void Solve() override;
 
  private:
-  const double cooling_rate_;
-  const double init_temp_;
-  const int n_reheats_;
   const int stag_limit_;
+  const double init_temp_;
+  const double cooling_rate_;
+  const int n_reheats_;
   /**
    * @brief Checks whether the move is allowable
    * @param delta change in cost of solution due to move

@@ -8,6 +8,7 @@
 #include "cvrp/local_search_intra.hpp"
 
 #include <iostream>
+#include <numeric>
 
 constexpr double margin_of_error = 0.00001;
 
@@ -32,10 +33,6 @@ LocalSearchIntraSolution::LocalSearchIntraSolution(const Solution& s)
 }
 
 void LocalSearchIntraSolution::Solve() {
-  double cost = 0;
-  for (const auto& v : vehicles_) {
-    cost += v.cost_;
-  }
   for (auto& v : vehicles_) {
     while (true) {
       double delta = 0;
@@ -77,10 +74,7 @@ void LocalSearchIntraSolution::Solve() {
       v.CalculateCost(distanceMatrix_);
     }
   }
-  cost = 0;
-  for (const auto& v : vehicles_) {
-    cost += v.cost_;
-  }
+  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
   for (const auto& i : nodes_) {
     if (!i.is_routed_) {

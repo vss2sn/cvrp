@@ -30,7 +30,7 @@ class GreedySolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using
    * greedy algorithm
    */
-  GreedySolution(const Problem& p);
+  explicit GreedySolution(const Problem& p);
 
   /**
    * @brief Function called to solve the given problem using a greedy algorithm

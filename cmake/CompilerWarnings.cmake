@@ -42,8 +42,8 @@ function(set_project_warnings project_name)
       -Wunused # warn on anything being unused
       -Woverloaded-virtual # warn if you overload (not override) a virtual function
       -Wpedantic # warn if non-standard C++ is used
-      -Wconversion # warn on type conversions that may lose data
-      -Wsign-conversion # warn on sign conversions
+      -Wno-conversion # warn on type conversions that may lose data
+      # -Wsign-conversion # warn on sign conversions
       -Wnull-dereference # warn if a null dereference is detected
       -Wdouble-promotion # warn if float is implicit promoted to double
       -Wformat=2 # warn on security issues around functions that format output (ie printf)
@@ -54,6 +54,7 @@ function(set_project_warnings project_name)
     set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
   endif()
 
+
   set(GCC_WARNINGS
       ${CLANG_WARNINGS}
       -Wmisleading-indentation # warn if indentation implies blocks where blocks do not exist
@@ -61,6 +62,8 @@ function(set_project_warnings project_name)
       -Wduplicated-branches # warn if if / else branches have duplicated code
       -Wlogical-op # warn about logical operations being used where bitwise were probably wanted
       -Wuseless-cast # warn if you perform a cast to the same type
+      -Wno-sign-compare # Suppress sign compare errors as too many and unable to address all as of now
+      # TODO(vss): Remove the last flag
   )
 
   if(MSVC)

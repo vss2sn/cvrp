@@ -32,7 +32,7 @@ class LocalSearchInterIntraSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Local
    * Search within all vehicles
    */
-  LocalSearchInterIntraSolution(const Problem& p);
+  explicit LocalSearchInterIntraSolution(const Problem& p);
 
   /**
    * @brief Constructor
@@ -42,7 +42,7 @@ class LocalSearchInterIntraSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Local
    * Search within all vehicles
    */
-  LocalSearchInterIntraSolution(const Solution& s);
+  explicit LocalSearchInterIntraSolution(const Solution& s);
 
   /**
    * @brief Function called to solve the given problem using a local search

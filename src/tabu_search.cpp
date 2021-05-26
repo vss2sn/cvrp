@@ -6,6 +6,7 @@
 
 #include "cvrp/tabu_search.hpp"
 
+#include <numeric>
 #include <iostream>
 
 TabuSearchSolution::TabuSearchSolution(
@@ -38,11 +39,7 @@ inline bool TabuSearchSolution::Aspiration(const double cost_increase,
 }
 
 void TabuSearchSolution::Solve() {
-  double cost = 0;
-  for (const auto &v : vehicles_) {
-    cost += v.cost_;
-  }
-
+  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
   tabu_list_set_.clear();
   for (int i = 0; i < n_tabu_; i++) {
     tabu_list_queue_.emplace();
@@ -119,10 +116,7 @@ void TabuSearchSolution::Solve() {
     v_temp->load_ += nodes_[val_best_c].demand_;
     v_temp_2->load_ -= nodes_[val_best_c].demand_;
 
-    new_cost_ = 0;
-    for (const auto &v : vehicles_) {
-      new_cost_ += v.cost_;
-    }
+    new_cost_ = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
 
     if (new_cost_ < best_cost_) {
       best_vehicles = vehicles_;
@@ -134,10 +128,7 @@ void TabuSearchSolution::Solve() {
     tabu_list_queue_.pop();
   }
   vehicles_ = best_vehicles;
-  cost = 0;
-  for (const auto &v : vehicles_) {
-    cost += v.cost_;
-  }
+  cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
   for (const auto &i : nodes_) {
     if (!i.is_routed_) {

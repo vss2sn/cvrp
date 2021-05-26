@@ -8,6 +8,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <numeric>
 
 constexpr double margin_of_error = 0.0000000001;
 
@@ -55,18 +56,14 @@ inline bool SimulatedAnnealingSolution::AllowMove(const double delta,
 }
 
 void SimulatedAnnealingSolution::Solve() {
-  double cost = 0;
-  double temp = 0;
-  for (const auto& v : vehicles_) {
-    cost += v.cost_;
-  }
+  double cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
   auto best_vehicles = vehicles_;
   double best_cost = cost;
   double current_cost = cost;
   for (int r = 0; r < n_reheats_; r++) {
     // std::cout << "Reheat number: " << r << '\n';
     int stag = stag_limit_;
-    temp = init_temp_;
+    double temp = init_temp_;
     while (--stag >= 0) {
       temp *= cooling_rate_;
       const int n_vehicles = vehicles_.size();
@@ -120,10 +117,7 @@ void SimulatedAnnealingSolution::Solve() {
     }
   }
   vehicles_ = best_vehicles;
-  cost = 0;
-  for (const auto& v : vehicles_) {
-    cost += v.cost_;
-  }
+  cost = std::accumulate(std::begin(vehicles_), std::end(vehicles_), 0.0, [](const double sum, const Vehicle& v){ return sum + v.cost_; });
   std::cout << "Cost: " << cost << '\n';
   for (const auto& i : nodes_) {
     if (!i.is_routed_) {

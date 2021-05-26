@@ -58,7 +58,7 @@ class TabuSearchSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(const Problem& p, const int n_tabu = 50, const int max_it = 500);
+  explicit TabuSearchSolution(const Problem& p, const int n_tabu = 50, const int max_it = 500);
 
   /**
    * @brief Constructor
@@ -70,7 +70,7 @@ class TabuSearchSolution : public Solution {
    * @details Constructor for initial setup of problem, and solution using Tabu
    * Search Algorithm
    */
-  TabuSearchSolution(const Solution& s, const int n_tabu = 50, const int max_it = 500);
+  explicit TabuSearchSolution(const Solution& s, const int n_tabu = 50, const int max_it = 500);
 
   /**
    * @brief Function called to solve the given problem using a tabu search
@@ -82,8 +82,8 @@ class TabuSearchSolution : public Solution {
   void Solve() override;
 
  private:
-  const int max_it_;
   int n_tabu_;
+  const int max_it_;
   double best_cost_ = std::numeric_limits<double>::max();
   double new_cost_ = std::numeric_limits<double>::max();
 
