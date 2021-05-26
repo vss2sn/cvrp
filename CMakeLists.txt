@@ -23,11 +23,11 @@ include(cmake/Cache.cmake)
 
 # standard compiler warnings
 include(cmake/CompilerWarnings.cmake)
-set_project_warnings(project_warnings)
+# set_project_warnings(project_warnings)
 
 # sanitizer options if supported by compiler
 include(cmake/Sanitizers.cmake)
-enable_sanitizers(project_options)
+# enable_sanitizers(project_options)
 
 # allow for static analysis options
 include(cmake/StaticAnalyzers.cmake)
@@ -37,4 +37,5 @@ add_executable(cvrp main/main.cpp)
 target_include_directories(cvrp PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_sources(cvrp PRIVATE ${LIB_SOURCES})
 target_compile_options (cvrp PRIVATE -O3)
-target_link_libraries(cvrp PRIVATE project_options project_warnings)
+target_link_libraries(cvrp PRIVATE project_options project_warnings sfml-graphics sfml-window sfml-system
+)
