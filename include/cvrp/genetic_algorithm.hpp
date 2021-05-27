@@ -1,11 +1,11 @@
 /**
  * @file genetic_algorithm.hpp
  * @author vss2sn
- * @brief Contiains the GASolution (Genetic Algorithm Solution) class
+ * @brief Contains the GASolution (Genetic Algorithm Solution) class
  */
 
-#ifndef GA_HPP
-#define GA_HPP
+#ifndef GENETIC_ALGORITHM_HPP
+#define GENETIC_ALGORITHM_HPP
 
 #include <unordered_set>
 
@@ -305,4 +305,4 @@ class GASolution : public Solution {
   void MakeValid(const int i);
 };
 
-#endif  // GA_HPP
+#endif  // GENETIC_ALGORITHM_HPP

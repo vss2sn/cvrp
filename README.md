@@ -32,6 +32,7 @@
 - [Documentation](#docs)
 - [Overview of Algorithm Implementations](#algorithm_implementations)
 - [Notes](#notes)
+- [Visualization](#visualization)
 - [TODOs](#todos)
 
 <a name="overview"></a>
@@ -46,7 +47,7 @@
 <a name="docs"></a>
 #### Documentation: ####
 1. [Documentation](https://vss2sn.github.io/cvrp/) can be found on GitHub pages.
-2. It has been created using Doxygen, and pip3 packages Sphinx (sphinx==1.8.3), Breathe (breathe==4.12.0), Exhale (exhale==0.2.2), Read the Docs Sphinx Theme (sphinx_rtd_theme==0.4.3) and m2r.
+2. It has been created using `Doxygen`, and pip3 packages `Sphinx` (`sphinx==1.8.31`), `Breathe` (breathe==4.12.0), `Exhale` (`exhale==0.2.2`),` Read the Docs` Sphinx Theme (`sphinx_rtd_theme==0.4.3`) and `m2r`.
 
 <a name="algorithm_implementations"></a>
 #### Overview of Algorithm Implementations ####
@@ -57,6 +58,11 @@ For a brief overview on the implementations of the algorithms, please refer to t
 1. The documentation for private functions (such as operators in the `GASolution` class) has been made available to aid understanding.
 2. Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of `main.cpp`.
 
+<a name="visualization"></a>
+#### Visualization: ####
+This repository (**optionally**) uses `SFML` for visualization. It can be installed using `sudo apt install libsfml-dev`.
+To run with `SFML`, include the header file `graphics_utils.hpp` in `main.cpp`, and use the function `DisplaySolution(<solution>)`, passing in the solution to e displayed, and build the code with `cmake .. -DDISPLAY_SOLUTION=ON`, or modify its value in `ProjectSpecificSettings.cmake`.
+
 <a name="todos"></a>
 #### TODOs: ####
 1. Read in problem from a file.
@@ -66,5 +72,4 @@ For a brief overview on the implementations of the algorithms, please refer to t
 5. Consider modifying to allow heterogeneous vehicles.
 6. Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.
 7. Consider adding in a clustering algorithm to break large problems into a `vector` of small problems.
-8. Consider adding visualization based on sfml
-9. Refactor genetic algorithm to use a struct
+8. Refactor genetic algorithm to use a struct

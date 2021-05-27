@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(cvrp CXX)
 
 include(cmake/StandardProjectSettings.cmake)
+include(cmake/ProjectSpecificSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
 
 # Link this 'library' to set the c++ standard / compile-time options requested
@@ -23,19 +24,26 @@ include(cmake/Cache.cmake)
 
 # standard compiler warnings
 include(cmake/CompilerWarnings.cmake)
-# set_project_warnings(project_warnings)
+set_project_warnings(project_warnings)
 
 # sanitizer options if supported by compiler
 include(cmake/Sanitizers.cmake)
-# enable_sanitizers(project_options)
+enable_sanitizers(project_options)
 
 # allow for static analysis options
 include(cmake/StaticAnalyzers.cmake)
 
-file( GLOB LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
+file( GLOB LIB_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
+if(NOT DISPLAY_SOLUTION)
+  LIST(REMOVE_ITEM LIB_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/graphics_utils.cpp)
+endif(NOT DISPLAY_SOLUTION)
+
 add_executable(cvrp main/main.cpp)
 target_include_directories(cvrp PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_sources(cvrp PRIVATE ${LIB_SOURCES})
 target_compile_options (cvrp PRIVATE -O3)
-target_link_libraries(cvrp PRIVATE project_options project_warnings sfml-graphics sfml-window sfml-system
-)
+target_link_libraries(cvrp PRIVATE project_options project_warnings)
+
+if(DISPLAY_SOLUTION)
+  target_link_libraries(cvrp PRIVATE sfml-graphics sfml-window sfml-system)
+endif (DISPLAY_SOLUTION)
