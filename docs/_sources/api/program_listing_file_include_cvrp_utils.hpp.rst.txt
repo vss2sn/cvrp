@@ -15,8 +15,8 @@ Program Listing for File utils.hpp
    #define UTILS_HPP
    
    #include <string>
+   #include <tuple>
    #include <vector>
-   
    struct Node {
     public:
      int x_, y_, id_, demand_;
@@ -69,7 +69,7 @@ Program Listing for File utils.hpp
      Solution(std::vector<Node> nodes, const std::vector<Vehicle> &vehicles,
               std::vector<std::vector<double>> distanceMatrix);
    
-     Solution(const Problem &p);
+     explicit Solution(const Problem &p);
    
      Solution(const Solution &s) = default;
    
@@ -87,9 +87,17 @@ Program Listing for File utils.hpp
    
      virtual void Solve() = 0;
    
-     Node find_closest(const Vehicle &v) const;
+     std::tuple<bool, Node> find_closest(const Vehicle &v) const;
    
      void PrintSolution(const std::string &option = "") const;
+   
+     std::vector<Node> GetNodes() const {
+       return nodes_;
+     }
+   
+     std::vector<Vehicle> GetVehicles() const {
+       return vehicles_;
+     }
    
     protected:
      std::vector<Node> nodes_;

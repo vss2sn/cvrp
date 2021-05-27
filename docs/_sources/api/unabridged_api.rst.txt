@@ -69,6 +69,21 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+   function_graphics__utils_8cpp_1aeef937b47ce5fd7086ff3724fa70c866.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_graphics__utils_8hpp_1aeef937b47ce5fd7086ff3724fa70c866.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_graphics__utils_8cpp_1ab650bca4143cd8d6bb1e371c5b7dd491.rst
+
+.. toctree::
+   :maxdepth: 5
+
    function_main_8cpp_1a2c3f6775325c30275d11c6abee2db6a0.rst
 
 .. toctree::
@@ -100,6 +115,11 @@ Functions
    :maxdepth: 5
 
    function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_graphics__utils_8cpp_1a9fa54157e9449ec84d6deaa8429964ac.rst
 
 Variables
 *********
@@ -182,6 +202,16 @@ Files
    :maxdepth: 5
 
    file_include_cvrp_genetic_algorithm.hpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_src_graphics_utils.cpp.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file_include_cvrp_graphics_utils.hpp.rst
 
 .. toctree::
    :maxdepth: 5

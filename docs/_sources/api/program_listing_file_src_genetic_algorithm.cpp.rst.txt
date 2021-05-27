@@ -22,7 +22,12 @@ Program Listing for File genetic_algorithm.cpp
    
    GASolution::GASolution(const Problem &p, const int n_chromosomes,
                           const int generations)
-       : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_), n_chromosomes_(n_chromosomes), generations_(generations), n_nucleotide_pairs_(nodes_.size() - 1), costs_(std::vector<double>(n_chromosomes)), n_vehicles_(vehicles_.size()) {
+       : Solution(p.nodes_, p.vehicles_, p.distanceMatrix_),
+         n_chromosomes_(n_chromosomes),
+         generations_(generations),
+         n_nucleotide_pairs_(nodes_.size() - 1),
+         costs_(std::vector<double>(n_chromosomes)),
+         n_vehicles_(vehicles_.size()) {
      GenerateRandomSolutions();
      for (int i = 0; i < n_chromosomes; i++) {
        MakeValid(i);
@@ -33,7 +38,13 @@ Program Listing for File genetic_algorithm.cpp
    }
    
    GASolution::GASolution(const Solution &s, const int n_chromosomes,
-                          const int generations) : Solution(s), n_chromosomes_(n_chromosomes), generations_(generations), n_nucleotide_pairs_(nodes_.size() - 1), costs_(std::vector<double>(n_chromosomes)), n_vehicles_(vehicles_.size()) {
+                          const int generations)
+       : Solution(s),
+         n_chromosomes_(n_chromosomes),
+         generations_(generations),
+         n_nucleotide_pairs_(nodes_.size() - 1),
+         costs_(std::vector<double>(n_chromosomes)),
+         n_vehicles_(vehicles_.size()) {
      std::vector<int> temp_c;
      std::vector<int> temp_i{0};
      for (const auto &v : vehicles_) {
@@ -78,7 +89,12 @@ Program Listing for File genetic_algorithm.cpp
                           const std::vector<Vehicle> &vehicles,
                           const std::vector<std::vector<double>> &distanceMatrix,
                           const int n_chromosomes, const int generations)
-                          : Solution(nodes, vehicles, distanceMatrix), n_chromosomes_(n_chromosomes), generations_(generations), n_nucleotide_pairs_(nodes_.size() - 1), costs_(std::vector<double>(n_chromosomes)), n_vehicles_(vehicles_.size()) {
+       : Solution(nodes, vehicles, distanceMatrix),
+         n_chromosomes_(n_chromosomes),
+         generations_(generations),
+         n_nucleotide_pairs_(nodes_.size() - 1),
+         costs_(std::vector<double>(n_chromosomes)),
+         n_vehicles_(vehicles_.size()) {
      GenerateRandomSolutions();
      for (int i = 0; i < n_chromosomes; i++) {
        MakeValid(i);
@@ -93,7 +109,8 @@ Program Listing for File genetic_algorithm.cpp
      for (int i = 0; i < n_nucleotide_pairs_; ++i) {
        temp[i] = i + 1;
      }
-     unsigned seed = rand();  // std::chrono::system_clock::now().time_since_epoch().count();
+     unsigned seed =
+         rand();  // std::chrono::system_clock::now().time_since_epoch().count();
      std::shuffle(temp.begin(), temp.end(), std::default_random_engine(seed));
      return temp;
    }
@@ -130,9 +147,8 @@ Program Listing for File genetic_algorithm.cpp
                     std::default_random_engine(seed));
      }
      for (int j = 0; j < n_chromosomes_; j++) {
-       std::vector<int> temp_i(n_vehicles_ + 1);
+       std::vector<int> temp_i(n_vehicles_ + 1, 0);
        std::unordered_set<int> added;
-       temp_i[0] = 0;
        for (int i = 1; i < n_vehicles_; ++i) {
          size_t n = rand() % n_nucleotide_pairs_;
          if (added.find(n) != added.end()) {
@@ -153,8 +169,8 @@ Program Listing for File genetic_algorithm.cpp
      iter.push_back(0);
      for (auto &v : vehicles_2) {
        while (true) {
-         Node closest_node = find_closest(v);
-         if (closest_node.id_ != -1 && v.load_ - closest_node.demand_ >= 0) {
+         const auto [found, closest_node] = find_closest(v);
+         if (found && v.load_ - closest_node.demand_ >= 0) {
            v.load_ -= closest_node.demand_;
            v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
            v.nodes_.push_back(closest_node.id_);
@@ -167,10 +183,6 @@ Program Listing for File genetic_algorithm.cpp
            break;
          }
        }
-     }
-     double cost = 0;
-     for (const auto &v : vehicles_2) {
-       cost += v.cost_;
      }
      if (gs.size() != size_t(n_nucleotide_pairs_)) {
        std::cout << "Initial solution does not contain all the nodes_. Exiting\n";
@@ -193,14 +205,15 @@ Program Listing for File genetic_algorithm.cpp
        for (auto &v : vehicles_2) {
          while (true) {
            Node closest_node;
+           bool found = false;
            if (count == 0) {
              size_t i = rand() % (n_nucleotide_pairs_ - 1) + 1;
              closest_node = nodes_[i];
              count++;
            } else {
-             closest_node = find_closest(v);
+             std::tie(found, closest_node) = find_closest(v);
            }
-           if (closest_node.id_ != -1 && v.load_ - closest_node.demand_ >= 0) {
+           if (found && v.load_ - closest_node.demand_ >= 0) {
              v.load_ -= closest_node.demand_;
              v.cost_ += distanceMatrix_[v.nodes_.back()][closest_node.id_];
              v.nodes_.push_back(closest_node.id_);
@@ -236,13 +249,15 @@ Program Listing for File genetic_algorithm.cpp
          }
          int count = 0;
          for (int k = 0; k < n_nucleotide_pairs_; k++) {
-           if (chromosomes_[i][k] == chromosomes_[j][k])  {
+           if (chromosomes_[i][k] == chromosomes_[j][k]) {
              count++;
            }
          }
          if (count > weight_95 * n_nucleotide_pairs_ &&
-             ((costs_[i] > weight_95 * costs_[j] && costs_[i] < weight_105 * costs_[j]) ||
-              (costs_[j] > weight_95 * costs_[i] && costs_[j] < weight_105 * costs_[i]))) {
+             ((costs_[i] > weight_95 * costs_[j] &&
+               costs_[i] < weight_105 * costs_[j]) ||
+              (costs_[j] > weight_95 * costs_[i] &&
+               costs_[j] < weight_105 * costs_[i]))) {
            if (costs_[i] > costs_[j]) {
              to_delete.insert(i);
            } else {
@@ -262,7 +277,7 @@ Program Listing for File genetic_algorithm.cpp
      }
    }
    
-   double GASolution::CalculateCost(int i) {
+   double GASolution::CalculateCost(const int i) const {
      double cost = 0;
      for (size_t k = 0; k < iterators_[0].size() - 1; k++) {
        if (iterators_[i][k] == n_nucleotide_pairs_) {
@@ -378,8 +393,8 @@ Program Listing for File genetic_algorithm.cpp
    }
    
    void GASolution::HGreXCrossover() {
-     int p1 = TournamentSelection();
-     int p2 = TournamentSelection();
+     const int p1 = TournamentSelection();
+     const int p2 = TournamentSelection();
      std::vector<int> child;
      std::unordered_set<int> reached;
      auto *itp1 = &(chromosomes_[p1]);
@@ -505,7 +520,8 @@ Program Listing for File genetic_algorithm.cpp
      best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
      bool flag = true;
      for (int i = 0; i < n_nucleotide_pairs_; ++i) {
-       if (i != best_ && costs_.back() - costs_[i] < 2 * (costs_[best_] / total_percentage)) {
+       if (i != best_ &&
+           costs_.back() - costs_[i] < 2 * (costs_[best_] / total_percentage)) {
          costs_.erase(costs_.begin() + i);
          chromosomes_.erase(chromosomes_.begin() + i);
          iterators_.erase(iterators_.begin() + i);
@@ -697,7 +713,7 @@ Program Listing for File genetic_algorithm.cpp
      return true;
    }
    
-   bool GASolution::checkValidity(int i) {
+   bool GASolution::checkValidity(const int i) const {
      for (int j = 0; j < n_vehicles_; j++) {
        int load = capacity_;
        int iter = iterators_[i][j];
@@ -719,7 +735,7 @@ Program Listing for File genetic_algorithm.cpp
        best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
        int r = rand() % n_chromosomes_;
        while (r == best_) {
-         r = rand()%n_chromosomes_;
+         r = rand() % n_chromosomes_;
        }
        size_t i1 = rand() % n_nucleotide_pairs_;
        size_t i2 = rand() % n_nucleotide_pairs_;
@@ -741,7 +757,8 @@ Program Listing for File genetic_algorithm.cpp
    
    void GASolution::AddBest() {
      best_ = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
-     const int worst = std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
+     const int worst =
+         std::min_element(costs_.begin(), costs_.end()) - costs_.begin();
      chromosomes_[worst] = chromosomes_[best_];
      costs_[worst] = costs_[best_];
      iterators_[worst] = iterators_[best_];

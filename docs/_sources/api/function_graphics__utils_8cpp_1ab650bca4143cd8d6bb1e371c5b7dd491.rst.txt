@@ -1,0 +1,13 @@
+.. _exhale_function_graphics__utils_8cpp_1ab650bca4143cd8d6bb1e371c5b7dd491:
+
+Function DrawCoordinates
+========================
+
+- Defined in :ref:`file_src_graphics_utils.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: DrawCoordinates(const std::vector<std::vector<std::tuple<int, int, int>>>&)

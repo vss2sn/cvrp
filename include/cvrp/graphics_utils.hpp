@@ -8,7 +8,11 @@
 #define GRAPHIC_UTILS_HPP
 
 #include "cvrp/utils.hpp"
-
+/**
+ * @brief Displays the solution passed in  by plotting the routes
+ * @param s solution to be displayed.
+ * @return void
+ */
 void DisplaySolution(const Solution& s);
 
 #endif  // GRAPHIC_UTILS_HPP

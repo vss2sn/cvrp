@@ -1,0 +1,56 @@
+
+.. _file_src_graphics_utils.cpp:
+
+File graphics_utils.cpp
+=======================
+
+|exhale_lsh| :ref:`Parent directory <dir_src>` (``src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``src/graphics_utils.cpp``)
+---------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_src_graphics_utils.cpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``SFML/Graphics.hpp``
+
+- ``cvrp/graphics_utils.hpp`` (:ref:`file_include_cvrp_graphics_utils.hpp`)
+
+- ``string``
+
+- ``tuple``
+
+- ``vector``
+
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_graphics__utils_8cpp_1aeef937b47ce5fd7086ff3724fa70c866`
+
+- :ref:`exhale_function_graphics__utils_8cpp_1ab650bca4143cd8d6bb1e371c5b7dd491`
+
+- :ref:`exhale_function_graphics__utils_8cpp_1a9fa54157e9449ec84d6deaa8429964ac`
+

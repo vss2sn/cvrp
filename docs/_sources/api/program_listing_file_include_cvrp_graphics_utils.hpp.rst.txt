@@ -1,0 +1,20 @@
+
+.. _program_listing_file_include_cvrp_graphics_utils.hpp:
+
+Program Listing for File graphics_utils.hpp
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_cvrp_graphics_utils.hpp>` (``include/cvrp/graphics_utils.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef GRAPHIC_UTILS_HPP
+   #define GRAPHIC_UTILS_HPP
+   
+   #include "cvrp/utils.hpp"
+   void DisplaySolution(const Solution& s);
+   
+   #endif  // GRAPHIC_UTILS_HPP

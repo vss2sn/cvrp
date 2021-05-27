@@ -18,10 +18,11 @@ Program Listing for File greedy.hpp
    
    class GreedySolution : public Solution {
     public:
-     GreedySolution(const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
+     GreedySolution(const std::vector<Node>& nodes,
+                    const std::vector<Vehicle>& vehicles,
                     const std::vector<std::vector<double>>& distanceMatrix);
    
-     GreedySolution(const Problem& p);
+     explicit GreedySolution(const Problem& p);
    
      void Solve() override;
    };

@@ -1,0 +1,46 @@
+
+.. _file_include_cvrp_graphics_utils.hpp:
+
+File graphics_utils.hpp
+=======================
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/cvrp/graphics_utils.hpp``)
+------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_cvrp_graphics_utils.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``cvrp/utils.hpp`` (:ref:`file_include_cvrp_utils.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_src_graphics_utils.cpp`
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_graphics__utils_8hpp_1aeef937b47ce5fd7086ff3724fa70c866`
+

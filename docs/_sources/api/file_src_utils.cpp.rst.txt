@@ -42,6 +42,8 @@ Includes
 --------
 
 
+- ``algorithm`` (:ref:`file_src_genetic_algorithm.cpp`)
+
 - ``cvrp/utils.hpp`` (:ref:`file_include_cvrp_utils.hpp`)
 
 - ``iostream``
@@ -49,6 +51,8 @@ Includes
 - ``limits``
 
 - ``random``
+
+- ``tuple``
 
 - ``utility``
 

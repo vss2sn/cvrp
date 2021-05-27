@@ -40,6 +40,8 @@ Includes
 
 - ``string``
 
+- ``tuple``
+
 - ``vector``
 
 
@@ -49,6 +51,8 @@ Included By
 
 
 - :ref:`file_include_cvrp_genetic_algorithm.hpp`
+
+- :ref:`file_include_cvrp_graphics_utils.hpp`
 
 - :ref:`file_include_cvrp_greedy.hpp`
 
@@ -82,9 +86,9 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_utils_8hpp_1a0668602fe9a0f81c22a34d9f50fce57f`
-
 - :ref:`exhale_function_utils_8hpp_1ada22d1a125cc70e462992da2385c04a1`
+
+- :ref:`exhale_function_utils_8hpp_1a0668602fe9a0f81c22a34d9f50fce57f`
 
 - :ref:`exhale_function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938`
 

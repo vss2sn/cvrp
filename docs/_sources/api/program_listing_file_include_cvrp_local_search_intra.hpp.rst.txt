@@ -22,9 +22,9 @@ Program Listing for File local_search_intra.hpp
          const std::vector<Node>& nodes, const std::vector<Vehicle>& vehicles,
          const std::vector<std::vector<double>>& distanceMatrix);
    
-     LocalSearchIntraSolution(const Problem& p);
+     explicit LocalSearchIntraSolution(const Problem& p);
    
-     LocalSearchIntraSolution(const Solution& s);
+     explicit LocalSearchIntraSolution(const Solution& s);
    
      void Solve() override;
    };

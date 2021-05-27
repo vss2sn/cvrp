@@ -114,6 +114,9 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/function_graphics__utils_8cpp_1aeef937b47ce5fd7086ff3724fa70c866.html">Function DisplaySolution(const Solution&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/function_graphics__utils_8hpp_1aeef937b47ce5fd7086ff3724fa70c866.html">Function DisplaySolution(const Solution&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/function_graphics__utils_8cpp_1ab650bca4143cd8d6bb1e371c5b7dd491.html">Function DrawCoordinates</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_main_8cpp_1a2c3f6775325c30275d11c6abee2db6a0.html">Function main</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_utils_8cpp_1ada22d1a125cc70e462992da2385c04a1.html">Function operator&lt;&lt;(std::ostream&amp;, const Node&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_utils_8cpp_1a0668602fe9a0f81c22a34d9f50fce57f.html">Function operator&lt;&lt;(std::ostream&amp;, const Vehicle&amp;)</a></li>
@@ -121,6 +124,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/function_utils_8hpp_1a0668602fe9a0f81c22a34d9f50fce57f.html">Function operator&lt;&lt;(std::ostream&amp;, const Vehicle&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_utils_8cpp_1a00eb49f441f6f5de4827e88c02a59938.html">Function PrintVehicleRoute(const Vehicle&amp;)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_utils_8hpp_1a00eb49f441f6f5de4827e88c02a59938.html">Function PrintVehicleRoute(const Vehicle&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/function_graphics__utils_8cpp_1a9fa54157e9449ec84d6deaa8429964ac.html">Function UpdateColours</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#variables">Variables</a><ul>
@@ -144,6 +148,8 @@
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#files">Files</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/file_src_genetic_algorithm.cpp.html">File genetic_algorithm.cpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/file_include_cvrp_genetic_algorithm.hpp.html">File genetic_algorithm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_src_graphics_utils.cpp.html">File graphics_utils.cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/file_include_cvrp_graphics_utils.hpp.html">File graphics_utils.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/file_src_greedy.cpp.html">File greedy.cpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/file_include_cvrp_greedy.hpp.html">File greedy.hpp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/file_src_local_search_inter_intra.cpp.html">File local_search_inter_intra.cpp</a></li>
@@ -269,6 +275,7 @@
 <li><a class="reference external" href="#docs">Documentation</a></li>
 <li><a class="reference external" href="#algorithm_implementations">Overview of Algorithm Implementations</a></li>
 <li><a class="reference external" href="#notes">Notes</a></li>
+<li><a class="reference external" href="#visualization">Visualization</a></li>
 <li><a class="reference external" href="#todos">TODOs</a></li>
 </ul>
 <p><span class="raw-html-m2r"><a name="overview"></a></span></p>
@@ -289,7 +296,7 @@
 <h3>Documentation:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><a class="reference external" href="https://vss2sn.github.io/cvrp/">Documentation</a> can be found on GitHub pages.</li>
-<li>It has been created using Doxygen, and pip3 packages Sphinx (sphinx==1.8.3), Breathe (breathe==4.12.0), Exhale (exhale==0.2.2), Read the Docs Sphinx Theme (sphinx_rtd_theme==0.4.3) and m2r.</li>
+<li>It has been created using <code class="docutils literal notranslate"><span class="pre">Doxygen</span></code>, and pip3 packages <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> (<code class="docutils literal notranslate"><span class="pre">sphinx==1.8.31</span></code>), <code class="docutils literal notranslate"><span class="pre">Breathe</span></code> (breathe==4.12.0), <code class="docutils literal notranslate"><span class="pre">Exhale</span></code> (<code class="docutils literal notranslate"><span class="pre">exhale==0.2.2</span></code>),<code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">the</span> <span class="pre">Docs</span></code> Sphinx Theme (<code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme==0.4.3</span></code>) and <code class="docutils literal notranslate"><span class="pre">m2r</span></code>.</li>
 </ol>
 <p><span class="raw-html-m2r"><a name="algorithm_implementations"></a></span></p>
 </div>
@@ -304,10 +311,16 @@
 <li>The documentation for private functions (such as operators in the <code class="docutils literal notranslate"><span class="pre">GASolution</span></code> class) has been made available to aid understanding.</li>
 <li>Custom hybrid algorithms, that involve feeding in the solution of 1 algorithm to another can easily be implemented, as the structure allows the extraction of solution from the algorithm classes. An example is shown at the end of <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>.</li>
 </ol>
-<p><span class="raw-html-m2r"><a name="todos"></a></span></p>
+<p><span class="raw-html-m2r"><a name="visualization"></a></span></p>
 </div>
 <div class="section" id="id8">
-<h3>TODOs:<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<h3>Visualization:<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>This repository (<strong>optionally</strong>) uses <code class="docutils literal notranslate"><span class="pre">SFML</span></code> for visualization. It can be installed using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">libsfml-dev</span></code>.
+To run with <code class="docutils literal notranslate"><span class="pre">SFML</span></code>, include the header file <code class="docutils literal notranslate"><span class="pre">graphics_utils.hpp</span></code> in <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code>, and use the function <code class="docutils literal notranslate"><span class="pre">DisplaySolution(&lt;solution&gt;)</span></code>, passing in the solution to e displayed, and build the code with <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span> <span class="pre">-DDISPLAY_SOLUTION=ON</span></code>, or modify its value in <code class="docutils literal notranslate"><span class="pre">ProjectSpecificSettings.cmake</span></code>.</p>
+<p><span class="raw-html-m2r"><a name="todos"></a></span></p>
+</div>
+<div class="section" id="id9">
+<h3>TODOs:<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Read in problem from a file.</li>
 <li>Consider adding plot of best solution cost vs time.</li>
@@ -316,7 +329,6 @@
 <li>Consider modifying to allow heterogeneous vehicles.</li>
 <li>Consider adding multiple knapsack solver for initial solution if greedy solution fails, as well as a sanity check to check whether demand exceeds supply.</li>
 <li>Consider adding in a clustering algorithm to break large problems into a <code class="docutils literal notranslate"><span class="pre">vector</span></code> of small problems.</li>
-<li>Consider adding visualization based on sfml</li>
 <li>Refactor genetic algorithm to use a struct</li>
 </ol>
 <div class="toctree-wrapper compound">

@@ -11,8 +11,8 @@ Program Listing for File genetic_algorithm.hpp
 .. code-block:: cpp
 
    
-   #ifndef GA_HPP
-   #define GA_HPP
+   #ifndef GENETIC_ALGORITHM_HPP
+   #define GENETIC_ALGORITHM_HPP
    
    #include <unordered_set>
    
@@ -26,20 +26,22 @@ Program Listing for File genetic_algorithm.hpp
                 const std::vector<Vehicle>& vehicles,
                 const std::vector<std::vector<double>>& distanceMatrix,
                 const int n_chromosomes = 10, const int generations = 100);
-     GASolution(const Problem& p, const int n_chromosomes = 10, const int generations = 100);
+     explicit GASolution(const Problem& p, const int n_chromosomes = 10,
+                         const int generations = 100);
    
-     GASolution(const Solution& s, const int n_chromosomes = 10, const int generations = 100);
+     explicit GASolution(const Solution& s, const int n_chromosomes = 10,
+                         const int generations = 100);
    
      void Solve() override;
    
     private:
+     const int n_chromosomes_;
+     const int generations_;
+     const size_t n_nucleotide_pairs_;
+     std::vector<double> costs_;
+     const int n_vehicles_;
      std::vector<std::vector<int>> chromosomes_;
      std::vector<std::vector<int>> iterators_;
-     std::vector<double> costs_;
-     const size_t n_nucleotide_pairs_;
-     const int n_chromosomes_;
-     const int n_vehicles_;
-     const int generations_;
      int best_ = 0;
    
      void GenerateRandomSolutions();
@@ -72,7 +74,7 @@ Program Listing for File genetic_algorithm.hpp
    
      bool MutateIterRight(const int i_chromosome, const int j_in);
    
-     double CalculateCost(int i);
+     double CalculateCost(const int i) const;
    
      void CalculateTotalCost();
    
@@ -88,9 +90,9 @@ Program Listing for File genetic_algorithm.hpp
    
      void GenerateBestSolution();
    
-     bool checkValidity(int i);
+     bool checkValidity(const int i) const;
    
      void MakeValid(const int i);
    };
    
-   #endif  // GA_HPP
+   #endif  // GENETIC_ALGORITHM_HPP

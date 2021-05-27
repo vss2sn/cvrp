@@ -5,7 +5,7 @@ File genetic_algorithm.hpp
 ==========================
 
 
-Contiains the :ref:`exhale_class_classGASolution` (Genetic Algorithm :ref:`exhale_class_classSolution`) class. 
+Contains the :ref:`exhale_class_classGASolution` (Genetic Algorithm :ref:`exhale_class_classSolution`) class. 
 
 
 

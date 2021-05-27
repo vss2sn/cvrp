@@ -11,10 +11,11 @@ Program Listing for File local_search_inter_intra.cpp
 .. code-block:: cpp
 
    
+   #include "cvrp/local_search_inter_intra.hpp"
+   
    #include <iostream>
    #include <limits>
-   
-   #include "cvrp/local_search_inter_intra.hpp"
+   #include <numeric>
    
    constexpr double margin_of_error = 0.00001;
    
@@ -39,10 +40,6 @@ Program Listing for File local_search_inter_intra.cpp
    }
    
    void LocalSearchInterIntraSolution::Solve() {
-     double cost = 0;
-     for (const auto &v : vehicles_) {
-       cost += v.cost_;
-     }
      while (true) {
        int best_c = -1;
        int best_r = -1;
@@ -95,10 +92,9 @@ Program Listing for File local_search_inter_intra.cpp
        v_temp->load_ += nodes_[val_best_c].demand_;
        v_temp_2->load_ -= nodes_[val_best_c].demand_;
      }
-     cost = 0;
-     for (const auto &v : vehicles_) {
-       cost += v.cost_;
-     }
+     double cost = std::accumulate(
+         std::begin(vehicles_), std::end(vehicles_), 0.0,
+         [](const double sum, const Vehicle &v) { return sum + v.cost_; });
      std::cout << "Cost: " << cost << '\n';
      for (const auto &i : nodes_) {
        if (!i.is_routed_) {

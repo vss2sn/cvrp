@@ -12,6 +12,7 @@ Files
 -----
 
 - :ref:`file_src_genetic_algorithm.cpp`
+- :ref:`file_src_graphics_utils.cpp`
 - :ref:`file_src_greedy.cpp`
 - :ref:`file_src_local_search_inter_intra.cpp`
 - :ref:`file_src_local_search_intra.cpp`

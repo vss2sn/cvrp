@@ -14,26 +14,21 @@ jobs:
       env:
         - MATRIX_EVAL=""
     - os: linux
-      dist: bionic
+      dist: focal
       compiler: gcc
-      env:
-        - GCC_VER="9"
-        - MATRIX_EVAL="CC=gcc-${GCC_VER} && CXX=g++-${GCC_VER}"
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-          packages:
-            # I couldn't get ${GCC_VER} in here successfully
-            - gcc-9
-            - g++-9
-      # after_script:
-      #   - bash <(curl -s https://codecov.io/bash) -x /usr/bin/gcov-${GCC_VER}
+      env:
+        - GCC_VER="9"
+        - MATRIX_EVAL="CC=gcc-${GCC_VER} && CXX=g++-${GCC_VER}"
     - os: linux
-      dist: bionic
+      dist: focal
       compiler: clang
       env:
-        - MATRIX_EVAL="CC=clang && CXX=clang++"
+        - MATRIX_EVAL=""
+
 
 before_script:
   - eval "${MATRIX_EVAL}"
@@ -41,6 +36,7 @@ before_script:
 script:
   - mkdir build
   - cd build
+  - cmake ..
   - make -j
   # - cmake -D ENABLE_COVERAGE:BOOL=TRUE ../
   # - cmake --build . -- -j2
