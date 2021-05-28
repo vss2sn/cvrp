@@ -4,40 +4,35 @@ jobs:
   include:
     - os: osx
       compiler: gcc
-      osx_image: xcode11.2    # includes gcc-9 by default
-      env:
-        - GCC_VER="9"
-        - MATRIX_EVAL="CC=gcc-${GCC_VER} && CXX=g++-${GCC_VER}"
+      osx_image: xcode11.2
+      addons:
+        apt:
+          packages:
+            - ccache
     - os: osx
       compiler: clang
       osx_image: xcode11.2
-      env:
-        - MATRIX_EVAL=""
+      addons:
+        apt:
+          packages:
+            - ccache
     - os: linux
       dist: focal
       compiler: gcc
       addons:
         apt:
-          sources:
-            - ubuntu-toolchain-r-test
-      env:
-        - GCC_VER="9"
-        - MATRIX_EVAL="CC=gcc-${GCC_VER} && CXX=g++-${GCC_VER}"
+          packages:
+            - ccache
     - os: linux
       dist: focal
       compiler: clang
-      env:
-        - MATRIX_EVAL=""
-
-
-before_script:
-  - eval "${MATRIX_EVAL}"
+      addons:
+        apt:
+          packages:
+            - ccache
 
 script:
   - mkdir build
   - cd build
   - cmake ..
   - make -j
-  # - cmake -D ENABLE_COVERAGE:BOOL=TRUE ../
-  # - cmake --build . -- -j2
-  # - ctest -j2

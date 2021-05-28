@@ -99,7 +99,7 @@ GASolution::GASolution(const std::vector<Node> &nodes,
 
 std::vector<int> GASolution::GenerateRandomSolution() const {
   std::vector<int> temp(n_nucleotide_pairs_);
-  for (int i = 0; i < n_nucleotide_pairs_; ++i) {
+  for (size_t i = 0; i < n_nucleotide_pairs_; ++i) {
     temp[i] = i + 1;
   }
   unsigned seed =

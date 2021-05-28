@@ -27,7 +27,7 @@ void DrawCoordinates(const std::vector<std::vector<std::tuple<int, int, int>>>& 
     const auto scale = w_size / 50;
     std::vector<int> colours{50, 50, 50};
     for (const auto& coords : all_coords) {
-      for (int i = 0; i < coords.size() - 1; i++) {
+      for (size_t i = 0; i < coords.size() - 1; i++) {
         sf::Text text;
         text.setString(std::to_string(std::get<2>(coords[i])));
         text.setCharacterSize(10);
