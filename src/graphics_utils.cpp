@@ -1,10 +1,10 @@
-#include <string>
-#include <tuple>
-#include <vector>
+#include "cvrp/graphics_utils.hpp"
 
 #include <SFML/Graphics.hpp>
 
-#include "cvrp/graphics_utils.hpp"
+#include <string>
+#include <tuple>
+#include <vector>
 
 void UpdateColours(std::vector<int>& colours) {
   for (auto& colour : colours) {
@@ -13,7 +13,8 @@ void UpdateColours(std::vector<int>& colours) {
   }
 }
 
-void DrawCoordinates(const std::vector<std::vector<std::tuple<int, int, int>>>& all_coords) {
+void DrawCoordinates(
+    const std::vector<std::vector<std::tuple<int, int, int>>>& all_coords) {
   const int w_size = 1000;
   sf::RenderWindow window(sf::VideoMode(w_size, w_size), "Solution");
   while (window.isOpen()) {
@@ -32,12 +33,16 @@ void DrawCoordinates(const std::vector<std::vector<std::tuple<int, int, int>>>& 
         text.setString(std::to_string(std::get<2>(coords[i])));
         text.setCharacterSize(10);
         text.setFillColor(sf::Color::Red);
-        text.setPosition(scale * std::get<0>(coords[i]) + w_size/2, scale * std::get<1>(coords[i]) + w_size/2);
+        text.setPosition(scale * std::get<0>(coords[i]) + w_size / 2,
+                         scale * std::get<1>(coords[i]) + w_size / 2);
         window.draw(text);
         sf::Vertex line[] = {
-          sf::Vertex(sf::Vector2f(scale * std::get<0>(coords[i]) + w_size/2, scale * std::get<1>(coords[i]) + w_size/2)),
-          sf::Vertex(sf::Vector2f(scale * std::get<0>(coords[i+1]) + w_size/2, scale * std::get<1>(coords[i+1]) + w_size/2))
-        };
+            sf::Vertex(
+                sf::Vector2f(scale * std::get<0>(coords[i]) + w_size / 2,
+                             scale * std::get<1>(coords[i]) + w_size / 2)),
+            sf::Vertex(
+                sf::Vector2f(scale * std::get<0>(coords[i + 1]) + w_size / 2,
+                             scale * std::get<1>(coords[i + 1]) + w_size / 2))};
         line[0].color = sf::Color(colours[0], colours[1], colours[2]);
         line[1].color = sf::Color(colours[0], colours[1], colours[2]);
         window.draw(line, 2, sf::Lines);
@@ -56,10 +61,12 @@ void DisplaySolution(const Solution& s) {
   for (const auto& v : vehicles) {
     std::vector<std::tuple<int, int, int>> coords;
     for (const auto node_id : v.nodes_) {
-      const auto it = std::find_if (std::begin(nodes), std::end(nodes),
-        [node_id](const auto& node) { return node.id_ == node_id; });
+      const auto it = std::find_if(
+          std::begin(nodes), std::end(nodes),
+          [node_id](const auto& node) { return node.id_ == node_id; });
       // TODO(vss): Why does this not work:
-      // coords.push_back(std::make_tuple<int, int, size_t>(it->x_, it->y_, node_id));
+      // coords.push_back(std::make_tuple<int, int, size_t>(it->x_, it->y_,
+      // node_id));
       coords.push_back(std::make_tuple(it->x_, it->y_, node_id));
     }
     all_coords.push_back(coords);

@@ -219,13 +219,9 @@ class Solution {
    */
   void PrintSolution(const std::string &option = "") const;
 
-  std::vector<Node> GetNodes() const {
-    return nodes_;
-  }
+  std::vector<Node> GetNodes() const { return nodes_; }
 
-  std::vector<Vehicle> GetVehicles() const {
-    return vehicles_;
-  }
+  std::vector<Vehicle> GetVehicles() const { return vehicles_; }
 
  protected:
   std::vector<Node> nodes_;

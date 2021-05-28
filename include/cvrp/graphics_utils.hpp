@@ -1,7 +1,8 @@
 /**
  * @file graphic_utils.hpp
  * @author vss2sn
- * @brief Contains the functions and utils needed to display the solution using SFML
+ * @brief Contains the functions and utils needed to display the solution using
+ * SFML
  */
 
 #ifndef GRAPHIC_UTILS_HPP
